@@ -1,0 +1,39 @@
+﻿using System;
+
+namespace A1
+{
+    class Program
+    {
+        static void Main(string[] args)
+        {
+            PrepareConsolesLook();
+            Console.Clear();
+            Console.WriteLine("Hello World!");
+            Console.WriteLine();
+
+            Pet pet = new Pet(); // New Pet object
+            pet.Start(); // Start
+            Console.WriteLine("Press Enter for to start the next part.");
+            Console.ReadLine();
+
+            TicketSeller ts = new TicketSeller();  // New TicketSeller object
+            ts.Start();
+            Console.WriteLine("Press Enter for to start the next part.");
+            Console.ReadLine();
+
+            Album album = new Album(); // New Album object
+            album.Start();
+            Console.WriteLine("Press Enter to exit.");
+            Console.ReadLine();
+
+        }
+
+        static void PrepareConsolesLook()
+        {
+            Console.BackgroundColor = ConsoleColor.Black;
+            Console.Clear();
+            Console.ForegroundColor = ConsoleColor.White;
+            Console.Title = "Kids' Fair";
+        }
+    }
+}
