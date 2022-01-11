@@ -8,12 +8,16 @@ namespace A1
 {
     class Pet
     {
-        // Private fields
+        /**
+         * Private fields
+         */
         private string name;    // pet name
         private int age;        // pet age
         private bool isFemale;  // pet gender (T: female, F: male)
 
-        // Main pet owner program
+        /** 
+         * Pet main handler
+         */
         public void Start() 
         {
             Console.WriteLine("Pet Owner");
@@ -25,7 +29,9 @@ namespace A1
             Console.WriteLine();
         }
 
-        // Pet data handler
+        /** 
+         * Pet data handler
+         */
         public void ReadAndSavePetData()
         {
             ReadAndSaveName();
@@ -33,18 +39,27 @@ namespace A1
             ReadAndSaveIsFemale();
         }
 
+        /** 
+         * Pet name handler
+         */
         private void ReadAndSaveName()
         {
             Console.Write("What is your pet name? ");
             name = Console.ReadLine();
         }
 
+        /** 
+         * Pet age handler
+         */
         private void ReadAndSaveAge()
         {
             Console.Write("What is your pet age? ");
-            age = int.Parse(Console.ReadLine());
+            age = int.Parse(Console.ReadLine()); // try parsing what user entered
         }
 
+        /** 
+         * Pet gender handler
+         */
         private void ReadAndSaveIsFemale()
         {
             Console.Write("Is your pet female (Y/N)? ");
@@ -57,9 +72,9 @@ namespace A1
          */
         public void DisplayPetInfo()
         {
-            string textOut = "Name: " + name + "; Age: " + age;
+            string textOut = "Name: " + name + "; Age: " + age;                 // name and age export
             Console.WriteLine(textOut);
-            textOut = name + " is a good " + (isFemale ? "girl" : "boy") + "!";
+            textOut = name + " is a good " + (isFemale ? "girl" : "boy") + "!"; // gender export
             Console.WriteLine(textOut);
         }
     }
