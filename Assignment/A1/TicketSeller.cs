@@ -16,7 +16,7 @@ namespace A1
 
         public void Start()
         {
-            ReadAndSaveTicket();
+            ReadAndSaveTickets();
             DisplayTicketPrice();
         }
 
@@ -47,7 +47,7 @@ namespace A1
 
         public void CalculateTicketPrice()
         {
-            amountToPay = 69420;
+            amountToPay = numOfAdults*100 + numOfChildren*25;
         }
 
         public void DisplayTicketPrice()

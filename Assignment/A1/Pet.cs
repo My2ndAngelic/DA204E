@@ -23,9 +23,9 @@ namespace A1
             Console.WriteLine("Pet Owner");
             ReadAndSavePetData();
             Console.WriteLine();
-            Console.WriteLine("--------------");
+            Console.WriteLine("++++++++++++++");
             DisplayPetInfo();
-            Console.WriteLine("--------------");
+            Console.WriteLine("++++++++++++++");
             Console.WriteLine();
         }
 
