@@ -53,7 +53,7 @@ namespace A1
          */
         private void ReadAndSaveAge()
         {
-            Console.Write("What is your pet age? ");
+            Console.Write("What is " + name + "'s " + "age? ");
             age = int.Parse(Console.ReadLine()); // try parsing what user entered
         }
 

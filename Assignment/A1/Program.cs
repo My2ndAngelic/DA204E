@@ -22,7 +22,7 @@ namespace A1
             Console.ReadLine();
 
             Album album = new Album(); // New Album object
-            album.Start();
+            album.Start(); 
             Console.WriteLine("Press Enter to exit.");
             Console.ReadLine();
 
@@ -30,10 +30,10 @@ namespace A1
 
         static void PrepareConsolesLook()
         {
-            Console.BackgroundColor = ConsoleColor.Black;
+            Console.BackgroundColor = ConsoleColor.White;
             Console.Clear();
-            Console.ForegroundColor = ConsoleColor.White;
-            Console.Title = "Kids' Fair";
+            Console.ForegroundColor = ConsoleColor.Black;
+            Console.Title = "KIDS' FAIR";
         }
     }
 }

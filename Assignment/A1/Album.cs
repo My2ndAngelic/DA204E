@@ -15,8 +15,12 @@ namespace A1
 
         public void Start()
         {
+            Console.WriteLine("Starting the Album Program!");
+            Console.WriteLine();
             ReadAndSaveAlbum();
+            Console.WriteLine();
             DisplayAlbumInfo();
+            Console.WriteLine();
         }
 
         public void ReadAndSaveAlbum()
@@ -44,7 +48,10 @@ namespace A1
 
         public void DisplayAlbumInfo()
         {
-
+            Console.WriteLine("Album name: " + albumName);
+            Console.WriteLine("Artist/Band: " + artistName);
+            Console.WriteLine("Number of tracks: " + numOfTracks);
+            Console.WriteLine("Enjoy listening!");
         }
     }
 }
