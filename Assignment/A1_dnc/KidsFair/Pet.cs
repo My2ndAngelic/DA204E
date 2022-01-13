@@ -4,16 +4,16 @@ namespace A1
 {
     class Pet
     {
-        /**
-         * Private fields
-         */
-        private string name;    // pet name
+		/// <summary>
+		/// 
+		/// </summary>
+		private string name;    // pet name
         private int age;        // pet age
         private bool isFemale;  // pet gender (T: female, F: male)
 
-        /** 
-         * Pet main handler
-         */
+        /// <summary>
+		/// 
+		/// </summary>
         public void Start() 
         {
             Console.WriteLine("Pet Owner");
@@ -25,9 +25,9 @@ namespace A1
             Console.WriteLine();
         }
 
-        /** 
-         * Pet data handler
-         */
+        /// <summary>
+		/// 
+		/// </summary>
         public void ReadAndSavePetData()
         {
             ReadAndSaveName();
@@ -35,27 +35,27 @@ namespace A1
             ReadAndSaveIsFemale();
         }
 
-        /** 
-         * Pet name handler
-         */
+        /// <summary>
+		/// 
+		/// </summary>
         private void ReadAndSaveName()
         {
             Console.Write("What is your pet name? ");
             name = Console.ReadLine();
         }
 
-        /** 
-         * Pet age handler
-         */
+        /// <summary>
+		/// 
+		/// </summary>
         private void ReadAndSaveAge()
         {
             Console.Write("What is " + name + "'s " + "age? ");
             age = int.Parse(Console.ReadLine()); // try parsing what user entered
         }
 
-        /** 
-         * Pet gender handler
-         */
+        /// <summary>
+		/// Pet gender handler
+		/// </summary>
         private void ReadAndSaveIsFemale()
         {
             Console.Write("Is your pet female (Y/N)? ");
@@ -63,9 +63,9 @@ namespace A1
             isFemale = response == 'y' || response == 'Y'; // Female if first character is Y/y, Male if otherwise
         }
 
-        /** 
-         * Pet data display
-         */
+        /// <summary>
+		/// Pet data display
+		/// </summary>
         public void DisplayPetInfo()
         {
             string textOut = "Name: " + name + "; Age: " + age;                 // name and age export
