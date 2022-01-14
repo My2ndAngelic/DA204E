@@ -1,15 +1,21 @@
 ﻿using System;
 
-namespace Calculator
+namespace Shop
 {
     public class CashierOneItem
     {
+        /// <summary>
+        /// Private fields
+        /// </summary>
         private DateTime dateTime;
         private string itemName;
         private double pricePerItem;
         private int quantity;
         private double total;
 
+        /// <summary>
+        /// 
+        /// </summary>
         public void Start()
         {
             ReadAndSaveItem();

@@ -1,4 +1,4 @@
-﻿namespace Calculator
+﻿namespace Shop
 {
     internal class MainClass
     {
