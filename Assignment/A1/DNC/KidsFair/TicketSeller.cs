@@ -5,17 +5,17 @@ namespace A1
     public class TicketSeller
     {
         /// <summary>
-		/// Private fields
-		/// </summary>
-        private string name; 
-        private double price = 100.00; // Big assumption from the given screenshot, normal price = 100
-        private int numOfAdults; 
-        private int numOfChildren; 
-        private double amountToPay; 
+        ///     Private fields
+        /// </summary>
+        private string name;
+        private double amountToPay;
+        private int numOfAdults;
+        private int numOfChildren;
+        private readonly double price = 100.00; // Big assumption from the given screenshot, normal price = 100
 
         /// <summary>
-		/// The Starting price
-		/// </summary>
+        ///     The Starting price
+        /// </summary>
         public void Start()
         {
             Console.WriteLine("Welcome to KIDS' FAIR!\nChildren always get a 75% discount");
@@ -25,9 +25,9 @@ namespace A1
         }
 
         /// <summary>
-		/// First method
-		/// </summary>
-        public void ReadAndSaveTickets()
+        ///     First method
+        /// </summary>
+        private void ReadAndSaveTickets()
         {
             ReadAndSaveName();
             ReadAndSaveAdult();
@@ -36,44 +36,45 @@ namespace A1
         }
 
         /// <summary>
-		/// This method asks user to enter name and save it to the field
-		/// </summary>
-        public void ReadAndSaveName()
+        ///     This method asks user to enter name and save it to the field
+        /// </summary>
+        private void ReadAndSaveName()
         {
             Console.WriteLine("Your name please: "); // Read and save buyer's name
             name = Console.ReadLine();
         }
 
         /// <summary>
-		/// This method asks user to enter number of adults and save it to the field
-		/// </summary>
-        public void ReadAndSaveAdult()
+        ///     This method asks user to enter number of adults and save it to the field
+        /// </summary>
+        private void ReadAndSaveAdult()
         {
             Console.WriteLine("Number of adults: "); // Read and save how many adults are there
             numOfAdults = int.Parse(Console.ReadLine());
         }
 
         /// <summary>
-		/// This method asks user to enter number of children and save it to the field
-		/// </summary>
-        public void ReadAndSaveChildren()
+        ///     This method asks user to enter number of children and save it to the field
+        /// </summary>
+        private void ReadAndSaveChildren()
         {
             Console.WriteLine("Number of children: "); // Read and save how many children are there
             numOfChildren = int.Parse(Console.ReadLine());
         }
 
         /// <summary>
-		/// This method calculate ticket price save it to the field
-		/// </summary>
-        public void CalculateTicketPrice()
+        ///     This method calculate ticket price save it to the field
+        /// </summary>
+        private void CalculateTicketPrice()
         {
-            amountToPay = price * (numOfAdults + 0.25 * numOfChildren); // Calculate the ticket price, 75% discount for children
+            amountToPay =
+                price * (numOfAdults + 0.25 * numOfChildren); // Calculate the ticket price, 75% discount for children
         }
 
         /// <summary>
-		/// This method display the ticket price and some messages
-		/// </summary>
-        public void DisplayTicketPrice()
+        ///     This method display the ticket price and some messages
+        /// </summary>
+        private void DisplayTicketPrice()
         {
             Console.WriteLine("+++ Your receipt +++");
             Console.WriteLine("+++ Amount to pay = " + amountToPay);

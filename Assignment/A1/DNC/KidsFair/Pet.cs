@@ -4,17 +4,17 @@ namespace A1
 {
     public class Pet
     {
-		/// <summary>
-		/// 
-		/// </summary>
-		private string name;    // pet name
-        private int age;        // pet age
-        private bool isFemale;  // pet gender (T: female, F: male)
+        private int age; // pet age
+        private bool isFemale; // pet gender (T: female, F: male)
 
         /// <summary>
-		/// 
-		/// </summary>
-        public void Start() 
+        /// </summary>
+        private string name; // pet name
+
+        /// <summary>
+        ///     Main method of pet
+        /// </summary>
+        public void Start()
         {
             Console.WriteLine("Pet Owner");
             ReadAndSavePetData();
@@ -26,9 +26,9 @@ namespace A1
         }
 
         /// <summary>
-		/// 
-		/// </summary>
-        public void ReadAndSavePetData()
+        ///     Pet data handler
+        /// </summary>
+        private void ReadAndSavePetData()
         {
             ReadAndSaveName();
             ReadAndSaveAge();
@@ -36,8 +36,8 @@ namespace A1
         }
 
         /// <summary>
-		/// 
-		/// </summary>
+        ///     This methods asks user name and save it to the field
+        /// </summary>
         private void ReadAndSaveName()
         {
             Console.Write("What is your pet name? ");
@@ -45,8 +45,8 @@ namespace A1
         }
 
         /// <summary>
-		/// 
-		/// </summary>
+        ///     This methods asks user age and save it to the field
+        /// </summary>
         private void ReadAndSaveAge()
         {
             Console.Write("What is " + name + "'s " + "age? ");
@@ -54,21 +54,21 @@ namespace A1
         }
 
         /// <summary>
-		/// Pet gender handler
-		/// </summary>
+        ///     This methods asks user if pet is female and save it to the field
+        /// </summary>
         private void ReadAndSaveIsFemale()
         {
             Console.Write("Is your pet female (Y/N)? ");
-            char response = Console.ReadLine().Trim()[0];
+            var response = Console.ReadLine().Trim()[0];
             isFemale = response == 'y' || response == 'Y'; // Female if first character is Y/y, Male if otherwise
         }
 
         /// <summary>
-		/// Pet data display
-		/// </summary>
-        public void DisplayPetInfo()
+        ///     Display pet data to the user
+        /// </summary>
+        private void DisplayPetInfo()
         {
-            string textOut = "Name: " + name + "; Age: " + age;                 // name and age export
+            var textOut = "Name: " + name + "; Age: " + age; // name and age export
             Console.WriteLine(textOut);
             textOut = name + " is a good " + (isFemale ? "girl" : "boy") + "!"; // gender export
             Console.WriteLine(textOut);

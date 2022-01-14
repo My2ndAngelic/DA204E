@@ -4,14 +4,17 @@ namespace A1
 {
     public class Album
     {
-        /// Album name, artist name, and number of tracks
-        private string albumName; 
-        private string artistName; 
-        private int numOfTracks; 
+        /// <summary>
+        ///     Private fields
+        /// </summary>
+        private string albumName;
+
+        private string artistName;
+        private int numOfTracks;
 
         /// <summary>
-		/// 
-		/// </summary>
+        ///     Main method of the album class
+        /// </summary>
         public void Start()
         {
             Console.WriteLine("Starting the Album Program!");
@@ -23,9 +26,9 @@ namespace A1
         }
 
         /// <summary>
-		/// 
-		/// </summary>
-        public void ReadAndSaveAlbum()
+        ///     Album data handler
+        /// </summary>
+        private void ReadAndSaveAlbum()
         {
             ReadAndSaveAlbumName();
             ReadAndSaveArtistName();
@@ -33,36 +36,36 @@ namespace A1
         }
 
         /// <summary>
-		/// 
-		/// </summary>
-        public void ReadAndSaveAlbumName()
+        ///     This method asks user album name and saves it to the field
+        /// </summary>
+        private void ReadAndSaveAlbumName()
         {
             Console.WriteLine("What is the name of your favorite music album?");
             albumName = Console.ReadLine();
         }
 
         /// <summary>
-		///
-		/// </summary>
-        public void ReadAndSaveArtistName()
+        ///     This method asks user artist/band and saves it to the field
+        /// </summary>
+        private void ReadAndSaveArtistName()
         {
             Console.WriteLine("What is the name of the Artist or Band for ", albumName, "?");
             artistName = Console.ReadLine();
         }
 
         /// <summary>
-		/// 
-		/// </summary>
-        public void ReadAndSaveNumOfTracks()
+        ///     This method asks user number of track and saves it to the field
+        /// </summary>
+        private void ReadAndSaveNumOfTracks()
         {
             Console.WriteLine("How many tracks does ", albumName, " have?");
             numOfTracks = int.Parse(Console.ReadLine());
         }
 
         /// <summary>
-		/// 
-		/// </summary>
-        public void DisplayAlbumInfo()
+        ///     Display the album info to the user
+        /// </summary>
+        private void DisplayAlbumInfo()
         {
             Console.WriteLine("Album name: " + albumName);
             Console.WriteLine("Artist/Band: " + artistName);
