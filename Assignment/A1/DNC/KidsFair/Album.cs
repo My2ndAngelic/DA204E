@@ -2,7 +2,7 @@
 
 namespace A1
 {
-    class Album
+    public class Album
     {
         /// Album name, artist name, and number of tracks
         private string albumName; 

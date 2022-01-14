@@ -2,7 +2,7 @@
 
 namespace A1
 {
-    class TicketSeller
+    public class TicketSeller
     {
         /// <summary>
 		/// Private fields
@@ -14,7 +14,7 @@ namespace A1
         private double amountToPay; 
 
         /// <summary>
-		/// 
+		/// The Starting price
 		/// </summary>
         public void Start()
         {
@@ -25,7 +25,7 @@ namespace A1
         }
 
         /// <summary>
-		/// 
+		/// First method
 		/// </summary>
         public void ReadAndSaveTickets()
         {
@@ -36,7 +36,7 @@ namespace A1
         }
 
         /// <summary>
-		/// 
+		/// This method asks user to enter name and save it to the field
 		/// </summary>
         public void ReadAndSaveName()
         {
@@ -45,7 +45,7 @@ namespace A1
         }
 
         /// <summary>
-		/// 
+		/// This method asks user to enter number of adults and save it to the field
 		/// </summary>
         public void ReadAndSaveAdult()
         {
@@ -54,7 +54,7 @@ namespace A1
         }
 
         /// <summary>
-		/// 
+		/// This method asks user to enter number of children and save it to the field
 		/// </summary>
         public void ReadAndSaveChildren()
         {
@@ -63,7 +63,7 @@ namespace A1
         }
 
         /// <summary>
-		/// 
+		/// This method calculate ticket price save it to the field
 		/// </summary>
         public void CalculateTicketPrice()
         {
@@ -71,7 +71,7 @@ namespace A1
         }
 
         /// <summary>
-		/// 
+		/// This method display the ticket price and some messages
 		/// </summary>
         public void DisplayTicketPrice()
         {

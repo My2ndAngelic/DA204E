@@ -2,7 +2,7 @@
 
 namespace A1
 {
-    class Pet
+    public class Pet
     {
 		/// <summary>
 		/// 
