@@ -14,14 +14,17 @@ namespace Shop
         private double total;
 
         /// <summary>
-        /// 
+        /// Launcher
         /// </summary>
         public void Start()
         {
             ReadAndSaveItem();
             DisplayPrice();
         }
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
         private void ReadAndSaveItem()
         {
             ReadAndSaveItemName();
@@ -31,34 +34,52 @@ namespace Shop
             SetDateTime();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void ReadAndSavePricePerItem()
         {
             Console.WriteLine("What is the price per " + itemName + "?");
             pricePerItem = double.Parse(Console.ReadLine());
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void ReadAndSaveQuantity()
         {
             Console.WriteLine("How many " + itemName + " that you are buying?");
             quantity = int.Parse(Console.ReadLine());
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void ReadAndSaveItemName()
         {
             Console.WriteLine("What is the item name that you are buying?");
             itemName = Console.ReadLine();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void CalculateTotal()
         {
             total = pricePerItem * quantity;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void SetDateTime()
         {
             dateTime = DateTime.Now;
         }
 
+        /// <summary>
+        /// Display the receipt out
+        /// </summary>
         private void DisplayPrice()
         {
             Console.WriteLine("===================");
