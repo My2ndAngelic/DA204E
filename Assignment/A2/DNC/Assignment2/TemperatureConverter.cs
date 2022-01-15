@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Linq;
 
 namespace Assignment2
 {
@@ -73,6 +74,7 @@ namespace Assignment2
                        Math.Pow(1.8, !sourceUnit.Equals("F") ? 1 : 0) * temp
                    );
         }
+        Func<string, double> TempConvert2 = temp => temp.Select()
 
         private void ShowMenu()
         {
