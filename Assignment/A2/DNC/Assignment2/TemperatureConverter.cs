@@ -1,6 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace Assignment2
 {
@@ -24,65 +22,58 @@ namespace Assignment2
                 {
                     case 0: break;
                     case 1:
-                        for (int i = 0; i <= 100; i++)
+                        for (var i = 0; i <= 100; i++)
                         {
-                            string s = string.Format("{0,6:f2} C = {1, 6:f2} F", i, CelciusToFarenheit(i));
+                            var s = $"{i,6:f2} C = {CelciusToFarenheit(i),6:f2} F";
                             Console.WriteLine(s);
                         }
+
                         break;
                     case 2:
-                        for (int i = 0; i <= 100; i++)
+                        for (var i = 0; i <= 212; i++)
                         {
-                            string s = string.Format("{0,6:f2} F = {1, 6:f2} C", i, FarenheitToCelcius(i));
+                            var s = $"{i,6:f2} F = {FarenheitToCelcius(i),6:f2} C";
                             Console.WriteLine(s);
                         }
+
                         break;
                 }
+                Console.WriteLine("Press Enter to continue.");
+                Console.ReadLine();
             }
         }
 
         /// <summary>
-        /// 
+        ///     Convert Celcius to Farenheit
         /// </summary>
-        /// <param name="celcius"></param>
-        /// <returns></returns>
+        /// <param name="farenheit">Celcius degree in double</param>
+        /// <returns>Farenheit degree in double</returns>
         private double CelciusToFarenheit(double celcius)
         {
-            return TempConvert(celcius, "C");
+            return celcius * 1.8 + 32;
         }
 
         /// <summary>
-        /// 
+        ///     Convert Farenheit to Celcius
         /// </summary>
-        /// <param name="farenheit"></param>
-        /// <returns></returns>
+        /// <param name="farenheit">Farenheit degree in double</param>
+        /// <returns>Celcius degree in double</returns>
         private double FarenheitToCelcius(double farenheit)
         {
-            return TempConvert(farenheit, "F");
+            return (farenheit - 32) / 1.8;
         }
 
         /// <summary>
         /// 
         /// </summary>
-        /// <param name="temp"></param>
-        /// <param name="sourceUnit"></param>
-        /// <returns></returns>
-        private static double TempConvert(double temp, string sourceUnit)
-        {
-            return Math.Pow((double)5 / 9, sourceUnit.Equals("F") ? 1 : 0) *
-                   (
-                       Math.Pow(-1, sourceUnit.Equals("F") ? 1 : 0) * 32 +
-                       Math.Pow(1.8, !sourceUnit.Equals("F") ? 1 : 0) * temp
-                   );
-        }
-
-        public static Func<string, double> TempConvert2 = s => Convert.ToDouble(s.Length);
-
         private void ShowMenu()
         {
-            Console.WriteLine("Pick a number: 0, 1, 2");
+            Console.Write("Pick a number: 0, 1, 2: ");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void UrMom()
         {
         }
