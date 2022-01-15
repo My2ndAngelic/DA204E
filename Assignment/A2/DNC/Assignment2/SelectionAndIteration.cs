@@ -1,53 +1,47 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace Assignment2
 {
-    class SelectionAndIteration
+    internal class SelectionAndIteration
     {
         /// <summary>
-        /// 
         /// </summary>
-         public SelectionAndIteration()
+        public SelectionAndIteration()
         {
-            Console.WriteLine();
-            Console.WriteLine("My name is A and I am a student of the B semester!");
-            Console.WriteLine();
-
-            ShowStringLength();
-            Console.WriteLine();
-            
-            MakeMyDay();
-            Console.WriteLine();
-            
-            SumNumbers();
+            Console.Clear();
+            Start();
         }
 
-        /// <summary>
-        ///     
-        /// </summary>
-        public void ShowStringLength()
+        public void Start()
         {
             
         }
 
         /// <summary>
-        /// 
         /// </summary>
-        public void MakeMyDay()
+        private void ShowStringLength()
         {
-
+            Console.WriteLine("Let me calculate the string length for you.");
+            string userInput = "";
+            do
+            {
+                Console.WriteLine(userInput.ToUpper() + (!userInput.Equals("") ? "\nNumber of chars = " + userInput.Length : ""));
+                Console.WriteLine("Give me a text of any length or press Enter to exit.");
+                userInput = Console.ReadLine();
+                Console.WriteLine();
+            } while (!userInput.Equals(""));
         }
 
         /// <summary>
-        /// 
         /// </summary>
-        public void SumNumbers()
+        private void MakeMyDay()
         {
+        }
 
+        /// <summary>
+        /// </summary>
+        private void SumNumbers()
+        {
         }
     }
 }

@@ -7,6 +7,12 @@ namespace Assignment2
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+
+            SelectionAndIteration sai = new SelectionAndIteration();
+            sai.Start();
+            
+            TemperatureConverter tc = new TemperatureConverter();
+            tc.Start();
         }
     }
 }
