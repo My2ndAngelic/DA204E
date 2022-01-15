@@ -13,12 +13,25 @@ namespace Assignment2
         /// </summary>
          public SelectionAndIteration()
         {
+            Console.WriteLine();
+            Console.WriteLine("My name is A and I am a student of the B semester!");
+            Console.WriteLine();
 
+            ShowStringLength();
+            Console.WriteLine();
+            
+            MakeMyDay();
+            Console.WriteLine();
+            
+            SumNumbers();
         }
 
+        /// <summary>
+        ///     
+        /// </summary>
         public void ShowStringLength()
         {
-
+            
         }
 
         /// <summary>

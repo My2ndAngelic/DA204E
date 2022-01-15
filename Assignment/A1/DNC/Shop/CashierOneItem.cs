@@ -5,25 +5,26 @@ namespace Shop
     public class CashierOneItem
     {
         /// <summary>
-        /// Private fields
+        ///     Private fields
         /// </summary>
         private DateTime dateTime;
+
         private string itemName;
         private double pricePerItem;
         private int quantity;
         private double total;
 
         /// <summary>
-        /// Launcher
+        ///     Launcher
         /// </summary>
         public void Start()
         {
             ReadAndSaveItem();
             DisplayPrice();
         }
-        
+
         /// <summary>
-        /// 
+        ///     Read and save user item info
         /// </summary>
         private void ReadAndSaveItem()
         {
@@ -35,7 +36,7 @@ namespace Shop
         }
 
         /// <summary>
-        /// 
+        ///     Read and save item price once
         /// </summary>
         private void ReadAndSavePricePerItem()
         {
@@ -44,7 +45,7 @@ namespace Shop
         }
 
         /// <summary>
-        /// 
+        ///     Read and save how many user wants to buy
         /// </summary>
         private void ReadAndSaveQuantity()
         {
@@ -53,7 +54,7 @@ namespace Shop
         }
 
         /// <summary>
-        /// 
+        ///     Read and save the item name
         /// </summary>
         private void ReadAndSaveItemName()
         {
@@ -62,7 +63,7 @@ namespace Shop
         }
 
         /// <summary>
-        /// 
+        ///     Calculate total payment
         /// </summary>
         private void CalculateTotal()
         {
@@ -70,7 +71,7 @@ namespace Shop
         }
 
         /// <summary>
-        /// 
+        ///     Save the printing receipt date
         /// </summary>
         private void SetDateTime()
         {
@@ -78,7 +79,7 @@ namespace Shop
         }
 
         /// <summary>
-        /// Display the receipt out
+        ///     Display the receipt out
         /// </summary>
         private void DisplayPrice()
         {

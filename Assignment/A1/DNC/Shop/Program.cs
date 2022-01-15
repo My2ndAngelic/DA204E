@@ -2,9 +2,9 @@
 
 namespace Shop
 {
-    internal class MainClass
-    {
-        public static void Main(string[] args)
+    class Program 
+    { 
+        static void Main(string[] args)
         {
             var cashierOneItem = new CashierOneItem();
             Console.Clear();

@@ -1,17 +1,19 @@
 ﻿using System;
 
-namespace A1
+namespace KidsFair
 {
     public class TicketSeller
     {
+        private readonly double price = 100.00; // Big assumption from the given screenshot, normal price = 100
+        private double amountToPay;
+
         /// <summary>
         ///     Private fields
         /// </summary>
         private string name;
-        private double amountToPay;
+
         private int numOfAdults;
         private int numOfChildren;
-        private readonly double price = 100.00; // Big assumption from the given screenshot, normal price = 100
 
         /// <summary>
         ///     The Starting price

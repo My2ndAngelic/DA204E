@@ -1,6 +1,6 @@
 ﻿using System;
 
-namespace A1
+namespace KidsFair
 {
     public class Pet
     {
