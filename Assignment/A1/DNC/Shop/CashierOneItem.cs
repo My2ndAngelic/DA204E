@@ -1,26 +1,40 @@
 ﻿using System;
+using System.Globalization;
 
 namespace Shop
 {
+    /// <summary>
+    ///     Store and display receipt info
+    /// </summary>
     public class CashierOneItem
     {
-        /// <summary>
-        ///     Private fields
-        /// </summary>
         private DateTime dateTime;
-
         private string itemName;
         private double pricePerItem;
         private int quantity;
         private double total;
 
+        public CashierOneItem()
+        {
+            
+        }
+        
         /// <summary>
         ///     Launcher
         /// </summary>
         public void Start()
         {
+            Welcome();
             ReadAndSaveItem();
             DisplayPrice();
+        }
+
+        private static void Welcome()
+        {
+            Console.WriteLine("Welcome to BnL!");
+            Console.WriteLine("Buy N Large is your super store.");
+            Console.WriteLine("We got all you need and so much more.");
+            Console.WriteLine();
         }
 
         /// <summary>
@@ -41,7 +55,7 @@ namespace Shop
         private void ReadAndSavePricePerItem()
         {
             Console.WriteLine("What is the price per " + itemName + "?");
-            pricePerItem = double.Parse(Console.ReadLine());
+            pricePerItem = double.Parse(Console.ReadLine(), NumberStyles.Any, CultureInfo.InvariantCulture);
         }
 
         /// <summary>
@@ -49,7 +63,7 @@ namespace Shop
         /// </summary>
         private void ReadAndSaveQuantity()
         {
-            Console.WriteLine("How many " + itemName + " that you are buying?");
+            Console.WriteLine("How many " + itemName + "(s) " + "that you are buying?");
             quantity = int.Parse(Console.ReadLine());
         }
 
@@ -79,16 +93,16 @@ namespace Shop
         }
 
         /// <summary>
-        ///     Display the receipt out
+        ///     Display the receipt
         /// </summary>
         private void DisplayPrice()
         {
             Console.WriteLine("===================");
-            Console.WriteLine("Name: " + itemName);
-            Console.WriteLine("Price: " + pricePerItem);
-            Console.WriteLine("Quantity: " + quantity);
-            Console.WriteLine("Total payment: $" + total);
-            Console.WriteLine("Printed: " + dateTime.ToString("yyyy-MM-dd HH:mm:ss"));
+            Console.WriteLine("Item: {0}", itemName);
+            Console.WriteLine("Price: {0}", pricePerItem);
+            Console.WriteLine("Quantity: {0}", quantity);
+            Console.WriteLine("Total payment: {0}", total);
+            Console.WriteLine("Printed: {0:yyyy-MM-dd HH:mm:ss}", dateTime);
             Console.WriteLine();
             Console.WriteLine("Thank you for shopping with BnL. See you later!");
             Console.WriteLine("==================");

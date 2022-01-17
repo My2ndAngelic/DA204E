@@ -6,9 +6,11 @@ namespace Shop
     { 
         static void Main(string[] args)
         {
-            var cashierOneItem = new CashierOneItem();
             Console.Clear();
+            
+            var cashierOneItem = new CashierOneItem();
             cashierOneItem.Start();
+            
             Console.ReadLine();
         }
     }

@@ -6,9 +6,6 @@ namespace KidsFair
     {
         private int age; // pet age
         private bool isFemale; // pet gender (T: female, F: male)
-
-        /// <summary>
-        /// </summary>
         private string name; // pet name
 
         /// <summary>
