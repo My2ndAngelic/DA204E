@@ -10,6 +10,9 @@ namespace Assignment2
             Start();
         }
 
+        /// <summary>
+        ///     Start the class
+        /// </summary>
         public void Start()
         {
             var choice = -1;
@@ -20,7 +23,6 @@ namespace Assignment2
                 choice = int.Parse(Console.ReadLine());
                 switch (choice)
                 {
-                    case 0: break;
                     case 1:
                         for (var i = 0; i <= 100; i++)
                         {
@@ -64,18 +66,11 @@ namespace Assignment2
         }
 
         /// <summary>
-        /// 
+        ///     Show the main menu for the temperature converter
         /// </summary>
         private void ShowMenu()
         {
             Console.Write("Pick a number: 0, 1, 2: ");
-        }
-
-        /// <summary>
-        /// 
-        /// </summary>
-        private void UrMom()
-        {
         }
     }
 }
