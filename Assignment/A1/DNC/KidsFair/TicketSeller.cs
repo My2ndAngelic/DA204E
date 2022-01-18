@@ -6,14 +6,9 @@ namespace KidsFair
     {
         private readonly double price = 100.00; // Big assumption from the given screenshot, normal price = 100
         private double amountToPay; // Total amount of payment  
-
-        /// <summary>
-        ///     Private fields
-        /// </summary>
-        private string name;
-
-        private int numOfAdults;
-        private int numOfChildren;
+        private string name; // Name of the buyer
+        private int numOfAdults; // Number of tickets for adults
+        private int numOfChildren; // Number of tickets for children
 
         /// <summary>
         ///     The Starting price
