@@ -36,6 +36,7 @@ namespace Assignment2
         /// </summary>
         private void MakeMyDay()
         {
+            Console.WriteLine("");
         }
 
         /// <summary>
