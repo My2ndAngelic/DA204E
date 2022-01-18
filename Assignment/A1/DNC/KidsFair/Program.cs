@@ -28,7 +28,7 @@ namespace KidsFair
         }
 
         /// <summary>
-        /// Decorating the console
+        ///     Decorating the console
         /// </summary>
         static void PrepareConsolesLook()
         {

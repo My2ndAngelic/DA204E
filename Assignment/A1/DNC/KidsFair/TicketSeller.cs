@@ -4,7 +4,7 @@ namespace KidsFair
 {
     public class TicketSeller
     {
-        private readonly double price = 100.00; // Big assumption from the given screenshot, normal price = 100
+        private const double Price = 100.00; // Big assumption from the given screenshot, normal price = 100
         private double amountToPay; // Total amount of payment  
         private string name; // Name of the buyer
         private int numOfAdults; // Number of tickets for adults
@@ -65,7 +65,7 @@ namespace KidsFair
         private void CalculateTicketPrice()
         {
             amountToPay =
-                price * (numOfAdults + 0.25 * numOfChildren); // Calculate the ticket price, 75% discount for children
+                Price * (numOfAdults + 0.25 * numOfChildren); // Calculate the ticket price, 75% discount for children
         }
 
         /// <summary>

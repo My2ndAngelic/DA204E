@@ -14,11 +14,6 @@ namespace Shop
         private int quantity;
         private double total;
 
-        public CashierOneItem()
-        {
-            
-        }
-        
         /// <summary>
         ///     Launcher
         /// </summary>
@@ -29,6 +24,9 @@ namespace Shop
             DisplayPrice();
         }
 
+        /// <summary>
+        ///     Display welcome messages from the shop.
+        /// </summary>
         private static void Welcome()
         {
             Console.WriteLine("Welcome to BnL!");
@@ -55,7 +53,9 @@ namespace Shop
         private void ReadAndSavePricePerItem()
         {
             Console.WriteLine("What is the price per " + itemName + "?");
-            pricePerItem = double.Parse(Console.ReadLine(), NumberStyles.Any, CultureInfo.InvariantCulture);
+            pricePerItem =
+                double.Parse(Console.ReadLine(), NumberStyles.Any,
+                    CultureInfo.InvariantCulture); // Parsing double input, any number style, regional independent
         }
 
         /// <summary>
@@ -64,7 +64,7 @@ namespace Shop
         private void ReadAndSaveQuantity()
         {
             Console.WriteLine("How many " + itemName + "(s) " + "that you are buying?");
-            quantity = int.Parse(Console.ReadLine());
+            quantity = int.Parse(Console.ReadLine()); // Parsing integer input, possibly throwing exceptions
         }
 
         /// <summary>
@@ -73,7 +73,7 @@ namespace Shop
         private void ReadAndSaveItemName()
         {
             Console.WriteLine("What is the item name that you are buying?");
-            itemName = Console.ReadLine();
+            itemName = Console.ReadLine(); // Saving item name
         }
 
         /// <summary>
@@ -89,7 +89,7 @@ namespace Shop
         /// </summary>
         private void SetDateTime()
         {
-            dateTime = DateTime.Now;
+            dateTime = DateTime.Now; // Saving time
         }
 
         /// <summary>
