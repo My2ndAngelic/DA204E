@@ -5,7 +5,7 @@ namespace KidsFair
     public class TicketSeller
     {
         private readonly double price = 100.00; // Big assumption from the given screenshot, normal price = 100
-        private double amountToPay;
+        private double amountToPay; // Total amount of payment  
 
         /// <summary>
         ///     Private fields
