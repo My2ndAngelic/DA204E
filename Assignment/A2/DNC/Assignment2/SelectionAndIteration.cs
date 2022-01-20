@@ -14,7 +14,6 @@ namespace Assignment2
 
         public void Start()
         {
-            
         }
 
         /// <summary>
@@ -22,10 +21,13 @@ namespace Assignment2
         private void ShowStringLength()
         {
             Console.WriteLine("Let me calculate the string length for you.");
-            string userInput = "";
+            var userInput = "";
             do
             {
-                Console.WriteLine(userInput.ToUpper() + (!userInput.Equals("") ? "\nNumber of chars = " + userInput.Length : ""));
+                Console.WriteLine(userInput.ToUpper() +
+                                  (!userInput.Equals("")
+                                      ? "\nNumber of chars = " + userInput.Length
+                                      : ""));
                 Console.WriteLine("Give me a text of any length or press Enter to exit.");
                 userInput = Console.ReadLine();
                 Console.WriteLine();
