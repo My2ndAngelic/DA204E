@@ -49,7 +49,7 @@ namespace KidsFair
         /// </summary>
         private void ReadAndSaveArtistName()
         {
-            Console.WriteLine("What is the name of the Artist or Band for ", albumName, "?");
+            Console.WriteLine("What is the name of the Artist or Band for {0}?", albumName);
             artistName = Console.ReadLine();
         }
 
@@ -58,7 +58,7 @@ namespace KidsFair
         /// </summary>
         private void ReadAndSaveNumOfTracks()
         {
-            Console.WriteLine("How many tracks does ", albumName, " have?");
+            Console.WriteLine("How many tracks does {0} have?", albumName);
             numOfTracks = int.Parse(Console.ReadLine());
         }
 
@@ -67,9 +67,9 @@ namespace KidsFair
         /// </summary>
         private void DisplayAlbumInfo()
         {
-            Console.WriteLine("Album name: " + albumName);
-            Console.WriteLine("Artist/Band: " + artistName);
-            Console.WriteLine("Number of tracks: " + numOfTracks);
+            Console.WriteLine("Album name: {0}", albumName);
+            Console.WriteLine("Artist/Band: {0}", artistName);
+            Console.WriteLine("Number of tracks: {0}", numOfTracks);
             Console.WriteLine("Enjoy listening!");
         }
     }

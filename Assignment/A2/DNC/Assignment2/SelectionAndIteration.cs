@@ -9,11 +9,7 @@ namespace Assignment2
         public SelectionAndIteration()
         {
             Console.Clear();
-            Start();
-        }
-
-        public void Start()
-        {
+            ShowStringLength();
         }
 
         /// <summary>
@@ -21,17 +17,21 @@ namespace Assignment2
         private void ShowStringLength()
         {
             Console.WriteLine("Let me calculate the string length for you.");
-            var userInput = "";
+            bool done = false;
             do
             {
-                Console.WriteLine(userInput.ToUpper() +
-                                  (!userInput.Equals("")
-                                      ? "\nNumber of chars = " + userInput.Length
-                                      : ""));
                 Console.WriteLine("Give me a text of any length or press Enter to exit.");
-                userInput = Console.ReadLine();
+                string userInput = Console.ReadLine();
                 Console.WriteLine();
-            } while (!userInput.Equals(""));
+                Console.WriteLine(!userInput.Equals("")
+                    ? userInput.ToUpper() + "\nNumber of chars = " + userInput.Length
+                    : string.Empty);
+                Console.WriteLine();
+                if (userInput.Length == 0)
+                {
+                    done = true;
+                }
+            } while (!done);
         }
 
         /// <summary>

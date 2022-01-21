@@ -54,7 +54,8 @@ namespace Shop
         {
             Console.WriteLine("What is the price per " + itemName + "?");
             pricePerItem =
-                double.Parse(Console.ReadLine(), NumberStyles.Any,
+                double.Parse(Console.ReadLine(),
+                    NumberStyles.Any,
                     CultureInfo.InvariantCulture); // Parsing double input, any number style, regional independent
         }
 

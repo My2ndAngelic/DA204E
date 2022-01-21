@@ -2,15 +2,15 @@
 
 namespace Shop
 {
-    class Program 
-    { 
-        static void Main(string[] args)
+    public class Program
+    {
+        public static void Main(string[] args)
         {
             Console.Clear();
-            
-            var cashierOneItem = new CashierOneItem();
+
+            CashierOneItem cashierOneItem = new CashierOneItem();
             cashierOneItem.Start();
-            
+
             Console.ReadLine();
         }
     }

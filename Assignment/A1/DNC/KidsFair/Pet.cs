@@ -56,8 +56,8 @@ namespace KidsFair
         private void ReadAndSaveIsFemale()
         {
             Console.Write("Is your pet female (Y/N)? ");
-            var response = Console.ReadLine().Trim()[0];
-            isFemale = response == 'y' || response == 'Y'; // Female if first character is Y/y, Male if otherwise
+            char response = Console.ReadLine().Trim()[0];
+            isFemale = response is 'y' or 'Y'; // Female if first character is Y/y, Male if otherwise
         }
 
         /// <summary>
@@ -65,7 +65,7 @@ namespace KidsFair
         /// </summary>
         private void DisplayPetInfo()
         {
-            var textOut = "Name: " + name + "; Age: " + age; // name and age export
+            string textOut = "Name: " + name + "; Age: " + age; // name and age export
             Console.WriteLine(textOut);
             textOut = name + " is a good " + (isFemale ? "girl" : "boy") + "!"; // gender export
             Console.WriteLine(textOut);

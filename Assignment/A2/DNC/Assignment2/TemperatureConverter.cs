@@ -15,7 +15,7 @@ namespace Assignment2
         /// </summary>
         public void Start()
         {
-            var choice = -1;
+            int choice = -1;
 
             while (choice != 0)
             {
