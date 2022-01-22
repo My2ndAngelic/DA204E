@@ -38,8 +38,8 @@ namespace Assignment2
                 Console.WriteLine("Give me a text of any length or press Enter to exit.");
                 string userInput = Console.ReadLine();
                 Console.WriteLine(!userInput.Equals(string.Empty)
-                    ? $"{Environment.NewLine}{userInput.ToUpper()}{Environment.NewLine}" +
-                      $"Number of chars = {userInput.Length}{Environment.NewLine}"
+                    ? $"{Environment.NewLine}{userInput.ToUpper()}{Environment.NewLine}"
+                      + $"Number of chars = {userInput.Length}{Environment.NewLine}"
                     : "OK. You pressed Enter. See you again!");
                 if (userInput.Length == 0)
                 {
@@ -92,18 +92,19 @@ namespace Assignment2
         private void SumNumbers()
         {
             Console.Write("Give start number: ");
-            int a = int.Parse(Console.ReadLine());
+            int start = int.Parse(Console.ReadLine());
 
             Console.Write("Give end number: ");
-            int b = int.Parse(Console.ReadLine());
+            int end = int.Parse(Console.ReadLine());
 
             int sum = 0;
-            for (int i = a < b ? a : b; i <= (a < b ? b : a); i++)
+            for (int i = start < end ? start : end; i <= (start < end ? end : start); i++)
             {
                 sum += i;
             }
 
-            Console.WriteLine($"The sum between {(a < b ? a : b)} and {(a < b ? b : a)} is: {sum}");
+            Console.WriteLine(
+                $"The sum between {(start < end ? start : end)} and {(start < end ? end : start)} is: {sum}");
         }
     }
 }
