@@ -23,26 +23,66 @@ namespace Assignment2
                 choice = int.Parse(Console.ReadLine());
                 switch (choice)
                 {
+                    case 0:
+                        break;
                     case 1:
-                        for (var i = 0; i <= 100; i++)
-                        {
-                            var s = $"{i,6:f2} C = {CelciusToFarenheit(i),6:f2} F";
-                            Console.WriteLine(s);
-                        }
-
+                        ShowTableC2F();
                         break;
                     case 2:
-                        for (var i = 0; i <= 212; i++)
-                        {
-                            var s = $"{i,6:f2} F = {FarenheitToCelcius(i),6:f2} C";
-                            Console.WriteLine(s);
-                        }
-
+                        ShowTableF2C();
+                        break;
+                    default:
+                        Console.WriteLine("Invalid option, try again");
                         break;
                 }
-                Console.WriteLine("Press Enter to continue.");
-                Console.ReadLine();
             }
+        }
+
+        /// <summary>
+        /// </summary>
+        private void ShowTableC2F()
+        {
+            const int column = 2;
+            const int max = 100;
+            int p = 0;
+
+            for (int i = 0; i <= 100; i += 1)
+            {
+                double result = CelciusToFarenheit(i);
+                Console.Write($"{i,6:f2} C = {result,6:f2} F    ");
+                p++;
+
+                if (p % column == 0 && p >= column)
+                {
+                    Console.WriteLine();
+                }
+            }
+
+            Console.WriteLine();
+        }
+
+        /// <summary>
+        /// </summary>
+        private void ShowTableF2C()
+        {
+            const int column = 2;
+            const int max = 100;
+            int p = 0;
+
+            for (int i = 0; i <= 212; i += 4)
+            {
+                double result = FarenheitToCelcius(i);
+
+                Console.Write($"{i,6:f2} F = {result,6:f2} C    ");
+                p++;
+
+                if (p % column == 0 && p >= column)
+                {
+                    Console.WriteLine();
+                }
+            }
+
+            Console.WriteLine();
         }
 
         /// <summary>

@@ -6,12 +6,16 @@ namespace Assignment2
     {
         static void Main(string[] args)
         {
-            Console.WriteLine("Hello World!");
-
-            SelectionAndIteration sai = new SelectionAndIteration();
-            
+            // Console.WriteLine("Hello World!");
+            // SelectionAndIteration sai = new SelectionAndIteration();
+            // Console.WriteLine();
+            // Console.WriteLine("Press Enter to continue.");
+            // Console.ReadLine();
             TemperatureConverter tc = new TemperatureConverter();
-            tc.Start();
+            Console.WriteLine();
+            Console.WriteLine("Press Enter to continue.");
+            Console.ReadLine();
+            
         }
     }
 }
