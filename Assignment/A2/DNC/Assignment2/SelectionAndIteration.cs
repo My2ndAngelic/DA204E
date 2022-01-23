@@ -5,6 +5,7 @@ namespace Assignment2
     internal class SelectionAndIteration
     {
         /// <summary>
+        ///     Constructor, launching 4 methods
         /// </summary>
         public SelectionAndIteration()
         {

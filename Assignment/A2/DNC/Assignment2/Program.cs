@@ -2,19 +2,22 @@
 
 namespace Assignment2
 {
-    class Program
+    public class Program
     {
-        
-        static void Main(string[] args)
+        public static void Main(String[] args)
         {
             // Console.WriteLine("Hello World!");
             // SelectionAndIteration sai = new SelectionAndIteration();
             // Console.WriteLine();
             // Console.WriteLine("Press Enter to continue.");
             // Console.ReadLine();
-            TemperatureConverter tc = new TemperatureConverter();
+            // TemperatureConverter tc = new TemperatureConverter();
+            // Console.WriteLine();
+            // Console.WriteLine("Press Enter to continue.");
+            // Console.ReadLine();
+            WorkingSchedule ws = new WorkingSchedule();
             Console.WriteLine();
-            Console.WriteLine("Press Enter to continue.");
+            Console.WriteLine("Press Enter to exit.");
             Console.ReadLine();
         }
     }

@@ -4,6 +4,9 @@ namespace Assignment2
 {
     public class TemperatureConverter
     {
+        /// <summary>
+        ///     Constructor, launching 4 methods
+        /// </summary>
         public TemperatureConverter()
         {
             Console.Clear();
@@ -35,6 +38,7 @@ namespace Assignment2
                         Console.WriteLine("Invalid option, try again");
                         break;
                 }
+
                 Console.WriteLine("Press Enter to continue.");
                 Console.ReadLine();
             }
@@ -71,7 +75,7 @@ namespace Assignment2
             const int column = 2;
             const int max = 212;
             int p = 0;
-            
+
             for (int i = 0; i <= max; i += 4)
             {
                 double result = FarenheitToCelcius(i);
@@ -113,12 +117,12 @@ namespace Assignment2
         /// </summary>
         private void ShowMenu()
         {
-            Console.WriteLine("----------------------"+Environment.NewLine+Environment.NewLine+
-                              "Temperature converter" +Environment.NewLine+Environment.NewLine+
+            Console.WriteLine("----------------------" + Environment.NewLine + Environment.NewLine +
+                              "Temperature converter" + Environment.NewLine + Environment.NewLine +
                               "----------------------");
             Console.WriteLine();
 
-            string[] message = {"Exit", "Celcius to Farenheit", "Farenheit to Celcius"};
+            string[] message = { "Exit", "Celcius to Farenheit", "Farenheit to Celcius" };
             for (int i = 0; i < message.Length; i++)
             {
                 Console.WriteLine("{0,-22}{1} {2}", message[i], ":", i);
