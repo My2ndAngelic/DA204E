@@ -4,6 +4,7 @@ namespace Assignment2
 {
     class Program
     {
+        
         static void Main(string[] args)
         {
             // Console.WriteLine("Hello World!");
@@ -15,7 +16,6 @@ namespace Assignment2
             Console.WriteLine();
             Console.WriteLine("Press Enter to continue.");
             Console.ReadLine();
-            
         }
     }
 }

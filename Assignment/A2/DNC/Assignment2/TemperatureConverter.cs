@@ -20,7 +20,7 @@ namespace Assignment2
             while (choice != 0)
             {
                 ShowMenu();
-                choice = int.Parse(Console.ReadLine());
+                choice = int.Parse(Console.ReadLine()); // Pick the option from the user
                 switch (choice)
                 {
                     case 0:
@@ -35,6 +35,8 @@ namespace Assignment2
                         Console.WriteLine("Invalid option, try again");
                         break;
                 }
+                Console.WriteLine("Press Enter to continue.");
+                Console.ReadLine();
             }
         }
 
@@ -46,7 +48,7 @@ namespace Assignment2
             const int max = 100;
             int p = 0;
 
-            for (int i = 0; i <= 100; i += 1)
+            for (int i = 0; i <= max; i += 1)
             {
                 double result = CelciusToFarenheit(i);
                 Console.Write($"{i,6:f2} C = {result,6:f2} F    ");
@@ -62,14 +64,15 @@ namespace Assignment2
         }
 
         /// <summary>
+        ///     Show the table from Farenheit to Celcius
         /// </summary>
         private void ShowTableF2C()
         {
             const int column = 2;
-            const int max = 100;
+            const int max = 212;
             int p = 0;
-
-            for (int i = 0; i <= 212; i += 4)
+            
+            for (int i = 0; i <= max; i += 4)
             {
                 double result = FarenheitToCelcius(i);
 
@@ -110,6 +113,19 @@ namespace Assignment2
         /// </summary>
         private void ShowMenu()
         {
+            Console.WriteLine("----------------------"+Environment.NewLine+Environment.NewLine+
+                              "Temperature converter" +Environment.NewLine+Environment.NewLine+
+                              "----------------------");
+            Console.WriteLine();
+
+            string[] message = {"Exit", "Celcius to Farenheit", "Farenheit to Celcius"};
+            for (int i = 0; i < message.Length; i++)
+            {
+                Console.WriteLine("{0,-22}{1} {2}", message[i], ":", i);
+            }
+
+            Console.WriteLine();
+            Console.WriteLine("----------------------" + Environment.NewLine);
             Console.Write("Pick a number: 0, 1, 2: ");
         }
     }
