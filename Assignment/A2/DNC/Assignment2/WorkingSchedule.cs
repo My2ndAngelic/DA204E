@@ -4,15 +4,18 @@ namespace Assignment2
 {
     public class WorkingSchedule
     {
-        private readonly string line = "----------------------";
+        private const string line = "----------------------"; // It's just there
 
+        /// <summary>
+        ///     Constructor
+        /// </summary>
         public WorkingSchedule()
         {
             Start();
         }
 
         /// <summary>
-        ///     AAA
+        ///     Main method
         /// </summary>
         private void Start()
         {
@@ -28,16 +31,16 @@ namespace Assignment2
 
                 switch (choice)
                 {
-                    case 0:
+                    case 0: // Exit
                         break;
-                    case 1:
-                        ShowNight(1);
+                    case 1: // Weekends
+                        ShowWeek(1);
                         break;
-                    case 2:
-                        ShowNight(2);
+                    case 2: // Nights
+                        ShowWeek(2);
                         break;
                     default:
-                        Console.WriteLine("Illegal argument detected.");
+                        Console.WriteLine("Illegal argument detected."); // Just for safety
                         break;
                 }
             } while (choice != 0);
@@ -46,40 +49,21 @@ namespace Assignment2
         }
 
         /// <summary>
-        ///     AAA
+        ///     Show what weeks need to be there
         /// </summary>
         /// <param name="option"></param>
-        private static void ShowNight(int option)
+        private static void ShowWeek(int option)
         {
-            int p = 0;
             switch (option)
             {
                 case 1:
                 {
-                    for (int i = 1; i <= 52; i += 4)
-                    {
-                        p++;
-                        Console.Write("{0,10} {1,2}", "Week", i);
-                        if (p % 4 == 0 && p > 0)
-                        {
-                            Console.WriteLine();
-                        }
-                    }
-
+                    PrintSchedule(1, 52, 4, 5);
                     break;
                 }
                 case 2:
                 {
-                    for (int i = 2; i <= 52; i += 4)
-                    {
-                        p++;
-                        Console.Write("{0,10} {1,2}", "Week", i);
-                        if (p % 4 == 0 && p > 0)
-                        {
-                            Console.WriteLine();
-                        }
-                    }
-
+                    PrintSchedule(2, 52, 4, 5);
                     break;
                 }
                 default:
@@ -90,6 +74,27 @@ namespace Assignment2
             Console.WriteLine();
         }
 
+        /// <summary>
+        ///     Display the formatted schedule
+        /// </summary>
+        /// <param name="startWeek">First week</param>
+        /// <param name="endWeek">Final week</param>
+        /// <param name="period">How many weeks need to be skipped</param>
+        /// <param name="column">How many columns of the schedule</param>
+        public static void PrintSchedule(int startWeek, int endWeek, int period, int column)
+        {
+            int p = 0;
+            for (int i = startWeek; i <= endWeek; i += period)
+            {
+                p++;
+                Console.Write("{0,10} {1,2}", "Week", i);
+                if (p % column == 0 && p > 0) Console.WriteLine();
+            }
+        }
+
+        /// <summary>
+        ///     Main menu
+        /// </summary>
         private void ShowMenu()
         {
             Console.WriteLine(line + Environment.NewLine +

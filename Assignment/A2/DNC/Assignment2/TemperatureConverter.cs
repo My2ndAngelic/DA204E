@@ -58,10 +58,7 @@ namespace Assignment2
                 Console.Write($"{i,6:f2} C = {result,6:f2} F    ");
                 p++;
 
-                if (p % column == 0 && p >= column)
-                {
-                    Console.WriteLine();
-                }
+                if (p % column == 0 && p >= column) Console.WriteLine();
             }
 
             Console.WriteLine();
@@ -83,10 +80,7 @@ namespace Assignment2
                 Console.Write($"{i,6:f2} F = {result,6:f2} C    ");
                 p++;
 
-                if (p % column == 0 && p >= column)
-                {
-                    Console.WriteLine();
-                }
+                if (p % column == 0 && p >= column) Console.WriteLine();
             }
 
             Console.WriteLine();
@@ -122,11 +116,8 @@ namespace Assignment2
                               "----------------------");
             Console.WriteLine();
 
-            string[] message = { "Exit", "Celcius to Farenheit", "Farenheit to Celcius" };
-            for (int i = 0; i < message.Length; i++)
-            {
-                Console.WriteLine("{0,-22}{1} {2}", message[i], ":", i);
-            }
+            string[] message = {"Exit", "Celcius to Farenheit", "Farenheit to Celcius"};
+            for (int i = 0; i < message.Length; i++) Console.WriteLine("{0,-22}{1} {2}", message[i], ":", i);
 
             Console.WriteLine();
             Console.WriteLine("----------------------" + Environment.NewLine);
