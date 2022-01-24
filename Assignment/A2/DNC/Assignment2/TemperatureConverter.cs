@@ -38,9 +38,6 @@ namespace Assignment2
                         Console.WriteLine("Invalid option, try again");
                         break;
                 }
-
-                Console.WriteLine("Press Enter to continue.");
-                Console.ReadLine();
             }
         }
 
@@ -89,7 +86,7 @@ namespace Assignment2
         /// <summary>
         ///     Convert Celcius to Farenheit
         /// </summary>
-        /// <param name="farenheit">Celcius degree in double</param>
+        /// <param name="celcius">Celcius degree in double</param>
         /// <returns>Farenheit degree in double</returns>
         private double CelciusToFarenheit(double celcius)
         {
