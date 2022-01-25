@@ -45,11 +45,8 @@ namespace BMICalculator
             
         }
 
-        private void labelName_Click(object sender, EventArgs e)
-        {
-
-        }
-
+        private void labelName_Click(object sender, EventArgs e) => bmicalc.SetName(x => x = labelName.Text);
+        
         private void textName_TextChanged(object sender, EventArgs e)
         {
             labelNameDisp.Text = textName.Text.ToString();
@@ -94,7 +91,7 @@ namespace BMICalculator
         private void buttonCalculateBMI_Click(object sender, EventArgs e)
         {
             Button clickedButton = (Button)sender;
-            labelBMI.Text = bmicalc.BMIResult().ToString();
+            labelBMI.Text = bmicalc.BMIResult().ToString("#.##", CultureInfo.InvariantCulture);
         }
 
         private void textHeight_TextChanged(object sender, EventArgs e)
