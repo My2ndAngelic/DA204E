@@ -7,7 +7,7 @@ namespace Test
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            BMICalculator.BMICalc bmi = new BMICalculator.BMICalc("John", 69, 1.69, BMICalculator.UnitType.Metric);
+            SuperCalculator.BMICalc bmi = new SuperCalculator.BMICalc("John", 69, 1.69, SuperCalculator.UnitType.Metric);
             Console.WriteLine(bmi.BMIResult());
 
         }

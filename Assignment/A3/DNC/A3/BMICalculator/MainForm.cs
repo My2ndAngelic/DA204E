@@ -10,7 +10,7 @@ using System.Windows.Forms;
 using System.Globalization;
 using System.Diagnostics;
 
-namespace BMICalculator
+namespace SuperCalculator
 {
     public partial class MainForm : Form
     {
@@ -20,7 +20,7 @@ namespace BMICalculator
             InitializeGUI();
         }
 
-        private BMICalc bmicalc = new BMICalc();
+        private BMICalc bmiCalculator = new BMICalc();
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
@@ -29,15 +29,21 @@ namespace BMICalculator
 
         private void InitializeGUI()
         {
-            this.Text = "The Body Mass Calculator by Evan Huynh"; // 
+            Text = "Super Calculator by Evan Huynh"; // 
 
             // input control
             rbUS.Checked = true;
-            labelHeight.Text = "Height (ft)";
-            labelWeight.Text = "Weight (lbs)";
+            labelHeight.Text = "Height";
+            labelWeight.Text = "Weight";
 
-            textHeight.Text = string.Empty;
+            // Empty
+            textName.Text = string.Empty;
+            textKg.Text = string.Empty;
+            textFt.Text = string.Empty;
+            textInch.Text = string.Empty;
             textWeight.Text = string.Empty;
+            labelBMI.Text = string.Empty;
+            labelBMICat.Text = string.Empty;
         }
 
         private void ReadName()
@@ -47,19 +53,12 @@ namespace BMICalculator
 
         private void labelName_Click(object sender, EventArgs e)
         {
-            if (!string.IsNullOrEmpty(labelName.Text))
-            {
-                bmicalc.SetName(labelName.Text);
-            }
-            else
-            {
-                bmicalc.SetName("Pepega");
-            }
+
         }
 
         private void textName_TextChanged(object sender, EventArgs e)
         {
-            labelNameDisp.Text = textName.Text.ToString();
+
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -69,54 +68,120 @@ namespace BMICalculator
 
         private void labelWeight_Click(object sender, EventArgs e)
         {
-            labelWeight.Text = bmicalc.GetUnitType().Equals(UnitType.American) ? "Weight (lbs)" : "Weight (kg)";
-            Debug.WriteLine("Hello World");
+            labelWeight.Text = "Weight";
         }
 
         private void labelHeight_Click(object sender, EventArgs e)
         {
-            labelHeight.Text = bmicalc.GetUnitType().Equals(UnitType.American) ? "Height (ft)" : "Height (m)";
+            labelHeight.Text = "Height";
         }
 
         private void rbUS_CheckedChanged(object sender, EventArgs e)
         {
-            if (rbUS.Checked)
-            {
-                bmicalc.SetUnitType(UnitType.American);
-                labelHeight_Click(sender, e);
-                labelWeight_Click(sender, e);
-            }
+            if (!rbUS.Checked) return;
+            textKg.Hide();
+            textFt.Show();
+            textInch.Show();
+            textKg.Text = string.Empty;
+            labelUnit1.Show();
+            labelUnit1.Text = "ft";
+            labelUnit2.Text = "in";
+            labelUnit3.Text = "lb";
+            bmiCalculator.SetUnitType(UnitType.American);
         }
 
         private void rbSI_CheckedChanged(object sender, EventArgs e)
         {
-            if (rbSI.Checked)
-            {
-                bmicalc.SetUnitType(UnitType.Metric);
-                labelHeight_Click(sender, e);
-                labelWeight_Click(sender, e);
-            }
+            if (!rbSI.Checked) return;
+            textKg.Show();
+            textFt.Hide();
+            textFt.Text = string.Empty;
+            textInch.Hide();
+            textInch.Text = string.Empty;
+            labelUnit1.Hide();
+            labelUnit2.Text = "m";
+            labelUnit3.Text = "kg";
+            bmiCalculator.SetUnitType(UnitType.Metric);
         }
 
         private void buttonCalculateBMI_Click(object sender, EventArgs e)
         {
-            Button clickedButton = (Button)sender;
-            labelBMI.Text = bmicalc.BMIResult().ToString("#.##", CultureInfo.InvariantCulture);
+            UpdateCorrectData();
+            groupBoxResult.Text = $@"Result for {bmiCalculator.GetName()}";
+            labelBMI.Text = bmiCalculator.BMIResult().ToString("#.##", CultureInfo.InvariantCulture);
+            labelBMICat.Text = $@"Your BMI Category: {bmiCalculator.BMICategory()}";
         }
 
-        private void textHeight_TextChanged(object sender, EventArgs e)
+        /// <summary>
+        ///     Updating the data after clicking the button
+        /// </summary>
+        private void UpdateCorrectData()
         {
-            _ = double.TryParse(textHeight.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out double id);
-            bmicalc.SetHeight(id);
+            bmiCalculator.SetName(textName.Text);
+
+            _ = double.TryParse(textWeight.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out var weight);
+            bmiCalculator.SetWeight(weight);
+
+            if (bmiCalculator.GetUnitType().Equals(UnitType.American))
+            {
+                _ = double.TryParse(textFt.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out double ft);
+                _ = double.TryParse(textInch.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out double inch);
+                bmiCalculator.SetHeight(ft*12 + inch);
+            }
+            else if (bmiCalculator.GetUnitType().Equals(UnitType.Metric))
+            {
+                _ = double.TryParse(textKg.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out double m);
+                bmiCalculator.SetHeight(m);
+            }
+        }
+
+        private void textKg_TextChanged(object sender, EventArgs e)
+        {
+           
         }
 
         private void textWeight_TextChanged(object sender, EventArgs e)
         {
-            _ = double.TryParse(textWeight.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out double id);
-            bmicalc.SetWeight(id);
+            
         }
 
         private void labelBMI_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelBMICat_Click(object sender, EventArgs e)
+        {
+            
+        }
+
+        private void textFt_TextChanged(object sender, EventArgs e)
+        {
+            _ = double.TryParse(textFt.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out double id1);
+            _ = double.TryParse(textInch.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out double id2);
+        }
+
+        private void textInch_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelUnit1_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelUnit2_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void groupBoxResult_Enter(object sender, EventArgs e)
+        {
+
+        }
+
+        private void labelUnit3_Click(object sender, EventArgs e)
         {
 
         }
