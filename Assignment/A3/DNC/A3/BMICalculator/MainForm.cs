@@ -1,14 +1,6 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using System.Windows.Forms;
 using System.Globalization;
-using System.Diagnostics;
+using System.Windows.Forms;
 
 namespace SuperCalculator
 {
@@ -20,7 +12,10 @@ namespace SuperCalculator
             InitializeGUI();
         }
 
-        private BMICalc bmiCalculator = new BMICalc();
+        private BMICalc bmiC = new BMICalc();
+        private SavingCalc savingC = new SavingCalc();
+        private BMRCalc bmrC = new BMRCalc();
+        private readonly CultureInfo ci = CultureInfo.InvariantCulture;
 
         private void radioButton1_CheckedChanged(object sender, EventArgs e)
         {
@@ -33,8 +28,13 @@ namespace SuperCalculator
 
             // input control
             rbUS.Checked = true;
+            groupBoxBMI.Text = "BMI Calculator";
+            labelName.Text = "Name";
             labelHeight.Text = "Height";
             labelWeight.Text = "Weight";
+            labelBMIRes.Text = "Result";
+            labelBMICat.Text = "Category";
+            labelNormalWeight.Text = "Range";
 
             // Empty
             textName.Text = string.Empty;
@@ -42,13 +42,8 @@ namespace SuperCalculator
             textFt.Text = string.Empty;
             textInch.Text = string.Empty;
             textWeight.Text = string.Empty;
-            labelBMI.Text = string.Empty;
-            labelBMICat.Text = string.Empty;
-        }
-
-        private void ReadName()
-        {
-            
+            textBMI.Text = string.Empty;
+            textBMICat.Text = string.Empty;
         }
 
         private void labelName_Click(object sender, EventArgs e)
@@ -68,12 +63,11 @@ namespace SuperCalculator
 
         private void labelWeight_Click(object sender, EventArgs e)
         {
-            labelWeight.Text = "Weight";
         }
 
         private void labelHeight_Click(object sender, EventArgs e)
         {
-            labelHeight.Text = "Height";
+
         }
 
         private void rbUS_CheckedChanged(object sender, EventArgs e)
@@ -87,7 +81,7 @@ namespace SuperCalculator
             labelUnit1.Text = "ft";
             labelUnit2.Text = "in";
             labelUnit3.Text = "lb";
-            bmiCalculator.SetUnitType(UnitType.American);
+            bmiC.SetUnitType(UnitType.American);
         }
 
         private void rbSI_CheckedChanged(object sender, EventArgs e)
@@ -101,15 +95,12 @@ namespace SuperCalculator
             labelUnit1.Hide();
             labelUnit2.Text = "m";
             labelUnit3.Text = "kg";
-            bmiCalculator.SetUnitType(UnitType.Metric);
+            bmiC.SetUnitType(UnitType.Metric);
         }
 
         private void buttonCalculateBMI_Click(object sender, EventArgs e)
         {
             UpdateCorrectData();
-            groupBoxResult.Text = $@"Result for {bmiCalculator.GetName()}";
-            labelBMI.Text = bmiCalculator.BMIResult().ToString("#.##", CultureInfo.InvariantCulture);
-            labelBMICat.Text = $@"Your BMI Category: {bmiCalculator.BMICategory()}";
         }
 
         /// <summary>
@@ -117,22 +108,47 @@ namespace SuperCalculator
         /// </summary>
         private void UpdateCorrectData()
         {
-            bmiCalculator.SetName(textName.Text);
-
-            _ = double.TryParse(textWeight.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out var weight);
-            bmiCalculator.SetWeight(weight);
-
-            if (bmiCalculator.GetUnitType().Equals(UnitType.American))
+            bmiC.SetName(textName.Text);
+            bool out1 = double.TryParse(textWeight.Text, NumberStyles.Number, ci, out var weight);
+            bool out2 = true, out3 = true;
+            bmiC.SetWeight(weight);
+            if (bmiC.GetUnitType().Equals(UnitType.American))
             {
-                _ = double.TryParse(textFt.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out double ft);
-                _ = double.TryParse(textInch.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out double inch);
-                bmiCalculator.SetHeight(ft*12 + inch);
+                out2 = double.TryParse(textFt.Text, NumberStyles.Number, ci, out double ft);
+                out3 = double.TryParse(textInch.Text, NumberStyles.Number, ci, out double inch);
+                bmiC.SetHeight(ft*12 + inch);
             }
-            else if (bmiCalculator.GetUnitType().Equals(UnitType.Metric))
+            else if (bmiC.GetUnitType().Equals(UnitType.Metric))
             {
-                _ = double.TryParse(textKg.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out double m);
-                bmiCalculator.SetHeight(m);
+                out2 = double.TryParse(textKg.Text, NumberStyles.Number, ci, out double m);
+                bmiC.SetHeight(m);
             }
+            if (out1 || out2 || out3)
+            {
+                SetTheBMI();
+            }
+            else
+            {
+                MessageBox.Show("Something is wrong. Please check your input.", "Error");
+            }
+        }
+
+        /// <summary>
+        /// 
+        /// </summary>
+        private void SetTheBMI()
+        {
+            groupBoxResult.Text = $@"Result for {bmiC.GetName()}";
+            textBMI.Text = bmiC.BMIResult().ToString("#.##", ci);
+            textBMICat.Text = $@"{bmiC.BMICategory()}";
+            double[] normalWeight = bmiC.GetNormalWeight();
+            string unit = bmiC.GetUnitType().Equals(UnitType.American) ? "lbs" : "kg";
+            textBoxNormalWeight.Text = @"Normal weight is between " +
+                                       $@"{normalWeight[0]:#} " +
+                                       $@"{unit} " +
+                                       @"and " +
+                                       $@"{normalWeight[1]:#} " +
+                                       $@"{unit} ";
         }
 
         private void textKg_TextChanged(object sender, EventArgs e)
@@ -157,8 +173,7 @@ namespace SuperCalculator
 
         private void textFt_TextChanged(object sender, EventArgs e)
         {
-            _ = double.TryParse(textFt.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out double id1);
-            _ = double.TryParse(textInch.Text, NumberStyles.Number, CultureInfo.InvariantCulture, out double id2);
+
         }
 
         private void textInch_TextChanged(object sender, EventArgs e)
@@ -182,6 +197,11 @@ namespace SuperCalculator
         }
 
         private void labelUnit3_Click(object sender, EventArgs e)
+        {
+
+        }
+
+        private void textBoxNormalWeight_TextChanged(object sender, EventArgs e)
         {
 
         }

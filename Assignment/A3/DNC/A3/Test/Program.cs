@@ -1,4 +1,5 @@
 ﻿using System;
+using SuperCalculator;
 
 namespace Test
 {
@@ -7,8 +8,8 @@ namespace Test
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
-            SuperCalculator.BMICalc bmi = new SuperCalculator.BMICalc("John", 69, 1.69, SuperCalculator.UnitType.Metric);
-            Console.WriteLine(bmi.BMIResult());
+            BMICalc bmi = new BMICalc("John", 69, 1.69, UnitType.Metric);
+            Console.WriteLine(bmi.GetNormalWeight()[0]);
 
         }
     }

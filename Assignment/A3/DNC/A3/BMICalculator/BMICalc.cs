@@ -101,5 +101,10 @@
                 _ => "Something is wrong"
             };
         }
+
+        public double[] GetNormalWeight()
+        {
+            return new[] { 18.5 * height * height, 24.9 * height * height };
+        }
     }
 }

@@ -48,8 +48,13 @@ namespace SuperCalculator
             this.labelUnit3 = new System.Windows.Forms.Label();
             this.groupBoxUnit = new System.Windows.Forms.GroupBox();
             this.groupBoxResult = new System.Windows.Forms.GroupBox();
-            this.labelBMI = new System.Windows.Forms.TextBox();
-            this.labelBMICat = new System.Windows.Forms.TextBox();
+            this.labelNormalWeight = new System.Windows.Forms.Label();
+            this.labelBMICat = new System.Windows.Forms.Label();
+            this.labelBMIRes = new System.Windows.Forms.Label();
+            this.textBoxNormalWeight = new System.Windows.Forms.TextBox();
+            this.textBMICat = new System.Windows.Forms.TextBox();
+            this.textBMI = new System.Windows.Forms.TextBox();
+            this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBoxBMI.SuspendLayout();
             this.groupBoxUnit.SuspendLayout();
             this.groupBoxResult.SuspendLayout();
@@ -73,7 +78,7 @@ namespace SuperCalculator
             // 
             // textName
             // 
-            this.textName.Location = new System.Drawing.Point(103, 44);
+            this.textName.Location = new System.Drawing.Point(90, 31);
             this.textName.Name = "textName";
             this.textName.Size = new System.Drawing.Size(175, 23);
             this.textName.TabIndex = 6;
@@ -105,9 +110,9 @@ namespace SuperCalculator
             // 
             // buttonCalculateBMI
             // 
-            this.buttonCalculateBMI.Location = new System.Drawing.Point(14, 164);
+            this.buttonCalculateBMI.Location = new System.Drawing.Point(13, 164);
             this.buttonCalculateBMI.Name = "buttonCalculateBMI";
-            this.buttonCalculateBMI.Size = new System.Drawing.Size(395, 46);
+            this.buttonCalculateBMI.Size = new System.Drawing.Size(396, 26);
             this.buttonCalculateBMI.TabIndex = 12;
             this.buttonCalculateBMI.Text = "Calculate BMI";
             this.buttonCalculateBMI.UseVisualStyleBackColor = true;
@@ -116,7 +121,7 @@ namespace SuperCalculator
             // labelName
             // 
             this.labelName.AutoSize = true;
-            this.labelName.Location = new System.Drawing.Point(14, 47);
+            this.labelName.Location = new System.Drawing.Point(7, 34);
             this.labelName.Name = "labelName";
             this.labelName.Size = new System.Drawing.Size(39, 15);
             this.labelName.TabIndex = 13;
@@ -126,7 +131,7 @@ namespace SuperCalculator
             // labelHeight
             // 
             this.labelHeight.AutoSize = true;
-            this.labelHeight.Location = new System.Drawing.Point(14, 83);
+            this.labelHeight.Location = new System.Drawing.Point(7, 70);
             this.labelHeight.Name = "labelHeight";
             this.labelHeight.Size = new System.Drawing.Size(43, 15);
             this.labelHeight.TabIndex = 14;
@@ -136,7 +141,7 @@ namespace SuperCalculator
             // labelWeight
             // 
             this.labelWeight.AutoSize = true;
-            this.labelWeight.Location = new System.Drawing.Point(14, 119);
+            this.labelWeight.Location = new System.Drawing.Point(7, 106);
             this.labelWeight.Name = "labelWeight";
             this.labelWeight.Size = new System.Drawing.Size(45, 15);
             this.labelWeight.TabIndex = 15;
@@ -183,7 +188,11 @@ namespace SuperCalculator
             // 
             this.groupBoxBMI.Controls.Add(this.labelUnit2);
             this.groupBoxBMI.Controls.Add(this.labelUnit3);
+            this.groupBoxBMI.Controls.Add(this.labelWeight);
             this.groupBoxBMI.Controls.Add(this.labelUnit1);
+            this.groupBoxBMI.Controls.Add(this.labelHeight);
+            this.groupBoxBMI.Controls.Add(this.textName);
+            this.groupBoxBMI.Controls.Add(this.labelName);
             this.groupBoxBMI.Location = new System.Drawing.Point(13, 13);
             this.groupBoxBMI.Name = "groupBoxBMI";
             this.groupBoxBMI.Size = new System.Drawing.Size(299, 134);
@@ -214,44 +223,93 @@ namespace SuperCalculator
             // 
             // groupBoxResult
             // 
+            this.groupBoxResult.Controls.Add(this.labelNormalWeight);
             this.groupBoxResult.Controls.Add(this.labelBMICat);
-            this.groupBoxResult.Controls.Add(this.labelBMI);
-            this.groupBoxResult.Location = new System.Drawing.Point(13, 216);
+            this.groupBoxResult.Controls.Add(this.labelBMIRes);
+            this.groupBoxResult.Controls.Add(this.textBoxNormalWeight);
+            this.groupBoxResult.Controls.Add(this.textBMICat);
+            this.groupBoxResult.Controls.Add(this.textBMI);
+            this.groupBoxResult.Location = new System.Drawing.Point(13, 203);
             this.groupBoxResult.Name = "groupBoxResult";
-            this.groupBoxResult.Size = new System.Drawing.Size(396, 222);
+            this.groupBoxResult.Size = new System.Drawing.Size(396, 157);
             this.groupBoxResult.TabIndex = 24;
             this.groupBoxResult.TabStop = false;
             this.groupBoxResult.Text = "Result";
             this.groupBoxResult.Enter += new System.EventHandler(this.groupBoxResult_Enter);
             // 
-            // labelBMI
+            // labelNormalWeight
             // 
-            this.labelBMI.Enabled = false;
-            this.labelBMI.Location = new System.Drawing.Point(90, 65);
-            this.labelBMI.Name = "labelBMI";
-            this.labelBMI.Size = new System.Drawing.Size(177, 23);
-            this.labelBMI.TabIndex = 0;
+            this.labelNormalWeight.AutoSize = true;
+            this.labelNormalWeight.Location = new System.Drawing.Point(7, 115);
+            this.labelNormalWeight.Name = "labelNormalWeight";
+            this.labelNormalWeight.Size = new System.Drawing.Size(40, 15);
+            this.labelNormalWeight.TabIndex = 25;
+            this.labelNormalWeight.Text = "Range";
             // 
             // labelBMICat
             // 
-            this.labelBMICat.Enabled = false;
-            this.labelBMICat.Location = new System.Drawing.Point(109, 119);
+            this.labelBMICat.AutoSize = true;
+            this.labelBMICat.Location = new System.Drawing.Point(7, 75);
             this.labelBMICat.Name = "labelBMICat";
-            this.labelBMICat.Size = new System.Drawing.Size(248, 23);
-            this.labelBMICat.TabIndex = 1;
+            this.labelBMICat.Size = new System.Drawing.Size(55, 15);
+            this.labelBMICat.TabIndex = 4;
+            this.labelBMICat.Text = "Category";
+            // 
+            // labelBMIRes
+            // 
+            this.labelBMIRes.AutoSize = true;
+            this.labelBMIRes.Location = new System.Drawing.Point(7, 36);
+            this.labelBMIRes.Name = "labelBMIRes";
+            this.labelBMIRes.Size = new System.Drawing.Size(39, 15);
+            this.labelBMIRes.TabIndex = 3;
+            this.labelBMIRes.Text = "Result";
+            // 
+            // textBoxNormalWeight
+            // 
+            this.textBoxNormalWeight.Enabled = false;
+            this.textBoxNormalWeight.Location = new System.Drawing.Point(90, 112);
+            this.textBoxNormalWeight.Name = "textBoxNormalWeight";
+            this.textBoxNormalWeight.Size = new System.Drawing.Size(289, 23);
+            this.textBoxNormalWeight.TabIndex = 2;
+            this.textBoxNormalWeight.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            this.textBoxNormalWeight.TextChanged += new System.EventHandler(this.textBoxNormalWeight_TextChanged);
+            // 
+            // textBMICat
+            // 
+            this.textBMICat.Enabled = false;
+            this.textBMICat.Location = new System.Drawing.Point(90, 72);
+            this.textBMICat.Name = "textBMICat";
+            this.textBMICat.Size = new System.Drawing.Size(289, 23);
+            this.textBMICat.TabIndex = 1;
+            this.textBMICat.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // textBMI
+            // 
+            this.textBMI.Enabled = false;
+            this.textBMI.Location = new System.Drawing.Point(90, 33);
+            this.textBMI.Name = "textBMI";
+            this.textBMI.Size = new System.Drawing.Size(289, 23);
+            this.textBMI.TabIndex = 0;
+            this.textBMI.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // groupBox1
+            // 
+            this.groupBox1.Location = new System.Drawing.Point(447, 13);
+            this.groupBox1.Name = "groupBox1";
+            this.groupBox1.Size = new System.Drawing.Size(671, 347);
+            this.groupBox1.TabIndex = 25;
+            this.groupBox1.TabStop = false;
+            this.groupBox1.Text = "groupBox1";
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1154, 657);
+            this.Controls.Add(this.groupBox1);
             this.Controls.Add(this.textInch);
             this.Controls.Add(this.textFt);
-            this.Controls.Add(this.labelWeight);
-            this.Controls.Add(this.labelHeight);
-            this.Controls.Add(this.labelName);
             this.Controls.Add(this.buttonCalculateBMI);
-            this.Controls.Add(this.textName);
             this.Controls.Add(this.textWeight);
             this.Controls.Add(this.textKg);
             this.Controls.Add(this.groupBoxResult);
@@ -261,7 +319,7 @@ namespace SuperCalculator
             this.MinimizeBox = false;
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
-            this.Text = "BMI Calculator by Evan Huynh";
+            this.Text = "Title";
             this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBoxBMI.ResumeLayout(false);
             this.groupBoxBMI.PerformLayout();
@@ -292,7 +350,12 @@ namespace SuperCalculator
         private System.Windows.Forms.GroupBox groupBoxUnit;
         private System.Windows.Forms.GroupBox groupBoxResult;
         private System.Windows.Forms.Label labelUnit3;
-        private System.Windows.Forms.TextBox labelBMICat;
-        private System.Windows.Forms.TextBox labelBMI;
+        private System.Windows.Forms.TextBox textBMICat;
+        private System.Windows.Forms.TextBox textBMI;
+        private System.Windows.Forms.TextBox textBoxNormalWeight;
+        private System.Windows.Forms.Label labelNormalWeight;
+        private System.Windows.Forms.Label labelBMICat;
+        private System.Windows.Forms.Label labelBMIRes;
+        private System.Windows.Forms.GroupBox groupBox1;
     }
 }
