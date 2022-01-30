@@ -1,0 +1,25 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 12.00
+# Visual Studio Version 16
+VisualStudioVersion = 16.0.32106.194
+MinimumVisualStudioVersion = 10.0.40219.1
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "SuperCalculator", "BMICalculator\SuperCalculator.csproj", "{C670AE1F-C4AD-4578-9DE8-0F972A4CEB2E}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|Any CPU = Debug|Any CPU
+		Release|Any CPU = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{C670AE1F-C4AD-4578-9DE8-0F972A4CEB2E}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{C670AE1F-C4AD-4578-9DE8-0F972A4CEB2E}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{C670AE1F-C4AD-4578-9DE8-0F972A4CEB2E}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{C670AE1F-C4AD-4578-9DE8-0F972A4CEB2E}.Release|Any CPU.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+	GlobalSection(ExtensibilityGlobals) = postSolution
+		SolutionGuid = {BE10224B-90C1-43CF-9DCC-26A83896A7F4}
+	EndGlobalSection
+EndGlobal
