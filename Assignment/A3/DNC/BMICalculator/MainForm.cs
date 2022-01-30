@@ -196,5 +196,10 @@ namespace SuperCalculator
             textFinalBalance.Text = savingC.GetFinalBalance().ToString("F", ci);
             textTotalFee.Text = savingC.GetTotalFee().ToString("F", ci);
         }
+
+        private void buttonCalculateBMR_Click(object sender, EventArgs e)
+        {
+
+        }
     }
 }
