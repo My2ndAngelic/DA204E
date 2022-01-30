@@ -42,6 +42,7 @@ namespace Assignment2
         }
 
         /// <summary>
+        ///     Show the table from Celcius to Farenheit
         /// </summary>
         private void ShowTableC2F()
         {

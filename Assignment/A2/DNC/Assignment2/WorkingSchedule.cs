@@ -4,7 +4,7 @@ namespace Assignment2
 {
     public class WorkingSchedule
     {
-        private const string line = "----------------------"; // It's just there
+        private const string line = "----------------------"; // A line
 
         /// <summary>
         ///     Constructor
@@ -51,8 +51,8 @@ namespace Assignment2
         /// <summary>
         ///     Show what weeks need to be there
         /// </summary>
-        /// <param name="option"></param>
-        private static void ShowWeek(int option)
+        /// <param name="option">1 for weekends, 2 for nights</param>
+        private void ShowWeek(int option)
         {
             switch (option)
             {
@@ -81,7 +81,7 @@ namespace Assignment2
         /// <param name="endWeek">Final week</param>
         /// <param name="period">How many weeks need to be skipped</param>
         /// <param name="column">How many columns of the schedule</param>
-        public static void PrintSchedule(int startWeek, int endWeek, int period, int column)
+        public void PrintSchedule(int startWeek, int endWeek, int period, int column)
         {
             int p = 0;
             for (int i = startWeek; i <= endWeek; i += period)

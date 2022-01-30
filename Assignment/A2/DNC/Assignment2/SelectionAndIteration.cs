@@ -2,7 +2,7 @@
 
 namespace Assignment2
 {
-    internal class SelectionAndIteration
+    public class SelectionAndIteration
     {
         /// <summary>
         ///     Constructor, launching 4 methods
@@ -42,10 +42,7 @@ namespace Assignment2
                     ? $"{Environment.NewLine}{userInput.ToUpper()}{Environment.NewLine}"
                       + $"Number of chars = {userInput.Length}{Environment.NewLine}"
                     : "OK. You pressed Enter. See you again!");
-                if (userInput.Length == 0)
-                {
-                    done = true;
-                }
+                if (userInput.Length == 0) done = true;
             } while (!done);
         }
 
@@ -100,12 +97,11 @@ namespace Assignment2
 
             int sum = 0;
             for (int i = start < end ? start : end; i <= (start < end ? end : start); i++)
-            {
-                sum += i;
-            }
+                sum += i; // In case start < end, no need to switch them, just assign correct value to for loop
+
 
             Console.WriteLine(
-                $"The sum between {(start < end ? start : end)} and {(start < end ? end : start)} is: {sum}");
+                $@"The sum between {(start < end ? start : end)} and {(start < end ? end : start)} is: {sum}");
         }
     }
 }

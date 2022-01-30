@@ -13,6 +13,8 @@ namespace Shop
         private double pricePerItem;
         private int quantity;
         private double total;
+        private const NumberStyles ns = NumberStyles.Number; // allow only decimal style
+        private readonly CultureInfo ci = CultureInfo.InstalledUICulture; // use the current installed decimal style
 
         /// <summary>
         ///     Launcher
@@ -54,9 +56,7 @@ namespace Shop
         {
             Console.WriteLine("What is the price per " + itemName + "?");
             pricePerItem =
-                double.Parse(Console.ReadLine(),
-                    NumberStyles.Any,
-                    CultureInfo.InvariantCulture); // Parsing double input, any number style, regional independent
+                double.Parse(Console.ReadLine(), ns, ci); // Parsing double input
         }
 
         /// <summary>
