@@ -1,0 +1,23 @@
+<Project Sdk="Microsoft.NET.Sdk">
+
+    <PropertyGroup>
+        <OutputType>Exe</OutputType>
+        <TargetFramework>net5.0</TargetFramework>
+    </PropertyGroup>
+
+    <ItemGroup>
+      <Compile Include="..\SuperCalculator\BMICalc.cs">
+        <Link>BMICalc.cs</Link>
+      </Compile>
+      <Compile Include="..\SuperCalculator\BMRCalc.cs">
+        <Link>BMRCalc.cs</Link>
+      </Compile>
+      <Compile Include="..\SuperCalculator\SavingCalc.cs">
+        <Link>SavingCalc.cs</Link>
+      </Compile>
+      <Compile Include="..\SuperCalculator\UnitType.cs">
+        <Link>UnitType.cs</Link>
+      </Compile>
+    </ItemGroup>
+
+</Project>

@@ -1,17 +1,13 @@
-﻿using System;
-using System.Globalization;
-using System.Windows.Forms;
-
-namespace SuperCalculator
+﻿namespace SuperCalculator
 {
     public partial class MainForm : Form
     {
         private readonly CultureInfo ci = CultureInfo.InstalledUICulture;
         private readonly NumberStyles ns = NumberStyles.Number;
         private readonly NumberStyles nsi = NumberStyles.Integer;
-        private readonly BMICalc bmiC = new BMICalc();
+        private BMICalc bmiC = new BMICalc();
         private BMRCalc bmrC = new BMRCalc();
-        private readonly SavingCalc savingC = new SavingCalc();
+        private SavingCalc savingC = new SavingCalc();
 
         public MainForm()
         {
@@ -19,10 +15,10 @@ namespace SuperCalculator
             InitializeGUI();
         }
 
-        private void radioButton1_CheckedChanged(object sender, EventArgs e)
-        {
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         private void InitializeGUI()
         {
             Text = "Super Calculator by Evan Huynh"; // 
@@ -69,6 +65,12 @@ namespace SuperCalculator
             bmiC.SetUnitType(UnitType.Imperial);
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        /// <returns></returns>
         private void rbSI_CheckedChanged(object sender, EventArgs e)
         {
             if (!rbSI.Checked) return;
@@ -104,23 +106,25 @@ namespace SuperCalculator
             {
                 out2 = double.TryParse(textFt.Text, ns, ci, out double ft);
                 out3 = double.TryParse(textInch.Text, ns, ci, out double inch);
-                bmiC.SetHeight(ft * 12 + inch);
+                if (out2 && out3) 
+                    bmiC.SetHeight(ft * 12 + inch);
             }
             else if (bmiC.GetUnitType().Equals(UnitType.Metric))
             {
                 out2 = double.TryParse(textKg.Text, ns, ci, out double m);
-                bmiC.SetHeight(m);
+                if (out2)
+                    bmiC.SetHeight(m);
             }
 
             if (out1 && out2 && out3)
-                SetTheBMI();
+                DisplayTheBMI();
             else
                 MessageBox.Show("Something is wrong. Please check your input.", "Error");
         }
 
         /// <summary>
         /// </summary>
-        private void SetTheBMI()
+        private void DisplayTheBMI()
         {
             groupBoxResult.Text = $@"Result for {bmiC.GetName()}";
             textBMI.Text = bmiC.BMIResult().ToString("#.##", ci);
@@ -185,7 +189,6 @@ namespace SuperCalculator
                 textFee.Text = @"0";
                 savingC.SetFee(0);
             }
-            
             SetTheFutureValue();
         }
 
@@ -199,7 +202,14 @@ namespace SuperCalculator
 
         private void buttonCalculateBMR_Click(object sender, EventArgs e)
         {
-
+            if (rbFemale.Checked)
+            {
+                
+            }
+            else
+            {
+                
+            }
         }
     }
 }

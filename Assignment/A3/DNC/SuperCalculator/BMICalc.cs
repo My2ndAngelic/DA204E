@@ -1,11 +1,5 @@
 ﻿namespace SuperCalculator
 {
-    public enum UnitType
-    {
-        Metric,
-        Imperial
-    }
-
     public class BMICalc
     {
         private double height;

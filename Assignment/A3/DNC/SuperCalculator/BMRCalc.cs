@@ -10,7 +10,7 @@ namespace SuperCalculator
     {
         private int age;
         private bool gender; // T: male, F: female
-        public double factor;
+        private double factor;
 
         public BMRCalc()
         {
@@ -18,8 +18,8 @@ namespace SuperCalculator
             gender = true;
             factor = 1.2;
         }
-
-        public BMRCalc(BMICalc bmiCalc)
+        
+        public BMRCalc(BMICalc bmiCalc) : base(bmiCalc.GetName(), bmiCalc.GetWeight(), bmiCalc.GetHeight(), bmiCalc.GetUnitType())
         {
             age = 0;
             gender = true;
@@ -28,7 +28,17 @@ namespace SuperCalculator
 
         public string ExtractName()
         {
-            return base.GetName();
+            return GetName();
+        }
+
+        public double ToKg()
+        {
+            return GetUnitType() == UnitType.Metric ? GetWeight() : GetWeight() * 0.45359237;
+        }
+
+        public double ToM()
+        {
+            return GetUnitType() == UnitType.Metric ? GetHeight() : GetHeight() * 0.0254;
         }
         
         public int GetBMR()
