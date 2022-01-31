@@ -10,20 +10,20 @@ namespace SuperCalculator
     {
         private int age;
         private bool gender; // T: male, F: female
-        private double factor;
-
+        private int group;
+        
         public BMRCalc()
         {
             age = 0;
             gender = true;
-            factor = 1.2;
+            group = 0;
         }
         
         public BMRCalc(BMICalc bmiCalc) : base(bmiCalc.GetName(), bmiCalc.GetWeight(), bmiCalc.GetHeight(), bmiCalc.GetUnitType())
         {
             age = 0;
             gender = true;
-            factor = 1.2;
+            group = 0;
         }
 
         public string ExtractName()
@@ -31,6 +31,30 @@ namespace SuperCalculator
             return GetName();
         }
 
+        public double GetCalories(double calories)
+        {
+            return GetFactoredBMR() + calories;
+        }
+        
+        public double GetFactoredBMR()
+        {
+            return group switch
+            {
+                0 => 1.2 * GetMinBMR(),
+                1 => 1.375 * GetMinBMR(),
+                2 => 1.550 * GetMinBMR(),
+                3 => 1.725 * GetMinBMR(),
+                4 => 1.9 * GetMinBMR(),
+                _ => throw new ArgumentException("Not yet implemented")
+            };
+        }
+        
+        public double GetMinBMR()
+        {
+            double baseBMR = 10 * ToKg() + 6.25 * ToCM() - 5 * GetAge();
+            return gender ? baseBMR + 5 : baseBMR - 161;
+        }
+        
         public double ToKg()
         {
             return GetUnitType() == UnitType.Metric ? GetWeight() : GetWeight() * 0.45359237;
@@ -40,17 +64,17 @@ namespace SuperCalculator
         {
             return GetUnitType() == UnitType.Metric ? GetHeight() : GetHeight() * 0.0254;
         }
-        
-        public int GetBMR()
+
+        public double ToCM()
         {
-            return 0;
+            return ToM() / 100;
         }
 
-        public BMRCalc(int age, bool gender, double factor)
+        public BMRCalc(int age, bool gender, int group)
         {
             this.age = age;
             this.gender = gender;
-            this.factor = factor;
+            this.group = group;
         }
 
         public int GetAge()
@@ -73,14 +97,14 @@ namespace SuperCalculator
             this.gender = gender;
         }
 
-        public double GetFactor()
+        public int GetGroup()
         {
-            return factor;
+            return group;
         }
-
-        public void SetFactor(double factor)
+        
+        public void SetGroup(int group)
         {
-            this.factor = factor;
+            this.group = group;
         }
     }
 }

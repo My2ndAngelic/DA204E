@@ -1,4 +1,9 @@
-﻿namespace SuperCalculator
+﻿using System;
+using System.Drawing;
+using System.Globalization;
+using System.Windows.Forms;
+
+namespace SuperCalculator
 {
     public partial class MainForm : Form
     {
@@ -6,7 +11,6 @@
         private readonly NumberStyles ns = NumberStyles.Number;
         private readonly NumberStyles nsi = NumberStyles.Integer;
         private BMICalc bmiC = new BMICalc();
-        private BMRCalc bmrC = new BMRCalc();
         private SavingCalc savingC = new SavingCalc();
 
         public MainForm()
@@ -24,7 +28,7 @@
             Text = "Super Calculator by Evan Huynh"; // 
 
             // input control
-            rbUS.Checked = true;
+            rbSI.Checked = true;
             groupBoxBMI.Text = "BMI Calculator";
             labelName.Text = "Name";
             labelHeight.Text = "Height";
@@ -33,14 +37,19 @@
             labelBMICat.Text = "Category";
             labelNormalWeight.Text = "Range";
 
+            // BMR
+            rbFemale.Checked = true;
+            rb0.Checked = true;
+
             // Empty
             textName.Text = string.Empty;
-            textKg.Text = string.Empty;
+            textKg.Text = "1,69";
             textFt.Text = string.Empty;
             textInch.Text = string.Empty;
-            textWeight.Text = string.Empty;
+            textWeight.Text = "69";
             textBMI.Text = string.Empty;
             textBMICat.Text = string.Empty;
+            textAge.Text = "32";
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -202,13 +211,57 @@
 
         private void buttonCalculateBMR_Click(object sender, EventArgs e)
         {
+            buttonCalculateBMI_Click(sender, e);
+            BMRCalc bmrC = new BMRCalc(bmiC);
             if (rbFemale.Checked)
             {
-                
+                bmrC.SetGender(false);
+            }
+            else if (rbMale.Checked)
+            {
+                bmrC.SetGender(true);
+            }
+
+            if (rb0.Checked)
+            {
+                bmrC.SetGroup(0);
+            } else if (rb1.Checked)
+            {
+                bmrC.SetGroup(1);
+            } else if (rb2.Checked)
+            {
+                bmrC.SetGroup(2);
+            } else if (rb3.Checked)
+            {
+                bmrC.SetGroup(3);
+            } else if (rb4.Checked)
+            {
+                bmrC.SetGroup(4);
+            }
+
+            bool ageOK = int.TryParse(textAge.Text, nsi, ci, out int age);
+            if (ageOK && !textBMI.Text.Equals(string.Empty))
+            {       
+                    bmrC.SetAge(age);
+                    ListBox mylist = new ListBox();
+                    listBox1.Controls.Clear();      
+                    mylist.Size = new Size(listBox1.Size.Width, listBox1.Size.Height);
+                    mylist.Items.Add($"BMR result for {bmrC.GetName()}");
+                    mylist.Items.Add("");
+                    mylist.Items.Add($"Your BMR (calories/day): {bmrC.GetMinBMR():F2}");
+                    mylist.Items.Add($"Calories to maintain your weight: {bmrC.GetCalories(0):F2}");
+                    mylist.Items.Add($"Calories to lose {0.5} kg per week: {bmrC.GetCalories(-500):F2}");
+                    mylist.Items.Add($"Calories to lose {1} kg per week: {bmrC.GetCalories(-1000):F2}");
+                    mylist.Items.Add($"Calories to gain {0.5} kg per week: {bmrC.GetCalories(500):F2}");
+                    mylist.Items.Add($"Calories to gain {1} kg per week: {bmrC.GetCalories(1000):F2}");
+                    mylist.Items.Add("");
+                    mylist.Items.Add("Losing more than 1000 calories per day is to be avoided.");
+                    listBox1.Controls.Add(mylist);
+                    listBox1.Font = new Font(FontFamily.GenericSansSerif, 12);
             }
             else
             {
-                
+                MessageBox.Show("Something is wrong. Please check your input", "Error");
             }
         }
     }

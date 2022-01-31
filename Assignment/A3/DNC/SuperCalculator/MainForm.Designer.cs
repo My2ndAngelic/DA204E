@@ -74,27 +74,27 @@ namespace SuperCalculator
             this.labelAmountEarned = new System.Windows.Forms.Label();
             this.labelAmountPaid = new System.Windows.Forms.Label();
             this.groupBMR = new System.Windows.Forms.GroupBox();
+            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.buttonCalculateBMR = new System.Windows.Forms.Button();
+            this.groupWAL = new System.Windows.Forms.GroupBox();
+            this.rb0 = new System.Windows.Forms.RadioButton();
+            this.rb1 = new System.Windows.Forms.RadioButton();
+            this.rb2 = new System.Windows.Forms.RadioButton();
+            this.rb3 = new System.Windows.Forms.RadioButton();
+            this.rb4 = new System.Windows.Forms.RadioButton();
             this.labelAge = new System.Windows.Forms.Label();
             this.textAge = new System.Windows.Forms.TextBox();
             this.groupBoxGender = new System.Windows.Forms.GroupBox();
             this.rbFemale = new System.Windows.Forms.RadioButton();
-            this.radioMale = new System.Windows.Forms.RadioButton();
-            this.groupWAL = new System.Windows.Forms.GroupBox();
-            this.radioButton1 = new System.Windows.Forms.RadioButton();
-            this.radioButton2 = new System.Windows.Forms.RadioButton();
-            this.radioButton3 = new System.Windows.Forms.RadioButton();
-            this.radioButton4 = new System.Windows.Forms.RadioButton();
-            this.radioButton5 = new System.Windows.Forms.RadioButton();
-            this.buttonCalculateBMR = new System.Windows.Forms.Button();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.rbMale = new System.Windows.Forms.RadioButton();
             this.groupBoxBMI.SuspendLayout();
             this.groupBoxUnit.SuspendLayout();
             this.groupBoxResult.SuspendLayout();
             this.groupBoxSaving.SuspendLayout();
             this.groupBoxFV.SuspendLayout();
             this.groupBMR.SuspendLayout();
-            this.groupBoxGender.SuspendLayout();
             this.groupWAL.SuspendLayout();
+            this.groupBoxGender.SuspendLayout();
             this.SuspendLayout();
             // 
             // textKg
@@ -245,7 +245,7 @@ namespace SuperCalculator
             this.textYear.Location = new System.Drawing.Point(206, 80);
             this.textYear.Name = "textYear";
             this.textYear.Size = new System.Drawing.Size(175, 23);
-            this.textYear.TabIndex = 1;
+            this.textYear.TabIndex = 6;
             // 
             // groupBoxUnit
             // 
@@ -349,21 +349,21 @@ namespace SuperCalculator
             this.textDeposit.Location = new System.Drawing.Point(206, 30);
             this.textDeposit.Name = "textDeposit";
             this.textDeposit.Size = new System.Drawing.Size(175, 23);
-            this.textDeposit.TabIndex = 0;
+            this.textDeposit.TabIndex = 5;
             // 
             // textInterest
             // 
             this.textInterest.Location = new System.Drawing.Point(206, 130);
             this.textInterest.Name = "textInterest";
             this.textInterest.Size = new System.Drawing.Size(175, 23);
-            this.textInterest.TabIndex = 2;
+            this.textInterest.TabIndex = 7;
             // 
             // textFee
             // 
             this.textFee.Location = new System.Drawing.Point(206, 180);
             this.textFee.Name = "textFee";
             this.textFee.Size = new System.Drawing.Size(175, 23);
-            this.textFee.TabIndex = 3;
+            this.textFee.TabIndex = 8;
             // 
             // labelMonthlyDeposit
             // 
@@ -406,7 +406,7 @@ namespace SuperCalculator
             this.buttonCalculateSaving.Location = new System.Drawing.Point(447, 249);
             this.buttonCalculateSaving.Name = "buttonCalculateSaving";
             this.buttonCalculateSaving.Size = new System.Drawing.Size(387, 23);
-            this.buttonCalculateSaving.TabIndex = 11;
+            this.buttonCalculateSaving.TabIndex = 9;
             this.buttonCalculateSaving.Text = "Calculate Saving";
             this.buttonCalculateSaving.UseVisualStyleBackColor = true;
             this.buttonCalculateSaving.Click += new System.EventHandler(this.buttonCalculateSaving_Click);
@@ -510,10 +510,97 @@ namespace SuperCalculator
             this.groupBMR.Controls.Add(this.groupBoxGender);
             this.groupBMR.Location = new System.Drawing.Point(13, 526);
             this.groupBMR.Name = "groupBMR";
-            this.groupBMR.Size = new System.Drawing.Size(815, 454);
+            this.groupBMR.Size = new System.Drawing.Size(815, 323);
             this.groupBMR.TabIndex = 22;
             this.groupBMR.TabStop = false;
             this.groupBMR.Text = "BMRCalculator";
+            // 
+            // listBox1
+            // 
+            this.listBox1.ItemHeight = 15;
+            this.listBox1.Location = new System.Drawing.Point(338, 23);
+            this.listBox1.Name = "listBox1";
+            this.listBox1.Size = new System.Drawing.Size(471, 274);
+            this.listBox1.TabIndex = 27;
+            // 
+            // buttonCalculateBMR
+            // 
+            this.buttonCalculateBMR.Location = new System.Drawing.Point(6, 202);
+            this.buttonCalculateBMR.Name = "buttonCalculateBMR";
+            this.buttonCalculateBMR.Size = new System.Drawing.Size(180, 95);
+            this.buttonCalculateBMR.TabIndex = 14;
+            this.buttonCalculateBMR.Text = "Calculate BMR";
+            this.buttonCalculateBMR.UseVisualStyleBackColor = true;
+            this.buttonCalculateBMR.Click += new System.EventHandler(this.buttonCalculateBMR_Click);
+            // 
+            // groupWAL
+            // 
+            this.groupWAL.Controls.Add(this.rb0);
+            this.groupWAL.Controls.Add(this.rb1);
+            this.groupWAL.Controls.Add(this.rb2);
+            this.groupWAL.Controls.Add(this.rb3);
+            this.groupWAL.Controls.Add(this.rb4);
+            this.groupWAL.Location = new System.Drawing.Point(193, 22);
+            this.groupWAL.Name = "groupWAL";
+            this.groupWAL.Size = new System.Drawing.Size(138, 275);
+            this.groupWAL.TabIndex = 26;
+            this.groupWAL.TabStop = false;
+            this.groupWAL.Text = "Weekly activity level";
+            // 
+            // rb0
+            // 
+            this.rb0.AutoSize = true;
+            this.rb0.Location = new System.Drawing.Point(8, 30);
+            this.rb0.Name = "rb0";
+            this.rb0.Size = new System.Drawing.Size(31, 19);
+            this.rb0.TabIndex = 13;
+            this.rb0.TabStop = true;
+            this.rb0.Text = "0";
+            this.rb0.UseVisualStyleBackColor = true;
+            // 
+            // rb1
+            // 
+            this.rb1.AutoSize = true;
+            this.rb1.Location = new System.Drawing.Point(8, 80);
+            this.rb1.Name = "rb1";
+            this.rb1.Size = new System.Drawing.Size(31, 19);
+            this.rb1.TabIndex = 13;
+            this.rb1.TabStop = true;
+            this.rb1.Text = "1";
+            this.rb1.UseVisualStyleBackColor = true;
+            // 
+            // rb2
+            // 
+            this.rb2.AutoSize = true;
+            this.rb2.Location = new System.Drawing.Point(8, 130);
+            this.rb2.Name = "rb2";
+            this.rb2.Size = new System.Drawing.Size(31, 19);
+            this.rb2.TabIndex = 13;
+            this.rb2.TabStop = true;
+            this.rb2.Text = "2";
+            this.rb2.UseVisualStyleBackColor = true;
+            // 
+            // rb3
+            // 
+            this.rb3.AutoSize = true;
+            this.rb3.Location = new System.Drawing.Point(8, 180);
+            this.rb3.Name = "rb3";
+            this.rb3.Size = new System.Drawing.Size(31, 19);
+            this.rb3.TabIndex = 13;
+            this.rb3.TabStop = true;
+            this.rb3.Text = "3";
+            this.rb3.UseVisualStyleBackColor = true;
+            // 
+            // rb4
+            // 
+            this.rb4.AutoSize = true;
+            this.rb4.Location = new System.Drawing.Point(8, 230);
+            this.rb4.Name = "rb4";
+            this.rb4.Size = new System.Drawing.Size(31, 19);
+            this.rb4.TabIndex = 13;
+            this.rb4.TabStop = true;
+            this.rb4.Text = "4";
+            this.rb4.UseVisualStyleBackColor = true;
             // 
             // labelAge
             // 
@@ -529,12 +616,12 @@ namespace SuperCalculator
             this.textAge.Location = new System.Drawing.Point(90, 151);
             this.textAge.Name = "textAge";
             this.textAge.Size = new System.Drawing.Size(72, 23);
-            this.textAge.TabIndex = 22;
+            this.textAge.TabIndex = 12;
             // 
             // groupBoxGender
             // 
             this.groupBoxGender.Controls.Add(this.rbFemale);
-            this.groupBoxGender.Controls.Add(this.radioMale);
+            this.groupBoxGender.Controls.Add(this.rbMale);
             this.groupBoxGender.Location = new System.Drawing.Point(7, 22);
             this.groupBoxGender.Name = "groupBoxGender";
             this.groupBoxGender.Size = new System.Drawing.Size(155, 112);
@@ -548,115 +635,27 @@ namespace SuperCalculator
             this.rbFemale.Location = new System.Drawing.Point(6, 30);
             this.rbFemale.Name = "rbFemale";
             this.rbFemale.Size = new System.Drawing.Size(63, 19);
-            this.rbFemale.TabIndex = 3;
+            this.rbFemale.TabIndex = 11;
             this.rbFemale.TabStop = true;
             this.rbFemale.Text = "Female";
             this.rbFemale.UseVisualStyleBackColor = true;
             // 
-            // radioMale
+            // rbMale
             // 
-            this.radioMale.AutoSize = true;
-            this.radioMale.Location = new System.Drawing.Point(6, 80);
-            this.radioMale.Name = "radioMale";
-            this.radioMale.Size = new System.Drawing.Size(51, 19);
-            this.radioMale.TabIndex = 3;
-            this.radioMale.TabStop = true;
-            this.radioMale.Text = "Male";
-            this.radioMale.UseVisualStyleBackColor = true;
-            // 
-            // groupWAL
-            // 
-            this.groupWAL.Controls.Add(this.radioButton5);
-            this.groupWAL.Controls.Add(this.radioButton4);
-            this.groupWAL.Controls.Add(this.radioButton3);
-            this.groupWAL.Controls.Add(this.radioButton2);
-            this.groupWAL.Controls.Add(this.radioButton1);
-            this.groupWAL.Location = new System.Drawing.Point(193, 22);
-            this.groupWAL.Name = "groupWAL";
-            this.groupWAL.Size = new System.Drawing.Size(138, 275);
-            this.groupWAL.TabIndex = 26;
-            this.groupWAL.TabStop = false;
-            this.groupWAL.Text = "Weekly activity level";
-            // 
-            // radioButton1
-            // 
-            this.radioButton1.AutoSize = true;
-            this.radioButton1.Location = new System.Drawing.Point(8, 30);
-            this.radioButton1.Name = "radioButton1";
-            this.radioButton1.Size = new System.Drawing.Size(94, 19);
-            this.radioButton1.TabIndex = 0;
-            this.radioButton1.TabStop = true;
-            this.radioButton1.Text = "radioButton1";
-            this.radioButton1.UseVisualStyleBackColor = true;
-            // 
-            // radioButton2
-            // 
-            this.radioButton2.AutoSize = true;
-            this.radioButton2.Location = new System.Drawing.Point(8, 80);
-            this.radioButton2.Name = "radioButton2";
-            this.radioButton2.Size = new System.Drawing.Size(94, 19);
-            this.radioButton2.TabIndex = 1;
-            this.radioButton2.TabStop = true;
-            this.radioButton2.Text = "radioButton2";
-            this.radioButton2.UseVisualStyleBackColor = true;
-            // 
-            // radioButton3
-            // 
-            this.radioButton3.AutoSize = true;
-            this.radioButton3.Location = new System.Drawing.Point(8, 130);
-            this.radioButton3.Name = "radioButton3";
-            this.radioButton3.Size = new System.Drawing.Size(94, 19);
-            this.radioButton3.TabIndex = 2;
-            this.radioButton3.TabStop = true;
-            this.radioButton3.Text = "radioButton3";
-            this.radioButton3.UseVisualStyleBackColor = true;
-            // 
-            // radioButton4
-            // 
-            this.radioButton4.AutoSize = true;
-            this.radioButton4.Location = new System.Drawing.Point(8, 180);
-            this.radioButton4.Name = "radioButton4";
-            this.radioButton4.Size = new System.Drawing.Size(94, 19);
-            this.radioButton4.TabIndex = 3;
-            this.radioButton4.TabStop = true;
-            this.radioButton4.Text = "radioButton4";
-            this.radioButton4.UseVisualStyleBackColor = true;
-            // 
-            // radioButton5
-            // 
-            this.radioButton5.AutoSize = true;
-            this.radioButton5.Location = new System.Drawing.Point(8, 230);
-            this.radioButton5.Name = "radioButton5";
-            this.radioButton5.Size = new System.Drawing.Size(94, 19);
-            this.radioButton5.TabIndex = 4;
-            this.radioButton5.TabStop = true;
-            this.radioButton5.Text = "radioButton5";
-            this.radioButton5.UseVisualStyleBackColor = true;
-            // 
-            // buttonCalculateBMR
-            // 
-            this.buttonCalculateBMR.Location = new System.Drawing.Point(6, 202);
-            this.buttonCalculateBMR.Name = "buttonCalculateBMR";
-            this.buttonCalculateBMR.Size = new System.Drawing.Size(180, 95);
-            this.buttonCalculateBMR.TabIndex = 5;
-            this.buttonCalculateBMR.Text = "Calculate BMR";
-            this.buttonCalculateBMR.UseVisualStyleBackColor = true;
-            this.buttonCalculateBMR.Click += new System.EventHandler(this.buttonCalculateBMR_Click);
-            // 
-            // listBox1
-            // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(338, 23);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(471, 274);
-            this.listBox1.TabIndex = 27;
+            this.rbMale.AutoSize = true;
+            this.rbMale.Location = new System.Drawing.Point(6, 80);
+            this.rbMale.Name = "rbMale";
+            this.rbMale.Size = new System.Drawing.Size(51, 19);
+            this.rbMale.TabIndex = 11;
+            this.rbMale.TabStop = true;
+            this.rbMale.Text = "Male";
+            this.rbMale.UseVisualStyleBackColor = true;
             // 
             // MainForm
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(848, 992);
+            this.ClientSize = new System.Drawing.Size(848, 866);
             this.Controls.Add(this.groupBoxBMI);
             this.Controls.Add(this.groupBoxUnit);
             this.Controls.Add(this.buttonCalculateBMI);
@@ -683,10 +682,10 @@ namespace SuperCalculator
             this.groupBoxFV.PerformLayout();
             this.groupBMR.ResumeLayout(false);
             this.groupBMR.PerformLayout();
-            this.groupBoxGender.ResumeLayout(false);
-            this.groupBoxGender.PerformLayout();
             this.groupWAL.ResumeLayout(false);
             this.groupWAL.PerformLayout();
+            this.groupBoxGender.ResumeLayout(false);
+            this.groupBoxGender.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -739,14 +738,14 @@ namespace SuperCalculator
         private System.Windows.Forms.TextBox textAge;
         private System.Windows.Forms.GroupBox groupBoxGender;
         private System.Windows.Forms.RadioButton rbFemale;
-        private System.Windows.Forms.RadioButton radioMale;
+        private System.Windows.Forms.RadioButton rbMale;
         private System.Windows.Forms.Button buttonCalculateBMR;
         private System.Windows.Forms.GroupBox groupWAL;
-        private System.Windows.Forms.RadioButton radioButton5;
-        private System.Windows.Forms.RadioButton radioButton4;
-        private System.Windows.Forms.RadioButton radioButton3;
-        private System.Windows.Forms.RadioButton radioButton2;
-        private System.Windows.Forms.RadioButton radioButton1;
+        private System.Windows.Forms.RadioButton rb4;
+        private System.Windows.Forms.RadioButton rb3;
+        private System.Windows.Forms.RadioButton rb2;
+        private System.Windows.Forms.RadioButton rb1;
+        private System.Windows.Forms.RadioButton rb0;
         private System.Windows.Forms.ListBox listBox1;
     }
 }
