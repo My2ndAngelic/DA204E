@@ -104,10 +104,9 @@ namespace SuperCalculator
         {
             bmiC.SetName(textName.Text);
             bool out1 = double.TryParse(textWeight.Text, ns, ci, out double weight);
+            if (out1) bmiC.SetWeight(weight);
 
             bool out2 = true, out3 = true;
-
-            bmiC.SetWeight(weight);
 
             if (bmiC.GetUnitType().Equals(UnitType.Imperial))
             {
@@ -152,8 +151,7 @@ namespace SuperCalculator
         /// <param name="e"></param>
         private void buttonCalculateSaving_Click(object sender, EventArgs e)
         {
-            bool out1 = decimal.TryParse(textDeposit.Text, ns, ci, out decimal md);
-            if (out1)
+            if (decimal.TryParse(textDeposit.Text, ns, ci, out decimal md))
             {
                 savingC.SetDeposit(md);
             }
@@ -163,8 +161,7 @@ namespace SuperCalculator
                 savingC.SetDeposit(0);
             }
 
-            bool out2 = int.TryParse(textYear.Text, nsi, ci, out int period);
-            if (out2)
+            if (int.TryParse(textYear.Text, nsi, ci, out int period))
             {
                 savingC.SetPeriod(period * 12);
             }
@@ -174,8 +171,7 @@ namespace SuperCalculator
                 savingC.SetPeriod(0);
             }
 
-            bool out3 = decimal.TryParse(textInterest.Text, ns, ci, out decimal interest);
-            if (out3)
+            if (decimal.TryParse(textInterest.Text, ns, ci, out decimal interest))
             {
                 savingC.SetInterest(interest / 100 / 12);
             }
@@ -185,8 +181,7 @@ namespace SuperCalculator
                 savingC.SetInterest(0);
             }
 
-            bool out4 = decimal.TryParse(textFee.Text, ns, ci, out decimal fee);
-            if (out4)
+            if (decimal.TryParse(textFee.Text, ns, ci, out decimal fee))
             {
                 savingC.SetFee(fee / 100 / 12);
             }
@@ -224,7 +219,7 @@ namespace SuperCalculator
         {
             buttonCalculateBMI_Click(sender, e);
             BMRCalc bmrC = new BMRCalc(bmiC);
-            
+
             if (rbFemale.Checked)
                 bmrC.SetGender(false);
             else if (rbMale.Checked) bmrC.SetGender(true);
