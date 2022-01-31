@@ -55,20 +55,7 @@ namespace SuperCalculator
             return gender ? baseBMR + 5 : baseBMR - 161;
         }
         
-        public double ToKg()
-        {
-            return GetUnitType() == UnitType.Metric ? GetWeight() : GetWeight() * 0.45359237;
-        }
-
-        public double ToM()
-        {
-            return GetUnitType() == UnitType.Metric ? GetHeight() : GetHeight() * 0.0254;
-        }
-
-        public double ToCM()
-        {
-            return ToM() / 100;
-        }
+        
 
         public BMRCalc(int age, bool gender, int group)
         {

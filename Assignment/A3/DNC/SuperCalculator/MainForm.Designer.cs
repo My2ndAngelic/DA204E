@@ -46,9 +46,9 @@ namespace SuperCalculator
             this.labelUnit2 = new System.Windows.Forms.Label();
             this.groupBoxBMI = new System.Windows.Forms.GroupBox();
             this.labelUnit3 = new System.Windows.Forms.Label();
-            this.textYear = new System.Windows.Forms.TextBox();
+            this.textPeriod = new System.Windows.Forms.TextBox();
             this.groupBoxUnit = new System.Windows.Forms.GroupBox();
-            this.groupBoxResult = new System.Windows.Forms.GroupBox();
+            this.groupBoxResultBMI = new System.Windows.Forms.GroupBox();
             this.textBMI = new System.Windows.Forms.TextBox();
             this.textBMICat = new System.Windows.Forms.TextBox();
             this.textBoxNormalWeight = new System.Windows.Forms.TextBox();
@@ -60,23 +60,23 @@ namespace SuperCalculator
             this.textInterest = new System.Windows.Forms.TextBox();
             this.textFee = new System.Windows.Forms.TextBox();
             this.labelMonthlyDeposit = new System.Windows.Forms.Label();
-            this.labelYear = new System.Windows.Forms.Label();
+            this.labelPeriod = new System.Windows.Forms.Label();
             this.labelInterest = new System.Windows.Forms.Label();
             this.labelFee = new System.Windows.Forms.Label();
             this.buttonCalculateSaving = new System.Windows.Forms.Button();
-            this.groupBoxFV = new System.Windows.Forms.GroupBox();
+            this.groupBoxFutureValue = new System.Windows.Forms.GroupBox();
             this.textAmountPaid = new System.Windows.Forms.TextBox();
             this.textAmountEarned = new System.Windows.Forms.TextBox();
             this.textFinalBalance = new System.Windows.Forms.TextBox();
             this.textTotalFee = new System.Windows.Forms.TextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.labelAmountEarned = new System.Windows.Forms.Label();
             this.labelAmountPaid = new System.Windows.Forms.Label();
-            this.groupBMR = new System.Windows.Forms.GroupBox();
+            this.labelAmountEarned = new System.Windows.Forms.Label();
+            this.labelFinalBalance = new System.Windows.Forms.Label();
+            this.labelTotalFee = new System.Windows.Forms.Label();
+            this.groupBoxBMR = new System.Windows.Forms.GroupBox();
             this.listBoxBMR = new System.Windows.Forms.ListBox();
             this.buttonCalculateBMR = new System.Windows.Forms.Button();
-            this.groupWAL = new System.Windows.Forms.GroupBox();
+            this.groupBoxWAL = new System.Windows.Forms.GroupBox();
             this.rb0 = new System.Windows.Forms.RadioButton();
             this.rb1 = new System.Windows.Forms.RadioButton();
             this.rb2 = new System.Windows.Forms.RadioButton();
@@ -89,11 +89,11 @@ namespace SuperCalculator
             this.rbMale = new System.Windows.Forms.RadioButton();
             this.groupBoxBMI.SuspendLayout();
             this.groupBoxUnit.SuspendLayout();
-            this.groupBoxResult.SuspendLayout();
+            this.groupBoxResultBMI.SuspendLayout();
             this.groupBoxSaving.SuspendLayout();
-            this.groupBoxFV.SuspendLayout();
-            this.groupBMR.SuspendLayout();
-            this.groupWAL.SuspendLayout();
+            this.groupBoxFutureValue.SuspendLayout();
+            this.groupBoxBMR.SuspendLayout();
+            this.groupBoxWAL.SuspendLayout();
             this.groupBoxGender.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -240,12 +240,12 @@ namespace SuperCalculator
             this.labelUnit3.TabIndex = 21;
             this.labelUnit3.Text = "labelUnit3";
             // 
-            // textYear
+            // textPeriod
             // 
-            this.textYear.Location = new System.Drawing.Point(206, 80);
-            this.textYear.Name = "textYear";
-            this.textYear.Size = new System.Drawing.Size(175, 23);
-            this.textYear.TabIndex = 6;
+            this.textPeriod.Location = new System.Drawing.Point(206, 80);
+            this.textPeriod.Name = "textPeriod";
+            this.textPeriod.Size = new System.Drawing.Size(175, 23);
+            this.textPeriod.TabIndex = 6;
             // 
             // groupBoxUnit
             // 
@@ -258,20 +258,20 @@ namespace SuperCalculator
             this.groupBoxUnit.TabStop = false;
             this.groupBoxUnit.Text = "Unit";
             // 
-            // groupBoxResult
+            // groupBoxResultBMI
             // 
-            this.groupBoxResult.Controls.Add(this.textBMI);
-            this.groupBoxResult.Controls.Add(this.textBMICat);
-            this.groupBoxResult.Controls.Add(this.textBoxNormalWeight);
-            this.groupBoxResult.Controls.Add(this.labelNormalWeight);
-            this.groupBoxResult.Controls.Add(this.labelBMICat);
-            this.groupBoxResult.Controls.Add(this.labelBMIRes);
-            this.groupBoxResult.Location = new System.Drawing.Point(13, 278);
-            this.groupBoxResult.Name = "groupBoxResult";
-            this.groupBoxResult.Size = new System.Drawing.Size(387, 230);
-            this.groupBoxResult.TabIndex = 24;
-            this.groupBoxResult.TabStop = false;
-            this.groupBoxResult.Text = "Result";
+            this.groupBoxResultBMI.Controls.Add(this.textBMI);
+            this.groupBoxResultBMI.Controls.Add(this.textBMICat);
+            this.groupBoxResultBMI.Controls.Add(this.textBoxNormalWeight);
+            this.groupBoxResultBMI.Controls.Add(this.labelNormalWeight);
+            this.groupBoxResultBMI.Controls.Add(this.labelBMICat);
+            this.groupBoxResultBMI.Controls.Add(this.labelBMIRes);
+            this.groupBoxResultBMI.Location = new System.Drawing.Point(13, 278);
+            this.groupBoxResultBMI.Name = "groupBoxResultBMI";
+            this.groupBoxResultBMI.Size = new System.Drawing.Size(387, 230);
+            this.groupBoxResultBMI.TabIndex = 24;
+            this.groupBoxResultBMI.TabStop = false;
+            this.groupBoxResultBMI.Text = "Result";
             // 
             // textBMI
             // 
@@ -330,11 +330,11 @@ namespace SuperCalculator
             // groupBoxSaving
             // 
             this.groupBoxSaving.Controls.Add(this.textDeposit);
-            this.groupBoxSaving.Controls.Add(this.textYear);
+            this.groupBoxSaving.Controls.Add(this.textPeriod);
             this.groupBoxSaving.Controls.Add(this.textInterest);
             this.groupBoxSaving.Controls.Add(this.textFee);
             this.groupBoxSaving.Controls.Add(this.labelMonthlyDeposit);
-            this.groupBoxSaving.Controls.Add(this.labelYear);
+            this.groupBoxSaving.Controls.Add(this.labelPeriod);
             this.groupBoxSaving.Controls.Add(this.labelInterest);
             this.groupBoxSaving.Controls.Add(this.labelFee);
             this.groupBoxSaving.Location = new System.Drawing.Point(447, 13);
@@ -374,14 +374,14 @@ namespace SuperCalculator
             this.labelMonthlyDeposit.TabIndex = 4;
             this.labelMonthlyDeposit.Text = "Monthly deposit";
             // 
-            // labelYear
+            // labelPeriod
             // 
-            this.labelYear.AutoSize = true;
-            this.labelYear.Location = new System.Drawing.Point(6, 83);
-            this.labelYear.Name = "labelYear";
-            this.labelYear.Size = new System.Drawing.Size(74, 15);
-            this.labelYear.TabIndex = 5;
-            this.labelYear.Text = "Period (year)";
+            this.labelPeriod.AutoSize = true;
+            this.labelPeriod.Location = new System.Drawing.Point(6, 83);
+            this.labelPeriod.Name = "labelPeriod";
+            this.labelPeriod.Size = new System.Drawing.Size(74, 15);
+            this.labelPeriod.TabIndex = 5;
+            this.labelPeriod.Text = "Period (year)";
             // 
             // labelInterest
             // 
@@ -411,22 +411,22 @@ namespace SuperCalculator
             this.buttonCalculateSaving.UseVisualStyleBackColor = true;
             this.buttonCalculateSaving.Click += new System.EventHandler(this.buttonCalculateSaving_Click);
             // 
-            // groupBoxFV
+            // groupBoxFutureValue
             // 
-            this.groupBoxFV.Controls.Add(this.textAmountPaid);
-            this.groupBoxFV.Controls.Add(this.textAmountEarned);
-            this.groupBoxFV.Controls.Add(this.textFinalBalance);
-            this.groupBoxFV.Controls.Add(this.textTotalFee);
-            this.groupBoxFV.Controls.Add(this.label1);
-            this.groupBoxFV.Controls.Add(this.label2);
-            this.groupBoxFV.Controls.Add(this.labelAmountEarned);
-            this.groupBoxFV.Controls.Add(this.labelAmountPaid);
-            this.groupBoxFV.Location = new System.Drawing.Point(447, 278);
-            this.groupBoxFV.Name = "groupBoxFV";
-            this.groupBoxFV.Size = new System.Drawing.Size(387, 230);
-            this.groupBoxFV.TabIndex = 27;
-            this.groupBoxFV.TabStop = false;
-            this.groupBoxFV.Text = "Future Value";
+            this.groupBoxFutureValue.Controls.Add(this.textAmountPaid);
+            this.groupBoxFutureValue.Controls.Add(this.textAmountEarned);
+            this.groupBoxFutureValue.Controls.Add(this.textFinalBalance);
+            this.groupBoxFutureValue.Controls.Add(this.textTotalFee);
+            this.groupBoxFutureValue.Controls.Add(this.labelAmountPaid);
+            this.groupBoxFutureValue.Controls.Add(this.labelAmountEarned);
+            this.groupBoxFutureValue.Controls.Add(this.labelFinalBalance);
+            this.groupBoxFutureValue.Controls.Add(this.labelTotalFee);
+            this.groupBoxFutureValue.Location = new System.Drawing.Point(447, 278);
+            this.groupBoxFutureValue.Name = "groupBoxFutureValue";
+            this.groupBoxFutureValue.Size = new System.Drawing.Size(387, 230);
+            this.groupBoxFutureValue.TabIndex = 27;
+            this.groupBoxFutureValue.TabStop = false;
+            this.groupBoxFutureValue.Text = "Future Value";
             // 
             // textAmountPaid
             // 
@@ -464,23 +464,14 @@ namespace SuperCalculator
             this.textTotalFee.TabIndex = 9;
             this.textTotalFee.TextAlign = System.Windows.Forms.HorizontalAlignment.Right;
             // 
-            // label1
+            // labelAmountPaid
             // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(6, 180);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(55, 15);
-            this.label1.TabIndex = 11;
-            this.label1.Text = "Total Fee";
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(6, 130);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(76, 15);
-            this.label2.TabIndex = 10;
-            this.label2.Text = "Final balance";
+            this.labelAmountPaid.AutoSize = true;
+            this.labelAmountPaid.Location = new System.Drawing.Point(6, 33);
+            this.labelAmountPaid.Name = "labelAmountPaid";
+            this.labelAmountPaid.Size = new System.Drawing.Size(77, 15);
+            this.labelAmountPaid.TabIndex = 8;
+            this.labelAmountPaid.Text = "Amount paid";
             // 
             // labelAmountEarned
             // 
@@ -491,36 +482,45 @@ namespace SuperCalculator
             this.labelAmountEarned.TabIndex = 9;
             this.labelAmountEarned.Text = "Amount earned";
             // 
-            // labelAmountPaid
+            // labelFinalBalance
             // 
-            this.labelAmountPaid.AutoSize = true;
-            this.labelAmountPaid.Location = new System.Drawing.Point(6, 33);
-            this.labelAmountPaid.Name = "labelAmountPaid";
-            this.labelAmountPaid.Size = new System.Drawing.Size(77, 15);
-            this.labelAmountPaid.TabIndex = 8;
-            this.labelAmountPaid.Text = "Amount paid";
+            this.labelFinalBalance.AutoSize = true;
+            this.labelFinalBalance.Location = new System.Drawing.Point(6, 130);
+            this.labelFinalBalance.Name = "labelFinalBalance";
+            this.labelFinalBalance.Size = new System.Drawing.Size(76, 15);
+            this.labelFinalBalance.TabIndex = 10;
+            this.labelFinalBalance.Text = "Final balance";
             // 
-            // groupBMR
+            // labelTotalFee
             // 
-            this.groupBMR.Controls.Add(this.listBoxBMR);
-            this.groupBMR.Controls.Add(this.buttonCalculateBMR);
-            this.groupBMR.Controls.Add(this.groupWAL);
-            this.groupBMR.Controls.Add(this.labelAge);
-            this.groupBMR.Controls.Add(this.textAge);
-            this.groupBMR.Controls.Add(this.groupBoxGender);
-            this.groupBMR.Location = new System.Drawing.Point(13, 526);
-            this.groupBMR.Name = "groupBMR";
-            this.groupBMR.Size = new System.Drawing.Size(815, 323);
-            this.groupBMR.TabIndex = 22;
-            this.groupBMR.TabStop = false;
-            this.groupBMR.Text = "BMRCalculator";
+            this.labelTotalFee.AutoSize = true;
+            this.labelTotalFee.Location = new System.Drawing.Point(6, 180);
+            this.labelTotalFee.Name = "labelTotalFee";
+            this.labelTotalFee.Size = new System.Drawing.Size(55, 15);
+            this.labelTotalFee.TabIndex = 11;
+            this.labelTotalFee.Text = "Total Fee";
+            // 
+            // groupBoxBMR
+            // 
+            this.groupBoxBMR.Controls.Add(this.listBoxBMR);
+            this.groupBoxBMR.Controls.Add(this.buttonCalculateBMR);
+            this.groupBoxBMR.Controls.Add(this.groupBoxWAL);
+            this.groupBoxBMR.Controls.Add(this.labelAge);
+            this.groupBoxBMR.Controls.Add(this.textAge);
+            this.groupBoxBMR.Controls.Add(this.groupBoxGender);
+            this.groupBoxBMR.Location = new System.Drawing.Point(13, 526);
+            this.groupBoxBMR.Name = "groupBoxBMR";
+            this.groupBoxBMR.Size = new System.Drawing.Size(815, 323);
+            this.groupBoxBMR.TabIndex = 22;
+            this.groupBoxBMR.TabStop = false;
+            this.groupBoxBMR.Text = "BMRCalculator";
             // 
             // listBoxBMR
             // 
             this.listBoxBMR.ItemHeight = 15;
-            this.listBoxBMR.Location = new System.Drawing.Point(338, 23);
+            this.listBoxBMR.Location = new System.Drawing.Point(440, 23);
             this.listBoxBMR.Name = "listBoxBMR";
-            this.listBoxBMR.Size = new System.Drawing.Size(471, 274);
+            this.listBoxBMR.Size = new System.Drawing.Size(369, 274);
             this.listBoxBMR.TabIndex = 27;
             // 
             // buttonCalculateBMR
@@ -533,19 +533,19 @@ namespace SuperCalculator
             this.buttonCalculateBMR.UseVisualStyleBackColor = true;
             this.buttonCalculateBMR.Click += new System.EventHandler(this.buttonCalculateBMR_Click);
             // 
-            // groupWAL
+            // groupBoxWAL
             // 
-            this.groupWAL.Controls.Add(this.rb0);
-            this.groupWAL.Controls.Add(this.rb1);
-            this.groupWAL.Controls.Add(this.rb2);
-            this.groupWAL.Controls.Add(this.rb3);
-            this.groupWAL.Controls.Add(this.rb4);
-            this.groupWAL.Location = new System.Drawing.Point(193, 22);
-            this.groupWAL.Name = "groupWAL";
-            this.groupWAL.Size = new System.Drawing.Size(138, 275);
-            this.groupWAL.TabIndex = 26;
-            this.groupWAL.TabStop = false;
-            this.groupWAL.Text = "Weekly activity level";
+            this.groupBoxWAL.Controls.Add(this.rb0);
+            this.groupBoxWAL.Controls.Add(this.rb1);
+            this.groupBoxWAL.Controls.Add(this.rb2);
+            this.groupBoxWAL.Controls.Add(this.rb3);
+            this.groupBoxWAL.Controls.Add(this.rb4);
+            this.groupBoxWAL.Location = new System.Drawing.Point(193, 22);
+            this.groupBoxWAL.Name = "groupBoxWAL";
+            this.groupBoxWAL.Size = new System.Drawing.Size(194, 275);
+            this.groupBoxWAL.TabIndex = 26;
+            this.groupBoxWAL.TabStop = false;
+            this.groupBoxWAL.Text = "Weekly activity level";
             // 
             // rb0
             // 
@@ -659,10 +659,10 @@ namespace SuperCalculator
             this.Controls.Add(this.groupBoxBMI);
             this.Controls.Add(this.groupBoxUnit);
             this.Controls.Add(this.buttonCalculateBMI);
-            this.Controls.Add(this.groupBoxResult);
+            this.Controls.Add(this.groupBoxResultBMI);
             this.Controls.Add(this.groupBoxSaving);
-            this.Controls.Add(this.groupBoxFV);
-            this.Controls.Add(this.groupBMR);
+            this.Controls.Add(this.groupBoxFutureValue);
+            this.Controls.Add(this.groupBoxBMR);
             this.Controls.Add(this.buttonCalculateSaving);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.MinimizeBox = false;
@@ -674,16 +674,16 @@ namespace SuperCalculator
             this.groupBoxBMI.PerformLayout();
             this.groupBoxUnit.ResumeLayout(false);
             this.groupBoxUnit.PerformLayout();
-            this.groupBoxResult.ResumeLayout(false);
-            this.groupBoxResult.PerformLayout();
+            this.groupBoxResultBMI.ResumeLayout(false);
+            this.groupBoxResultBMI.PerformLayout();
             this.groupBoxSaving.ResumeLayout(false);
             this.groupBoxSaving.PerformLayout();
-            this.groupBoxFV.ResumeLayout(false);
-            this.groupBoxFV.PerformLayout();
-            this.groupBMR.ResumeLayout(false);
-            this.groupBMR.PerformLayout();
-            this.groupWAL.ResumeLayout(false);
-            this.groupWAL.PerformLayout();
+            this.groupBoxFutureValue.ResumeLayout(false);
+            this.groupBoxFutureValue.PerformLayout();
+            this.groupBoxBMR.ResumeLayout(false);
+            this.groupBoxBMR.PerformLayout();
+            this.groupBoxWAL.ResumeLayout(false);
+            this.groupBoxWAL.PerformLayout();
             this.groupBoxGender.ResumeLayout(false);
             this.groupBoxGender.PerformLayout();
             this.ResumeLayout(false);
@@ -706,7 +706,7 @@ namespace SuperCalculator
         private System.Windows.Forms.Label labelUnit2;
         private System.Windows.Forms.GroupBox groupBoxBMI;
         private System.Windows.Forms.GroupBox groupBoxUnit;
-        private System.Windows.Forms.GroupBox groupBoxResult;
+        private System.Windows.Forms.GroupBox groupBoxResultBMI;
         private System.Windows.Forms.Label labelUnit3;
         private System.Windows.Forms.TextBox textBMICat;
         private System.Windows.Forms.TextBox textBMI;
@@ -715,32 +715,32 @@ namespace SuperCalculator
         private System.Windows.Forms.Label labelBMICat;
         private System.Windows.Forms.Label labelBMIRes;
         private System.Windows.Forms.GroupBox groupBoxSaving;
-        private System.Windows.Forms.TextBox textYear;
+        private System.Windows.Forms.TextBox textPeriod;
         private System.Windows.Forms.TextBox textInterest;
         private System.Windows.Forms.TextBox textFee;
         private System.Windows.Forms.TextBox textDeposit;
         private System.Windows.Forms.Label labelFee;
         private System.Windows.Forms.Label labelInterest;
-        private System.Windows.Forms.Label labelYear;
+        private System.Windows.Forms.Label labelPeriod;
         private System.Windows.Forms.Label labelMonthlyDeposit;
         private System.Windows.Forms.Button buttonCalculateSaving;
-        private System.Windows.Forms.GroupBox groupBoxFV;
+        private System.Windows.Forms.GroupBox groupBoxFutureValue;
         private System.Windows.Forms.TextBox textAmountEarned;
         private System.Windows.Forms.TextBox textAmountPaid;
         private System.Windows.Forms.TextBox textFinalBalance;
         private System.Windows.Forms.TextBox textTotalFee;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
+        private System.Windows.Forms.Label labelTotalFee;
+        private System.Windows.Forms.Label labelFinalBalance;
         private System.Windows.Forms.Label labelAmountEarned;
         private System.Windows.Forms.Label labelAmountPaid;
-        private System.Windows.Forms.GroupBox groupBMR;
+        private System.Windows.Forms.GroupBox groupBoxBMR;
         private System.Windows.Forms.Label labelAge;
         private System.Windows.Forms.TextBox textAge;
         private System.Windows.Forms.GroupBox groupBoxGender;
         private System.Windows.Forms.RadioButton rbFemale;
         private System.Windows.Forms.RadioButton rbMale;
         private System.Windows.Forms.Button buttonCalculateBMR;
-        private System.Windows.Forms.GroupBox groupWAL;
+        private System.Windows.Forms.GroupBox groupBoxWAL;
         private System.Windows.Forms.RadioButton rb4;
         private System.Windows.Forms.RadioButton rb3;
         private System.Windows.Forms.RadioButton rb2;

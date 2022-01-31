@@ -9,8 +9,8 @@ namespace SuperCalculator
     {
         private readonly BMICalc bmiC = new BMICalc();
         private readonly CultureInfo ci = CultureInfo.InstalledUICulture;
-        private readonly NumberStyles ns = NumberStyles.Number;
-        private readonly NumberStyles nsi = NumberStyles.Integer;
+        private const NumberStyles ns = NumberStyles.Number;
+        private const NumberStyles nsi = NumberStyles.Integer;
         private readonly SavingCalc savingC = new SavingCalc();
 
         public MainForm()
@@ -26,29 +26,62 @@ namespace SuperCalculator
         {
             Text = "Super Calculator by Evan Huynh"; // 
 
-            // input control
-            rbSI.Checked = true;
+            // BMI labels
             groupBoxBMI.Text = "BMI Calculator";
+            groupBoxGender.Text = "Gender";
+            groupBoxResultBMI.Text = "Result";
             labelName.Text = "Name";
             labelHeight.Text = "Height";
             labelWeight.Text = "Weight";
             labelBMIRes.Text = "Result";
             labelBMICat.Text = "Category";
             labelNormalWeight.Text = "Range";
-
-            // BMR
-            rbFemale.Checked = true;
-            rb0.Checked = true;
-
-            // Empty
+            buttonCalculateBMI.Text = "Calculate BMI";
+            rbUS.Text = "Imperial";
+            rbSI.Text = "Metric";
             textName.Text = string.Empty;
-            textKg.Text = "1,69";
             textFt.Text = string.Empty;
             textInch.Text = string.Empty;
-            textWeight.Text = "69";
             textBMI.Text = string.Empty;
             textBMICat.Text = string.Empty;
+            rbSI.Checked = true;
+            textName.Text = "Your mom";
+            textKg.Text = "1,69";
+            textWeight.Text = "69";
+            
+            // Saving labels
+            groupBoxSaving.Text = "Saving";
+            labelMonthlyDeposit.Text = "Monthly deposit";
+            labelPeriod.Text = "Period (year)";
+            labelInterest.Text = "Interest (in %)";
+            labelFee.Text = "Fee (in %)";
+            labelAmountPaid.Text = "Amount paid";
+            labelAmountEarned.Text = "Amount earned";
+            labelFinalBalance.Text = "Final balance";
+            labelFee.Text = "Total fee";
+            textDeposit.Text = "1200";
+            textPeriod.Text = "15";
+            textInterest.Text = "9,99";
+            textFee.Text = "0,08";
+
+            // BMR
+            groupBoxBMR.Text = "BMR Calculator";
+            groupBoxGender.Text = "Gender";
+            groupBoxWAL.Text = "Weekly activity level";
+            labelAge.Text = "Age";
+            rb0.Text = "Sedentary";
+            rb1.Text = "Lightly active";
+            rb2.Text = "Moderately active";
+            rb3.Text = "Very active";
+            rb4.Text = "Extra active";
+            buttonCalculateBMR.Text = "Calculate BMR";
+            rbFemale.Checked = true;
+            rb0.Checked = true;
             textAge.Text = "32";
+            // Empty
+
+
+
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -132,9 +165,9 @@ namespace SuperCalculator
         /// </summary>
         private void UpdateBMI()
         {
-            groupBoxResult.Text = $@"Result for {bmiC.GetName()}";
-            textBMI.Text = bmiC.BMIResult().ToString("#.##", ci);
-            textBMICat.Text = $@"{bmiC.BMICategory()}";
+            groupBoxResultBMI.Text = $@"Result for {bmiC.GetName()}";
+            textBMI.Text = bmiC.GetBMIResult().ToString("#.##", ci);
+            textBMICat.Text = $@"{bmiC.GetBMICategory()}";
             double[] normalWeight = bmiC.GetNormalWeight();
             string unit = bmiC.GetUnitType().Equals(UnitType.Imperial) ? "lbs" : "kg";
             textBoxNormalWeight.Text = @"Normal weight is between " +
@@ -142,7 +175,7 @@ namespace SuperCalculator
                                        $@"{unit} " +
                                        @"and " +
                                        $@"{normalWeight[1]:#} " +
-                                       $@"{unit} ";
+                                       $@"{unit}.";
         }
 
         /// <summary>
@@ -161,13 +194,13 @@ namespace SuperCalculator
                 savingC.SetDeposit(0);
             }
 
-            if (int.TryParse(textYear.Text, nsi, ci, out int period))
+            if (int.TryParse(textPeriod.Text, nsi, ci, out int period))
             {
                 savingC.SetPeriod(period * 12);
             }
             else
             {
-                textYear.Text = @"0";
+                textPeriod.Text = @"0";
                 savingC.SetPeriod(0);
             }
 
@@ -261,15 +294,17 @@ namespace SuperCalculator
                         $"Calories to gain {0.5} kg per week: {bmrC.GetCalories(500):F2}",
                         $"Calories to gain {1} kg per week: {bmrC.GetCalories(1000):F2}",
                         "",
-                        "Losing more than 1000 calories per day is to be avoided."
+                        "Losing more than 1000 calories per day is to be avoided.",
+                        ""
                     }
                 });
-                listBoxBMR.Font = new Font(FontFamily.GenericSansSerif, 12);
+                listBoxBMR.Font = new Font(FontFamily.GenericSansSerif, 10);
             }
             else
             {
                 MessageBox.Show("Something is wrong. Please check your input", "Error");
             }
         }
+   
     }
 }

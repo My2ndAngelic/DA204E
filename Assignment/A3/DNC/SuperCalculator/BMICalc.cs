@@ -66,7 +66,7 @@
             unit = unitType;
         }
 
-        public double BMIResult()
+        public double GetBMIResult()
         {
             return unit switch
             {
@@ -81,9 +81,9 @@
         ///     Clicking the IDE randomly until it works
         /// </summary>
         /// <returns></returns>
-        public string BMICategory()
+        public string GetBMICategory()
         {
-            return _ = BMIResult() switch
+            return _ = GetBMIResult() switch
             {
                 > 40 => "Overweight (Obesity class III)",
                 >= 35 and < 40 => "Overweight (Obesity class II)",
@@ -95,9 +95,31 @@
             };
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public double[] GetNormalWeight()
         {
-            return new[] {18.5 * height * height, 24.9 * height * height};
+            return new[] {
+                18.5 * height * height / (GetUnitType() == UnitType.Imperial ? 703 : 1), 
+                24.9 * height * height / (GetUnitType() == UnitType.Imperial ? 703 : 1)
+                };
+        }
+
+        public double ToKg()
+        {
+            return GetUnitType() == UnitType.Metric ? GetWeight() : GetWeight() * 0.45359237;
+        }
+
+        public double ToM()
+        {
+            return GetUnitType() == UnitType.Metric ? GetHeight() : GetHeight() * 0.0254;
+        }
+
+        public double ToCM()
+        {
+            return ToM() / 100;
         }
     }
 }

@@ -52,18 +52,22 @@ namespace SuperCalculator
         /// <returns>Final balance in decimal</returns>
         public decimal GetFinalBalance()
         {
-            decimal balance = 0;
-            for (int i = 1; i <= period; i++)
+            // return balance;
+            // }
+            //     balance += interestEarned + deposit;
+            //     decimal interestEarned = interest * balance;
+            // {
+            // for (int i = 1; i <= period; i++)
+            // decimal balance = 0;
+            if (interest == 0)
             {
-                decimal interestEarned = interest * balance;
-                balance += interestEarned + deposit;
+                return deposit * period;
             }
-            return balance;
-            // return deposit * (decimal) ((Math.Pow((double) (interest + 1), period * 12) - 1) / (double) interest);
-            // // This will throw exception as division by 0 is not a valid operation
-            // // Probably an if would solve it 
+            return deposit * (decimal) (Math.Pow((double) (1 + interest), period) - 1) / interest;
         }
 
+        // // This will throw exception as division by 0 is not a valid operation
+        // // Probably an if would solve it 
         /// <summary>
         ///     Get the amount earned over the total period
         /// </summary>
@@ -81,13 +85,7 @@ namespace SuperCalculator
 
         public decimal GetTotalFee()
         {
-            decimal balance = 0;
-            for (int i = 1; i <= period; i++)
-            {
-                decimal interestEarned = fee * deposit;
-                balance += interestEarned;
-            }
-            return balance;
+            return 0;
         }
 
         /// <summary>
