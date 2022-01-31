@@ -74,7 +74,7 @@ namespace SuperCalculator
             this.labelAmountEarned = new System.Windows.Forms.Label();
             this.labelAmountPaid = new System.Windows.Forms.Label();
             this.groupBMR = new System.Windows.Forms.GroupBox();
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxBMR = new System.Windows.Forms.ListBox();
             this.buttonCalculateBMR = new System.Windows.Forms.Button();
             this.groupWAL = new System.Windows.Forms.GroupBox();
             this.rb0 = new System.Windows.Forms.RadioButton();
@@ -502,7 +502,7 @@ namespace SuperCalculator
             // 
             // groupBMR
             // 
-            this.groupBMR.Controls.Add(this.listBox1);
+            this.groupBMR.Controls.Add(this.listBoxBMR);
             this.groupBMR.Controls.Add(this.buttonCalculateBMR);
             this.groupBMR.Controls.Add(this.groupWAL);
             this.groupBMR.Controls.Add(this.labelAge);
@@ -515,13 +515,13 @@ namespace SuperCalculator
             this.groupBMR.TabStop = false;
             this.groupBMR.Text = "BMRCalculator";
             // 
-            // listBox1
+            // listBoxBMR
             // 
-            this.listBox1.ItemHeight = 15;
-            this.listBox1.Location = new System.Drawing.Point(338, 23);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(471, 274);
-            this.listBox1.TabIndex = 27;
+            this.listBoxBMR.ItemHeight = 15;
+            this.listBoxBMR.Location = new System.Drawing.Point(338, 23);
+            this.listBoxBMR.Name = "listBoxBMR";
+            this.listBoxBMR.Size = new System.Drawing.Size(471, 274);
+            this.listBoxBMR.TabIndex = 27;
             // 
             // buttonCalculateBMR
             // 
@@ -746,6 +746,6 @@ namespace SuperCalculator
         private System.Windows.Forms.RadioButton rb2;
         private System.Windows.Forms.RadioButton rb1;
         private System.Windows.Forms.RadioButton rb0;
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBoxBMR;
     }
 }
