@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Linq;
 
 namespace SuperCalculator
 {
@@ -59,11 +58,18 @@ namespace SuperCalculator
             // {
             // for (int i = 1; i <= period; i++)
             // decimal balance = 0;
-            if (interest == 0)
+            // if (interest == 0) return deposit * period;
+            // // return deposit  * (decimal) (Math.Pow((double) (1 + interest), period) - 1) / (interest);
+            // return deposit * (decimal) (Math.Pow((double) (1 + interest), period) - 1) / interest;
+            decimal totalFee = 0;
+            decimal balance = 0;
+            for (int i = 0; i <= period; i++)
             {
-                return deposit * period;
+                balance += balance * (interest - fee) + deposit;
+                totalFee += balance * fee;
             }
-            return deposit * (decimal) (Math.Pow((double) (1 + interest), period) - 1) / interest;
+
+            return balance;
         }
 
         // // This will throw exception as division by 0 is not a valid operation
@@ -74,18 +80,28 @@ namespace SuperCalculator
         /// <returns>Amount earned in decimal</returns>
         public decimal GetAmountEarned()
         {
-            decimal balance = 0;
-            for (int i = 1; i <= period; i++)
-            {
-                decimal interestEarned = interest * balance;
-                balance += interestEarned;
-            }
-            return balance;
+            // decimal balance = 0;
+            // for (int i = 1; i <= period; i++)
+            // {
+            //     balance += interest * balance + deposit;
+            //     balance -= deposit;
+            // }
+            //
+            // return deposit * (decimal) (1 - Math.Pow((double) interest , period) ) / (1 - interest);
+            return GetFinalBalance() - GetAmountPaid() - GetFee();
         }
 
         public decimal GetTotalFee()
         {
-            return 0;
+            decimal totalFee = 0;
+            decimal balance = 0;
+            for (int i = 0; i <= period; i++)
+            {
+                balance += balance * (interest - fee) + deposit;
+                totalFee += balance * fee;
+            }
+
+            return totalFee;
         }
 
         /// <summary>

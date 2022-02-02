@@ -7,11 +7,13 @@ namespace SuperCalculator
 {
     public partial class MainForm : Form
     {
-        private readonly BMICalc bmiC = new BMICalc();
         private readonly CultureInfo ci = CultureInfo.InstalledUICulture;
         private const NumberStyles ns = NumberStyles.Number;
         private const NumberStyles nsi = NumberStyles.Integer;
-        private readonly SavingCalc savingC = new SavingCalc();
+        private BMICalc bmiC = new BMICalc();
+        private SavingCalc savingC = new SavingCalc();
+        private BMRCalc bmrC = new BMRCalc();
+
 
         public MainForm()
         {
@@ -62,7 +64,7 @@ namespace SuperCalculator
             textDeposit.Text = "1200";
             textPeriod.Text = "15";
             textInterest.Text = "9,99";
-            textFee.Text = "0,08";
+            textFee.Text = "0,80";
 
             // BMR
             groupBoxBMR.Text = "BMR Calculator";
@@ -79,9 +81,6 @@ namespace SuperCalculator
             rb0.Checked = true;
             textAge.Text = "32";
             // Empty
-
-
-
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -127,15 +126,21 @@ namespace SuperCalculator
 
         private void buttonCalculateBMI_Click(object sender, EventArgs e)
         {
-            UpdateCorrectBMIData();
+            ReadName();
+            UpdateBMIData();
+        }
+
+        private void ReadName()
+        {
+            textName.Text = textName.Text.Trim();
+            bmiC.SetName(!string.IsNullOrEmpty(textName.Text) ? textName.Text : "Unknown");
         }
 
         /// <summary>
         ///     Updating the data after clicking the button
         /// </summary>
-        private void UpdateCorrectBMIData()
+        private void UpdateBMIData()
         {
-            bmiC.SetName(textName.Text);
             bool out1 = double.TryParse(textWeight.Text, ns, ci, out double weight);
             if (out1) bmiC.SetWeight(weight);
 
@@ -156,14 +161,15 @@ namespace SuperCalculator
             }
 
             if (out1 && out2 && out3)
-                UpdateBMI();
+                DisplayBMIResult();
             else
                 MessageBox.Show("Something is wrong. Please check your input.", "Error");
         }
 
         /// <summary>
+        ///     If everything is correct, display the result
         /// </summary>
-        private void UpdateBMI()
+        private void DisplayBMIResult()
         {
             groupBoxResultBMI.Text = $@"Result for {bmiC.GetName()}";
             textBMI.Text = bmiC.GetBMIResult().ToString("#.##", ci);
@@ -184,14 +190,21 @@ namespace SuperCalculator
         /// <param name="e"></param>
         private void buttonCalculateSaving_Click(object sender, EventArgs e)
         {
+            UpdateFutureValue();
+        }
+
+        /// <summary>
+        ///     Update the input data to correct result, otherwise set to 0;
+        /// </summary>
+        private void UpdateFutureValue()
+        {
             if (decimal.TryParse(textDeposit.Text, ns, ci, out decimal md))
             {
                 savingC.SetDeposit(md);
             }
             else
             {
-                textDeposit.Text = @"0";
-                savingC.SetDeposit(0);
+                MessageBox.Show("Something is wrong. Please check your input", "Error");
             }
 
             if (int.TryParse(textPeriod.Text, nsi, ci, out int period))
@@ -200,8 +213,7 @@ namespace SuperCalculator
             }
             else
             {
-                textPeriod.Text = @"0";
-                savingC.SetPeriod(0);
+                MessageBox.Show("Something is wrong. Please check your input", "Error");
             }
 
             if (decimal.TryParse(textInterest.Text, ns, ci, out decimal interest))
@@ -210,8 +222,7 @@ namespace SuperCalculator
             }
             else
             {
-                textInterest.Text = @"0";
-                savingC.SetInterest(0);
+                MessageBox.Show("Something is wrong. Please check your input", "Error");
             }
 
             if (decimal.TryParse(textFee.Text, ns, ci, out decimal fee))
@@ -220,16 +231,15 @@ namespace SuperCalculator
             }
             else
             {
-                textFee.Text = @"0";
-                savingC.SetFee(0);
+                MessageBox.Show("Something is wrong. Please check your input", "Error");
             }
-
-            UpdateFutureValue();
+            DisplayFutureValue();
         }
 
         /// <summary>
+        ///     Display the future value if everything is correctly set
         /// </summary>
-        private void UpdateFutureValue()
+        private void DisplayFutureValue()
         {
             textAmountPaid.Text = savingC.GetAmountPaid().ToString("F", ci);
             textAmountEarned.Text = savingC.GetAmountEarned().ToString("F", ci);
@@ -238,21 +248,33 @@ namespace SuperCalculator
         }
 
         /// <summary>
+        ///     Handling BMR button
         ///     Reference:
         ///     [1] https://stackoverflow.com/questions/4321300/c-easiest-way-to-populate-a-listbox-from-a-list
         ///     [2] https://www.geeksforgeeks.org/how-to-add-items-in-listbox-in-c-sharp/
         ///     [3] https://referencesource.microsoft.com/#System.Windows.Forms/winforms/Managed/System/WinForms/ListBox.cs
         ///     [4] https://www.geeksforgeeks.org/how-to-add-items-in-listbox-in-c-sharp/
         ///     [5] https://docs.microsoft.com/en-us/dotnet/api/system.drawing.font?view=windowsdesktop-6.0
-        ///     [6]
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void buttonCalculateBMR_Click(object sender, EventArgs e)
         {
-            buttonCalculateBMI_Click(sender, e);
-            BMRCalc bmrC = new BMRCalc(bmiC);
+            buttonCalculateBMI_Click(sender, e); // Click the BMI button for updated value
+            if (UpdateBMRData())
+            {
+                DisplayBMRResult();
+            }
+            else
+            {
+                MessageBox.Show("Something is wrong. Please check your input", "Error");
+            }
+        }
 
+        private bool UpdateBMRData()
+        {
+            bmrC = new BMRCalc(bmiC);
+            
             if (rbFemale.Checked)
                 bmrC.SetGender(false);
             else if (rbMale.Checked) bmrC.SetGender(true);
@@ -266,45 +288,43 @@ namespace SuperCalculator
             else if (rb3.Checked)
                 bmrC.SetGroup(3);
             else if (rb4.Checked) bmrC.SetGroup(4);
+            bool ageOk = int.TryParse(textAge.Text, nsi, ci, out int age);
+            bmrC.SetAge(age);
 
-            bool ageOK = int.TryParse(textAge.Text, nsi, ci, out int age);
-            if (ageOK && !textBMI.Text.Equals(string.Empty))
-            {
-                bmrC.SetAge(age);
-
-                listBoxBMR.Controls.Clear();
-
-                /*
-                 * Yes I did split up declaration, 
-                 * AddRange method using a string array to ListBox Items property
-                 * But initialize this is more fun
-                 */
-                listBoxBMR.Controls.Add(new ListBox
-                {
-                    Size = new Size(listBoxBMR.Size.Width, listBoxBMR.Size.Height),
-                    Sorted = false,
-                    DataSource = new[]
-                    {
-                        $"BMR result for {bmrC.GetName()}",
-                        "",
-                        $"Your BMR (calories/day): {bmrC.GetMinBMR():F2}",
-                        $"Calories to maintain your weight: {bmrC.GetCalories(0):F2}",
-                        $"Calories to lose {0.5} kg per week: {bmrC.GetCalories(-500):F2}",
-                        $"Calories to lose {1} kg per week: {bmrC.GetCalories(-1000):F2}",
-                        $"Calories to gain {0.5} kg per week: {bmrC.GetCalories(500):F2}",
-                        $"Calories to gain {1} kg per week: {bmrC.GetCalories(1000):F2}",
-                        "",
-                        "Losing more than 1000 calories per day is to be avoided.",
-                        ""
-                    }
-                });
-                listBoxBMR.Font = new Font(FontFamily.GenericSansSerif, 10);
-            }
-            else
-            {
-                MessageBox.Show("Something is wrong. Please check your input", "Error");
-            }
+            return ageOk && !textBMI.Text.Equals(string.Empty);
         }
-   
+
+        private void DisplayBMRResult()
+        {
+
+            listBoxBMR.Controls.Clear();
+
+            /*
+             * Yes I did split up declaration, 
+             * AddRange method using a string array to ListBox Items property
+             * But initialize this is more fun
+             */
+            listBoxBMR.Controls.Add(new ListBox
+            {
+                Size = new Size(listBoxBMR.Size.Width, listBoxBMR.Size.Height),
+                Sorted = false,
+                DataSource = new[]
+                {
+                    $"BMR result for {bmrC.GetName()}",
+                    "",
+                    $"Your BMR (calories/day): {bmrC.GetMinBMR():F2}",
+                    $"Calories to maintain your weight: {bmrC.GetCalories(0):F2}",
+                    $"Calories to lose {0.5} kg per week: {bmrC.GetCalories(-500):F2}",
+                    $"Calories to lose {1} kg per week: {bmrC.GetCalories(-1000):F2}",
+                    $"Calories to gain {0.5} kg per week: {bmrC.GetCalories(500):F2}",
+                    $"Calories to gain {1} kg per week: {bmrC.GetCalories(1000):F2}",
+                    "",
+                    "Losing more than 1000 calories per day is to be avoided.",
+                    ""
+                }
+            });
+            listBoxBMR.Font = new Font(FontFamily.GenericSansSerif, 10);
+        }
+        
     }
 }
