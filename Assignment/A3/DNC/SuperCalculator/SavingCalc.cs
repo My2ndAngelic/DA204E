@@ -61,15 +61,17 @@ namespace SuperCalculator
             // if (interest == 0) return deposit * period;
             // // return deposit  * (decimal) (Math.Pow((double) (1 + interest), period) - 1) / (interest);
             // return deposit * (decimal) (Math.Pow((double) (1 + interest), period) - 1) / interest;
-            decimal totalFee = 0;
-            decimal balance = 0;
-            for (int i = 0; i <= period; i++)
-            {
-                balance += balance * (interest - fee) + deposit;
-                totalFee += balance * fee;
-            }
-
-            return balance;
+            // decimal totalFee = 0;
+            // decimal balance = 0;
+            // for (int i = 0; i <= period; i++)
+            // {
+            //     balance += balance * (interest - fee) + deposit;
+            //     totalFee += balance * fee;
+            // }
+            //
+            // return balance;
+            decimal rate = (1 + interest) * (1 - fee);
+            return deposit * (decimal) (- Math.Pow((double) (rate), period) + 1)/(1 - rate);
         }
 
         // // This will throw exception as division by 0 is not a valid operation
@@ -93,15 +95,17 @@ namespace SuperCalculator
 
         public decimal GetTotalFee()
         {
-            decimal totalFee = 0;
-            decimal balance = 0;
-            for (int i = 0; i <= period; i++)
-            {
-                balance += balance * (interest - fee) + deposit;
-                totalFee += balance * fee;
-            }
-
-            return totalFee;
+            // decimal totalFee = 0;
+            // decimal balance = 0;
+            // for (int i = 0; i <= period; i++)
+            // {
+            //     balance += balance * (interest - fee) + deposit;
+            //     totalFee += balance * fee;
+            // }
+            //
+            // return totalFee;
+            decimal fee2 = (1 - fee);
+            return deposit * (decimal) (- Math.Pow((double) fee2, period) + 1) / (1 - fee2);
         }
 
         /// <summary>

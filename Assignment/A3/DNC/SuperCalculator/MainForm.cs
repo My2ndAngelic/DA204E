@@ -308,7 +308,7 @@ namespace SuperCalculator
             {
                 Size = new Size(listBoxBMR.Size.Width, listBoxBMR.Size.Height),
                 Sorted = false,
-                DataSource = new[]
+                DataSource = new string[]
                 {
                     $"BMR result for {bmrC.GetName()}",
                     "",

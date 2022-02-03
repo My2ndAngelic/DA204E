@@ -101,7 +101,7 @@
         /// <returns></returns>
         public double[] GetNormalWeight()
         {
-            return new[] {
+            return new double[] {
                 18.5 * height * height / (GetUnitType() == UnitType.Imperial ? 703 : 1), 
                 24.9 * height * height / (GetUnitType() == UnitType.Imperial ? 703 : 1)
                 };
