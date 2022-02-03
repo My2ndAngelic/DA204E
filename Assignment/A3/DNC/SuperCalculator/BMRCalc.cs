@@ -1,8 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
 
 namespace SuperCalculator
 {
@@ -11,19 +7,41 @@ namespace SuperCalculator
         private int age;
         private bool gender; // T: male, F: female
         private int group;
-        
+
         public BMRCalc()
         {
             age = 0;
             gender = true;
             group = 0;
         }
-        
-        public BMRCalc(BMICalc bmiCalc) : base(bmiCalc.GetName(), bmiCalc.GetWeight(), bmiCalc.GetHeight(), bmiCalc.GetUnitType())
+
+        public BMRCalc(BMICalc bmiCalc) :
+            base(bmiCalc.GetName(),
+                bmiCalc.GetWeight(),
+                bmiCalc.GetHeight(),
+                bmiCalc.GetUnitType())
         {
             age = 0;
             gender = true;
             group = 0;
+        }
+
+        public BMRCalc(BMICalc bmiCalc, int age, bool gender, int group) :
+            base(bmiCalc.GetName(),
+                bmiCalc.GetWeight(),
+                bmiCalc.GetHeight(),
+                bmiCalc.GetUnitType())
+        {
+            this.age = age;
+            this.gender = gender;
+            this.group = group;
+        }
+
+        public BMRCalc(int age, bool gender, int group)
+        {
+            this.age = age;
+            this.gender = gender;
+            this.group = group;
         }
 
         public string ExtractName()
@@ -35,7 +53,7 @@ namespace SuperCalculator
         {
             return GetFactoredBMR() + calories;
         }
-        
+
         public double GetFactoredBMR()
         {
             return group switch
@@ -48,20 +66,11 @@ namespace SuperCalculator
                 _ => throw new ArgumentException("Not yet implemented")
             };
         }
-        
+
         public double GetMinBMR()
         {
             double baseBMR = 10 * ToKg() + 6.25 * ToCM() - 5 * GetAge();
             return gender ? baseBMR + 5 : baseBMR - 161;
-        }
-        
-        
-
-        public BMRCalc(int age, bool gender, int group)
-        {
-            this.age = age;
-            this.gender = gender;
-            this.group = group;
         }
 
         public int GetAge()
@@ -88,7 +97,7 @@ namespace SuperCalculator
         {
             return group;
         }
-        
+
         public void SetGroup(int group)
         {
             this.group = group;
