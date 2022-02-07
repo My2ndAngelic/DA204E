@@ -7,11 +7,11 @@ namespace SuperCalculator
 {
     public partial class MainForm : Form
     {
-        private readonly CultureInfo ci = CultureInfo.InstalledUICulture;
         private const NumberStyles ns = NumberStyles.Number;
         private const NumberStyles nsi = NumberStyles.Integer;
-        private BMICalc bmiC = new BMICalc();
-        private SavingCalc savingC = new SavingCalc();
+        private readonly BMICalc bmiC = new BMICalc();
+        private readonly CultureInfo ci = CultureInfo.InstalledUICulture;
+        private readonly SavingCalc savingC = new SavingCalc();
         private BMRCalc bmrC = new BMRCalc();
 
 
@@ -50,7 +50,7 @@ namespace SuperCalculator
             textName.Text = "Your mom";
             textKg.Text = "1,69";
             textWeight.Text = "69";
-            
+
             // Saving labels
             groupBoxSaving.Text = "Saving";
             labelMonthlyDeposit.Text = "Monthly deposit";
@@ -199,40 +199,24 @@ namespace SuperCalculator
         private void UpdateFutureValue()
         {
             if (decimal.TryParse(textDeposit.Text, ns, ci, out decimal md))
-            {
                 savingC.SetDeposit(md);
-            }
             else
-            {
                 MessageBox.Show("Something is wrong. Please check your input", "Error");
-            }
 
             if (int.TryParse(textPeriod.Text, nsi, ci, out int period))
-            {
                 savingC.SetPeriod(period * 12);
-            }
             else
-            {
                 MessageBox.Show("Something is wrong. Please check your input", "Error");
-            }
 
             if (decimal.TryParse(textInterest.Text, ns, ci, out decimal interest))
-            {
                 savingC.SetInterest(interest / 100 / 12);
-            }
             else
-            {
                 MessageBox.Show("Something is wrong. Please check your input", "Error");
-            }
 
             if (decimal.TryParse(textFee.Text, ns, ci, out decimal fee))
-            {
                 savingC.SetFee(fee / 100 / 12);
-            }
             else
-            {
                 MessageBox.Show("Something is wrong. Please check your input", "Error");
-            }
             DisplayFutureValue();
         }
 
@@ -248,13 +232,6 @@ namespace SuperCalculator
         }
 
         /// <summary>
-        ///     Handling BMR button
-        ///     Reference:
-        ///     [1] https://stackoverflow.com/questions/4321300/c-easiest-way-to-populate-a-listbox-from-a-list
-        ///     [2] https://www.geeksforgeeks.org/how-to-add-items-in-listbox-in-c-sharp/
-        ///     [3] https://referencesource.microsoft.com/#System.Windows.Forms/winforms/Managed/System/WinForms/ListBox.cs
-        ///     [4] https://www.geeksforgeeks.org/how-to-add-items-in-listbox-in-c-sharp/
-        ///     [5] https://docs.microsoft.com/en-us/dotnet/api/system.drawing.font?view=windowsdesktop-6.0
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -262,23 +239,24 @@ namespace SuperCalculator
         {
             buttonCalculateBMI_Click(sender, e); // Click the BMI button for updated value
             if (UpdateBMRData())
-            {
                 DisplayBMRResult();
-            }
             else
-            {
                 MessageBox.Show("Something is wrong. Please check your input", "Error");
-            }
         }
 
         private bool UpdateBMRData()
         {
             bmrC = new BMRCalc(bmiC);
-            
+
+            // Check if gender box is checked
             if (rbFemale.Checked)
                 bmrC.SetGender(false);
-            else if (rbMale.Checked) bmrC.SetGender(true);
+            else if (rbMale.Checked)
+                bmrC.SetGender(true);
+            else
+                return false;
 
+            // Check if activity level is checked
             if (rb0.Checked)
                 bmrC.SetGroup(0);
             else if (rb1.Checked)
@@ -287,18 +265,33 @@ namespace SuperCalculator
                 bmrC.SetGroup(2);
             else if (rb3.Checked)
                 bmrC.SetGroup(3);
-            else if (rb4.Checked) bmrC.SetGroup(4);
-            bool ageOk = int.TryParse(textAge.Text, nsi, ci, out int age);
-            bmrC.SetAge(age);
+            else if
+                (rb4.Checked) bmrC.SetGroup(4);
+            else
+                return false;
 
-            return ageOk && !textBMI.Text.Equals(string.Empty);
+            // Check if age is checked
+            bool ageOk = int.TryParse(textAge.Text, nsi, ci, out int age);
+            if (ageOk && age >= 0)
+                bmrC.SetAge(age);
+            else return false;
+
+            // 
+            return !textBMI.Text.Equals(string.Empty);
         }
 
+        /// <summary>
+        ///     Handling BMR button
+        ///     Reference:
+        ///     [1] https://stackoverflow.com/questions/4321300/c-easiest-way-to-populate-a-listbox-from-a-list
+        ///     [2] https://www.geeksforgeeks.org/how-to-add-items-in-listbox-in-c-sharp/
+        ///     [3] https://referencesource.microsoft.com/#System.Windows.Forms/winforms/Managed/System/WinForms/ListBox.cs
+        ///     [4] https://www.geeksforgeeks.org/how-to-add-items-in-listbox-in-c-sharp/
+        ///     [5] https://docs.microsoft.com/en-us/dotnet/api/system.drawing.font?view=windowsdesktop-6.0
+        /// </summary>
         private void DisplayBMRResult()
         {
-
             listBoxBMR.Controls.Clear();
-
             /*
              * Yes I did split up declaration, 
              * AddRange method using a string array to ListBox Items property
@@ -325,6 +318,5 @@ namespace SuperCalculator
             });
             listBoxBMR.Font = new Font(FontFamily.GenericSansSerif, 10);
         }
-        
     }
 }
