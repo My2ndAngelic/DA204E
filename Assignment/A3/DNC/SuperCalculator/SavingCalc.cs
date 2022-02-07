@@ -71,7 +71,7 @@ namespace SuperCalculator
             //
             // return balance;
             decimal rate = (1 + interest) * (1 - fee);
-            return deposit * (decimal) (- Math.Pow((double) (rate), period) + 1)/(1 - rate);
+            return deposit * (decimal) (-Math.Pow((double) rate, period) + 1) / (1 - rate);
         }
 
         // // This will throw exception as division by 0 is not a valid operation
@@ -104,8 +104,8 @@ namespace SuperCalculator
             // }
             //
             // return totalFee;
-            decimal fee2 = (1 - fee);
-            return deposit * (decimal) (- Math.Pow((double) fee2, period) + 1) / (1 - fee2);
+            decimal fee2 = 1 - fee;
+            return deposit * (decimal) (-Math.Pow((double) fee2, period) + 1) / (1 - fee2);
         }
 
         /// <summary>

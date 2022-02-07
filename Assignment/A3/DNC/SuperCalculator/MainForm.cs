@@ -14,7 +14,6 @@ namespace SuperCalculator
         private readonly SavingCalc savingC = new SavingCalc();
         private BMRCalc bmrC = new BMRCalc();
 
-
         public MainForm()
         {
             InitializeComponent();
@@ -22,13 +21,14 @@ namespace SuperCalculator
         }
 
         /// <summary>
+        ///     Main form value initialization
         /// </summary>
         /// <returns></returns>
         private void InitializeGUI()
         {
             Text = "Super Calculator by Evan Huynh"; // 
 
-            // BMI labels
+            // BMI
             groupBoxBMI.Text = "BMI Calculator";
             groupBoxGender.Text = "Gender";
             groupBoxResultBMI.Text = "Result";
@@ -51,7 +51,7 @@ namespace SuperCalculator
             textKg.Text = "1,69";
             textWeight.Text = "69";
 
-            // Saving labels
+            // Saving
             groupBoxSaving.Text = "Saving";
             labelMonthlyDeposit.Text = "Monthly deposit";
             labelPeriod.Text = "Period (year)";
@@ -80,7 +80,6 @@ namespace SuperCalculator
             rbFemale.Checked = true;
             rb0.Checked = true;
             textAge.Text = "32";
-            // Empty
         }
 
         private void MainForm_Load(object sender, EventArgs e)
@@ -88,6 +87,10 @@ namespace SuperCalculator
         }
 
         /// <summary>
+        ///     Change the form when the Imperial unit is checked
+        ///     Hide and empty the kg box
+        ///     Change display unit appropriately
+        ///     Set the UnitType to Imperial
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -106,6 +109,10 @@ namespace SuperCalculator
         }
 
         /// <summary>
+        ///     Change the form when the SI unit is checked
+        ///     Hide and empty the ft and in box
+        ///     Change display unit appropriately
+        ///     Set the UnitType to Metric
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -124,12 +131,20 @@ namespace SuperCalculator
             bmiC.SetUnitType(UnitType.Metric);
         }
 
+        /// <summary>
+        ///     Check name and BMI data
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCalculateBMI_Click(object sender, EventArgs e)
         {
             ReadName();
             UpdateBMIData();
         }
 
+        /// <summary>
+        ///     Update names
+        /// </summary>
         private void ReadName()
         {
             textName.Text = textName.Text.Trim();
@@ -138,6 +153,7 @@ namespace SuperCalculator
 
         /// <summary>
         ///     Updating the data after clicking the button
+        ///     Display the form if data is correctly updated
         /// </summary>
         private void UpdateBMIData()
         {
@@ -185,6 +201,7 @@ namespace SuperCalculator
         }
 
         /// <summary>
+        ///     Run the Saving calculator
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -232,6 +249,7 @@ namespace SuperCalculator
         }
 
         /// <summary>
+        ///     Click the BMI button to update the result and then update BMR data
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -244,6 +262,10 @@ namespace SuperCalculator
                 MessageBox.Show("Something is wrong. Please check your input", "Error");
         }
 
+        /// <summary>
+        ///     Perform BMR calculation on BMI data
+        /// </summary>
+        /// <returns>False if BMR data calculation failed</returns>
         private bool UpdateBMRData()
         {
             bmrC = new BMRCalc(bmiC);
@@ -281,7 +303,7 @@ namespace SuperCalculator
         }
 
         /// <summary>
-        ///     Handling BMR button
+        ///     Handling BMR display
         ///     Reference:
         ///     [1] https://stackoverflow.com/questions/4321300/c-easiest-way-to-populate-a-listbox-from-a-list
         ///     [2] https://www.geeksforgeeks.org/how-to-add-items-in-listbox-in-c-sharp/

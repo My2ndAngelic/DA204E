@@ -21,7 +21,6 @@ namespace SuperCalculator
             base.Dispose(disposing);
         }
 
-        private BMICalc bmiCalc = new BMICalc();
 
         #region Windows Form Designer generated code
 

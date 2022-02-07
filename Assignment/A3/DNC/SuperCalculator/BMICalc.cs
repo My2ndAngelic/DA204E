@@ -96,15 +96,16 @@
         }
 
         /// <summary>
-        /// 
+        ///     Return normal weight
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Return normal weight in double array</returns>
         public double[] GetNormalWeight()
         {
-            return new double[] {
-                18.5 * height * height / (GetUnitType() == UnitType.Imperial ? 703 : 1), 
+            return new double[]
+            {
+                18.5 * height * height / (GetUnitType() == UnitType.Imperial ? 703 : 1),
                 24.9 * height * height / (GetUnitType() == UnitType.Imperial ? 703 : 1)
-                };
+            };
         }
 
         public double ToKg()
