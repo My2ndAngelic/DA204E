@@ -1,4 +1,6 @@
-﻿namespace SuperCalculator
+﻿using System;
+
+namespace SuperCalculator
 {
     public class BMICalc
     {
@@ -10,6 +12,9 @@
 
         private double weight;
 
+        /// <summary>
+        ///     Default constructor
+        /// </summary>
         public BMICalc()
         {
             name = "No name";
@@ -18,6 +23,13 @@
             unit = UnitType.Imperial;
         }
 
+        /// <summary>
+        ///     Debug constructor
+        /// </summary>
+        /// <param name="name"></param>
+        /// <param name="weight"></param>
+        /// <param name="height"></param>
+        /// <param name="unit"></param>
         public BMICalc(string name, double weight, double height, UnitType unit)
         {
             this.name = name;
@@ -66,6 +78,10 @@
             unit = unitType;
         }
 
+        /// <summary>
+        ///     Return BMI result, depending on the unit
+        /// </summary>
+        /// <returns>BMI result in double</returns>
         public double GetBMIResult()
         {
             return unit switch
@@ -78,9 +94,9 @@
 
 
         /// <summary>
-        ///     Clicking the IDE randomly until it works
+        ///     Return BMI category
         /// </summary>
-        /// <returns></returns>
+        /// <returns>BMI category in string form</returns>
         public string GetBMICategory()
         {
             return _ = GetBMIResult() switch
@@ -108,16 +124,38 @@
             };
         }
 
+        /// <summary>
+        ///     Convert weight to kg
+        /// </summary>
+        /// <returns>Weight in kg in double</returns>
         public double ToKg()
         {
-            return GetUnitType() == UnitType.Metric ? GetWeight() : GetWeight() * 0.45359237;
+            return unit switch
+            {
+                UnitType.Imperial => GetWeight() * 0.45359237,
+                UnitType.Metric => GetWeight(),
+                _ => 0.0
+            };
         }
 
+        /// <summary>
+        ///     Convert height to m
+        /// </summary>
+        /// <returns>Height in m in double</returns>
         public double ToM()
         {
-            return GetUnitType() == UnitType.Metric ? GetHeight() : GetHeight() * 0.0254;
+            return unit switch
+            {
+                UnitType.Imperial => GetHeight() * 0.0254,
+                UnitType.Metric => GetHeight(),
+                _ => 0.0
+            };
         }
 
+        /// <summary>
+        ///     Convert height to cm by calling ToM method
+        /// </summary>
+        /// <returns>Height in cm in double</returns>
         public double ToCM()
         {
             return ToM() / 100;
