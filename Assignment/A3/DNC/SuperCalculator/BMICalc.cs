@@ -4,14 +4,11 @@ namespace SuperCalculator
 {
     public class BMICalc
     {
-        private double height;
-
         private string name;
-
-        private UnitType unit;
-
         private double weight;
-
+        private double height;
+        private UnitType unit;
+        
         /// <summary>
         ///     Default constructor
         /// </summary>
@@ -26,10 +23,10 @@ namespace SuperCalculator
         /// <summary>
         ///     Debug constructor
         /// </summary>
-        /// <param name="name"></param>
-        /// <param name="weight"></param>
-        /// <param name="height"></param>
-        /// <param name="unit"></param>
+        /// <param name="name">Name of person</param>
+        /// <param name="weight">Weight of person</param>
+        /// <param name="height">Height of person</param>
+        /// <param name="unit">Unit of measurement</param>
         public BMICalc(string name, double weight, double height, UnitType unit)
         {
             this.name = name;
