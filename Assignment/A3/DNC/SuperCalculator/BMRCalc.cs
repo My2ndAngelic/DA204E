@@ -44,16 +44,21 @@ namespace SuperCalculator
             this.group = group;
         }
 
-        public string ExtractName()
-        {
-            return GetName();
-        }
-
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="calories"></param>
+        /// <returns></returns>
         public double GetCalories(double calories)
         {
             return GetFactoredBMR() + calories;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
+        /// <exception cref="ArgumentException"></exception>
         public double GetFactoredBMR()
         {
             return group switch
@@ -67,12 +72,20 @@ namespace SuperCalculator
             };
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public double GetMinBMR()
         {
             double baseBMR = 10 * ToKg() + 6.25 * ToCM() - 5 * GetAge();
             return gender ? baseBMR + 5 : baseBMR - 161;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public int GetAge()
         {
             return age;
@@ -80,7 +93,7 @@ namespace SuperCalculator
 
         public void SetAge(int age)
         {
-            this.age = age >= 0 ? age : 0;
+            this.age = age;
         }
 
         public bool GetGender()
