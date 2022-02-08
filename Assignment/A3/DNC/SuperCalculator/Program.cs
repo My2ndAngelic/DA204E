@@ -3,14 +3,14 @@ using System.Windows.Forms;
 
 namespace SuperCalculator
 {
-    internal static class Program
+    public class Program
     {
         /// <summary>
         ///     The main entry point for the application.
         /// </summary>
         /// <param name="args"></param>
         [STAThread]
-        private static void Main(string[] args)
+        public static void Main(string[] args)
         {
             Application.SetHighDpiMode(HighDpiMode.SystemAware);
             Application.EnableVisualStyles();
