@@ -1,16 +1,13 @@
 ﻿using System;
-using SuperCalculator;
 
 namespace Test
 {
-    class Program
+    public class Program
     {
-        static void Main(string[] args)
+        public static void Main(string[] args)
         {
-            // BMICalc bmic = new BMICalc("John", 69, 1.69, UnitType.Metric);
-            // BMRCalc bmrc = new BMRCalc(bmic, 69, true, 4);
-            // bmrc.SetName("John");
-            // Console.WriteLine(bmrc.ExtractName());
+            int n = 69;
+            Console.WriteLine(n is 69 or 420 ? "Nice" : "Hello World");
         }
     }
 }
