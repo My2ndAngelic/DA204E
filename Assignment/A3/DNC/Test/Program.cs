@@ -1,4 +1,5 @@
 ﻿using System;
+using SuperCalculator;
 
 namespace Test
 {
@@ -6,8 +7,9 @@ namespace Test
     {
         public static void Main(string[] args)
         {
-            int n = 69;
-            Console.WriteLine(n is 69 or 420 ? "Nice" : "Hello World");
+            BMRCalc bmrCalc = new BMRCalc(new BMICalc("Apu", 150.0, 66, UnitType.Imperial), 66, true, 1);
+            
+            Console.WriteLine(10 * bmrCalc.ToKg() + 6.25 * bmrCalc.ToCM() - 5 * bmrCalc.GetAge() + 5);
         }
     }
 }

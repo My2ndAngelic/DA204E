@@ -29,10 +29,10 @@ namespace SuperCalculator
         /// <param name="period">Total number of period</param>
         public SavingCalc(decimal deposit, decimal fee, decimal interest, int period)
         {
-            this.deposit = deposit >= 0 ? deposit : 0;
-            this.fee = fee >= 0 ? fee : 0;
-            this.interest = interest >= 0 ? interest : 0;
-            this.period = period >= 0 ? period : 0;
+            this.deposit = deposit;
+            this.fee = fee;
+            this.interest = interest;
+            this.period = period;
         }
 
         /// <summary>
@@ -46,66 +46,43 @@ namespace SuperCalculator
 
         /// <summary>
         ///     Return the final balance in the account
-        ///     Source: https://stackoverflow.com/questions/11290577/lambda-expression-conversion-for-a-loop-to-display-a-list
         /// </summary>
         /// <returns>Final balance in decimal</returns>
         public decimal GetFinalBalance()
         {
-            // return balance;
-            // }
-            //     balance += interestEarned + deposit;
-            //     decimal interestEarned = interest * balance;
-            // {
-            // for (int i = 1; i <= period; i++)
-            // decimal balance = 0;
-            // if (interest == 0) return deposit * period;
-            // // return deposit  * (decimal) (Math.Pow((double) (1 + interest), period) - 1) / (interest);
-            // return deposit * (decimal) (Math.Pow((double) (1 + interest), period) - 1) / interest;
-            // decimal totalFee = 0;
-            // decimal balance = 0;
-            // for (int i = 0; i <= period; i++)
-            // {
-            //     balance += balance * (interest - fee) + deposit;
-            //     totalFee += balance * fee;
-            // }
-            //
-            // return balance;
+            if (interest == 0 && fee == 0) return deposit * period;
+
             decimal rate = (1 + interest) * (1 - fee);
             return deposit * (decimal) (-Math.Pow((double) rate, period) + 1) / (1 - rate);
         }
 
-        // // This will throw exception as division by 0 is not a valid operation
-        // // Probably an if would solve it 
+
         /// <summary>
         ///     Get the amount earned over the total period
         /// </summary>
         /// <returns>Amount earned in decimal</returns>
         public decimal GetAmountEarned()
         {
-            // decimal balance = 0;
-            // for (int i = 1; i <= period; i++)
-            // {
-            //     balance += interest * balance + deposit;
-            //     balance -= deposit;
-            // }
-            //
-            // return deposit * (decimal) (1 - Math.Pow((double) interest , period) ) / (1 - interest);
-            return GetFinalBalance() - GetAmountPaid() - GetFee();
+            return GetFinalBalance() - GetAmountPaid() - GetTotalFee();
         }
 
+        /// <summary>
+        ///     Return total fee
+        /// </summary>
+        /// <returns></returns>
         public decimal GetTotalFee()
         {
-            // decimal totalFee = 0;
-            // decimal balance = 0;
-            // for (int i = 0; i <= period; i++)
-            // {
-            //     balance += balance * (interest - fee) + deposit;
-            //     totalFee += balance * fee;
-            // }
-            //
-            // return totalFee;
-            decimal fee2 = 1 - fee;
-            return deposit * (decimal) (-Math.Pow((double) fee2, period) + 1) / (1 - fee2);
+            decimal totalFee = 0;
+            decimal balance = 0;
+
+            // I do not know how to calculate the fee. The formula was provided from the discussion
+            for (int i = 0; i <= period; i++)
+            {
+                balance += balance * (interest - fee) + deposit;
+                totalFee += balance * fee;
+            }
+
+            return totalFee;
         }
 
         /// <summary>
@@ -129,7 +106,7 @@ namespace SuperCalculator
 
         public void SetPeriod(int period)
         {
-            this.period = period >= 0 ? period : 0;
+            this.period = period;
         }
 
         public decimal GetInterest()
@@ -139,7 +116,7 @@ namespace SuperCalculator
 
         public void SetInterest(decimal interest)
         {
-            this.interest = interest >= 0 ? interest : 0;
+            this.interest = interest;
         }
 
         public decimal GetFee()
@@ -149,7 +126,7 @@ namespace SuperCalculator
 
         public void SetFee(decimal fee)
         {
-            this.fee = fee >= 0 ? fee : 0;
+            this.fee = fee;
         }
     }
 }

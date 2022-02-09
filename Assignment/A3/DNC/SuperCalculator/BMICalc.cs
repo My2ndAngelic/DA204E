@@ -1,14 +1,12 @@
-﻿using System;
-
-namespace SuperCalculator
+﻿namespace SuperCalculator
 {
     public class BMICalc
     {
-        private string name;
-        private double weight;
         private double height;
+        private string name;
         private UnitType unit;
-        
+        private double weight;
+
         /// <summary>
         ///     Default constructor
         /// </summary>
@@ -52,7 +50,7 @@ namespace SuperCalculator
 
         public void SetHeight(double height)
         {
-            this.height = height >= 0 ? height : this.height;
+            this.height = height;
         }
 
         public double GetWeight()
@@ -62,7 +60,7 @@ namespace SuperCalculator
 
         public void SetWeight(double weight)
         {
-            this.weight = weight >= 0 ? weight : this.weight;
+            this.weight = weight;
         }
 
         public UnitType GetUnitType()
@@ -89,7 +87,6 @@ namespace SuperCalculator
             };
         }
 
-
         /// <summary>
         ///     Return BMI category
         /// </summary>
@@ -114,7 +111,7 @@ namespace SuperCalculator
         /// <returns>Return normal weight in double array</returns>
         public double[] GetNormalWeight()
         {
-            return new double[]
+            return new[]
             {
                 18.5 * height * height / (GetUnitType() == UnitType.Imperial ? 703 : 1),
                 24.9 * height * height / (GetUnitType() == UnitType.Imperial ? 703 : 1)
@@ -129,7 +126,7 @@ namespace SuperCalculator
         {
             return unit switch
             {
-                UnitType.Imperial => GetWeight() * 0.45359237,
+                UnitType.Imperial => GetWeight() * 0.45359237, // 1 lb = 0.45359237 kg
                 UnitType.Metric => GetWeight(),
                 _ => 0.0
             };
@@ -143,7 +140,7 @@ namespace SuperCalculator
         {
             return unit switch
             {
-                UnitType.Imperial => GetHeight() * 0.0254,
+                UnitType.Imperial => GetHeight() * 0.0254, // 1 m = 2.54 cm
                 UnitType.Metric => GetHeight(),
                 _ => 0.0
             };
@@ -155,7 +152,7 @@ namespace SuperCalculator
         /// <returns>Height in cm in double</returns>
         public double ToCM()
         {
-            return ToM() / 100;
+            return ToM() * 100;
         }
     }
 }

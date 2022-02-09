@@ -7,8 +7,8 @@ namespace SuperCalculator
 {
     public partial class MainForm : Form
     {
-        private const NumberStyles ns = NumberStyles.Number;
-        private const NumberStyles nsi = NumberStyles.Integer;
+        private const NumberStyles nsNum = NumberStyles.Number;
+        private const NumberStyles nsInt = NumberStyles.Integer;
         private readonly BMICalc bmiC = new BMICalc();
         private readonly CultureInfo ci = CultureInfo.InstalledUICulture;
         private readonly SavingCalc savingC = new SavingCalc();
@@ -26,7 +26,7 @@ namespace SuperCalculator
         /// <returns></returns>
         private void InitializeGUI()
         {
-            Text = "Super Calculator by Evan Huynh"; // 
+            Text = "Super Calculator by Evan Huynh";
 
             // BMI
             groupBoxBMI.Text = "BMI Calculator";
@@ -80,10 +80,6 @@ namespace SuperCalculator
             rbFemale.Checked = true;
             rb0.Checked = true;
             textAge.Text = "32";
-        }
-
-        private void MainForm_Load(object sender, EventArgs e)
-        {
         }
 
         /// <summary>
@@ -157,26 +153,41 @@ namespace SuperCalculator
         /// </summary>
         private void UpdateBMIData()
         {
-            bool out1 = double.TryParse(textWeight.Text, ns, ci, out double weight);
-            if (out1) bmiC.SetWeight(weight);
+            // Update weight
+            bool out1 = double.TryParse(textWeight.Text, nsNum, ci, out double weight);
+            if (out1 && weight > 0)
+                bmiC.SetWeight(weight);
+            else
+                out1 = false;
 
-            bool out2 = true, out3 = true;
+            bool out2 = true;
 
+            // Update height
             if (bmiC.GetUnitType().Equals(UnitType.Imperial))
             {
-                out2 = double.TryParse(textFt.Text, ns, ci, out double ft);
-                out3 = double.TryParse(textInch.Text, ns, ci, out double inch);
-                if (out2 && out3)
-                    bmiC.SetHeight(ft * 12 + inch);
+                out2 = double.TryParse(textFt.Text, nsNum, ci, out double ft);
+                bool out3 = double.TryParse(textInch.Text, nsNum, ci, out double inch);
+                inch += ft * 12; // 1 ft = 12 in
+                if (out2 && out3 && inch >= 0) 
+                {
+                    bmiC.SetHeight(inch);
+                }
+                else
+                {
+                    out2 = false;
+                }
             }
             else if (bmiC.GetUnitType().Equals(UnitType.Metric))
             {
-                out2 = double.TryParse(textKg.Text, ns, ci, out double m);
-                if (out2)
+                out2 = double.TryParse(textKg.Text, nsNum, ci, out double m);
+                if (out2 && m > 0)
                     bmiC.SetHeight(m);
+                else
+                    out2 = false;
             }
 
-            if (out1 && out2 && out3)
+            // Checking
+            if (out1 && out2)
                 DisplayBMIResult();
             else
                 MessageBox.Show("Something is wrong. Please check your input.", "Error");
@@ -215,26 +226,21 @@ namespace SuperCalculator
         /// </summary>
         private void UpdateFutureValue()
         {
-            if (decimal.TryParse(textDeposit.Text, ns, ci, out decimal md))
+            if (decimal.TryParse(textDeposit.Text, nsNum, ci, out decimal md) && // monthly deposit
+                int.TryParse(textPeriod.Text, nsInt, ci, out int period) && // period
+                decimal.TryParse(textInterest.Text, nsNum, ci, out decimal interest) && // interest
+                decimal.TryParse(textFee.Text, nsNum, ci, out decimal fee)) // fee
+            {
                 savingC.SetDeposit(md);
-            else
-                MessageBox.Show("Something is wrong. Please check your input", "Error");
-
-            if (int.TryParse(textPeriod.Text, nsi, ci, out int period))
                 savingC.SetPeriod(period * 12);
-            else
-                MessageBox.Show("Something is wrong. Please check your input", "Error");
-
-            if (decimal.TryParse(textInterest.Text, ns, ci, out decimal interest))
                 savingC.SetInterest(interest / 100 / 12);
-            else
-                MessageBox.Show("Something is wrong. Please check your input", "Error");
-
-            if (decimal.TryParse(textFee.Text, ns, ci, out decimal fee))
                 savingC.SetFee(fee / 100 / 12);
+                DisplayFutureValue();
+            }
             else
+            {
                 MessageBox.Show("Something is wrong. Please check your input", "Error");
-            DisplayFutureValue();
+            }
         }
 
         /// <summary>
@@ -293,7 +299,7 @@ namespace SuperCalculator
                 return false;
 
             // Check if age is checked
-            bool ageOk = int.TryParse(textAge.Text, nsi, ci, out int age);
+            bool ageOk = int.TryParse(textAge.Text, nsInt, ci, out int age);
             if (ageOk && age >= 0)
                 bmrC.SetAge(age);
             else return false;
@@ -323,7 +329,7 @@ namespace SuperCalculator
             {
                 Size = new Size(listBoxBMR.Size.Width, listBoxBMR.Size.Height),
                 Sorted = false,
-                DataSource = new string[]
+                DataSource = new[]
                 {
                     $"BMR result for {bmrC.GetName()}",
                     "",

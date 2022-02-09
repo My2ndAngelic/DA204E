@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SuperCalculator
+﻿namespace SuperCalculator
 {
     public class BMRCalc : BMICalc
     {
@@ -8,6 +6,9 @@ namespace SuperCalculator
         private bool gender; // T: male, F: female
         private int group;
 
+        /// <summary>
+        ///     Default constructor
+        /// </summary>
         public BMRCalc()
         {
             age = 0;
@@ -15,6 +16,10 @@ namespace SuperCalculator
             group = 0;
         }
 
+        /// <summary>
+        ///     Constructor with BMI calc initiated
+        /// </summary>
+        /// <param name="bmiCalc">Data from BMICalc</param>
         public BMRCalc(BMICalc bmiCalc) :
             base(bmiCalc.GetName(),
                 bmiCalc.GetWeight(),
@@ -26,6 +31,13 @@ namespace SuperCalculator
             group = 0;
         }
 
+        /// <summary>
+        ///     Constructor with all the parameter
+        /// </summary>
+        /// <param name="bmiCalc">Data from BMICalc</param>
+        /// <param name="age">Age</param>
+        /// <param name="gender">Gender (M/F) = (T/F)</param>
+        /// <param name="group">Weekly activity level group (0 - 4)</param>
         public BMRCalc(BMICalc bmiCalc, int age, bool gender, int group) :
             base(bmiCalc.GetName(),
                 bmiCalc.GetWeight(),
@@ -37,28 +49,20 @@ namespace SuperCalculator
             this.group = group;
         }
 
-        public BMRCalc(int age, bool gender, int group)
-        {
-            this.age = age;
-            this.gender = gender;
-            this.group = group;
-        }
-
         /// <summary>
-        /// 
+        ///     Return calories to gain or lose weight after factored gender, age and activity level
         /// </summary>
-        /// <param name="calories"></param>
-        /// <returns></returns>
+        /// <param name="calories">Calories entered</param>
+        /// <returns>Calories after addition</returns>
         public double GetCalories(double calories)
         {
             return GetFactoredBMR() + calories;
         }
 
         /// <summary>
-        /// 
+        ///     Returned BMR after factored gender, age and weekly activity level
         /// </summary>
-        /// <returns></returns>
-        /// <exception cref="ArgumentException"></exception>
+        /// <returns>Factored BMR</returns>
         public double GetFactoredBMR()
         {
             return group switch
@@ -68,24 +72,20 @@ namespace SuperCalculator
                 2 => 1.550 * GetMinBMR(),
                 3 => 1.725 * GetMinBMR(),
                 4 => 1.9 * GetMinBMR(),
-                _ => throw new ArgumentException("Not yet implemented")
+                _ => 0.0 * GetMinBMR()
             };
         }
 
         /// <summary>
-        /// 
+        ///     Return minimum BMR depending on gender and age
         /// </summary>
-        /// <returns></returns>
+        /// <returns>BMR depending on gender</returns>
         public double GetMinBMR()
         {
             double baseBMR = 10 * ToKg() + 6.25 * ToCM() - 5 * GetAge();
             return gender ? baseBMR + 5 : baseBMR - 161;
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
-        /// <returns></returns>
         public int GetAge()
         {
             return age;

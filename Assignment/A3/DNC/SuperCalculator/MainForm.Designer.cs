@@ -668,7 +668,6 @@ namespace SuperCalculator
             this.Name = "MainForm";
             this.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen;
             this.Text = "Title";
-            this.Load += new System.EventHandler(this.MainForm_Load);
             this.groupBoxBMI.ResumeLayout(false);
             this.groupBoxBMI.PerformLayout();
             this.groupBoxUnit.ResumeLayout(false);
