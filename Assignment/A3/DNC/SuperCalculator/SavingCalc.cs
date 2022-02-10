@@ -50,10 +50,10 @@ namespace SuperCalculator
         /// <returns>Final balance in decimal</returns>
         public decimal GetFinalBalance()
         {
-            if (interest == 0 && fee == 0) return deposit * period;
+            if (interest == 0 && fee == 0) return deposit * period; // In case of simple interest
 
             decimal rate = (1 + interest) * (1 - fee);
-            return deposit * (decimal) (-Math.Pow((double) rate, period) + 1) / (1 - rate);
+            return deposit * (decimal) (1 - Math.Pow((double) rate, period) ) / (1 - rate); // Compound interest formula
         }
 
 
