@@ -75,7 +75,6 @@ namespace SuperCalculator
 
         /// <summary>
         ///     Return total fee
-        ///     [1]: https://math.stackexchange.com/questions/544831/compound-interest-with-monthly-fees
         /// </summary>
         /// <returns></returns>
         public decimal GetTotalFee()
