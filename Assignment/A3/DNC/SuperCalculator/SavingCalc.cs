@@ -43,20 +43,7 @@ namespace SuperCalculator
         {
             return deposit * period;
         }
-
-        /// <summary>
-        ///     Return the final balance in the account
-        /// </summary>
-        /// <returns>Final balance in decimal</returns>
-        public decimal GetFinalBalance()
-        {
-            if (interest == 0 && fee == 0) return deposit * period; // In case of simple interest
-
-            decimal rate = (1 + interest) * (1 - fee);
-            return deposit * (decimal) (1 - Math.Pow((double) rate, period) ) / (1 - rate); // Compound interest formula
-        }
-
-
+        
         /// <summary>
         ///     Get the amount earned over the total period
         /// </summary>
@@ -67,22 +54,47 @@ namespace SuperCalculator
         }
 
         /// <summary>
+        ///     Return the final balance in the account
+        /// </summary>
+        /// <returns>Final balance in decimal</returns>
+        public decimal GetFinalBalance()
+        {
+            // if (interest == 0 && fee == 0) return deposit * period; // In case of simple interest
+            //
+            // decimal rate = (1 + interest)*(1-fee);
+            // return deposit * (decimal) (1 - Math.Pow((double) rate, period) ) / (1 - rate); // Compound interest formula
+            
+            decimal balance = 0;
+            for (int i = 0; i < period; i++)
+            {
+                balance += (interest - fee) * balance + deposit;
+            }
+            
+            return balance;
+        }
+
+        /// <summary>
         ///     Return total fee
+        ///     [1]: https://math.stackexchange.com/questions/544831/compound-interest-with-monthly-fees
         /// </summary>
         /// <returns></returns>
         public decimal GetTotalFee()
         {
+            // I do not know how to calculate the fee.
+            // The formula was provided from the discussion
+            // This would violate the DRY principle but if it works, it works
             decimal totalFee = 0;
             decimal balance = 0;
-
-            // I do not know how to calculate the fee. The formula was provided from the discussion
-            for (int i = 0; i <= period; i++)
+            for (int i = 0; i < period; i++)
             {
-                balance += balance * (interest - fee) + deposit;
+                balance += (interest - fee) * balance + deposit;
                 totalFee += balance * fee;
             }
-
+            
             return totalFee;
+            
+            // decimal rate = (1+fee);
+            // return deposit * (decimal) (1 - Math.Pow((double) rate, period) ) / (1 - rate) - GetAmountPaid(); // Compound interest formula
         }
 
         /// <summary>

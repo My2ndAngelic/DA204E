@@ -3,7 +3,7 @@
     public class BMRCalc : BMICalc
     {
         private int age;
-        private bool gender; // T: male, F: female
+        private bool isMale; // T: male, F: female
         private int group;
 
         /// <summary>
@@ -12,7 +12,7 @@
         public BMRCalc()
         {
             age = 0;
-            gender = true;
+            isMale = true;
             group = 0;
         }
 
@@ -27,7 +27,7 @@
                 bmiCalc.GetUnitType())
         {
             age = 0;
-            gender = true;
+            isMale = true;
             group = 0;
         }
 
@@ -36,21 +36,21 @@
         /// </summary>
         /// <param name="bmiCalc">Data from BMICalc</param>
         /// <param name="age">Age</param>
-        /// <param name="gender">Gender (M/F) = (T/F)</param>
+        /// <param name="isMale">Gender (M/F) = (T/F)</param>
         /// <param name="group">Weekly activity level group (0 - 4)</param>
-        public BMRCalc(BMICalc bmiCalc, int age, bool gender, int group) :
+        public BMRCalc(BMICalc bmiCalc, int age, bool isMale, int group) :
             base(bmiCalc.GetName(),
                 bmiCalc.GetWeight(),
                 bmiCalc.GetHeight(),
                 bmiCalc.GetUnitType())
         {
             this.age = age;
-            this.gender = gender;
+            this.isMale = isMale;
             this.group = group;
         }
 
         /// <summary>
-        ///     Return calories to gain or lose weight after factored gender, age and activity level
+        ///     Return calories to gain or lose weight after factored isMale, age and activity level
         /// </summary>
         /// <param name="calories">Calories entered</param>
         /// <returns>Calories after addition</returns>
@@ -60,7 +60,7 @@
         }
 
         /// <summary>
-        ///     Returned BMR after factored gender, age and weekly activity level
+        ///     Returned BMR after factored isMale, age and weekly activity level
         /// </summary>
         /// <returns>Factored BMR</returns>
         public double GetFactoredBMR()
@@ -77,13 +77,13 @@
         }
 
         /// <summary>
-        ///     Return minimum BMR depending on gender and age
+        ///     Return minimum BMR depending on isMale and age
         /// </summary>
-        /// <returns>BMR depending on gender</returns>
+        /// <returns>BMR depending on isMale</returns>
         public double GetMinBMR()
         {
             double baseBMR = 10 * ToKg() + 6.25 * ToCM() - 5 * GetAge();
-            return gender ? baseBMR + 5 : baseBMR - 161;
+            return isMale ? baseBMR + 5 : baseBMR - 161;
         }
 
         public int GetAge()
@@ -98,12 +98,12 @@
 
         public bool GetGender()
         {
-            return gender;
+            return isMale;
         }
 
         public void SetGender(bool gender)
         {
-            this.gender = gender;
+            this.isMale = gender;
         }
 
         public int GetGroup()

@@ -12,7 +12,7 @@ namespace SuperCalculator
         private readonly BMICalc bmiC = new BMICalc();
         private readonly CultureInfo ci = CultureInfo.InstalledUICulture;
         private readonly SavingCalc savingC = new SavingCalc();
-        private BMRCalc bmrC = new BMRCalc();
+        private BMRCalc bmrC;
 
         public MainForm()
         {
@@ -168,14 +168,10 @@ namespace SuperCalculator
                 out2 = double.TryParse(textFt.Text, nsNum, ci, out double ft);
                 bool out3 = double.TryParse(textInch.Text, nsNum, ci, out double inch);
                 inch += ft * 12; // 1 ft = 12 in
-                if (out2 && out3 && inch >= 0) 
-                {
+                if (out2 && out3 && inch >= 0)
                     bmiC.SetHeight(inch);
-                }
                 else
-                {
                     out2 = false;
-                }
             }
             else if (bmiC.GetUnitType().Equals(UnitType.Metric))
             {
@@ -226,10 +222,10 @@ namespace SuperCalculator
         /// </summary>
         private void UpdateFutureValue()
         {
-            if (decimal.TryParse(textDeposit.Text, nsNum, ci, out decimal md) && // monthly deposit
-                int.TryParse(textPeriod.Text, nsInt, ci, out int period) && // period
-                decimal.TryParse(textInterest.Text, nsNum, ci, out decimal interest) && // interest
-                decimal.TryParse(textFee.Text, nsNum, ci, out decimal fee)) // fee
+            if (decimal.TryParse(textDeposit.Text, nsNum, ci, out decimal md) && md >= 0 && // monthly deposit
+                int.TryParse(textPeriod.Text, nsInt, ci, out int period) && period >= 0 && // period
+                decimal.TryParse(textInterest.Text, nsNum, ci, out decimal interest) && interest >= 0 && // interest
+                decimal.TryParse(textFee.Text, nsNum, ci, out decimal fee) && fee >= 0) // fee
             {
                 savingC.SetDeposit(md);
                 savingC.SetPeriod(period * 12);
@@ -293,8 +289,8 @@ namespace SuperCalculator
                 bmrC.SetGroup(2);
             else if (rb3.Checked)
                 bmrC.SetGroup(3);
-            else if
-                (rb4.Checked) bmrC.SetGroup(4);
+            else if (rb4.Checked)
+                bmrC.SetGroup(4);
             else
                 return false;
 
