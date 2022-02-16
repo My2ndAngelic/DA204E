@@ -36,7 +36,7 @@ namespace RecipeDNC
 
         public int MaxNumOfIngredients
         {
-            get => 10000000;
+            get => 50;
         }
         
         public Recipe()

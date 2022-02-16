@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace SuperCalculator
+﻿namespace SuperCalculator
 {
     public class SavingCalc
     {
@@ -43,7 +41,7 @@ namespace SuperCalculator
         {
             return deposit * period;
         }
-        
+
         /// <summary>
         ///     Get the amount earned over the total period
         /// </summary>
@@ -63,20 +61,17 @@ namespace SuperCalculator
             //
             // decimal rate = (1 + interest)*(1-fee);
             // return deposit * (decimal) (1 - Math.Pow((double) rate, period) ) / (1 - rate); // Compound interest formula
-            
+
             decimal balance = 0;
-            for (int i = 0; i < period; i++)
-            {
-                balance += (interest - fee) * balance + deposit;
-            }
-            
+            for (int i = 0; i < period; i++) balance += (interest - fee) * balance + deposit;
+
             return balance;
         }
 
         /// <summary>
         ///     Return total fee
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Total fee in decimal</returns>
         public decimal GetTotalFee()
         {
             // I do not know how to calculate the fee.
@@ -89,9 +84,9 @@ namespace SuperCalculator
                 balance += (interest - fee) * balance + deposit;
                 totalFee += balance * fee;
             }
-            
+
             return totalFee;
-            
+
             // decimal rate = (1+fee);
             // return deposit * (decimal) (1 - Math.Pow((double) rate, period) ) / (1 - rate) - GetAmountPaid(); // Compound interest formula
         }

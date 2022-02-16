@@ -47,9 +47,9 @@ namespace SuperCalculator
             textBMI.Text = string.Empty;
             textBMICat.Text = string.Empty;
             rbSI.Checked = true;
-            textName.Text = "Your mom";
-            textKg.Text = "1,69";
-            textWeight.Text = "69";
+            textName.Text = string.Empty;
+            textKg.Text = string.Empty;
+            textWeight.Text = string.Empty;
 
             // Saving
             groupBoxSaving.Text = "Saving";
@@ -61,10 +61,10 @@ namespace SuperCalculator
             labelAmountEarned.Text = "Amount earned";
             labelFinalBalance.Text = "Final balance";
             labelFee.Text = "Total fee";
-            textDeposit.Text = "1200";
-            textPeriod.Text = "15";
-            textInterest.Text = "9,99";
-            textFee.Text = "0,80";
+            textDeposit.Text = string.Empty;
+            textPeriod.Text = string.Empty;
+            textInterest.Text = string.Empty;
+            textFee.Text = string.Empty;
 
             // BMR
             groupBoxBMR.Text = "BMR Calculator";
@@ -79,7 +79,7 @@ namespace SuperCalculator
             buttonCalculateBMR.Text = "Calculate BMR";
             rbFemale.Checked = true;
             rb0.Checked = true;
-            textAge.Text = "32";
+            textAge.Text = string.Empty;
         }
 
         /// <summary>
@@ -300,7 +300,7 @@ namespace SuperCalculator
                 bmrC.SetAge(age);
             else return false;
 
-            // 
+            // Return if the BMI is OK
             return !textBMI.Text.Equals(string.Empty);
         }
 
