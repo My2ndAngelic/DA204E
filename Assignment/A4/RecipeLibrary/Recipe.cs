@@ -1,82 +1,150 @@
 ﻿using System;
-using System.Text;
+using Microsoft.CSharp.RuntimeBinder;
 
 namespace RecipeDNC
 {
     public class Recipe
     {
+        private readonly int maxNumOfIngredients;
         private FoodCategory category;
         private string description;
         private string[] ingredients;
         private string name;
-        
+
+        public Recipe()
+        {
+            category = FoodCategory.Fish;
+            description = string.Empty;
+            maxNumOfIngredients = 50000;
+            ingredients = new string[MaxNumOfIngredients];
+            name = string.Empty;
+        }
+
+        public Recipe(int maxNumOfIngredients)
+        {
+            category = FoodCategory.Fish;
+            description = string.Empty;
+            this.maxNumOfIngredients = maxNumOfIngredients;
+            ingredients = new string[MaxNumOfIngredients];
+            name = string.Empty;
+        }
+
+        public Recipe(FoodCategory category, string description,  int maxNumOfIngredients, string[] ingredients, string name)
+        {
+            this.category = category;
+            this.description = description;
+            this.ingredients = new string[maxNumOfIngredients];
+            if (ingredients.Length <= maxNumOfIngredients)
+                Array.Copy(ingredients, this.ingredients, ingredients.Length);
+            else
+                throw new ArgumentException($@"Max ingredient: {maxNumOfIngredients}");
+            this.name = name;
+        }
+
         public FoodCategory Category
         {
             get => category;
-            set => this.category = value;
+            set => category = value;
         }
 
         public string Description
         {
             get => description;
-            set => this.description = value;
+            set => description = value;
         }
 
         public string[] Ingredients
         {
             get => ingredients;
-            set => this.ingredients = value;
+            set => ingredients = value;
         }
 
         public string Name
         {
             get => name;
-            set => this.name = value;
+            set => name = value;
         }
 
-        public int MaxNumOfIngredients
+        public int MaxNumOfIngredients => maxNumOfIngredients;
+
+        /// <summary>
+        ///     Add ingredients with linear search
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
+        public bool AddIngredient(string value)
         {
-            get => 50;
-        }
-        
-        public Recipe()
-        {
-            this.category = FoodCategory.Fish;
-            this.description = string.Empty;
-            this.ingredients = new string[MaxNumOfIngredients];
-            this.name = string.Empty;
+            for (int i = 0; i < ingredients.Length; i++)
+                if (ingredients[i] == null)
+                {
+                    ingredients[i] = value;
+                    return true;
+                }
+
+            return false;
         }
 
-        public Recipe(FoodCategory category, string description, string[] ingredients, string name)
-        {
-            this.category = category;
-            this.description = description;
-            this.ingredients = new string[MaxNumOfIngredients];
-            if (ingredients.Length <= MaxNumOfIngredients)
-            {
-                Array.Copy(ingredients, this.ingredients, ingredients.Length);
-            }
-            else
-            {
-                throw new ArgumentException($@"Max ingredient: {MaxNumOfIngredients}");
-            }
-            this.name = name;
-        }
-
+        /// <summary>
+        ///     Add ingredient with binary search
+        /// </summary>
+        /// <param name="value"></param>
+        /// <returns></returns>
         public bool AddIngredient2(string value)
         {
-            int l = 0, r = ingredients.Length - 1;
-            if (ingredients[l] == null)
-            {
-                ingredients[l] = value;
-                return true;
-            }
-
-            if (ingredients[r] != null)
+            if (value == null)
             {
                 return false;
             }
+
+            int vp = FindVacantPosition();
+            if (vp == -1)
+            {
+                return false;
+            }
+
+            ingredients[vp] = value;
+            return true;
+        }
+
+        public bool ChangeIngredientAt(int index, string value)
+        {
+            if (index >= MaxNumOfIngredients || ingredients[index] == null || value == null) return false;
+            ingredients[index] = value;
+            return true;
+        }
+
+        private bool CheckIndex(int index)
+        {
+            return index < MaxNumOfIngredients && ingredients[index] != null;
+        }
+
+        public void DeleteIngredientAt(int index)
+        {
+            for (int i = index; i < MaxNumOfIngredients; i++) ingredients[i] = ingredients[i + 1];
+
+            ingredients[MaxNumOfIngredients] = null;
+        }
+
+        public int CheckNumberOfIngredients()
+        {
+            return FindVacantPosition() != -69 ? FindVacantPosition() : maxNumOfIngredients;
+        }
+
+        public void DefaultValues()
+        {
             
+        }
+
+        private int FindVacantPosition()
+        {
+            int l = 0, r = maxNumOfIngredients - 1;
+            if (ingredients[l] == null)
+            {
+                return l;
+            }
+
+            if (ingredients[r] != null) return -69;
+
             while (l <= r)
             {
                 int m = (l + r) / 2;
@@ -85,8 +153,7 @@ namespace RecipeDNC
                 {
                     if (ingredients[m - 1] != null)
                     {
-                        ingredients[m] = value;
-                        return true;
+                        return m;
                     }
 
                     r = m - 1;
@@ -95,39 +162,19 @@ namespace RecipeDNC
                 {
                     if (ingredients[m + 1] == null)
                     {
-                        ingredients[m + 1] = value;
-                        return true;
+                        return m + 1;
                     }
 
                     l = m + 1;
                 }
             }
 
-            return false;
+            return -420;
         }
         
-        public bool AddIngredient(string value)
+        public void AUrMom()
         {
-            for (int i = 0; i < ingredients.Length; i++)
-            {
-                if (ingredients[i] == null)
-                {
-                    ingredients[i] = value;
-                    return true;
-                }
-            }
-            return false;
-        }
-
-        public bool ChangeIngredientAt(int index, string value)
-        {
-            if (index >= MaxNumOfIngredients || ingredients[index] == null)
-            {
-                return false;
-            }
-
-            ingredients[index] = value;
-            return true;
+            Console.WriteLine("Ur mom");
         }
     }
 }

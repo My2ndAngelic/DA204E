@@ -8,7 +8,7 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeConsole", "RecipeCons
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeLibrary", "RecipeLibrary\RecipeLibrary.csproj", "{9C6A8DE8-2460-4369-9792-150E1807F345}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeTest", "RecipeTest\RecipeTest.csproj", "{F321E76A-3E1B-470B-ACEF-A38CC8A92A87}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RecipeNUnit", "RecipeNUnit\RecipeNUnit.csproj", "{F321E76A-3E1B-470B-ACEF-A38CC8A92A87}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

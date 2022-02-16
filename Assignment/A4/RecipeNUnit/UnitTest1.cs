@@ -4,7 +4,7 @@ using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities.Serialization;
 using NUnit.Framework;
 using RecipeDNC;
 
-namespace RecipeTest
+namespace RecipeNUnit
 {
     public class Tests
     {
@@ -29,7 +29,7 @@ namespace RecipeTest
         public void AddIngredient2()
         {
             Recipe r = new Recipe();
-            for (int i = 0; i < size; i++)
+            for (int i = 0; i < size+100; i++)
                 r.AddIngredient2("ur mom");
             Assert.AreEqual(Result(), r.Ingredients);
 
