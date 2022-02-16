@@ -91,13 +91,9 @@ namespace RecipeDNC
         /// <returns></returns>
         public bool AddIngredient2(string value)
         {
-            if (value == null)
-            {
-                return false;
-            }
-
             int vp = FindVacantPosition();
-            if (vp == -1)
+
+            if (value == null || vp == -1)
             {
                 return false;
             }
@@ -127,7 +123,8 @@ namespace RecipeDNC
 
         public int CheckNumberOfIngredients()
         {
-            return FindVacantPosition() != -69 ? FindVacantPosition() : maxNumOfIngredients;
+            int result = FindVacantPosition();
+            return result is not -69 or -420  ? result : maxNumOfIngredients;
         }
 
         public void DefaultValues()
