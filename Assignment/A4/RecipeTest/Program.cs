@@ -1,4 +1,5 @@
 ﻿using System;
+using RecipeDNC;
 
 namespace RecipeTest
 {
@@ -7,6 +8,7 @@ namespace RecipeTest
         static void Main(string[] args)
         {
             Console.WriteLine("Hello World!");
+            Console.WriteLine(FoodCategory.Fish);
         }
     }
 }
