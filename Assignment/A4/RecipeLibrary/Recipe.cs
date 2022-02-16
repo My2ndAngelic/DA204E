@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Text;
 
 namespace RecipeDNC
 {
@@ -8,7 +9,7 @@ namespace RecipeDNC
         private string description;
         private string[] ingredients;
         private string name;
-
+        
         public FoodCategory Category
         {
             get => category;
@@ -35,14 +36,14 @@ namespace RecipeDNC
 
         public int MaxNumOfIngredients
         {
-            get => 50;
+            get => 10000000;
         }
         
         public Recipe()
         {
             this.category = FoodCategory.Fish;
             this.description = string.Empty;
-            this.ingredients = new string[50];
+            this.ingredients = new string[MaxNumOfIngredients];
             this.name = string.Empty;
         }
 
@@ -50,26 +51,83 @@ namespace RecipeDNC
         {
             this.category = category;
             this.description = description;
-            if (ingredients.Length <= 50)
+            this.ingredients = new string[MaxNumOfIngredients];
+            if (ingredients.Length <= MaxNumOfIngredients)
             {
-                this.ingredients = ingredients;
+                Array.Copy(ingredients, this.ingredients, ingredients.Length);
             }
             else
             {
-                throw new ArgumentException("Max ingredient: 50");
+                throw new ArgumentException($@"Max ingredient: {MaxNumOfIngredients}");
             }
             this.name = name;
         }
 
-        public bool AddIngredient(string value)
+        public bool AddIngredient2(string value)
         {
-            if (ingredients.Length < MaxNumOfIngredients)
+            int l = 0, r = ingredients.Length - 1;
+            if (ingredients[l] == null)
             {
-                
+                ingredients[l] = value;
                 return true;
             }
 
+            if (ingredients[r] != null)
+            {
+                return false;
+            }
+            
+            while (l <= r)
+            {
+                int m = (l + r) / 2;
+
+                if (ingredients[m] == null)
+                {
+                    if (ingredients[m - 1] != null)
+                    {
+                        ingredients[m] = value;
+                        return true;
+                    }
+
+                    r = m - 1;
+                }
+                else
+                {
+                    if (ingredients[m + 1] == null)
+                    {
+                        ingredients[m + 1] = value;
+                        return true;
+                    }
+
+                    l = m + 1;
+                }
+            }
+
             return false;
+        }
+        
+        public bool AddIngredient(string value)
+        {
+            for (int i = 0; i < ingredients.Length; i++)
+            {
+                if (ingredients[i] == null)
+                {
+                    ingredients[i] = value;
+                    return true;
+                }
+            }
+            return false;
+        }
+
+        public bool ChangeIngredientAt(int index, string value)
+        {
+            if (index >= MaxNumOfIngredients || ingredients[index] == null)
+            {
+                return false;
+            }
+
+            ingredients[index] = value;
+            return true;
         }
     }
 }
