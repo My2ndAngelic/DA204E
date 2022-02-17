@@ -1,4 +1,4 @@
-﻿namespace RecipeDNC
+﻿namespace RecipeLibrary
 {
     public enum FoodCategory
     {

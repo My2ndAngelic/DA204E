@@ -12,4 +12,8 @@
       </Compile>
     </ItemGroup>
 
+    <ItemGroup>
+      <ProjectReference Include="..\RecipeLibrary\RecipeLibrary.csproj" />
+    </ItemGroup>
+
 </Project>
