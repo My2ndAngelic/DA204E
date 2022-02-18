@@ -15,8 +15,12 @@ namespace RecipeDNC
     {
         private RecipeManager rm = new RecipeManager();
         private bool editMode;
-        private string[] temp;
-        
+
+        private string[] currRecipe {
+            get { }
+        }
+
+
         public FormMain()
         {
             InitializeComponent();
@@ -40,16 +44,17 @@ namespace RecipeDNC
 
         private void buttonAddIngredients_Click(object sender, EventArgs e)
         {
-            new FormIngredients().Show();
+            FormIngredients fi = new FormIngredients();
+            
         }
 
         private void buttonAddRecipe_Click(object sender, EventArgs e)
         {
             rm.Add(new Recipe(textBoxName.Text, 
-                (FoodCategory) Enum.Parse(typeof(FoodCategory), 
+                    (FoodCategory) Enum.Parse(typeof(FoodCategory), 
                     comboBoxCategory.SelectedValue.ToString() ?? string.Empty),
                 new[]{"ur", "mom"},
-                textBoxDescription.Text));
+                    textBoxDescription.Text));
             listBoxRecipe.DataSource = rm.GetRecipes();
         }
 

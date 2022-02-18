@@ -2,14 +2,13 @@
 {
     public class RecipeManager
     {
-        private Recipe[] recipes;
-        private readonly int maxNumOfRecipe;
-        
+        private readonly Recipe[] recipes;
+        private const int maxNumOfRecipe = 200;
+
         public int MaxNumOfRecipe => maxNumOfRecipe;
 
         public RecipeManager()
         {
-            maxNumOfRecipe = 200;
             recipes = new Recipe[maxNumOfRecipe];
         }
 
