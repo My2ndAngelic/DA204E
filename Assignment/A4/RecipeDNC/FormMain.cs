@@ -16,10 +16,6 @@ namespace RecipeDNC
         private RecipeManager rm = new RecipeManager();
         private bool editMode;
 
-        private string[] currRecipe {
-            get { }
-        }
-
 
         public FormMain()
         {
