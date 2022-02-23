@@ -1,9 +1,24 @@
 ﻿using System.Windows.Forms;
+using RecipeLibrary;
 
 namespace RecipeDNC
 {
     public partial class FormIngredients : Form
     {
+        private Recipe recipe;
+
+        public FormIngredients(Recipe recipe)
+        {
+            this.recipe = recipe;
+            InitializeComponent();
+            InitializeGUI();
+            foreach (string s in recipe.Ingredients)
+            {
+                if (s == null) continue;
+                listBoxIngredient.Items.Add(s);
+            }
+        }
+        
         public FormIngredients()
         {
             InitializeComponent();
@@ -12,7 +27,8 @@ namespace RecipeDNC
 
         private void InitializeGUI()
         {
-            
+            labelNumOfIngLeft.Text = recipe.Name;
+            labelNumOfIngRight.Text = recipe.GetNumberOfIngredients().ToString();
         }
 
         public void EditRecipe(string[] recipes)
@@ -22,11 +38,17 @@ namespace RecipeDNC
 
         private void buttonOK_Click(object sender, System.EventArgs e)
         {
-            Close();
+            foreach (string s in listBoxIngredient.Items)
+            {
+                recipe.AddIngredient2(s);
+            }
+
+            this.DialogResult = DialogResult.OK;
         }
 
         private void buttonCancel_Click(object sender, System.EventArgs e)
         {
+            this.DialogResult = DialogResult.Cancel;
             Close();
         }
 

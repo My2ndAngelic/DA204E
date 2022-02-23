@@ -13,9 +13,11 @@ namespace RecipeDNC
 {
     public partial class FormMain : Form
     {
-        private RecipeManager rm = new RecipeManager();
+        private RecipeManager rm = new RecipeManager(maxNumOfRecipe);
         private bool editMode;
-
+        private Recipe currRecipe = new Recipe(maxNumOfIngredients);
+        private static readonly int maxNumOfRecipe = 200;
+        private static readonly int maxNumOfIngredients = 50;
 
         public FormMain()
         {
@@ -40,28 +42,42 @@ namespace RecipeDNC
 
         private void buttonAddIngredients_Click(object sender, EventArgs e)
         {
-            FormIngredients fi = new FormIngredients();
-            
+            FormIngredients fi = new FormIngredients(currRecipe);
+            DialogResult dlgResult = fi.ShowDialog();
+
+            if (dlgResult != DialogResult.OK) return;
+            if (currRecipe.GetNumberOfIngredients() <= 0)
+                MessageBox.Show("No ingredient specified", "Error");
         }
 
         private void buttonAddRecipe_Click(object sender, EventArgs e)
         {
-            rm.Add(new Recipe(textBoxName.Text, 
-                    (FoodCategory) Enum.Parse(typeof(FoodCategory), 
-                    comboBoxCategory.SelectedValue.ToString() ?? string.Empty),
-                new[]{"ur", "mom"},
-                    textBoxDescription.Text));
+            if (editMode)
+                rm.ChangeRecipeAt(listBoxRecipe.SelectedIndex, currRecipe);
+            else
+                rm.Add(new Recipe(
+                        textBoxName.Text, 
+                        (FoodCategory) Enum.Parse(typeof(FoodCategory), 
+                        comboBoxCategory.SelectedValue.ToString() ?? string.Empty),
+                        currRecipe.Ingredients,
+                        textBoxDescription.Text));
             listBoxRecipe.DataSource = rm.GetRecipes();
         }
 
         private void buttonEditBegin_Click(object sender, EventArgs e)
         {
+            if (rm.GetNumberOfRecipes() <= 0) return;
             editMode = true;
+            currRecipe = rm.GetRecipeAt(listBoxRecipe.SelectedIndex);
+            textBoxName.Text = currRecipe.Name;
+            textBoxDescription.Text = currRecipe.Description;
+            comboBoxCategory.SelectedItem = currRecipe.Category;
         }
 
         private void buttonEditFinish_Click(object sender, EventArgs e)
         {
             editMode = false;
+            currRecipe = new Recipe(maxNumOfIngredients);
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
