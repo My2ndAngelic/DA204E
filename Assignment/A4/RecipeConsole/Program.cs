@@ -14,7 +14,7 @@ namespace RecipeConsole
 
             for (int i = 0; i < 50; i++)
             {
-                recipe.AddIngredient2($@"ur mom {i}");
+                recipe.AddIngredientBinary($@"ur mom {i}");
                 Console.WriteLine(recipe.GetNumberOfIngredients());
             }
             Console.WriteLine(Math.Round(69.420, 0));

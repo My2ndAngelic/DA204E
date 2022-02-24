@@ -8,7 +8,7 @@ namespace RecipeNUnit
 {
     public class Tests
     {
-        private readonly int ingredientSize = new Recipe().MaxNumOfIngredients;
+        private readonly int ingredientSize = 1000000;
         private readonly int recipeSize = new RecipeManager().MaxNumOfRecipe;
 
         private string[] Result()
@@ -29,9 +29,9 @@ namespace RecipeNUnit
         [Test]
         public void AddIngredient2()
         {
-            Recipe r = new Recipe();
+            Recipe r = new Recipe(ingredientSize);
             for (int i = 0; i < ingredientSize+100; i++)
-                r.AddIngredient2("ur mom");
+                r.AddIngredientBinary("ur mom");
             Assert.AreEqual(Result(), r.Ingredients);
 
         }
@@ -39,9 +39,9 @@ namespace RecipeNUnit
         [Test]
         public void AddIngredient1()
         {
-            Recipe r = new Recipe();
+            Recipe r = new Recipe(ingredientSize);
             for (int i = 0; i < ingredientSize; i++)
-                r.AddIngredient1("ur mom");
+                r.AddIngredientLinear("ur mom");
             Assert.AreEqual(Result(), r.Ingredients);
         }
 
@@ -50,7 +50,7 @@ namespace RecipeNUnit
         {
             Recipe r = new Recipe();
             for (int i = 0; i < ingredientSize; i++)
-                r.AddIngredient1("ur mom");
+                r.AddIngredientLinear("ur mom");
         }
     }
 }

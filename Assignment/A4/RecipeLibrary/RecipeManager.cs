@@ -63,8 +63,9 @@
 
         public string[] GetRecipes()
         {
-            string[] result = new string[GetNumberOfRecipes()];
-            for (int i = 0; i < GetNumberOfRecipes(); i++)
+            int temp = GetNumberOfRecipes();
+            string[] result = new string[temp];
+            for (int i = 0; i < temp; i++)
             {
                 result[i] = recipes[i].GetIngredientString();
             }
@@ -78,7 +79,7 @@
         
         private int FindVacantPositionBinary()
         {
-            int l = 0, r = maxNumOfRecipe - 1;
+            int l = 0, r = recipes.Length - 1;
             if (recipes[l] == null) return l;
 
             if (recipes[r] != null)

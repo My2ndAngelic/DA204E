@@ -42,6 +42,7 @@ namespace RecipeDNC
             this.buttonEditFinish = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonClearSelection = new System.Windows.Forms.Button();
+            this.labelMode = new System.Windows.Forms.Label();
             this.groupBox1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -130,7 +131,8 @@ namespace RecipeDNC
             this.listBoxRecipe.Name = "listBoxRecipe";
             this.listBoxRecipe.Size = new System.Drawing.Size(530, 394);
             this.listBoxRecipe.TabIndex = 1;
-            this.listBoxRecipe.DoubleClick += new System.EventHandler(listBoxRecipe_DoubleClick);
+            this.listBoxRecipe.SelectedIndexChanged += new System.EventHandler(this.listBoxRecipe_SelectedIndexChanged);
+            this.listBoxRecipe.DoubleClick += new System.EventHandler(this.listBoxRecipe_DoubleClick);
             // 
             // buttonEditBegin
             // 
@@ -172,11 +174,22 @@ namespace RecipeDNC
             this.buttonClearSelection.UseVisualStyleBackColor = true;
             this.buttonClearSelection.Click += new System.EventHandler(this.buttonClearSelection_Click);
             // 
+            // labelMode
+            // 
+            this.labelMode.AutoSize = true;
+            this.labelMode.Location = new System.Drawing.Point(989, 12);
+            this.labelMode.Name = "labelMode";
+            this.labelMode.Size = new System.Drawing.Size(61, 15);
+            this.labelMode.TabIndex = 6;
+            this.labelMode.Text = "Edit Mode";
+            this.labelMode.TextAlign = System.Drawing.ContentAlignment.TopRight;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1083, 634);
+            this.Controls.Add(this.labelMode);
             this.Controls.Add(this.buttonClearSelection);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonEditFinish);
@@ -188,6 +201,7 @@ namespace RecipeDNC
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -206,5 +220,6 @@ namespace RecipeDNC
         private System.Windows.Forms.Button buttonEditFinish;
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonClearSelection;
+        private System.Windows.Forms.Label labelMode;
     }
 }

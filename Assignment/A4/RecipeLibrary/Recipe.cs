@@ -5,7 +5,7 @@ namespace RecipeLibrary
 {
     public class Recipe
     {
-        private readonly int maxNumOfIngredients = 50;
+        private readonly int maxNumOfIngredients;
         private FoodCategory category;
         private string description;
         private string[] ingredients;
@@ -15,6 +15,7 @@ namespace RecipeLibrary
         {
             category = FoodCategory.Fish;
             description = string.Empty;
+            maxNumOfIngredients = 50;
             ingredients = new string[MaxNumOfIngredients];
             name = string.Empty;
         }
@@ -31,6 +32,7 @@ namespace RecipeLibrary
         public Recipe(string name, FoodCategory category, string[] ingredients)
         {
             this.category = category;
+            maxNumOfIngredients = 50;
             this.ingredients = new string[maxNumOfIngredients];
             if (ingredients.Length > maxNumOfIngredients)
                 throw new ArgumentException($@"Max ingredient: {maxNumOfIngredients}");
@@ -38,7 +40,7 @@ namespace RecipeLibrary
             this.name = name;
         }
         
-         public Recipe(string name, FoodCategory category, string[] ingredients, string description)
+         public Recipe(string name, FoodCategory category, string[] ingredients, string description, int maxNumOfIngredients)
         {
             this.name = name;
             this.category = category;
@@ -63,8 +65,16 @@ namespace RecipeLibrary
 
         public string[] Ingredients
         {
-            get => ingredients;
-            set => ingredients = value;
+            get
+            {
+                string[] result = new string[GetNumberOfIngredients()];
+                for (int i = 0; i < result.Length; i++)
+                {
+                    result[i] = ingredients[i];
+                }
+
+                return result;
+            }
         }
 
         public string Name
@@ -80,7 +90,7 @@ namespace RecipeLibrary
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public bool AddIngredient1(string value)
+        public bool AddIngredientLinear(string value)
         {
             int vp = FindVacantPositionLinear();
 
@@ -95,7 +105,7 @@ namespace RecipeLibrary
         /// </summary>
         /// <param name="value"></param>
         /// <returns></returns>
-        public bool AddIngredient2(string value)
+        public bool AddIngredientBinary(string value)
         {
             int vp = FindVacantPositionBinary();
 
@@ -150,7 +160,7 @@ namespace RecipeLibrary
 
         private int FindVacantPositionBinary()
         {
-            int l = 0, r = maxNumOfIngredients - 1;
+            int l = 0, r = ingredients.Length - 1;
             if (ingredients[l] == null) return l;
 
             if (ingredients[r] != null)
@@ -179,7 +189,7 @@ namespace RecipeLibrary
 
         public string GetIngredientString()
         {
-            return $"{name} {category} {GetNumberOfIngredients()}";
+            return $"{name, -50} {category, -20} {GetNumberOfIngredients(), -10}";
         }
         
         public override string ToString()

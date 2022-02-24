@@ -117,11 +117,12 @@ namespace RecipeDNC
             // labelNumOfIngRight
             // 
             this.labelNumOfIngRight.AutoSize = true;
-            this.labelNumOfIngRight.Location = new System.Drawing.Point(491, 21);
+            this.labelNumOfIngRight.Location = new System.Drawing.Point(393, 21);
             this.labelNumOfIngRight.Name = "labelNumOfIngRight";
-            this.labelNumOfIngRight.Size = new System.Drawing.Size(38, 15);
+            this.labelNumOfIngRight.Size = new System.Drawing.Size(136, 15);
             this.labelNumOfIngRight.TabIndex = 2;
-            this.labelNumOfIngRight.Text = "label2";
+            this.labelNumOfIngRight.Text = "Number of ingredients:  ";
+            this.labelNumOfIngRight.TextAlign = System.Drawing.ContentAlignment.TopRight;
             this.labelNumOfIngRight.Click += new System.EventHandler(this.labelNumOfIngRight_Click);
             // 
             // buttonOK

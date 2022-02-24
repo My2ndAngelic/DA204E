@@ -1,4 +1,5 @@
-﻿using System.Windows.Forms;
+﻿using System;
+using System.Windows.Forms;
 using RecipeLibrary;
 
 namespace RecipeDNC
@@ -27,8 +28,8 @@ namespace RecipeDNC
 
         private void InitializeGUI()
         {
-            labelNumOfIngLeft.Text = recipe.Name;
-            labelNumOfIngRight.Text = recipe.GetNumberOfIngredients().ToString();
+            labelNumOfIngLeft.Text = recipe.Name == string.Empty ? "New recipe" : recipe.Name;
+            labelNumOfIngRight.Text = $@"Number of ingredients: {recipe.GetNumberOfIngredients().ToString()}";
         }
 
         public void EditRecipe(string[] recipes)
@@ -40,10 +41,10 @@ namespace RecipeDNC
         {
             foreach (string s in listBoxIngredient.Items)
             {
-                recipe.AddIngredient2(s);
+                recipe.AddIngredientBinary(s);
             }
-
-            this.DialogResult = DialogResult.OK;
+            
+            DialogResult = DialogResult.OK;
         }
 
         private void buttonCancel_Click(object sender, System.EventArgs e)
@@ -58,10 +59,12 @@ namespace RecipeDNC
             {
                 if (listBoxIngredient.SelectedIndex != -1)
                     listBoxIngredient.Items.Insert(listBoxIngredient.SelectedIndex, textBoxIngredient.Text);
-                listBoxIngredient.Items.Add(textBoxIngredient.Text);
+                else
+                    listBoxIngredient.Items.Add(textBoxIngredient.Text);
             }
+
             textBoxIngredient.Text = string.Empty;
-            labelNumOfIngRight.Text = listBoxIngredient.Items.Count.ToString();
+            labelNumOfIngRight.Text = $@"Number of ingredients: {listBoxIngredient.Items.Count}";
         }
 
         private void buttonEdit_Click(object sender, System.EventArgs e)
@@ -69,14 +72,13 @@ namespace RecipeDNC
             if (textBoxIngredient.Text != string.Empty)
                 listBoxIngredient.Items[listBoxIngredient.SelectedIndex] = textBoxIngredient.Text;
             textBoxIngredient.Text = string.Empty;
-            labelNumOfIngRight.Text = listBoxIngredient.Items.Count.ToString();
         }
 
         private void buttonDelete_Click(object sender, System.EventArgs e)
         {
             listBoxIngredient.Items.RemoveAt(listBoxIngredient.SelectedIndex);
             textBoxIngredient.Text = string.Empty;
-            labelNumOfIngRight.Text = listBoxIngredient.Items.Count.ToString();
+            labelNumOfIngRight.Text = $@"Number of ingredients: {listBoxIngredient.Items.Count}";
         }
 
         private void listBoxIngredient_SelectedIndexChanged(object sender, System.EventArgs e)
@@ -85,7 +87,6 @@ namespace RecipeDNC
 
         private void labelNumOfIngRight_Click(object sender, System.EventArgs e)
         {
-
         }
 
     }
