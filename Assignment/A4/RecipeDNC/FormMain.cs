@@ -47,8 +47,6 @@ namespace RecipeDNC
             DialogResult dlgResult = fi.ShowDialog();
 
             if (dlgResult != DialogResult.OK) return;
-            if (currRecipe.GetNumberOfIngredients() <= 0)
-                MessageBox.Show("No ingredient specified", "Error");
         }
 
         private void buttonAddRecipe_Click(object sender, EventArgs e)
@@ -60,19 +58,25 @@ namespace RecipeDNC
             }
             else
             {
-                rm.Add(new Recipe(
-                    textBoxName.Text,
-                    (FoodCategory) Enum.Parse(typeof(FoodCategory),
-                        comboBoxCategory.SelectedValue.ToString() ?? string.Empty),
-                    currRecipe.Ingredients,
-                    textBoxDescription.Text,
-                    maxNumOfIngredients));
-                currRecipe = new Recipe(maxNumOfIngredients);
+                if (currRecipe.GetNumberOfIngredients() <= 0)
+                {
+                    MessageBox.Show($@"No ingredient specified", $@"Error");
+                }
+                else
+                {
+                    rm.Add(new Recipe(
+                        textBoxName.Text,
+                        (FoodCategory) Enum.Parse(typeof(FoodCategory),
+                            comboBoxCategory.SelectedValue.ToString() ?? string.Empty),
+                        currRecipe.Ingredients,
+                        textBoxDescription.Text,
+                        maxNumOfIngredients));
+                    currRecipe = new Recipe(maxNumOfIngredients);
+                    textBoxName.Text = string.Empty;
+                    textBoxDescription.Text = string.Empty;
+                    listBoxRecipe.DataSource = rm.GetRecipes();
+                }
             }
-
-            textBoxName.Text = string.Empty;
-            textBoxDescription.Text = string.Empty;
-            listBoxRecipe.DataSource = rm.GetRecipes();
         }
 
         private void buttonEditBegin_Click(object sender, EventArgs e)

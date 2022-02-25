@@ -64,9 +64,11 @@ namespace RecipeDNC
             this.listBoxIngredient.ItemHeight = 15;
             this.listBoxIngredient.Location = new System.Drawing.Point(18, 85);
             this.listBoxIngredient.Name = "listBoxIngredient";
+            this.listBoxIngredient.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBoxIngredient.Size = new System.Drawing.Size(378, 349);
             this.listBoxIngredient.TabIndex = 5;
             this.listBoxIngredient.SelectedIndexChanged += new System.EventHandler(this.listBoxIngredient_SelectedIndexChanged);
+            this.listBoxIngredient.Leave += new System.EventHandler(this.listBoxIngredient_Leave);
             // 
             // buttonDelete
             // 

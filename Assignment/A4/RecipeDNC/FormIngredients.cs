@@ -1,4 +1,5 @@
 ﻿using System;
+using System.Collections.Generic;
 using System.Windows.Forms;
 using RecipeLibrary;
 
@@ -6,7 +7,7 @@ namespace RecipeDNC
 {
     public partial class FormIngredients : Form
     {
-        private Recipe recipe;
+        private readonly Recipe recipe;
 
         public FormIngredients(Recipe recipe)
         {
@@ -49,8 +50,7 @@ namespace RecipeDNC
 
         private void buttonCancel_Click(object sender, System.EventArgs e)
         {
-            this.DialogResult = DialogResult.Cancel;
-            Close();
+            DialogResult = DialogResult.Cancel;
         }
 
         private void buttonAdd_Click(object sender, System.EventArgs e)
@@ -65,6 +65,7 @@ namespace RecipeDNC
 
             textBoxIngredient.Text = string.Empty;
             labelNumOfIngRight.Text = $@"Number of ingredients: {listBoxIngredient.Items.Count}";
+            listBoxIngredient.ClearSelected();
         }
 
         private void buttonEdit_Click(object sender, System.EventArgs e)
@@ -72,6 +73,7 @@ namespace RecipeDNC
             if (textBoxIngredient.Text != string.Empty)
                 listBoxIngredient.Items[listBoxIngredient.SelectedIndex] = textBoxIngredient.Text;
             textBoxIngredient.Text = string.Empty;
+            listBoxIngredient.ClearSelected();
         }
 
         private void buttonDelete_Click(object sender, System.EventArgs e)
@@ -79,15 +81,21 @@ namespace RecipeDNC
             listBoxIngredient.Items.RemoveAt(listBoxIngredient.SelectedIndex);
             textBoxIngredient.Text = string.Empty;
             labelNumOfIngRight.Text = $@"Number of ingredients: {listBoxIngredient.Items.Count}";
+            listBoxIngredient.ClearSelected();
         }
 
         private void listBoxIngredient_SelectedIndexChanged(object sender, System.EventArgs e)
         {
+            
         }
 
         private void labelNumOfIngRight_Click(object sender, System.EventArgs e)
         {
         }
 
+        private void listBoxIngredient_Leave(object sender, System.EventArgs e)
+        {
+            
+        }
     }
 }
