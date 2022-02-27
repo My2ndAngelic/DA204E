@@ -20,9 +20,7 @@ namespace RecipeDNC
             InitializeComponent();
             InitializeGUI();
         }
-
-        protected string editModeLMAO => editMode ? "Edit mode" : "Add mode";
-
+        
         private void InitializeGUI()
         {
             InitializeGroupBox();
@@ -30,7 +28,7 @@ namespace RecipeDNC
             listBoxRecipe.Font = new Font("Consolas", 9);
             textBoxName.MaxLength = 50;
             listBoxRecipe.SelectionMode = SelectionMode.MultiExtended;
-            labelMode.Text = editModeLMAO;
+            labelMode.Text = @"Add mode";
             buttonAddIngredients.Text = @"Add ingredients";
             buttonAddRecipe.Text = @"Add recipe";
         }
@@ -48,11 +46,59 @@ namespace RecipeDNC
 
         private void testShit()
         {
-            string[] s = new string[50];
-            for (int i = 0; i < 50; i++) s[i] = $"Ur Mom {i + 1}";
+            string[] s = new []{"cremini mushrooms",
+                "alligator",
+                "cornstarch",
+                "pomegranates",
+                "apple butter",
+                "pinto beans",
+                "cheddar cheese",
+                "herring",
+                "artichokes",
+                "leeks",
+                "pink beans",
+                "corn flour",
+                "alfredo sauce",
+                "brunoise",
+                "soymilk",
+                "fish sauce",
+                "chai",
+                "pickles",
+                "cod",
+                "ale",
+                "vegemite",
+                "white chocolate",
+                "raspberries",
+                "orange peels",
+                "condensed milk",
+                "kidney beans",
+                "watermelons",
+                "marshmallows",
+                "cucumbers",
+                "pepper",
+                "breadfruit",
+                "won ton skins",
+                "prunes",
+                "chicory",
+                "prawns",
+                "snap peas",
+                "summer squash",
+                "squash",
+                "raisins",
+                "Havarti cheese",
+                "rice vinegar",
+                "bean threads",
+                "couscous",
+                "lima beans",
+                "powdered sugar",
+                "cabbage",
+                "green onions",
+                "ice cream",
+                "halibut",
+                "okra"};
             for (int i = 0; i < 200; i++)
             {
-                rm.Add(new Recipe($"Ur Mom {i}", FoodCategory.Pasta, s, @"Step 1
+                rm.Add(new Recipe($"Ur Mom {i}", (FoodCategory) typeof(FoodCategory).GetEnumValues().OfType<Enum>().OrderBy(e => Guid.NewGuid()).FirstOrDefault(), s.OrderBy(x => new Random().Next()).ToArray(), @"Step 1
 Preheat oven to 375 degrees F (190 degrees C). Lightly grease a large baking sheet.
 
 Step 2
@@ -139,10 +185,10 @@ Bake in preheated oven until a toothpick inserted into the center of the loaf co
 
         private void UpdateGUI()
         {
-            labelMode.Text = editModeLMAO;
 
             if (editMode)
             {
+                labelMode.Text = @"Edit Mode";
                 textBoxName.Text = currRecipe.Name;
                 textBoxDescription.Text = currRecipe.Description;
                 buttonAddIngredients.Text = @"Edit ingredients";
@@ -151,6 +197,7 @@ Bake in preheated oven until a toothpick inserted into the center of the loaf co
             }
             else
             {
+                labelMode.Text = @"Add mode";
                 textBoxName.Text = string.Empty;
                 textBoxDescription.Text = string.Empty;
                 buttonAddIngredients.Text = @"Add ingredients";
