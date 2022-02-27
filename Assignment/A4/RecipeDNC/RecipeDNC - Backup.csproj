@@ -16,8 +16,4 @@
         <ProjectReference Include="..\RecipeLibrary\RecipeLibrary.csproj" />
     </ItemGroup>
 
-    <ItemGroup>
-      <PackageReference Include="log4net" Version="2.0.14" />
-    </ItemGroup>
-
 </Project>

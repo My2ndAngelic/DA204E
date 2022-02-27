@@ -1,14 +1,13 @@
 ﻿using System;
-using System.Linq;
 
 namespace RecipeLibrary
 {
     public class Recipe
     {
-        private readonly int maxNumOfIngredients;
         private FoodCategory category;
         private string description;
         private string[] ingredients;
+        private readonly int maxNumOfIngredients = 50;
         private string name;
 
         public Recipe()
@@ -32,15 +31,14 @@ namespace RecipeLibrary
         public Recipe(string name, FoodCategory category, string[] ingredients)
         {
             this.category = category;
-            maxNumOfIngredients = 50;
             this.ingredients = new string[maxNumOfIngredients];
             if (ingredients.Length > maxNumOfIngredients)
                 throw new ArgumentException($@"Max ingredient: {maxNumOfIngredients}");
             Array.Copy(ingredients, this.ingredients, ingredients.Length);
             this.name = name;
         }
-        
-         public Recipe(string name, FoodCategory category, string[] ingredients, string description, int maxNumOfIngredients)
+
+        public Recipe(string name, FoodCategory category, string[] ingredients, string description)
         {
             this.name = name;
             this.category = category;
@@ -49,7 +47,27 @@ namespace RecipeLibrary
                 throw new ArgumentException($@"Max ingredient: {maxNumOfIngredients}");
             Array.Copy(ingredients, this.ingredients, ingredients.Length);
             this.description = description;
-        } 
+        }
+
+        public Recipe(string name, FoodCategory category, string[] ingredients, string description,
+            int maxNumOfIngredients)
+        {
+            this.name = name;
+            this.category = category;
+            this.ingredients = new string[maxNumOfIngredients];
+            if (ingredients.Length > maxNumOfIngredients)
+                throw new ArgumentException($@"Max ingredient: {maxNumOfIngredients}");
+            Array.Copy(ingredients, this.ingredients, ingredients.Length);
+            this.description = description;
+        }
+
+        public Recipe(Recipe recipe)
+        {
+            name = recipe.name;
+            category = recipe.category;
+            ingredients = recipe.ingredients;
+            description = recipe.description;
+        }
 
         public FoodCategory Category
         {
@@ -65,16 +83,8 @@ namespace RecipeLibrary
 
         public string[] Ingredients
         {
-            get
-            {
-                string[] result = new string[GetNumberOfIngredients()];
-                for (int i = 0; i < result.Length; i++)
-                {
-                    result[i] = ingredients[i];
-                }
-
-                return result;
-            }
+            get => ingredients;
+            set => ingredients = value;
         }
 
         public string Name
@@ -189,16 +199,13 @@ namespace RecipeLibrary
 
         public string GetIngredientString()
         {
-            return $"{name, -50} {category, -20} {GetNumberOfIngredients(), -10}";
+            return $"{name,-50} {category,-20} {GetNumberOfIngredients(),3}";
         }
-        
+
         public override string ToString()
         {
             string ingredient = string.Empty;
-            for (int i = 0; i < GetNumberOfIngredients(); i++)
-            {
-                ingredient += $"{ingredients[i]}, ";
-            }
+            for (int i = 0; i < GetNumberOfIngredients(); i++) ingredient += $"{ingredients[i]}, ";
 
             ingredient = ingredient.Remove(ingredient.Length - 2, 2);
             ingredient += ".";

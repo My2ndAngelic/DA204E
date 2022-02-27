@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 using System.Windows.Forms;
 using RecipeLibrary;
 
@@ -7,11 +6,11 @@ namespace RecipeDNC
 {
     public partial class FormIngredients : Form
     {
-        private readonly Recipe recipe;
+        private Recipe recipe;
 
         public FormIngredients(Recipe recipe)
         {
-            this.recipe = recipe;
+            Recipe = recipe;
             InitializeComponent();
             InitializeGUI();
             foreach (string s in recipe.Ingredients)
@@ -20,17 +19,24 @@ namespace RecipeDNC
                 listBoxIngredient.Items.Add(s);
             }
         }
-        
+
         public FormIngredients()
         {
             InitializeComponent();
             InitializeGUI();
         }
 
+        public Recipe Recipe
+        {
+            get => recipe;
+            set => recipe = value;
+        }
+
+
         private void InitializeGUI()
         {
-            labelNumOfIngLeft.Text = recipe.Name == string.Empty ? "New recipe" : recipe.Name;
-            labelNumOfIngRight.Text = $@"Number of ingredients: {recipe.GetNumberOfIngredients().ToString()}";
+            labelNumOfIngLeft.Text = Recipe.Name == string.Empty ? "New recipe" : Recipe.Name;
+            labelNumOfIngRight.Text = $@"Number of ingredients: {Recipe.GetNumberOfIngredients().ToString()}";
         }
 
         public void EditRecipe(string[] recipes)
@@ -38,64 +44,78 @@ namespace RecipeDNC
             listBoxIngredient.DataSource = recipes;
         }
 
-        private void buttonOK_Click(object sender, System.EventArgs e)
+        private void buttonOK_Click(object sender, EventArgs e)
         {
-            foreach (string s in listBoxIngredient.Items)
-            {
-                recipe.AddIngredientBinary(s);
-            }
-            
+            Recipe.Ingredients = new string[Recipe.Ingredients.Length];
+            foreach (string s in listBoxIngredient.Items) Recipe.AddIngredientBinary(s);
             DialogResult = DialogResult.OK;
         }
 
-        private void buttonCancel_Click(object sender, System.EventArgs e)
+        private void buttonCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
         }
 
-        private void buttonAdd_Click(object sender, System.EventArgs e)
+        private void buttonAdd_Click(object sender, EventArgs e)
         {
-            if (textBoxIngredient.Text != string.Empty)
+            if (textBoxIngredient.Text == string.Empty) return;
+            if (listBoxIngredient.Items.Count >= Recipe.Ingredients.Length)
+            {
+                MessageBox.Show(@"Maximum ingredients reached.", @"Error");
+            }
+            else
             {
                 if (listBoxIngredient.SelectedIndex != -1)
                     listBoxIngredient.Items.Insert(listBoxIngredient.SelectedIndex, textBoxIngredient.Text);
                 else
                     listBoxIngredient.Items.Add(textBoxIngredient.Text);
+                textBoxIngredient.Text = string.Empty;
+                labelNumOfIngRight.Text = $@"Number of ingredients: {listBoxIngredient.Items.Count}";
+                listBoxIngredient.SelectedIndex = -1;
             }
-
-            textBoxIngredient.Text = string.Empty;
-            labelNumOfIngRight.Text = $@"Number of ingredients: {listBoxIngredient.Items.Count}";
-            listBoxIngredient.ClearSelected();
         }
 
-        private void buttonEdit_Click(object sender, System.EventArgs e)
+        private void buttonEdit_Click(object sender, EventArgs e)
         {
             if (textBoxIngredient.Text != string.Empty)
                 listBoxIngredient.Items[listBoxIngredient.SelectedIndex] = textBoxIngredient.Text;
             textBoxIngredient.Text = string.Empty;
-            listBoxIngredient.ClearSelected();
+            listBoxIngredient.SelectedIndex = -1;
         }
 
-        private void buttonDelete_Click(object sender, System.EventArgs e)
+        /// <summary>
+        ///     Source: https://stackoverflow.com/questions/13149486/delete-selected-items-from-listbox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void buttonDelete_Click(object sender, EventArgs e)
         {
-            listBoxIngredient.Items.RemoveAt(listBoxIngredient.SelectedIndex);
-            textBoxIngredient.Text = string.Empty;
+            while (listBoxIngredient.SelectedIndex != -1)
+                listBoxIngredient.Items.Remove(listBoxIngredient.SelectedItems[0]);
+
             labelNumOfIngRight.Text = $@"Number of ingredients: {listBoxIngredient.Items.Count}";
-            listBoxIngredient.ClearSelected();
+            listBoxIngredient.SelectedIndex = -1;
         }
 
-        private void listBoxIngredient_SelectedIndexChanged(object sender, System.EventArgs e)
+        /// <summary>
+        ///     Source:
+        ///     https://stackoverflow.com/questions/14921478/why-when-clicking-mouse-right-button-on-listbox-its-working-everywhere-in-the-l
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void listBoxIngredient_MouseDown(object sender, MouseEventArgs e)
         {
-            
+            if (listBoxIngredient.IndexFromPoint(e.Location) == -1 || e.Button == MouseButtons.Right)
+                listBoxIngredient.ClearSelected();
         }
 
-        private void labelNumOfIngRight_Click(object sender, System.EventArgs e)
+        private void listBoxIngredient_KeyDown(object sender, KeyEventArgs e)
         {
-        }
-
-        private void listBoxIngredient_Leave(object sender, System.EventArgs e)
-        {
-            
+            if (!e.Control || e.KeyCode != Keys.A) return;
+            for (int i = 0; i < listBoxIngredient.Items.Count; i++)
+            {
+                listBoxIngredient.SetSelected(i, true);
+            }
         }
     }
 }

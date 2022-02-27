@@ -67,12 +67,12 @@ namespace RecipeDNC
             this.listBoxIngredient.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBoxIngredient.Size = new System.Drawing.Size(378, 349);
             this.listBoxIngredient.TabIndex = 5;
-            this.listBoxIngredient.SelectedIndexChanged += new System.EventHandler(this.listBoxIngredient_SelectedIndexChanged);
-            this.listBoxIngredient.Leave += new System.EventHandler(this.listBoxIngredient_Leave);
+            this.listBoxIngredient.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxIngredient_KeyDown);
+            this.listBoxIngredient.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listBoxIngredient_MouseDown);
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(415, 132);
+            this.buttonDelete.Location = new System.Drawing.Point(415, 130);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(75, 23);
             this.buttonDelete.TabIndex = 4;
@@ -112,24 +112,23 @@ namespace RecipeDNC
             this.labelNumOfIngLeft.AutoSize = true;
             this.labelNumOfIngLeft.Location = new System.Drawing.Point(12, 21);
             this.labelNumOfIngLeft.Name = "labelNumOfIngLeft";
-            this.labelNumOfIngLeft.Size = new System.Drawing.Size(38, 15);
+            this.labelNumOfIngLeft.Size = new System.Drawing.Size(39, 15);
             this.labelNumOfIngLeft.TabIndex = 1;
-            this.labelNumOfIngLeft.Text = "label1";
+            this.labelNumOfIngLeft.Text = "Name";
             // 
             // labelNumOfIngRight
             // 
-            this.labelNumOfIngRight.AutoSize = true;
-            this.labelNumOfIngRight.Location = new System.Drawing.Point(393, 21);
+            this.labelNumOfIngRight.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.labelNumOfIngRight.Location = new System.Drawing.Point(380, 21);
             this.labelNumOfIngRight.Name = "labelNumOfIngRight";
-            this.labelNumOfIngRight.Size = new System.Drawing.Size(136, 15);
+            this.labelNumOfIngRight.Size = new System.Drawing.Size(149, 15);
             this.labelNumOfIngRight.TabIndex = 2;
-            this.labelNumOfIngRight.Text = "Number of ingredients:  ";
-            this.labelNumOfIngRight.TextAlign = System.Drawing.ContentAlignment.TopRight;
-            this.labelNumOfIngRight.Click += new System.EventHandler(this.labelNumOfIngRight_Click);
+            this.labelNumOfIngRight.Text = "Number of ingredients:  00A";
+            this.labelNumOfIngRight.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // buttonOK
             // 
-            this.buttonOK.Location = new System.Drawing.Point(107, 533);
+            this.buttonOK.Location = new System.Drawing.Point(160, 533);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(75, 23);
             this.buttonOK.TabIndex = 3;
@@ -151,14 +150,14 @@ namespace RecipeDNC
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(587, 568);
+            this.ClientSize = new System.Drawing.Size(556, 568);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOK);
             this.Controls.Add(this.labelNumOfIngRight);
             this.Controls.Add(this.labelNumOfIngLeft);
             this.Controls.Add(this.groupBoxIngredient);
             this.Name = "FormIngredients";
-            this.Text = " ";
+            this.Text = "Ingredient Editor";
             this.groupBoxIngredient.ResumeLayout(false);
             this.groupBoxIngredient.PerformLayout();
             this.ResumeLayout(false);

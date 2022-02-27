@@ -2,10 +2,8 @@
 {
     public class RecipeManager
     {
-        private readonly Recipe[] recipes;
         private const int maxNumOfRecipe = 200;
-
-        public int MaxNumOfRecipe => maxNumOfRecipe;
+        private readonly Recipe[] recipes;
 
         public RecipeManager()
         {
@@ -16,7 +14,9 @@
         {
             recipes = new Recipe[maxNumOfRecipe];
         }
-        
+
+        public int MaxNumOfRecipe => maxNumOfRecipe;
+
         public bool Add(Recipe recipe)
         {
             int vp = FindVacantPositionBinary();
@@ -46,7 +46,7 @@
         {
             return index >= 0 && index < maxNumOfRecipe && recipes[index] != null;
         }
-        
+
         public void RemoveAt(int index)
         {
             if (!CheckIndex(index)) return;
@@ -54,7 +54,7 @@
 
             recipes[maxNumOfRecipe - 1] = null;
         }
-        
+
         public int GetNumberOfRecipes()
         {
             int result = FindVacantPositionBinary();
@@ -65,18 +65,20 @@
         {
             int temp = GetNumberOfRecipes();
             string[] result = new string[temp];
-            for (int i = 0; i < temp; i++)
-            {
-                result[i] = recipes[i].GetIngredientString();
-            }
+            for (int i = 0; i < temp; i++) result[i] = recipes[i].GetIngredientString();
             return result;
         }
 
         public Recipe GetRecipeAt(int index)
         {
+            return recipes[index];
+        }
+
+        public Recipe RecipeListToString(int index)
+        {
             return CheckIndex(index) ? recipes[index] : null;
         }
-        
+
         private int FindVacantPositionBinary()
         {
             int l = 0, r = recipes.Length - 1;

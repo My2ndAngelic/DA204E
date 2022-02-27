@@ -1,6 +1,4 @@
 using System.Collections.Generic;
-using System.Linq;
-using Microsoft.VisualStudio.TestPlatform.CommunicationUtilities.Serialization;
 using NUnit.Framework;
 using RecipeLibrary;
 
@@ -19,23 +17,21 @@ namespace RecipeNUnit
             return result.ToArray();
         }
 
-        
+
         [SetUp]
         public void Setup()
         {
-            
         }
 
         [Test]
         public void AddIngredient2()
         {
             Recipe r = new Recipe(ingredientSize);
-            for (int i = 0; i < ingredientSize+100; i++)
+            for (int i = 0; i < ingredientSize + 100; i++)
                 r.AddIngredientBinary("ur mom");
             Assert.AreEqual(Result(), r.Ingredients);
-
         }
-        
+
         [Test]
         public void AddIngredient1()
         {
