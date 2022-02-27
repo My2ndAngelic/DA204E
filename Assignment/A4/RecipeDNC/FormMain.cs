@@ -53,9 +53,22 @@ namespace RecipeDNC
             rm.Add(new Recipe("Ur Mom 1", FoodCategory.Fish, new[] {"ur mom"}, "Number 1"));
             rm.Add(new Recipe("Ur Mom 2", FoodCategory.Meat, s, "Number 2"));
             rm.Add(new Recipe("Ur Mom 3", FoodCategory.Pasta, s, "Number 3"));
+            rm.Add(new Recipe("Ur Mom 4", FoodCategory.Pasta, s, @"Step 1
+Preheat oven to 375 degrees F (190 degrees C). Lightly grease a large baking sheet.
+
+Step 2
+In a large bowl, mix together flour, sugar, baking soda, baking powder, salt and margarine. Stir in 1 cup of buttermilk and egg. Turn dough out onto a lightly floured surface and knead slightly. Form dough into a round and place on prepared baking sheet. In a small bowl, combine melted butter with 1/4 cup buttermilk; brush loaf with this mixture. Use a sharp knife to cut an 'X' into the top of the loaf.
+
+Step 3
+Bake in preheated oven until a toothpick inserted into the center of the loaf comes out clean, 45 to 50 minutes. Check for doneness after 30 minutes. You may continue to brush the loaf with the butter mixture while it bakes."));
             listBoxRecipe.DataSource = rm.GetRecipes();
         }
 
+        private void FormMain_Shown(object sender, EventArgs e)
+        {
+            testShit();
+        }
+        
         private void buttonAddIngredients_Click(object sender, EventArgs e)
         {
             FormIngredients fi = new FormIngredients(currRecipe);
@@ -69,7 +82,7 @@ namespace RecipeDNC
         {
             if (currRecipe.GetNumberOfIngredients() <= 0)
             {
-                MessageBox.Show(@"No ingredient specified", @"Error");
+                MessageBox.Show(@"No ingredient specified.", @"Error");
                 return;
             }
 
@@ -164,11 +177,6 @@ namespace RecipeDNC
             textBoxName.Text = currRecipe.Name;
             textBoxDescription.Text = currRecipe.Description;
             comboBoxCategory.SelectedItem = currRecipe.Category;
-        }
-
-        private void FormMain_Shown(object sender, EventArgs e)
-        {
-            testShit();
         }
     }
 }
