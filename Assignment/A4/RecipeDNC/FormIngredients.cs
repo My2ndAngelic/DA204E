@@ -98,8 +98,7 @@ namespace RecipeDNC
         }
 
         /// <summary>
-        ///     Source:
-        ///     https://stackoverflow.com/questions/14921478/why-when-clicking-mouse-right-button-on-listbox-its-working-everywhere-in-the-l
+        ///     Source: https://stackoverflow.com/questions/14921478/why-when-clicking-mouse-right-button-on-listbox-its-working-everywhere-in-the-l
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

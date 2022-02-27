@@ -156,6 +156,7 @@ namespace RecipeDNC
             this.Controls.Add(this.labelNumOfIngRight);
             this.Controls.Add(this.labelNumOfIngLeft);
             this.Controls.Add(this.groupBoxIngredient);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormIngredients";
             this.Text = "Ingredient Editor";
             this.groupBoxIngredient.ResumeLayout(false);

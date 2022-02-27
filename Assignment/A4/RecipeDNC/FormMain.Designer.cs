@@ -133,6 +133,8 @@ namespace RecipeDNC
             this.listBoxRecipe.TabIndex = 1;
             this.listBoxRecipe.SelectedIndexChanged += new System.EventHandler(this.listBoxRecipe_SelectedIndexChanged);
             this.listBoxRecipe.DoubleClick += new System.EventHandler(this.listBoxRecipe_DoubleClick);
+            this.listBoxRecipe.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxRecipe_KeyDown);
+            this.listBoxRecipe.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listBoxRecipe_MouseDown);
             // 
             // buttonEditBegin
             // 
@@ -196,8 +198,9 @@ namespace RecipeDNC
             this.Controls.Add(this.buttonEditBegin);
             this.Controls.Add(this.listBoxRecipe);
             this.Controls.Add(this.groupBox1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormMain";
-            this.Text = "Apu Recipe Book by Evan Huynh";
+            this.Text = "Ur Mom";
             this.Shown += new System.EventHandler(this.FormMain_Shown);
             this.groupBox1.ResumeLayout(false);
             this.groupBox1.PerformLayout();
