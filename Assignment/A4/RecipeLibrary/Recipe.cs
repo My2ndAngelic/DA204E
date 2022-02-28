@@ -4,10 +4,10 @@ namespace RecipeLibrary
 {
     public class Recipe
     {
+        private readonly int maxNumOfIngredients = 50;
         private FoodCategory category;
         private string description;
         private string[] ingredients;
-        private readonly int maxNumOfIngredients = 50;
         private string name;
 
         public Recipe()

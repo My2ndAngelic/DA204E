@@ -3,7 +3,6 @@ using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
 using RecipeLibrary;
-using System.Runtime.InteropServices;
 
 namespace RecipeDNC
 {
@@ -20,7 +19,7 @@ namespace RecipeDNC
             InitializeComponent();
             InitializeGUI();
         }
-        
+
         private void InitializeGUI()
         {
             InitializeGroupBox();
@@ -46,7 +45,9 @@ namespace RecipeDNC
 
         private void testShit()
         {
-            string[] s = new []{"cremini mushrooms",
+            string[] s =
+            {
+                "cremini mushrooms",
                 "alligator",
                 "cornstarch",
                 "pomegranates",
@@ -95,10 +96,12 @@ namespace RecipeDNC
                 "green onions",
                 "ice cream",
                 "halibut",
-                "okra"};
+                "okra"
+            };
             for (int i = 0; i < 200; i++)
-            {
-                rm.Add(new Recipe($"Ur Mom {i}", (FoodCategory) typeof(FoodCategory).GetEnumValues().OfType<Enum>().OrderBy(e => Guid.NewGuid()).FirstOrDefault(), s.OrderBy(x => new Random().Next()).ToArray(), @"Step 1
+                rm.Add(new Recipe($"Ur Mom {i}",
+                    (FoodCategory) typeof(FoodCategory).GetEnumValues().OfType<Enum>().OrderBy(e => Guid.NewGuid())
+                        .FirstOrDefault(), s.OrderBy(x => new Random().Next()).ToArray(), @"Step 1
 Preheat oven to 375 degrees F (190 degrees C). Lightly grease a large baking sheet.
 
 Step 2
@@ -106,7 +109,6 @@ In a large bowl, mix together flour, sugar, baking soda, baking powder, salt and
 
 Step 3
 Bake in preheated oven until a toothpick inserted into the center of the loaf comes out clean, 45 to 50 minutes. Check for doneness after 30 minutes. You may continue to brush the loaf with the butter mixture while it bakes."));
-            }
 
             listBoxRecipe.DataSource = rm.GetRecipes();
         }
@@ -115,7 +117,7 @@ Bake in preheated oven until a toothpick inserted into the center of the loaf co
         {
             testShit();
         }
-        
+
         private void buttonAddIngredients_Click(object sender, EventArgs e)
         {
             FormIngredients fi = new FormIngredients(currRecipe);
@@ -143,7 +145,7 @@ Bake in preheated oven until a toothpick inserted into the center of the loaf co
                         textBoxDescription.Text,
                         maxNumOfIngredients)))
                 {
-                    labelMode.Text = $@"Recipe saved.";
+                    labelMode.Text = @"Recipe saved.";
                     listBoxRecipe.DataSource = rm.GetRecipes();
                 }
                 else
@@ -185,7 +187,6 @@ Bake in preheated oven until a toothpick inserted into the center of the loaf co
 
         private void UpdateGUI()
         {
-
             if (editMode)
             {
                 labelMode.Text = @"Edit Mode";
@@ -261,10 +262,7 @@ Description
         private void listBoxRecipe_KeyDown(object sender, KeyEventArgs e)
         {
             if (!e.Control || e.KeyCode != Keys.A) return;
-            for (int i = 0; i < listBoxRecipe.Items.Count; i++)
-            {
-                listBoxRecipe.SetSelected(i, true);
-            }
+            for (int i = 0; i < listBoxRecipe.Items.Count; i++) listBoxRecipe.SetSelected(i, true);
         }
     }
 }

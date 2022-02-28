@@ -98,7 +98,8 @@ namespace RecipeDNC
         }
 
         /// <summary>
-        ///     Source: https://stackoverflow.com/questions/14921478/why-when-clicking-mouse-right-button-on-listbox-its-working-everywhere-in-the-l
+        ///     Source:
+        ///     https://stackoverflow.com/questions/14921478/why-when-clicking-mouse-right-button-on-listbox-its-working-everywhere-in-the-l
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -111,10 +112,7 @@ namespace RecipeDNC
         private void listBoxIngredient_KeyDown(object sender, KeyEventArgs e)
         {
             if (!e.Control || e.KeyCode != Keys.A) return;
-            for (int i = 0; i < listBoxIngredient.Items.Count; i++)
-            {
-                listBoxIngredient.SetSelected(i, true);
-            }
+            for (int i = 0; i < listBoxIngredient.Items.Count; i++) listBoxIngredient.SetSelected(i, true);
         }
     }
 }
