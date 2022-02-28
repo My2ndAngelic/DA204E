@@ -4,19 +4,31 @@
     {
         private const int maxNumOfRecipe = 200;
         private readonly Recipe[] recipes;
+        public int MaxNumOfRecipe => maxNumOfRecipe;
 
+        
+        /// <summary>
+        ///     Zero parameter constructor
+        /// </summary>
         public RecipeManager()
         {
             recipes = new Recipe[maxNumOfRecipe];
         }
 
+        /// <summary>
+        ///     Constructor with max number of recipe
+        /// </summary>
+        /// <param name="maxNumOfRecipe"></param>
         public RecipeManager(int maxNumOfRecipe)
         {
             recipes = new Recipe[maxNumOfRecipe];
         }
-
-        public int MaxNumOfRecipe => maxNumOfRecipe;
-
+        
+        /// <summary>
+        ///     
+        /// </summary>
+        /// <param name="recipe"></param>
+        /// <returns></returns>
         public bool Add(Recipe recipe)
         {
             int vp = FindVacantPositionBinary();

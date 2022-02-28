@@ -35,6 +35,7 @@ namespace RecipeDNC
 
         private void InitializeGUI()
         {
+            
             labelNumOfIngLeft.Text = Recipe.Name == string.Empty ? "New recipe" : Recipe.Name;
             labelNumOfIngRight.Text = $@"Number of ingredients: {Recipe.GetNumberOfIngredients().ToString()}";
         }

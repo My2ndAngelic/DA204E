@@ -23,13 +23,7 @@ namespace RecipeDNC
         private void InitializeGUI()
         {
             InitializeGroupBox();
-
-            listBoxRecipe.Font = new Font("Consolas", 9);
-            textBoxName.MaxLength = 50;
-            listBoxRecipe.SelectionMode = SelectionMode.MultiExtended;
-            labelMode.Text = @"Add mode";
-            buttonAddIngredients.Text = @"Add ingredients";
-            buttonAddRecipe.Text = @"Add recipe";
+            InitializeTheRest();
         }
 
 
@@ -41,6 +35,17 @@ namespace RecipeDNC
             comboBoxCategory.DropDownStyle = ComboBoxStyle.DropDownList;
             textBoxName.Text = string.Empty;
             textBoxDescription.Text = string.Empty;
+        }
+
+        private void InitializeTheRest()
+        {
+            Text = @"Apu Recipe Box by Evan Huynh";
+            listBoxRecipe.Font = new Font("Consolas", 9);
+            textBoxName.MaxLength = 50;
+            listBoxRecipe.SelectionMode = SelectionMode.MultiExtended;
+            labelMode.Text = @"Add mode";
+            buttonAddIngredients.Text = @"Add ingredients";
+            buttonAddRecipe.Text = @"Add recipe";
         }
 
         private void testShit()
@@ -115,7 +120,7 @@ Bake in preheated oven until a toothpick inserted into the center of the loaf co
 
         private void FormMain_Shown(object sender, EventArgs e)
         {
-            testShit();
+            // testShit();
         }
 
         private void buttonAddIngredients_Click(object sender, EventArgs e)
