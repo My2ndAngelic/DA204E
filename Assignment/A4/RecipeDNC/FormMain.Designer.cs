@@ -29,7 +29,7 @@ namespace RecipeDNC
         /// </summary>
         private void InitializeComponent()
         {
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
+            this.groupBoxRecipeEditor = new System.Windows.Forms.GroupBox();
             this.buttonAddIngredients = new System.Windows.Forms.Button();
             this.buttonAddRecipe = new System.Windows.Forms.Button();
             this.textBoxDescription = new System.Windows.Forms.TextBox();
@@ -43,24 +43,24 @@ namespace RecipeDNC
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonClearAll = new System.Windows.Forms.Button();
             this.labelMode = new System.Windows.Forms.Label();
-            this.groupBox1.SuspendLayout();
+            this.groupBoxRecipeEditor.SuspendLayout();
             this.SuspendLayout();
             // 
-            // groupBox1
+            // groupBoxRecipeEditor
             // 
-            this.groupBox1.Controls.Add(this.buttonAddIngredients);
-            this.groupBox1.Controls.Add(this.buttonAddRecipe);
-            this.groupBox1.Controls.Add(this.textBoxDescription);
-            this.groupBox1.Controls.Add(this.labelCategory);
-            this.groupBox1.Controls.Add(this.comboBoxCategory);
-            this.groupBox1.Controls.Add(this.textBoxName);
-            this.groupBox1.Controls.Add(this.labelName);
-            this.groupBox1.Location = new System.Drawing.Point(12, 12);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(475, 600);
-            this.groupBox1.TabIndex = 0;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "Recipe Editor";
+            this.groupBoxRecipeEditor.Controls.Add(this.buttonAddIngredients);
+            this.groupBoxRecipeEditor.Controls.Add(this.buttonAddRecipe);
+            this.groupBoxRecipeEditor.Controls.Add(this.textBoxDescription);
+            this.groupBoxRecipeEditor.Controls.Add(this.labelCategory);
+            this.groupBoxRecipeEditor.Controls.Add(this.comboBoxCategory);
+            this.groupBoxRecipeEditor.Controls.Add(this.textBoxName);
+            this.groupBoxRecipeEditor.Controls.Add(this.labelName);
+            this.groupBoxRecipeEditor.Location = new System.Drawing.Point(12, 12);
+            this.groupBoxRecipeEditor.Name = "groupBoxRecipeEditor";
+            this.groupBoxRecipeEditor.Size = new System.Drawing.Size(475, 600);
+            this.groupBoxRecipeEditor.TabIndex = 0;
+            this.groupBoxRecipeEditor.TabStop = false;
+            this.groupBoxRecipeEditor.Text = "Recipe Editor";
             // 
             // buttonAddIngredients
             // 
@@ -197,20 +197,20 @@ namespace RecipeDNC
             this.Controls.Add(this.buttonEditFinish);
             this.Controls.Add(this.buttonEditBegin);
             this.Controls.Add(this.listBoxRecipe);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBoxRecipeEditor);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Name = "FormMain";
             this.Text = "Ur Mom";
             this.Shown += new System.EventHandler(this.FormMain_Shown);
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
+            this.groupBoxRecipeEditor.ResumeLayout(false);
+            this.groupBoxRecipeEditor.PerformLayout();
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private System.Windows.Forms.GroupBox groupBox1;
+        private System.Windows.Forms.GroupBox groupBoxRecipeEditor;
         private System.Windows.Forms.Label labelName;
         private System.Windows.Forms.TextBox textBoxName;
         private System.Windows.Forms.ComboBox comboBoxCategory;

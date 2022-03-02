@@ -10,6 +10,7 @@ namespace RecipeDNC
     {
         private const int maxNumOfRecipe = 200;
         private const int maxNumOfIngredients = 50;
+        private const int maxLengthRecipeName = 50;
         private Recipe currRecipe = new Recipe(maxNumOfIngredients);
         private bool editMode;
         private RecipeManager rm = new RecipeManager(maxNumOfRecipe);
@@ -22,13 +23,15 @@ namespace RecipeDNC
 
         private void InitializeGUI()
         {
-            InitializeGroupBox();
+            InitializeRecipeEditor();
             InitializeTheRest();
         }
 
 
-        private void InitializeGroupBox()
+        private void InitializeRecipeEditor()
         {
+            groupBoxRecipeEditor.Text = @"Recipe Editor";
+            
             comboBoxCategory.DataSource = Enum.GetValues(typeof(FoodCategory));
             comboBoxCategory.AutoCompleteMode = AutoCompleteMode.Suggest;
             comboBoxCategory.AutoCompleteSource = AutoCompleteSource.ListItems;
@@ -37,11 +40,12 @@ namespace RecipeDNC
             textBoxDescription.Text = string.Empty;
         }
 
+
         private void InitializeTheRest()
         {
             Text = @"Apu Recipe Box by Evan Huynh";
             listBoxRecipe.Font = new Font("Consolas", 9);
-            textBoxName.MaxLength = 50;
+            textBoxName.MaxLength = maxLengthRecipeName;
             listBoxRecipe.SelectionMode = SelectionMode.MultiExtended;
             labelMode.Text = @"Add mode";
             buttonAddIngredients.Text = @"Add ingredients";
@@ -106,7 +110,7 @@ namespace RecipeDNC
             for (int i = 0; i < 200; i++)
                 rm.Add(new Recipe($"Ur Mom {i}",
                     (FoodCategory) typeof(FoodCategory).GetEnumValues().OfType<Enum>().OrderBy(e => Guid.NewGuid())
-                        .FirstOrDefault(), s.OrderBy(x => new Random().Next()).ToArray(), @"Step 1
+                        .FirstOrDefault()!, s.OrderBy(x => new Random().Next()).ToArray(), @"Step 1
 Preheat oven to 375 degrees F (190 degrees C). Lightly grease a large baking sheet.
 
 Step 2
