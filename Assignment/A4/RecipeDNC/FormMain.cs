@@ -21,6 +21,9 @@ namespace RecipeDNC
             InitializeGUI();
         }
 
+        /// <summary>
+        /// First time GUI
+        /// </summary>
         private void InitializeGUI()
         {
             Text = @"Apu Recipe Editor by Evan Huynh";
@@ -30,6 +33,9 @@ namespace RecipeDNC
         }
 
 
+        /// <summary>
+        /// Recipe Editor first time
+        /// </summary>
         private void InitializeRecipeEditor()
         {
             groupBoxRecipeEditor.Text = @"Recipe Editor";
@@ -41,14 +47,19 @@ namespace RecipeDNC
             
             textBoxName.Text = string.Empty;
             textBoxDescription.Text = string.Empty;
-
-            labelName.Text = @"Name";
-            labelCategory.Text = @"Category";
         }
-
-
+        
+        /// <summary>
+        /// 
+        /// </summary>
         private void InitializeResultBox()
         {
+            labelName.Text = @"Name";
+            labelCategory.Text = @"Category";
+            labelRName.Text = @"Name";
+            labelRCategory.Text = @"Category";
+            labelRNoIng.Text = @"# of ingredients";
+            
             listBoxRecipe.Font = new Font("Consolas", 9);
             textBoxName.MaxLength = maxLengthRecipeName;
             listBoxRecipe.SelectionMode = SelectionMode.MultiExtended;
@@ -63,7 +74,12 @@ namespace RecipeDNC
         {
             testSuite(69);
         }
-
+        
+        /// <summary>
+        ///     Control the event for the Add Ingredient button when clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonAddIngredients_Click(object sender, EventArgs e)
         {
             FormIngredient fi = new FormIngredient(currRecipe);

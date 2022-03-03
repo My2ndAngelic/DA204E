@@ -43,6 +43,9 @@ namespace RecipeDNC
             this.buttonDelete = new System.Windows.Forms.Button();
             this.buttonClearAll = new System.Windows.Forms.Button();
             this.labelMode = new System.Windows.Forms.Label();
+            this.labelRName = new System.Windows.Forms.Label();
+            this.labelRCategory = new System.Windows.Forms.Label();
+            this.labelRNoIng = new System.Windows.Forms.Label();
             this.groupBoxRecipeEditor.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -187,11 +190,40 @@ namespace RecipeDNC
             this.labelMode.Text = "Edit Mode";
             this.labelMode.TextAlign = System.Drawing.ContentAlignment.TopRight;
             // 
+            // labelRName
+            // 
+            this.labelRName.AutoSize = true;
+            this.labelRName.Location = new System.Drawing.Point(518, 100);
+            this.labelRName.Name = "labelRName";
+            this.labelRName.Size = new System.Drawing.Size(39, 15);
+            this.labelRName.TabIndex = 7;
+            this.labelRName.Text = "Name";
+            // 
+            // labelRCategory
+            // 
+            this.labelRCategory.AutoSize = true;
+            this.labelRCategory.Location = new System.Drawing.Point(877, 100);
+            this.labelRCategory.Name = "labelRCategory";
+            this.labelRCategory.Size = new System.Drawing.Size(55, 15);
+            this.labelRCategory.TabIndex = 8;
+            this.labelRCategory.Text = "Category";
+            // 
+            // labelRNoIng
+            // 
+            this.labelRNoIng.Location = new System.Drawing.Point(1020, 100);
+            this.labelRNoIng.Name = "labelRNoIng";
+            this.labelRNoIng.Size = new System.Drawing.Size(67, 37);
+            this.labelRNoIng.TabIndex = 9;
+            this.labelRNoIng.Text = "# of Ingredients";
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1120, 634);
+            this.Controls.Add(this.labelRNoIng);
+            this.Controls.Add(this.labelRCategory);
+            this.Controls.Add(this.labelRName);
             this.Controls.Add(this.labelMode);
             this.Controls.Add(this.buttonClearAll);
             this.Controls.Add(this.buttonDelete);
@@ -206,6 +238,7 @@ namespace RecipeDNC
             this.groupBoxRecipeEditor.ResumeLayout(false);
             this.groupBoxRecipeEditor.PerformLayout();
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
@@ -225,5 +258,8 @@ namespace RecipeDNC
         private System.Windows.Forms.Button buttonDelete;
         private System.Windows.Forms.Button buttonClearAll;
         private System.Windows.Forms.Label labelMode;
+        private System.Windows.Forms.Label labelRName;
+        private System.Windows.Forms.Label labelRCategory;
+        private System.Windows.Forms.Label labelRNoIng;
     }
 }
