@@ -4,11 +4,15 @@ using RecipeLibrary;
 
 namespace RecipeDNC
 {
-    public partial class FormIngredients : Form
+    public partial class FormIngredient : Form
     {
         private Recipe recipe;
 
-        public FormIngredients(Recipe recipe)
+        /// <summary>
+        /// Constructor with recipe ready
+        /// </summary>
+        /// <param name="recipe"></param>
+        public FormIngredient(Recipe recipe)
         {
             Recipe = recipe;
             InitializeComponent();
@@ -20,7 +24,7 @@ namespace RecipeDNC
             }
         }
 
-        public FormIngredients()
+        public FormIngredient()
         {
             InitializeComponent();
             InitializeGUI();
@@ -35,7 +39,16 @@ namespace RecipeDNC
 
         private void InitializeGUI()
         {
-            
+            Text = @"Ingredient Editor";
+            groupBoxIngredient.Text = @"Ingredients list";
+
+            buttonAdd.Text = @"Add";
+            buttonEdit.Text = @"Edit";
+            buttonDelete.Text = @"Delete";
+
+            buttonOK.Text = @"OK";
+            buttonCancel.Text = @"Cancel";
+
             labelNumOfIngLeft.Text = Recipe.Name == string.Empty ? "New recipe" : Recipe.Name;
             labelNumOfIngRight.Text = $@"Number of ingredients: {Recipe.GetNumberOfIngredients().ToString()}";
         }

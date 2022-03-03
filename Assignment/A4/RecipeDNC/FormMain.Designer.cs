@@ -125,11 +125,12 @@ namespace RecipeDNC
             // 
             // listBoxRecipe
             // 
+            this.listBoxRecipe.Font = new System.Drawing.Font("Consolas", 9F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point);
             this.listBoxRecipe.FormattingEnabled = true;
-            this.listBoxRecipe.ItemHeight = 15;
+            this.listBoxRecipe.ItemHeight = 14;
             this.listBoxRecipe.Location = new System.Drawing.Point(520, 140);
             this.listBoxRecipe.Name = "listBoxRecipe";
-            this.listBoxRecipe.Size = new System.Drawing.Size(567, 394);
+            this.listBoxRecipe.Size = new System.Drawing.Size(567, 396);
             this.listBoxRecipe.TabIndex = 1;
             this.listBoxRecipe.SelectedIndexChanged += new System.EventHandler(this.listBoxRecipe_SelectedIndexChanged);
             this.listBoxRecipe.DoubleClick += new System.EventHandler(this.listBoxRecipe_DoubleClick);

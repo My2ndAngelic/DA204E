@@ -7,17 +7,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <Compile Update="FormIngredients.cs">
+        <Compile Update="FormIngredient.cs">
             <SubType>Form</SubType>
         </Compile>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\RecipeLibrary\RecipeLibrary.csproj"/>
+        <ProjectReference Include="..\RecipeLibrary\RecipeLibrary.csproj" />
     </ItemGroup>
 
     <ItemGroup>
-        <PackageReference Include="log4net" Version="2.0.14"/>
+        <PackageReference Include="log4net" Version="2.0.14" />
     </ItemGroup>
 
 </Project>

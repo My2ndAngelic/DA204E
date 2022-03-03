@@ -2,7 +2,7 @@
 
 namespace RecipeDNC
 {
-    partial class FormIngredients
+    partial class FormIngredient
     {
         /// <summary>
         /// Required designer variable.
@@ -146,7 +146,7 @@ namespace RecipeDNC
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
             // 
-            // FormIngredients
+            // FormIngredient
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(7F, 15F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
@@ -157,7 +157,7 @@ namespace RecipeDNC
             this.Controls.Add(this.labelNumOfIngLeft);
             this.Controls.Add(this.groupBoxIngredient);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
-            this.Name = "FormIngredients";
+            this.Name = "FormIngredient";
             this.Text = "Ingredient Editor";
             this.groupBoxIngredient.ResumeLayout(false);
             this.groupBoxIngredient.PerformLayout();
