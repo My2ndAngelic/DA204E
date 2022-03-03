@@ -196,7 +196,7 @@ namespace RecipeDNC
 
         private void listBoxRecipe_DoubleClick(object sender, EventArgs e)
         {
-            Recipe r = rm.RecipeListToString(listBoxRecipe.SelectedIndex);
+            Recipe r = rm.GetRecipeAt(listBoxRecipe.SelectedIndex);
             MessageBox.Show(r.ToString(),
                 $@"{r.Name}");
         }

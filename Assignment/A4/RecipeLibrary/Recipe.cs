@@ -11,7 +11,7 @@ namespace RecipeLibrary
         private string name;
 
         /// <summary>
-        /// Default constructor
+        ///     Default constructor
         /// </summary>
         public Recipe()
         {
@@ -23,7 +23,7 @@ namespace RecipeLibrary
         }
 
         /// <summary>
-        /// Constructor with max number of ingredients
+        ///     Constructor with max number of ingredients
         /// </summary>
         /// <param name="maxNumOfIngredients">Maximum number of ingredients</param>
         public Recipe(int maxNumOfIngredients)
@@ -36,7 +36,7 @@ namespace RecipeLibrary
         }
 
         /// <summary>
-        /// Constructor with name, category and ingredients list
+        ///     Constructor with name, category and ingredients list
         /// </summary>
         /// <param name="name">Name of the recipe</param>
         /// <param name="category">Category of the recipe</param>
@@ -47,12 +47,15 @@ namespace RecipeLibrary
             this.category = category;
             this.ingredients = new string[maxNumOfIngredients];
             if (ingredients.Length > maxNumOfIngredients)
+            {
                 return;
+            }
+
             Array.Copy(ingredients, this.ingredients, ingredients.Length);
         }
 
         /// <summary>
-        /// Constructor for all parameters except max number of ingredients = 50
+        ///     Constructor for all parameters except max number of ingredients = 50
         /// </summary>
         /// <param name="name">Name of the recipe</param>
         /// <param name="category">Category of the recipe</param>
@@ -65,12 +68,15 @@ namespace RecipeLibrary
             this.ingredients = new string[maxNumOfIngredients];
             this.description = description;
             if (ingredients.Length > maxNumOfIngredients)
+            {
                 return;
+            }
+
             Array.Copy(ingredients, this.ingredients, ingredients.Length);
         }
 
         /// <summary>
-        /// Constructor for all fields
+        ///     Constructor for all fields
         /// </summary>
         /// <param name="name">Name of the recipe</param>
         /// <param name="category">Category of the recipe</param>
@@ -84,13 +90,16 @@ namespace RecipeLibrary
             this.category = category;
             this.ingredients = new string[maxNumOfIngredients];
             if (ingredients.Length > maxNumOfIngredients)
+            {
                 return;
+            }
+
             Array.Copy(ingredients, this.ingredients, ingredients.Length);
             this.description = description;
         }
 
         /// <summary>
-        /// Constructor for Recipe object
+        ///     Constructor for Recipe object
         /// </summary>
         /// <param name="recipe">Recipe object</param>
         public Recipe(Recipe recipe)
@@ -137,27 +146,34 @@ namespace RecipeLibrary
         {
             int vp = FindVacantPositionBinary();
 
-            if (value == null || vp < 0) return false;
+            if (value == null || vp < 0)
+            {
+                return false;
+            }
 
             ingredients[vp] = value;
             return true;
         }
 
         /// <summary>
-        /// Change ingredient at position in the array
+        ///     Change ingredient at position in the array
         /// </summary>
         /// <param name="index">Index of the element</param>
         /// <param name="value">Name of the ingredients</param>
-        /// <returns></returns>
+        /// <returns>True if successfully changed</returns>
         public bool ChangeIngredientAt(int index, string value)
         {
-            if (index >= MaxNumOfIngredients || ingredients[index] == null || value == null) return false;
+            if (index >= MaxNumOfIngredients || ingredients[index] == null || value == null)
+            {
+                return false;
+            }
+
             ingredients[index] = value;
             return true;
         }
 
         /// <summary>
-        /// Check if index in the ingredients array is not null
+        ///     Check if index in the ingredients array is not null
         /// </summary>
         /// <param name="index">Position in the array</param>
         /// <returns>True if not null</returns>
@@ -167,18 +183,26 @@ namespace RecipeLibrary
         }
 
         /// <summary>
-        /// Null the element at index and move it to the final position
+        ///     Null the element at index and move it to the final position
         /// </summary>
         /// <param name="index">Position in the array</param>
         public void DeleteIngredientAt(int index)
         {
-            if (!CheckIndex(index)) return;
-            for (int i = index; i < maxNumOfIngredients - 1; i++) ingredients[i] = ingredients[i + 1];
+            if (!CheckIndex(index))
+            {
+                return;
+            }
+
+            for (int i = index; i < maxNumOfIngredients - 1; i++)
+            {
+                ingredients[i] = ingredients[i + 1];
+            }
+
             ingredients[maxNumOfIngredients] = null;
         }
 
         /// <summary>
-        /// Get the number of existing existing ingredients
+        ///     Get the number of existing existing ingredients
         /// </summary>
         /// <returns>Current number of ingredients</returns>
         public int GetNumberOfIngredients()
@@ -188,7 +212,7 @@ namespace RecipeLibrary
         }
 
         /// <summary>
-        /// Get the ingredient at index
+        ///     Get the ingredient at index
         /// </summary>
         /// <param name="index">Position in the array</param>
         /// <returns>Ingredient description</returns>
@@ -197,19 +221,22 @@ namespace RecipeLibrary
             return CheckIndex(index) ? ingredients[index] : null;
         }
 
-       
-
         /// <summary>
-        /// Find the first null position in the array using binary search
+        ///     Find the first null position in the array using binary search
         /// </summary>
         /// <returns>First non-null position in the array, -1 if not exist, -2 if something failed</returns>
         private int FindVacantPositionBinary()
         {
             int l = 0, r = ingredients.Length - 1;
-            if (ingredients[l] == null) return l;
+            if (ingredients[l] == null)
+            {
+                return l;
+            }
 
             if (ingredients[r] != null)
+            {
                 return -1;
+            }
 
             while (l <= r)
             {
@@ -217,13 +244,19 @@ namespace RecipeLibrary
 
                 if (ingredients[m] == null)
                 {
-                    if (ingredients[m - 1] != null) return m;
+                    if (ingredients[m - 1] != null)
+                    {
+                        return m;
+                    }
 
                     r = m - 1;
                 }
                 else
                 {
-                    if (ingredients[m + 1] == null) return m + 1;
+                    if (ingredients[m + 1] == null)
+                    {
+                        return m + 1;
+                    }
 
                     l = m + 1;
                 }
@@ -233,58 +266,29 @@ namespace RecipeLibrary
         }
 
         /// <summary>
-        /// 
+        ///     Return the short description of recipe
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Short description of recipe</returns>
         public string GetIngredientString()
         {
             return $"{name,-50} {category,-20} {GetNumberOfIngredients(),3}";
         }
 
         /// <summary>
-        /// 
+        ///     Return recipe string with ingredients and description
         /// </summary>
-        /// <returns></returns>
+        /// <returns>Recipe string with ingredients and description</returns>
         public override string ToString()
         {
             string ingredient = string.Empty;
-            for (int i = 0; i < GetNumberOfIngredients(); i++) ingredient += $"{ingredients[i]}, ";
+            for (int i = 0; i < GetNumberOfIngredients(); i++)
+            {
+                ingredient += $"{ingredients[i]}, ";
+            }
 
             ingredient = ingredient.Remove(ingredient.Length - 2, 2);
             // ingredient += ".";
             return $"Ingredients\n{ingredient}\n\nDescription\n{description}";
         }
-
-        #region Unused methods
-        
-        /// <summary>
-        ///     Add ingredients with linear search
-        /// </summary>
-        /// <param name="value">Description of the ingredient</param>
-        /// <returns>True if successfully added</returns>
-        public bool AddIngredientLinear(string value)
-        {
-            int vp = FindVacantPositionLinear();
-
-            if (value == null || vp < 0) return false;
-
-            ingredients[vp] = value;
-            return true;
-        }
-        
-        /// <summary>
-        /// Find the first null position in the array using linear search
-        /// </summary>
-        /// <returns>First non-null position in the array, -1 if not exist</returns>
-        private int FindVacantPositionLinear()
-        {
-            for (int i = 0; i < maxNumOfIngredients; i++)
-                if (ingredients[i] == null)
-                    return i;
-
-            return -1;
-        }
-
-        #endregion
     }
 }
