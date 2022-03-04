@@ -34,7 +34,7 @@ namespace RecipeDNC
 
 
         /// <summary>
-        /// Recipe Editor first time
+        /// Recipe Editor init
         /// </summary>
         private void InitializeRecipeEditor()
         {
@@ -50,7 +50,7 @@ namespace RecipeDNC
         }
         
         /// <summary>
-        /// 
+        /// Result box and everything else
         /// </summary>
         private void InitializeResultBox()
         {
@@ -89,15 +89,20 @@ namespace RecipeDNC
                 currRecipe = fi.Recipe;
         }
 
+        /// <summary>
+        ///     Control the event for the add recipe button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonAddRecipe_Click(object sender, EventArgs e)
         {
-            if (currRecipe.GetNumberOfIngredients() <= 0)
+            if (currRecipe.GetNumberOfIngredients() <= 0) // No ingredient, quit
             {
                 MessageBox.Show(@"No ingredient specified.", @"Error");
                 return;
             }
 
-            if (editMode)
+            if (editMode) // If in edit mode, change at specific place
             {
                 if (rm.ChangeRecipeAt(listBoxRecipe.SelectedIndex, new Recipe(
                         textBoxName.Text,
@@ -107,15 +112,16 @@ namespace RecipeDNC
                         textBoxDescription.Text,
                         maxNumOfIngredients)))
                 {
-                    labelMode.Text = @"Recipe saved";
+                    UpdateGUI();
                     listBoxRecipe.DataSource = rm.GetRecipes();
+                    labelMode.Text = @"Recipe saved";
                 }
-                else
+                else // If change unsuccessfully
                 {
                     MessageBox.Show(@"Something is wrong. Please try again", @"Error");
                 }
             }
-            else
+            else // Add mode
             {
                 if (rm.Add(new Recipe(
                         textBoxName.Text,
@@ -125,7 +131,6 @@ namespace RecipeDNC
                         textBoxDescription.Text,
                         maxNumOfIngredients)))
                 {
-                    currRecipe = new Recipe(maxNumOfIngredients);
                     UpdateGUI();
                     listBoxRecipe.DataSource = rm.GetRecipes();
                     labelMode.Text = @"Recipe added";
@@ -137,6 +142,11 @@ namespace RecipeDNC
             }
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonEditBegin_Click(object sender, EventArgs e)
         {
             if (rm.GetNumberOfRecipes() <= 0) return;
@@ -147,6 +157,9 @@ namespace RecipeDNC
             UpdateGUI();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
         private void UpdateGUI()
         {
             if (editMode)
@@ -194,6 +207,11 @@ namespace RecipeDNC
             listBoxRecipe.DataSource = rm.GetRecipes();
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listBoxRecipe_DoubleClick(object sender, EventArgs e)
         {
             Recipe r = rm.GetRecipeAt(listBoxRecipe.SelectedIndex);
@@ -201,10 +219,14 @@ namespace RecipeDNC
                 $@"{r.Name}");
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listBoxRecipe_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (!editMode) return;
-            currRecipe = rm.GetRecipeAt(listBoxRecipe.SelectedIndex);
+            currRecipe = !editMode ? new Recipe(maxNumOfIngredients) : rm.GetRecipeAt(listBoxRecipe.SelectedIndex);
             textBoxName.Text = currRecipe.Name;
             textBoxDescription.Text = currRecipe.Description;
             comboBoxCategory.SelectedItem = currRecipe.Category;
