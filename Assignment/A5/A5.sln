@@ -3,6 +3,10 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WindowsFormsApplication1", "WindowsFormsApplication1\WindowsFormsApplication1.csproj", "{6A48F7BD-E59D-4699-A802-5EE8C0C42A21}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerConsole", "CustomerConsole\CustomerConsole.csproj", "{887F7DAF-6143-4D62-93EA-891467569511}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CommonLibrary", "CommonLibrary\CommonLibrary.csproj", "{8F2E443D-9108-402F-97B4-8F3915FB3D08}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -13,6 +17,14 @@ Global
 		{6A48F7BD-E59D-4699-A802-5EE8C0C42A21}.Debug|x86.Build.0 = Debug|x86
 		{6A48F7BD-E59D-4699-A802-5EE8C0C42A21}.Release|x86.ActiveCfg = Release|x86
 		{6A48F7BD-E59D-4699-A802-5EE8C0C42A21}.Release|x86.Build.0 = Release|x86
+		{887F7DAF-6143-4D62-93EA-891467569511}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{887F7DAF-6143-4D62-93EA-891467569511}.Debug|x86.Build.0 = Debug|Any CPU
+		{887F7DAF-6143-4D62-93EA-891467569511}.Release|x86.ActiveCfg = Release|Any CPU
+		{887F7DAF-6143-4D62-93EA-891467569511}.Release|x86.Build.0 = Release|Any CPU
+		{8F2E443D-9108-402F-97B4-8F3915FB3D08}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{8F2E443D-9108-402F-97B4-8F3915FB3D08}.Debug|x86.Build.0 = Debug|Any CPU
+		{8F2E443D-9108-402F-97B4-8F3915FB3D08}.Release|x86.ActiveCfg = Release|Any CPU
+		{8F2E443D-9108-402F-97B4-8F3915FB3D08}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
