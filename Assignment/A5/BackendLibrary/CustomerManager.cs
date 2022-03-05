@@ -1,17 +1,30 @@
+using System.Collections.Generic;
+
 namespace BackendLibrary
 {
     public class CustomerManager
     {
-        private Customer customer;
+        private readonly List<Customer> customers;
 
         public CustomerManager()
         {
             
         }
 
-        public CustomerManager(Customer customer)
+        public CustomerManager(List<Customer> customers)
         {
-            this.customer = customer;
+            this.customers = customers;
         }
+
+        public CustomerManager(CustomerManager customerManager)
+        {
+            
+        }
+
+        public void AddCustomer(Customer customer)
+        {
+            customers.Add(customer);
+        }
+        
     }
 }

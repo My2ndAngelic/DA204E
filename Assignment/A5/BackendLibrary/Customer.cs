@@ -2,7 +2,7 @@ namespace BackendLibrary
 {
     public class Customer
     {
-        private Contact contact;
+        private readonly Contact contact;
 
         public Customer()
         {
