@@ -1,3 +1,5 @@
+using System.Diagnostics.Contracts;
+
 namespace CommonLibrary
 {
     public class Contact

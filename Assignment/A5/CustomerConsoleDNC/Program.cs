@@ -1,7 +1,7 @@
 ﻿using System;
-using CommonLibrary;
+using BackendLibrary;
 
-namespace CustomerConsole
+namespace CustomerConsoleDNC
 {
     public class Program
     {
@@ -9,6 +9,7 @@ namespace CustomerConsole
         {
             Console.WriteLine("Hello, World!");
             Console.WriteLine(Countries.Afghanistan);
+            Console.WriteLine(new Phone("69420").Number);
             Console.ReadLine();
         }
     }
