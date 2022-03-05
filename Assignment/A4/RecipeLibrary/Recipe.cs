@@ -46,10 +46,7 @@ namespace RecipeLibrary
             this.name = name;
             this.category = category;
             this.ingredients = new string[maxNumOfIngredients];
-            if (ingredients.Length > maxNumOfIngredients)
-            {
-                return;
-            }
+            if (ingredients.Length > maxNumOfIngredients) return;
 
             Array.Copy(ingredients, this.ingredients, ingredients.Length);
         }
@@ -67,10 +64,7 @@ namespace RecipeLibrary
             this.category = category;
             this.ingredients = new string[maxNumOfIngredients];
             this.description = description;
-            if (ingredients.Length > maxNumOfIngredients)
-            {
-                return;
-            }
+            if (ingredients.Length > maxNumOfIngredients) return;
 
             Array.Copy(ingredients, this.ingredients, ingredients.Length);
         }
@@ -89,10 +83,7 @@ namespace RecipeLibrary
             this.name = name;
             this.category = category;
             this.ingredients = new string[maxNumOfIngredients];
-            if (ingredients.Length > maxNumOfIngredients)
-            {
-                return;
-            }
+            if (ingredients.Length > maxNumOfIngredients) return;
 
             Array.Copy(ingredients, this.ingredients, ingredients.Length);
             this.description = description;
@@ -146,10 +137,7 @@ namespace RecipeLibrary
         {
             int vp = FindVacantPositionBinary();
 
-            if (value == null || vp < 0)
-            {
-                return false;
-            }
+            if (value == null || vp < 0) return false;
 
             ingredients[vp] = value;
             return true;
@@ -163,10 +151,7 @@ namespace RecipeLibrary
         /// <returns>True if successfully changed</returns>
         public bool ChangeIngredientAt(int index, string value)
         {
-            if (index >= MaxNumOfIngredients || ingredients[index] == null || value == null)
-            {
-                return false;
-            }
+            if (index >= MaxNumOfIngredients || ingredients[index] == null || value == null) return false;
 
             ingredients[index] = value;
             return true;
@@ -188,15 +173,9 @@ namespace RecipeLibrary
         /// <param name="index">Position in the array</param>
         public void DeleteIngredientAt(int index)
         {
-            if (!CheckIndex(index))
-            {
-                return;
-            }
+            if (!CheckIndex(index)) return;
 
-            for (int i = index; i < maxNumOfIngredients - 1; i++)
-            {
-                ingredients[i] = ingredients[i + 1];
-            }
+            for (int i = index; i < maxNumOfIngredients - 1; i++) ingredients[i] = ingredients[i + 1];
 
             ingredients[maxNumOfIngredients] = null;
         }
@@ -227,42 +206,34 @@ namespace RecipeLibrary
         /// <returns>First non-null position in the array, -1 if not exist, -2 if something failed</returns>
         private int FindVacantPositionBinary()
         {
-            int l = 0, r = ingredients.Length - 1;
-            if (ingredients[l] == null)
-            {
+            int l = 0, r = ingredients.Length - 1; // covering whole array
+            if (ingredients[l] == null) // left null, array is empty
                 return l;
-            }
 
-            if (ingredients[r] != null)
-            {
+            if (ingredients[r] != null) // right not null, array full
                 return -1;
-            }
 
-            while (l <= r)
+            while (l <= r) // while the left is less than right
             {
-                int m = (l + r) / 2;
+                int m = (l + r) / 2; // take the mid
 
-                if (ingredients[m] == null)
+                if (ingredients[m] == null) // if mid null
                 {
-                    if (ingredients[m - 1] != null)
-                    {
+                    if (ingredients[m - 1] != null) // left isn't null => first non-empty element
                         return m;
-                    }
 
-                    r = m - 1;
+                    r = m - 1; // if not then all right half is null => move the right cursor to mid - 1
                 }
-                else
+                else // mid is not null
                 {
-                    if (ingredients[m + 1] == null)
-                    {
+                    if (ingredients[m + 1] == null) // if right of mid is null => first empty element
                         return m + 1;
-                    }
 
-                    l = m + 1;
+                    l = m + 1; // left half is not null => move the left cursor to mid + 1
                 }
             }
 
-            return -2;
+            return -2; // something is wrong
         }
 
         /// <summary>
@@ -281,10 +252,7 @@ namespace RecipeLibrary
         public override string ToString()
         {
             string ingredient = string.Empty;
-            for (int i = 0; i < GetNumberOfIngredients(); i++)
-            {
-                ingredient += $"{ingredients[i]}, ";
-            }
+            for (int i = 0; i < GetNumberOfIngredients(); i++) ingredient += $"{ingredients[i]}, ";
 
             ingredient = ingredient.Remove(ingredient.Length - 2, 2);
             // ingredient += ".";

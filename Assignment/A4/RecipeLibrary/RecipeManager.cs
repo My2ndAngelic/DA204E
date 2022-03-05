@@ -34,10 +34,7 @@
         {
             int vp = FindVacantPositionBinary();
 
-            if (recipe == null || vp < 0)
-            {
-                return false;
-            }
+            if (recipe == null || vp < 0) return false;
 
             recipes[vp] = recipe;
             return true;
@@ -52,10 +49,7 @@
         /// <returns>True if change successfully</returns>
         public bool ChangeRecipeAt(int index, Recipe recipe)
         {
-            if (index >= maxNumOfRecipe || recipes[index] == null)
-            {
-                return false;
-            }
+            if (index >= maxNumOfRecipe || recipes[index] == null) return false;
 
             recipes[index] = recipe;
             return true;
@@ -77,15 +71,9 @@
         /// <param name="index">Recipe needed to be removed</param>
         public void RemoveAt(int index)
         {
-            if (!CheckIndex(index))
-            {
-                return;
-            }
+            if (!CheckIndex(index)) return;
 
-            for (int i = index; i < maxNumOfRecipe - 1; i++)
-            {
-                recipes[i] = recipes[i + 1];
-            }
+            for (int i = index; i < maxNumOfRecipe - 1; i++) recipes[i] = recipes[i + 1];
 
             recipes[maxNumOfRecipe - 1] = null;
         }
@@ -101,17 +89,14 @@
         }
 
         /// <summary>
-        ///     Return array of recipes
+        ///     Return array of string recipes
         /// </summary>
-        /// <returns>Array of recipes</returns>
+        /// <returns>Array of string recipes</returns>
         public string[] GetRecipes()
         {
             int temp = GetNumberOfRecipes();
             string[] result = new string[temp];
-            for (int i = 0; i < temp; i++)
-            {
-                result[i] = recipes[i].GetIngredientString();
-            }
+            for (int i = 0; i < temp; i++) result[i] = recipes[i].GetIngredientString();
 
             return result;
         }
@@ -128,20 +113,15 @@
 
         /// <summary>
         ///     Return the first non-null location in the recipe array
+        ///     See comment in Recipe.cs
         /// </summary>
         /// <returns>Index of first non-null location in the recipe array, -1 if not exist, -2 if error</returns>
         private int FindVacantPositionBinary()
         {
             int l = 0, r = recipes.Length - 1;
-            if (recipes[l] == null)
-            {
-                return l;
-            }
+            if (recipes[l] == null) return l;
 
-            if (recipes[r] != null)
-            {
-                return -1;
-            }
+            if (recipes[r] != null) return -1;
 
             while (l <= r)
             {
@@ -149,19 +129,13 @@
 
                 if (recipes[m] == null)
                 {
-                    if (recipes[m - 1] != null)
-                    {
-                        return m;
-                    }
+                    if (recipes[m - 1] != null) return m;
 
                     r = m - 1;
                 }
                 else
                 {
-                    if (recipes[m + 1] == null)
-                    {
-                        return m + 1;
-                    }
+                    if (recipes[m + 1] == null) return m + 1;
 
                     l = m + 1;
                 }

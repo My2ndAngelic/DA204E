@@ -2,7 +2,9 @@
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
-using RecipeLibrary; // Backend saved in a separate project.
+using RecipeLibrary;
+
+// Backend saved in a separate project.
 
 namespace RecipeDNC
 {
@@ -22,7 +24,7 @@ namespace RecipeDNC
         }
 
         /// <summary>
-        /// First time GUI
+        ///     First time GUI
         /// </summary>
         private void InitializeGUI()
         {
@@ -34,7 +36,7 @@ namespace RecipeDNC
 
 
         /// <summary>
-        /// Recipe Editor init
+        ///     Recipe Editor init
         /// </summary>
         private void InitializeRecipeEditor()
         {
@@ -44,13 +46,13 @@ namespace RecipeDNC
             comboBoxCategory.AutoCompleteMode = AutoCompleteMode.Suggest;
             comboBoxCategory.AutoCompleteSource = AutoCompleteSource.ListItems;
             comboBoxCategory.DropDownStyle = ComboBoxStyle.DropDownList;
-            
+
             textBoxName.Text = string.Empty;
             textBoxDescription.Text = string.Empty;
         }
-        
+
         /// <summary>
-        /// Result box and everything else
+        ///     Result box and everything else
         /// </summary>
         private void InitializeResultBox()
         {
@@ -59,11 +61,11 @@ namespace RecipeDNC
             labelRName.Text = @"Name";
             labelRCategory.Text = @"Category";
             labelRNoIng.Text = @"# of ingredients";
-            
+
             listBoxRecipe.Font = new Font("Consolas", 9);
             textBoxName.MaxLength = maxLengthRecipeName;
             listBoxRecipe.SelectionMode = SelectionMode.MultiExtended;
-            
+
             buttonEditBegin.Text = @"Begin editing";
             buttonEditFinish.Text = @"Finish editing";
             buttonDelete.Text = @"Delete";
@@ -74,7 +76,7 @@ namespace RecipeDNC
         {
             testSuite(69);
         }
-        
+
         /// <summary>
         ///     Control the event for the Add Ingredient button when clicked
         /// </summary>
@@ -83,9 +85,9 @@ namespace RecipeDNC
         private void buttonAddIngredients_Click(object sender, EventArgs e)
         {
             FormIngredient fi = new FormIngredient(currRecipe);
-            DialogResult dlgResult = fi.ShowDialog();
+            DialogResult dlgResult = fi.ShowDialog(); // Handling using Form Ingredients
 
-            if (dlgResult == DialogResult.OK)
+            if (dlgResult == DialogResult.OK) // If OK -> get the recipe from the dialog
                 currRecipe = fi.Recipe;
         }
 
@@ -96,13 +98,13 @@ namespace RecipeDNC
         /// <param name="e"></param>
         private void buttonAddRecipe_Click(object sender, EventArgs e)
         {
-            if (currRecipe.GetNumberOfIngredients() <= 0) // No ingredient, quit
+            if (currRecipe.GetNumberOfIngredients() <= 0) // No ingredient, do not add, show error
             {
                 MessageBox.Show(@"No ingredient specified.", @"Error");
                 return;
             }
 
-            if (editMode) // If in edit mode, change at specific place
+            if (editMode) // Edit mode
             {
                 if (rm.ChangeRecipeAt(listBoxRecipe.SelectedIndex, new Recipe(
                         textBoxName.Text,
@@ -110,13 +112,13 @@ namespace RecipeDNC
                             comboBoxCategory.SelectedValue.ToString() ?? string.Empty),
                         currRecipe.Ingredients,
                         textBoxDescription.Text,
-                        maxNumOfIngredients)))
+                        maxNumOfIngredients))) // If changed unsuccessfully
                 {
                     UpdateGUI();
                     listBoxRecipe.DataSource = rm.GetRecipes();
                     labelMode.Text = @"Recipe saved";
                 }
-                else // If change unsuccessfully
+                else
                 {
                     MessageBox.Show(@"Something is wrong. Please try again", @"Error");
                 }
@@ -129,7 +131,7 @@ namespace RecipeDNC
                             comboBoxCategory.SelectedValue.ToString() ?? string.Empty),
                         currRecipe.Ingredients,
                         textBoxDescription.Text,
-                        maxNumOfIngredients)))
+                        maxNumOfIngredients))) // If added successfully
                 {
                     UpdateGUI();
                     listBoxRecipe.DataSource = rm.GetRecipes();
@@ -143,13 +145,13 @@ namespace RecipeDNC
         }
 
         /// <summary>
-        /// 
+        ///     Control the event when the edit Edit Begin button is clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
         private void buttonEditBegin_Click(object sender, EventArgs e)
         {
-            if (rm.GetNumberOfRecipes() <= 0) return;
+            if (rm.GetNumberOfRecipes() <= 0) return; // Empty list, no activation of edit mode
             editMode = true;
             currRecipe = new Recipe(rm.GetRecipeAt(listBoxRecipe.SelectedIndices[0]));
 
@@ -158,11 +160,11 @@ namespace RecipeDNC
         }
 
         /// <summary>
-        /// 
+        ///     Update GUI
         /// </summary>
         private void UpdateGUI()
         {
-            if (editMode)
+            if (editMode) // Edit mode
             {
                 labelMode.Text = @"Edit mode";
                 textBoxName.Text = currRecipe.Name;
@@ -171,7 +173,7 @@ namespace RecipeDNC
                 buttonAddRecipe.Text = @"Save recipe";
                 comboBoxCategory.SelectedItem = currRecipe.Category;
             }
-            else
+            else // Add mode
             {
                 labelMode.Text = @"Add mode";
                 textBoxName.Text = string.Empty;
@@ -182,6 +184,11 @@ namespace RecipeDNC
             }
         }
 
+        /// <summary>
+        ///     Control the event when Edit Finish button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonEditFinish_Click(object sender, EventArgs e)
         {
             editMode = false;
@@ -191,14 +198,24 @@ namespace RecipeDNC
             UpdateGUI();
         }
 
+        /// <summary>
+        ///     Control the event when the Delete button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            if (listBoxRecipe.SelectedIndex != -1)
-                for (int i = listBoxRecipe.SelectedItems.Count - 1; i >= 0; i--)
-                    rm.RemoveAt(listBoxRecipe.SelectedIndices[i]);
+            if (listBoxRecipe.SelectedIndex != -1) // if at least one is selected
+                for (int i = listBoxRecipe.SelectedItems.Count - 1; i >= 0; i--) // count how many is selected
+                    rm.RemoveAt(listBoxRecipe.SelectedIndices[i]); // delete all of them
             listBoxRecipe.DataSource = rm.GetRecipes();
         }
 
+        /// <summary>
+        ///     Control the event when the Clear All button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonClearAll_Click(object sender, EventArgs e)
         {
             rm = new RecipeManager();
@@ -208,7 +225,7 @@ namespace RecipeDNC
         }
 
         /// <summary>
-        /// 
+        ///     Control the event when the element in the recipe box is double clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -220,7 +237,7 @@ namespace RecipeDNC
         }
 
         /// <summary>
-        /// 
+        ///     Control the event when different element is selected in the recipe box
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -232,6 +249,11 @@ namespace RecipeDNC
             comboBoxCategory.SelectedItem = currRecipe.Category;
         }
 
+        /// <summary>
+        ///     Control the event for the deselect by right click or click outside of the element but in the box
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listBoxRecipe_MouseDown(object sender, MouseEventArgs e)
         {
             if (editMode) return;
@@ -239,12 +261,17 @@ namespace RecipeDNC
                 listBoxRecipe.ClearSelected();
         }
 
+        /// <summary>
+        ///     Only for Ctrl + A = Select All
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listBoxRecipe_KeyDown(object sender, KeyEventArgs e)
         {
             if (!e.Control || e.KeyCode != Keys.A) return;
             for (int i = 0; i < listBoxRecipe.Items.Count; i++) listBoxRecipe.SetSelected(i, true);
         }
-        
+
         private void testSuite(int num)
         {
             string[] s =

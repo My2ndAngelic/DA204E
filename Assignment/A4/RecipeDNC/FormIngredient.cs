@@ -9,7 +9,7 @@ namespace RecipeDNC
         private Recipe recipe;
 
         /// <summary>
-        /// Constructor with recipe ready
+        ///     Constructor with recipe ready
         /// </summary>
         /// <param name="recipe"></param>
         public FormIngredient(Recipe recipe)
@@ -24,6 +24,9 @@ namespace RecipeDNC
             }
         }
 
+        /// <summary>
+        ///     Default constructor
+        /// </summary>
         public FormIngredient()
         {
             InitializeComponent();
@@ -37,6 +40,9 @@ namespace RecipeDNC
         }
 
 
+        /// <summary>
+        ///     Initialize the GUI
+        /// </summary>
         private void InitializeGUI()
         {
             Text = @"Ingredient Editor";
@@ -53,48 +59,63 @@ namespace RecipeDNC
             labelNumOfIngRight.Text = $@"Number of ingredients: {Recipe.GetNumberOfIngredients().ToString()}";
         }
 
-        public void EditRecipe(string[] recipes)
-        {
-            listBoxIngredient.DataSource = recipes;
-        }
-
+        /// <summary>
+        ///     Control the event when the OK button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonOK_Click(object sender, EventArgs e)
         {
             Recipe.Ingredients = new string[Recipe.Ingredients.Length];
-            foreach (string s in listBoxIngredient.Items) Recipe.AddIngredientBinary(s);
+            foreach (string s in listBoxIngredient.Items)
+                Recipe.AddIngredientBinary(s); // Add all ingredients from the box
             DialogResult = DialogResult.OK;
         }
 
+        /// <summary>
+        ///     Control the event when the Cancel button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;
         }
 
+        /// <summary>
+        ///     Control the event when the add button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            if (textBoxIngredient.Text == string.Empty) return;
-            if (listBoxIngredient.Items.Count >= Recipe.Ingredients.Length)
+            if (textBoxIngredient.Text == string.Empty) return; // If box is empty, do nothing
+            if (listBoxIngredient.Items.Count >= Recipe.Ingredients.Length) // If max reached, show error, do not add
             {
                 MessageBox.Show(@"Maximum ingredients reached.", @"Error");
             }
             else
             {
-                if (listBoxIngredient.SelectedIndex != -1)
-                    listBoxIngredient.Items.Insert(listBoxIngredient.SelectedIndex, textBoxIngredient.Text);
-                else
-                    listBoxIngredient.Items.Add(textBoxIngredient.Text);
-                textBoxIngredient.Text = string.Empty;
-                labelNumOfIngRight.Text = $@"Number of ingredients: {listBoxIngredient.Items.Count}";
-                listBoxIngredient.SelectedIndex = -1;
+                if (listBoxIngredient.SelectedIndex != -1) // If selected at specific place
+                    listBoxIngredient.Items.Insert(listBoxIngredient.SelectedIndex,
+                        textBoxIngredient.Text); // Insert above
+                else // if not selected
+                    listBoxIngredient.Items.Add(textBoxIngredient.Text); // Add to the end
+                UpdateGUI();
             }
         }
 
+        /// <summary>
+        ///     Control the event when Edit button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonEdit_Click(object sender, EventArgs e)
         {
             if (textBoxIngredient.Text != string.Empty)
-                listBoxIngredient.Items[listBoxIngredient.SelectedIndex] = textBoxIngredient.Text;
-            textBoxIngredient.Text = string.Empty;
-            listBoxIngredient.SelectedIndex = -1;
+                listBoxIngredient.Items[listBoxIngredient.SelectedIndex] =
+                    textBoxIngredient.Text; // Only change the first selected element
+            UpdateGUI();
         }
 
         /// <summary>
@@ -104,14 +125,14 @@ namespace RecipeDNC
         /// <param name="e"></param>
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            while (listBoxIngredient.SelectedIndex != -1)
+            while (listBoxIngredient.SelectedIndex != -1) // Delete all selected elements
                 listBoxIngredient.Items.Remove(listBoxIngredient.SelectedItems[0]);
 
-            labelNumOfIngRight.Text = $@"Number of ingredients: {listBoxIngredient.Items.Count}";
-            listBoxIngredient.SelectedIndex = -1;
+            UpdateGUI();
         }
 
         /// <summary>
+        ///     Right click or click an empty space in the box to deslect
         ///     Source:
         ///     https://stackoverflow.com/questions/14921478/why-when-clicking-mouse-right-button-on-listbox-its-working-everywhere-in-the-l
         /// </summary>
@@ -123,10 +144,25 @@ namespace RecipeDNC
                 listBoxIngredient.ClearSelected();
         }
 
+        /// <summary>
+        ///     Ctrl + A to Select All
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listBoxIngredient_KeyDown(object sender, KeyEventArgs e)
         {
             if (!e.Control || e.KeyCode != Keys.A) return;
             for (int i = 0; i < listBoxIngredient.Items.Count; i++) listBoxIngredient.SetSelected(i, true);
+        }
+
+        /// <summary>
+        ///     Update GUI after add, edit or delete
+        /// </summary>
+        private void UpdateGUI()
+        {
+            textBoxIngredient.Text = string.Empty;
+            labelNumOfIngRight.Text = $@"Number of ingredients: {listBoxIngredient.Items.Count}";
+            listBoxIngredient.SelectedIndex = -1;
         }
     }
 }
