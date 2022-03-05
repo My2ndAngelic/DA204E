@@ -74,7 +74,7 @@ namespace RecipeDNC
 
         private void FormMain_Shown(object sender, EventArgs e)
         {
-            testSuite(69);
+            
         }
 
         /// <summary>
@@ -270,76 +270,6 @@ namespace RecipeDNC
         {
             if (!e.Control || e.KeyCode != Keys.A) return;
             for (int i = 0; i < listBoxRecipe.Items.Count; i++) listBoxRecipe.SetSelected(i, true);
-        }
-
-        private void testSuite(int num)
-        {
-            string[] s =
-            {
-                "cremini mushrooms",
-                "alligator",
-                "cornstarch",
-                "pomegranates",
-                "apple butter",
-                "pinto beans",
-                "cheddar cheese",
-                "herring",
-                "artichokes",
-                "leeks",
-                "pink beans",
-                "corn flour",
-                "alfredo sauce",
-                "brunoise",
-                "soymilk",
-                "fish sauce",
-                "chai",
-                "pickles",
-                "cod",
-                "ale",
-                "vegemite",
-                "white chocolate",
-                "raspberries",
-                "orange peels",
-                "condensed milk",
-                "kidney beans",
-                "watermelons",
-                "marshmallows",
-                "cucumbers",
-                "pepper",
-                "breadfruit",
-                "won ton skins",
-                "prunes",
-                "chicory",
-                "prawns",
-                "snap peas",
-                "summer squash",
-                "squash",
-                "raisins",
-                "Havarti cheese",
-                "rice vinegar",
-                "bean threads",
-                "couscous",
-                "lima beans",
-                "powdered sugar",
-                "cabbage",
-                "green onions",
-                "ice cream",
-                "halibut",
-                "okra"
-            };
-            for (int i = 0; i < num; i++)
-                rm.Add(new Recipe($"Ur Mom {i}",
-                    (FoodCategory) typeof(FoodCategory).GetEnumValues().OfType<Enum>().OrderBy(e => Guid.NewGuid())
-                        .FirstOrDefault()!, s.OrderBy(x => new Random().Next()).ToArray(), @"Step 1
-Preheat oven to 375 degrees F (190 degrees C). Lightly grease a large baking sheet.
-
-Step 2
-In a large bowl, mix together flour, sugar, baking soda, baking powder, salt and margarine. Stir in 1 cup of buttermilk and egg. Turn dough out onto a lightly floured surface and knead slightly. Form dough into a round and place on prepared baking sheet. In a small bowl, combine melted butter with 1/4 cup buttermilk; brush loaf with this mixture. Use a sharp knife to cut an 'X' into the top of the loaf.
-
-Step 3
-Bake in preheated oven until a toothpick inserted into the center of the loaf comes out clean, 45 to 50 minutes. Check for doneness after 30 minutes. You may continue to brush the loaf with the butter mixture while it bakes."));
-
-            listBoxRecipe.DataSource = rm.GetRecipes();
         }
     }
 }
