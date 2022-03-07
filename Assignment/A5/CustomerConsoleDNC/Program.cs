@@ -1,5 +1,4 @@
-﻿using System;
-using BackendLibrary;
+﻿using BackendLibrary;
 
 namespace CustomerConsoleDNC
 {
@@ -8,8 +7,8 @@ namespace CustomerConsoleDNC
         public static void Main(string[] args)
         {
             Console.WriteLine("Hello, World!");
-            Console.WriteLine(Countries.Antigua_and_Barbuda.ToString().Replace("_"," "));
-            Console.WriteLine(new Phone("69420").Number);
+            Console.WriteLine(Countries.Antigua_and_Barbuda.ToString().Replace("_", " "));
+            Console.WriteLine(new Phone("69420").IsValidPhone());
             Console.ReadLine();
         }
     }

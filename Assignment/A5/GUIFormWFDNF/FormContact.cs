@@ -5,9 +5,7 @@ namespace GUIFormWFDNF
 {
     public partial class FormContact : Form
     {
-        private Customer customer;
-
-        public Customer Customer => customer;
+        private readonly Customer customer;
 
         public FormContact(Customer customer)
         {
@@ -15,16 +13,17 @@ namespace GUIFormWFDNF
             InitializeGUI();
             this.customer = customer;
         }
-        
+
         public FormContact()
         {
             InitializeComponent();
             InitializeGUI();
         }
 
+        public Customer Customer => customer;
+
         private void InitializeGUI()
         {
-            
         }
     }
 }

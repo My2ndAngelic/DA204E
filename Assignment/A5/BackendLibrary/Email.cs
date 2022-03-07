@@ -112,9 +112,6 @@
             return strOut;
         }
 
-        public bool IsValidEmail()
-        {
-            return true;
-        }
+        public bool IsValidEmail() => true;
     }
 }

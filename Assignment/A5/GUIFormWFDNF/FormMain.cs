@@ -1,10 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
-using System.ComponentModel;
-using System.Data;
-using System.Drawing;
-using System.Linq;
-using System.Text;
 using System.Windows.Forms;
 using BackendLibrary;
 
@@ -12,10 +6,10 @@ namespace GUIFormWFDNF
 {
     public partial class FormMain : Form
     {
-        private CustomerManager cm = new CustomerManager();
+        private readonly CustomerManager cm = new CustomerManager();
         private Customer currCustomer = new Customer();
         private bool editMode;
-        
+
         public FormMain()
         {
             InitializeComponent();
@@ -24,7 +18,6 @@ namespace GUIFormWFDNF
 
         private void InitializeGUI()
         {
-            
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -33,11 +26,7 @@ namespace GUIFormWFDNF
             FormContact fc = new FormContact(currCustomer);
             DialogResult di = fc.ShowDialog();
 
-            if (di == DialogResult.OK)
-            {
-                cm.Add(currCustomer);
-            }
-
+            if (di == DialogResult.OK) cm.Add(currCustomer);
         }
 
 
@@ -47,15 +36,11 @@ namespace GUIFormWFDNF
             FormContact fc = new FormContact(currCustomer);
             DialogResult di = fc.ShowDialog();
 
-            if (di == DialogResult.OK)
-            {
-                cm[listboxContact.SelectedIndex] = currCustomer;
-            }
+            if (di == DialogResult.OK) cm[listboxContact.SelectedIndex] = currCustomer;
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            
         }
     }
 }

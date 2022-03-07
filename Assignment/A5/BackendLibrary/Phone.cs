@@ -1,3 +1,5 @@
+using System.Linq;
+
 namespace BackendLibrary
 {
     public class Phone
@@ -27,7 +29,7 @@ namespace BackendLibrary
 
         public bool IsValidPhone()
         {
-            return true;
+            return number.Replace(" ", "").Remove(1).All(char.IsDigit);
         }
     }
 }

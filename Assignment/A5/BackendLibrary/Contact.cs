@@ -1,14 +1,13 @@
-using System;
 using System.Linq;
 
 namespace BackendLibrary
 {
     public class Contact
     {
-        private string fName;
-        private string lName;
         private Countries countries;
         private Email email;
+        private string fName;
+        private string lName;
         private Phone phone;
 
         public Contact()
@@ -55,21 +54,15 @@ namespace BackendLibrary
             get => phone;
             set => phone = value;
         }
-        
+
         public Countries Countries
         {
             get => countries;
             set => countries = value;
         }
 
-        public bool IsValidName()
-        {
-            return !(fName.Any(char.IsDigit) || lName.Any(char.IsDigit));
-        }
-        
-        public bool IsValidContact()
-        {
-            return email.IsValidEmail() && phone.IsValidPhone() && IsValidName();
-        }
+        public bool IsValidName() => !(fName.Any(char.IsDigit) || lName.Any(char.IsDigit));
+
+        public bool IsValidContact() => email.IsValidEmail() && phone.IsValidPhone() && IsValidName();
     }
 }

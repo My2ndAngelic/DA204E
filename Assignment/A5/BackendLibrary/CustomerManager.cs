@@ -1,3 +1,4 @@
+using System;
 using System.Collections;
 using System.Collections.Generic;
 
@@ -9,7 +10,6 @@ namespace BackendLibrary
 
         public CustomerManager()
         {
-            
         }
 
         public CustomerManager(List<Customer> customers)
@@ -19,7 +19,6 @@ namespace BackendLibrary
 
         public CustomerManager(CustomerManager customerManager)
         {
-            
         }
 
         public void Add(Customer item)
@@ -32,22 +31,15 @@ namespace BackendLibrary
             customers = new List<Customer>();
         }
 
-        public bool Contains(Customer item)
-        {
-            return customers.Contains(item);
-        }
+        public bool Contains(Customer item) => customers.Contains(item);
 
         public void CopyTo(Customer[] array, int arrayIndex)
         {
-            
         }
 
-        public bool Remove(Customer item)
-        {
-            return customers.Remove(item);
-        }
+        public bool Remove(Customer item) => customers.Remove(item);
 
-        public int Count => throw new System.NotImplementedException();
+        public int Count => throw new NotImplementedException();
 
         public bool IsReadOnly => false;
 
@@ -69,14 +61,8 @@ namespace BackendLibrary
             set => customers[index] = value;
         }
 
-        public IEnumerator<Customer> GetEnumerator()
-        {
-            return customers.GetEnumerator();
-        }
+        public IEnumerator<Customer> GetEnumerator() => customers.GetEnumerator();
 
-        IEnumerator IEnumerable.GetEnumerator()
-        {
-            return GetEnumerator();
-        }
+        IEnumerator IEnumerable.GetEnumerator() => GetEnumerator();
     }
 }
