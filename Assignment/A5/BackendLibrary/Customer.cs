@@ -11,7 +11,7 @@ namespace BackendLibrary
 
         public Customer(Contact contact)
         {
-            
+            this.contact = contact;
         }
 
         public Customer(Customer customer)

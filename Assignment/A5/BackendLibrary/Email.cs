@@ -111,5 +111,10 @@
 
             return strOut;
         }
+
+        public bool IsValidEmail()
+        {
+            return true;
+        }
     }
 }

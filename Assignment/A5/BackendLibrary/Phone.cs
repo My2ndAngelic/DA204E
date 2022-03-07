@@ -25,7 +25,7 @@ namespace BackendLibrary
             set => number = value;
         }
 
-        public bool IsValidNumber()
+        public bool IsValidPhone()
         {
             return true;
         }

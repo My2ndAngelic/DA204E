@@ -1,7 +1,12 @@
+using System;
+using System.Linq;
+
 namespace BackendLibrary
 {
     public class Contact
     {
+        private string fName;
+        private string lName;
         private Countries countries;
         private Email email;
         private Phone phone;
@@ -27,10 +32,16 @@ namespace BackendLibrary
             phone = contact.phone;
         }
 
-        public Countries Countries
+        public string LName
         {
-            get => countries;
-            set => countries = value;
+            get => lName;
+            set => lName = value;
+        }
+
+        public string FName
+        {
+            get => fName;
+            set => fName = value;
         }
 
         public Email Email
@@ -43,6 +54,22 @@ namespace BackendLibrary
         {
             get => phone;
             set => phone = value;
+        }
+        
+        public Countries Countries
+        {
+            get => countries;
+            set => countries = value;
+        }
+
+        public bool IsValidName()
+        {
+            return !(fName.Any(char.IsDigit) || lName.Any(char.IsDigit));
+        }
+        
+        public bool IsValidContact()
+        {
+            return email.IsValidEmail() && phone.IsValidPhone() && IsValidName();
         }
     }
 }
