@@ -8,7 +8,6 @@ namespace GUIFormWFDNF
     {
         private readonly CustomerManager cm = new CustomerManager();
         private Customer currCustomer = new Customer();
-        private bool editMode;
 
         public FormMain()
         {
@@ -32,6 +31,7 @@ namespace GUIFormWFDNF
 
         private void buttonEdit_Click(object sender, EventArgs e)
         {
+            if (listboxContact.SelectedIndex == -1) return;
             currCustomer = cm[listboxContact.SelectedIndex];
             FormContact fc = new FormContact(currCustomer);
             DialogResult di = fc.ShowDialog();

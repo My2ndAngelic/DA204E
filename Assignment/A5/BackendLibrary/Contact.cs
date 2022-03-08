@@ -33,36 +33,42 @@ namespace BackendLibrary
 
         public string LName
         {
-            get => lName;
-            set => lName = value;
+            get { return lName; }
+            set { lName = value; }
         }
 
         public string FName
         {
-            get => fName;
-            set => fName = value;
+            get { return fName; }
+            set { fName = value; }
         }
 
         public Email Email
         {
-            get => email;
-            set => email = value;
+            get { return email; }
+            set { email = value; }
         }
 
         public Phone Phone
         {
-            get => phone;
-            set => phone = value;
+            get { return phone; }
+            set { phone = value; }
         }
 
         public Countries Countries
         {
-            get => countries;
-            set => countries = value;
+            get { return countries; }
+            set { countries = value; }
         }
 
-        public bool IsValidName() => !(fName.Any(char.IsDigit) || lName.Any(char.IsDigit));
+        public bool IsValidName()
+        {
+            return !(fName.Any(char.IsDigit) || lName.Any(char.IsDigit));
+        }
 
-        public bool IsValidContact() => email.IsValidEmail() && phone.IsValidPhone() && IsValidName();
+        public bool IsValidContact()
+        {
+            return email.IsValidEmail() && phone.IsValidPhone() && IsValidName();
+        }
     }
 }

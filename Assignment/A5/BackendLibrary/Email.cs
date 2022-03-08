@@ -63,9 +63,9 @@ namespace BackendLibrary
         public string Personal
         {
             //private mail
-            get => personalMail;
+            get { return personalMail; }
 
-            set => personalMail = value;
+            set { personalMail = value; }
         }
 
 
@@ -78,9 +78,9 @@ namespace BackendLibrary
         /// <remarks></remarks>
         public string Work
         {
-            get => officeMail;
+            get { return officeMail; }
 
-            set => officeMail = value;
+            set { officeMail = value; }
         }
 
         /// <summary>
@@ -94,8 +94,10 @@ namespace BackendLibrary
         ///     method below.
         /// </returns>
         /// <remarks></remarks>
-        public string GetToStringItemsHeadings =>
-            string.Format("{0,-20} {1, -20}", "Office EmailData", "Private EmailData");
+        public string GetToStringItemsHeadings
+        {
+            get { return string.Format("{0,-20} {1, -20}", "Office EmailData", "Private EmailData"); }
+        }
 
         /// <summary>
         ///     Delivers a formatted string with data stored in the object. The values will
@@ -121,7 +123,7 @@ namespace BackendLibrary
 
         public bool IsValidPersonalMail()
         {
-            return personalMail is null or "" || new[] {"@", "."}.Any(x => personalMail.Contains(x));
+            return string.IsNullOrEmpty(personalMail) || new[] {"@", "."}.Any(x => personalMail.Contains(x));
         }
 
         public bool IsValidEmail()

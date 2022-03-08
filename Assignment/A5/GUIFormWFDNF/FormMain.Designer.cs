@@ -37,9 +37,9 @@
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(19, 439);
+            this.buttonAdd.Location = new System.Drawing.Point(19, 437);
             this.buttonAdd.Name = "buttonAdd";
-            this.buttonAdd.Size = new System.Drawing.Size(89, 33);
+            this.buttonAdd.Size = new System.Drawing.Size(125, 35);
             this.buttonAdd.TabIndex = 0;
             this.buttonAdd.Text = "buttonAdd";
             this.buttonAdd.UseVisualStyleBackColor = true;
@@ -64,9 +64,9 @@
             // 
             // buttonEdit
             // 
-            this.buttonEdit.Location = new System.Drawing.Point(165, 437);
+            this.buttonEdit.Location = new System.Drawing.Point(219, 437);
             this.buttonEdit.Name = "buttonEdit";
-            this.buttonEdit.Size = new System.Drawing.Size(111, 35);
+            this.buttonEdit.Size = new System.Drawing.Size(125, 35);
             this.buttonEdit.TabIndex = 3;
             this.buttonEdit.Text = "Edit";
             this.buttonEdit.UseVisualStyleBackColor = true;
@@ -74,9 +74,9 @@
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(377, 437);
+            this.buttonDelete.Location = new System.Drawing.Point(423, 437);
             this.buttonDelete.Name = "buttonDelete";
-            this.buttonDelete.Size = new System.Drawing.Size(126, 34);
+            this.buttonDelete.Size = new System.Drawing.Size(125, 35);
             this.buttonDelete.TabIndex = 4;
             this.buttonDelete.Text = "Delete";
             this.buttonDelete.UseVisualStyleBackColor = true;
@@ -96,6 +96,7 @@
             this.Text = "FormMain";
             this.ResumeLayout(false);
             this.PerformLayout();
+
         }
 
         private System.Windows.Forms.Button buttonDelete;

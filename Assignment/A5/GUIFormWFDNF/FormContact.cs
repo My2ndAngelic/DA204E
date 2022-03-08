@@ -20,7 +20,10 @@ namespace GUIFormWFDNF
             InitializeGUI();
         }
 
-        public Customer Customer => customer;
+        public Customer Customer
+        {
+            get { return customer; }
+        }
 
         private void InitializeGUI()
         {

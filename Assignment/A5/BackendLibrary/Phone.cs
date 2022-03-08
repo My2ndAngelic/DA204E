@@ -23,8 +23,8 @@ namespace BackendLibrary
 
         public string Number
         {
-            get => number;
-            set => number = value;
+            get { return number; }
+            set { number = value; }
         }
 
         public bool IsValidPhone()
