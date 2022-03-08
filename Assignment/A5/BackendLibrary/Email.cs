@@ -118,17 +118,22 @@ namespace BackendLibrary
 
         public bool IsValidWorkMail()
         {
-            return new[] {"@", "."}.Any(x => officeMail.Contains(x));
+            return IsValidEmailAddress(officeMail);
         }
 
         public bool IsValidPersonalMail()
         {
-            return string.IsNullOrEmpty(personalMail) || new[] {"@", "."}.Any(x => personalMail.Contains(x));
+            return string.IsNullOrEmpty(personalMail) || IsValidEmailAddress(personalMail);
         }
 
         public bool IsValidEmail()
         {
             return IsValidWorkMail() && IsValidPersonalMail();
+        }
+
+        private bool IsValidEmailAddress(string email)
+        {
+            return new[] {"@", "."}.Any(email.Contains);
         }
     }
 }

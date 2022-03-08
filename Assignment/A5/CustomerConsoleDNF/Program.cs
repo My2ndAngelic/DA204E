@@ -12,8 +12,11 @@ namespace CustomerConsoleDNF
             // Console.WriteLine(new Email("a@a.com").IsValidPersonalMail());
             // Console.ReadLine();
             Console.Clear();
-            string a = Console.ReadLine();
-            Console.WriteLine(a == "42069" || a == "69420" ? "Hello World" : "Goodbye World");
+            // string a = Console.ReadLine();
+            // Console.WriteLine(a == "42069" || a == "69420" ? "Hello World" : "Goodbye World");
+            Phone phone = new Phone("+69420");
+            Console.WriteLine(phone.IsValidPhone());
+            Console.WriteLine(phone.Number);
         }
     }
 }
