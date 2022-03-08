@@ -1,4 +1,6 @@
-﻿namespace BackendLibrary
+﻿using System.Linq;
+
+namespace BackendLibrary
 {
     public class Email
     {
@@ -112,6 +114,19 @@
             return strOut;
         }
 
-        public bool IsValidEmail() => true;
+        public bool IsValidWorkMail()
+        {
+            return new[] {"@", "."}.Any(x => officeMail.Contains(x));
+        }
+
+        public bool IsValidPersonalMail()
+        {
+            return personalMail is null or "" || new[] {"@", "."}.Any(x => personalMail.Contains(x));
+        }
+
+        public bool IsValidEmail()
+        {
+            return IsValidWorkMail() && IsValidPersonalMail();
+        }
     }
 }

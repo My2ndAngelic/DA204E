@@ -8,7 +8,7 @@ namespace CustomerConsoleDNC
         {
             Console.WriteLine("Hello, World!");
             Console.WriteLine(Countries.Antigua_and_Barbuda.ToString().Replace("_", " "));
-            Console.WriteLine(new Phone("69420").IsValidPhone());
+            Console.WriteLine(new Email("a@a.com").IsValidEmail());
             Console.ReadLine();
         }
     }
