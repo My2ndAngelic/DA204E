@@ -5,10 +5,10 @@
         <TargetFramework>net5.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <LangVersion>default</LangVersion>
+        <LangVersion>preview</LangVersion>
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\BackendLibrary\BackendLibrary.csproj"/>
+        <ProjectReference Include="..\BackendLibrary\BackendLibrary.csproj" />
     </ItemGroup>
 </Project>

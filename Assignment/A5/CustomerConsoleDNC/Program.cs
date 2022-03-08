@@ -1,4 +1,4 @@
-﻿using BackendLibrary;
+﻿using System;
 
 namespace CustomerConsoleDNC
 {
@@ -6,10 +6,9 @@ namespace CustomerConsoleDNC
     {
         public static void Main(string[] args)
         {
-            Console.WriteLine("Hello, World!");
-            Console.WriteLine(Countries.Antigua_and_Barbuda.ToString().Replace("_", " "));
-            Console.WriteLine(new Email("a@a.com").IsValidEmail());
-            Console.ReadLine();
+            Console.Clear();
+            string a = Console.ReadLine();
+            Console.WriteLine(a is "42069" or "69420" ? "Hello World" : "Goodbye World");
         }
     }
 }
