@@ -1,6 +1,4 @@
-﻿using System;
-
-namespace CustomerConsoleDNC
+﻿namespace CustomerConsoleDNC
 {
     public class Program
     {

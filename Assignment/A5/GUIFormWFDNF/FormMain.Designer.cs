@@ -41,12 +41,13 @@
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(125, 35);
             this.buttonAdd.TabIndex = 0;
-            this.buttonAdd.Text = "buttonAdd";
+            this.buttonAdd.Text = "Add";
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
             // 
             // listboxContact
             // 
+            this.listboxContact.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.listboxContact.FormattingEnabled = true;
             this.listboxContact.Location = new System.Drawing.Point(19, 80);
             this.listboxContact.Name = "listboxContact";
@@ -56,10 +57,11 @@
             // 
             // textBoxContact
             // 
-            this.textBoxContact.Location = new System.Drawing.Point(587, 82);
+            this.textBoxContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.textBoxContact.Location = new System.Drawing.Point(587, 80);
             this.textBoxContact.Multiline = true;
             this.textBoxContact.Name = "textBoxContact";
-            this.textBoxContact.Size = new System.Drawing.Size(299, 339);
+            this.textBoxContact.Size = new System.Drawing.Size(299, 342);
             this.textBoxContact.TabIndex = 2;
             // 
             // buttonEdit
@@ -96,7 +98,6 @@
             this.Text = "FormMain";
             this.ResumeLayout(false);
             this.PerformLayout();
-
         }
 
         private System.Windows.Forms.Button buttonDelete;

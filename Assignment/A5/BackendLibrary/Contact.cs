@@ -31,6 +31,15 @@ namespace BackendLibrary
             phone = contact.phone;
         }
 
+        public Contact(string fName, string lName, Countries countries, Email email, Phone phone)
+        {
+            this.fName = fName;
+            this.lName = lName;
+            this.countries = countries;
+            this.email = email;
+            this.phone = phone;
+        }
+
         public string LName
         {
             get { return lName; }
@@ -69,6 +78,12 @@ namespace BackendLibrary
         public bool IsValidContact()
         {
             return email.IsValidEmail() && phone.IsValidPhone() && IsValidName();
+        }
+
+        public string GetContactDetail()
+        {
+            return
+                $@"{FName} {LName} {Email.Personal} {Email.Work} {Phone.Number} {Countries.ToString().Replace("_", " ")}";
         }
     }
 }

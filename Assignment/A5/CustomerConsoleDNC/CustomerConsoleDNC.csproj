@@ -9,6 +9,6 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\BackendLibrary\BackendLibrary.csproj" />
+        <ProjectReference Include="..\BackendLibrary\BackendLibrary.csproj"/>
     </ItemGroup>
 </Project>

@@ -29,7 +29,7 @@ namespace BackendLibrary
 
         public bool IsValidPhone()
         {
-            return (number[0] == '+' ? number.Remove(0,1) : number).Replace(" ", "").Any(char.IsDigit);
+            return (number[0] == '+' ? number.Remove(0, 1) : number).Replace(" ", "").Any(char.IsDigit);
         }
     }
 }

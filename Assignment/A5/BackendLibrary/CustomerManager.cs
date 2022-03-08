@@ -1,6 +1,6 @@
-using System;
 using System.Collections;
 using System.Collections.Generic;
+using System.Linq;
 
 namespace BackendLibrary
 {
@@ -19,6 +19,7 @@ namespace BackendLibrary
 
         public CustomerManager(CustomerManager customerManager)
         {
+            customers = customerManager.customers;
         }
 
         public void Add(Customer item)
@@ -47,7 +48,7 @@ namespace BackendLibrary
 
         public int Count
         {
-            get { throw new NotImplementedException(); }
+            get { return customers.Count; }
         }
 
         public bool IsReadOnly
@@ -84,6 +85,11 @@ namespace BackendLibrary
         IEnumerator IEnumerable.GetEnumerator()
         {
             return GetEnumerator();
+        }
+
+        public string[] GetCustomers()
+        {
+            return customers.Select(customer => customer.Contact.FName).ToArray();
         }
     }
 }

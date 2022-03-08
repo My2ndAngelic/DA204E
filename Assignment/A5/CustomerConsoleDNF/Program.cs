@@ -14,9 +14,10 @@ namespace CustomerConsoleDNF
             Console.Clear();
             // string a = Console.ReadLine();
             // Console.WriteLine(a == "42069" || a == "69420" ? "Hello World" : "Goodbye World");
-            Phone phone = new Phone("+69420");
-            Console.WriteLine(phone.IsValidPhone());
-            Console.WriteLine(phone.Number);
+            Contact c = new Contact("John", "Cena", Countries.China, new Email("john@gmail.com", "cena@gmail.com"),
+                new Phone("+69 420"));
+
+            Console.WriteLine(c.GetContactDetail());
         }
     }
 }

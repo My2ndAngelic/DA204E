@@ -2,7 +2,7 @@ namespace BackendLibrary
 {
     public class Customer
     {
-        private readonly Contact contact;
+        private Contact contact;
 
         public Customer()
         {
@@ -15,7 +15,13 @@ namespace BackendLibrary
 
         public Customer(Customer customer)
         {
-            contact = customer.contact;
+            contact = customer.Contact;
+        }
+
+        public Contact Contact
+        {
+            get { return contact; }
+            set { contact = value; }
         }
     }
 }

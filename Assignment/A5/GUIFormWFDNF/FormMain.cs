@@ -22,10 +22,9 @@ namespace GUIFormWFDNF
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             currCustomer = new Customer();
-            FormContact fc = new FormContact(currCustomer);
-            DialogResult di = fc.ShowDialog();
-
-            if (di == DialogResult.OK) cm.Add(currCustomer);
+            if (!LaunchDialog()) return;
+            cm.Add(currCustomer);
+            UpdateGUI();
         }
 
 
@@ -33,14 +32,24 @@ namespace GUIFormWFDNF
         {
             if (listboxContact.SelectedIndex == -1) return;
             currCustomer = cm[listboxContact.SelectedIndex];
+            if (!LaunchDialog()) return;
+            cm[listboxContact.SelectedIndex] = currCustomer;
+        }
+
+        public bool LaunchDialog()
+        {
             FormContact fc = new FormContact(currCustomer);
             DialogResult di = fc.ShowDialog();
-
-            if (di == DialogResult.OK) cm[listboxContact.SelectedIndex] = currCustomer;
+            return di == DialogResult.OK;
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
+        }
+
+        private void UpdateGUI()
+        {
+            listboxContact.DataSource = cm.GetCustomers();
         }
     }
 }
