@@ -37,9 +37,9 @@ namespace GUIFormWFDNF
         private void buttonOK_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.OK;
-            customer = new Customer(new Contact(textBoxFName.Text, textBoxLName.Text,
-                (Countries) Enum.Parse(typeof(Countries), comboBoxCountry.SelectedItem.ToString().Replace(" ", "_")),
-                new Email(), new Phone()));
+            // customer = new Customer(new Contact(textBoxFName.Text, textBoxLName.Text,
+            //     (Countries) Enum.Parse(typeof(Countries), comboBoxCountry.SelectedItem.ToString().Replace(" ", "_")),
+            //     new Email(), new Phone()));
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)

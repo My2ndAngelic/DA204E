@@ -10,6 +10,7 @@ namespace BackendLibrary
 
         public CustomerManager()
         {
+            customers = new List<Customer>();
         }
 
         public CustomerManager(List<Customer> customers)
@@ -22,9 +23,9 @@ namespace BackendLibrary
             customers = customerManager.customers;
         }
 
-        public void Add(Customer item)
+        public void Add(Customer customer)
         {
-            customers.Add(item);
+            customers.Add(customer);
         }
 
         public void Clear()
@@ -89,7 +90,7 @@ namespace BackendLibrary
 
         public string[] GetCustomers()
         {
-            return customers.Select(customer => customer.Contact.FName).ToArray();
+            return customers.Select(customer => customer.Contact.GetContactDetail()).ToArray();
         }
     }
 }

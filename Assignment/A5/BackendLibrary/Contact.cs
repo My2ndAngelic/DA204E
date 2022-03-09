@@ -4,7 +4,7 @@ namespace BackendLibrary
 {
     public class Contact
     {
-        private Countries countries;
+        private Address address;
         private Email email;
         private string fName;
         private string lName;
@@ -12,30 +12,34 @@ namespace BackendLibrary
 
         public Contact()
         {
-            countries = Countries.Sverige;
-            email = new Email("", "");
+            fName = "";
+            lName = "";
+            address = new Address();
+            email = new Email();
             phone = new Phone();
         }
 
-        public Contact(Countries countries, Email email, Phone phone)
+        public Contact(Address address, Email email, Phone phone)
         {
-            this.countries = countries;
+            this.address = address;
             this.email = email;
             this.phone = phone;
         }
 
         public Contact(Contact contact)
         {
-            countries = contact.countries;
+            fName = contact.fName;
+            lName = contact.lName;
+            address = contact.address;
             email = contact.email;
             phone = contact.phone;
         }
 
-        public Contact(string fName, string lName, Countries countries, Email email, Phone phone)
+        public Contact(string fName, string lName, Address address, Email email, Phone phone)
         {
             this.fName = fName;
             this.lName = lName;
-            this.countries = countries;
+            this.address = address;
             this.email = email;
             this.phone = phone;
         }
@@ -64,10 +68,10 @@ namespace BackendLibrary
             set { phone = value; }
         }
 
-        public Countries Countries
+        public Address Address
         {
-            get { return countries; }
-            set { countries = value; }
+            get { return address; }
+            set { address = value; }
         }
 
         public bool IsValidName()
@@ -83,7 +87,7 @@ namespace BackendLibrary
         public string GetContactDetail()
         {
             return
-                $@"{FName} {LName} {Email.Personal} {Email.Work} {Phone.Number} {Countries.ToString().Replace("_", " ")}";
+                $@"{FName} {LName} {Email.Personal} {Email.Work} {Phone.Number}";
         }
     }
 }
