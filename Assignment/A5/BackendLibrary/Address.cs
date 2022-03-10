@@ -32,6 +32,11 @@
             return $@"{street} {city} {zipcode} {countries.ToString().Replace("_", " ")}";
         }
 
+        public string GetAddressInfo()
+        {
+            return $@"{street} {city} {zipcode} {countries.ToString().Replace("_", " ")}";
+        }
+
         public string Street
         {
             get { return street; }

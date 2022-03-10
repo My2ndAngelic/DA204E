@@ -225,7 +225,7 @@ namespace GUIFormWFDNF
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(100, 23);
             this.label7.TabIndex = 24;
-            this.label7.Text = "label7";
+            this.label7.Text = "Street";
             // 
             // label8
             // 
@@ -233,7 +233,7 @@ namespace GUIFormWFDNF
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(100, 23);
             this.label8.TabIndex = 25;
-            this.label8.Text = "label8";
+            this.label8.Text = "City";
             // 
             // label9
             // 
@@ -241,7 +241,7 @@ namespace GUIFormWFDNF
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(100, 23);
             this.label9.TabIndex = 26;
-            this.label9.Text = "label9";
+            this.label9.Text = "Zip code";
             // 
             // groupBox3
             // 
