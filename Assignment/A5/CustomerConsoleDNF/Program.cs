@@ -19,7 +19,14 @@ namespace CustomerConsoleDNF
             Customer cu = new Customer(c);
             CustomerManager cm = new CustomerManager();
             cm.Add(cu);
-            Console.WriteLine(cm[0].Contact.GetContactDetail());
+            cm.Add(cu);
+            cm.Add(cu);
+            cm.Add(cu);
+            cm.Add(cu);
+            foreach (string customer in cm.GetCustomers())
+            {
+                Console.WriteLine(customer);
+            }
         }
     }
 }

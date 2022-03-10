@@ -21,6 +21,9 @@ namespace GUIFormWFDNF
 
         private void buttonAdd_Click(object sender, EventArgs e)
         {
+            // currCustomer = new Customer(new Contact("John", "Cena", new Address("", "", "", Countries.Afghanistan),
+            //     new Email("john@gmail.com", "cena@gmail.com"),
+            //     new Phone("+69 420")));
             currCustomer = new Customer();
             if (!LaunchDialog()) return;
             cm.Add(currCustomer);

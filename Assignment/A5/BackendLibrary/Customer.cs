@@ -6,6 +6,7 @@ namespace BackendLibrary
 
         public Customer()
         {
+            contact = new Contact();
         }
 
         public Customer(Contact contact)
