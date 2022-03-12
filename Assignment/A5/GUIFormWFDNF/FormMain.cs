@@ -96,7 +96,7 @@ namespace GUIFormWFDNF
             listboxContact.DataSource = CustomerProcessing(cm.GetCustomers());
         }
 
-        private string[] CustomerProcessing(Customer[] customers)
+        private string[] CustomerProcessing(IEnumerable<Customer> customers)
         {
             return customers.Select((t, i) => $"{i} {t.Contact.LName}, {t.Contact.FName} {t.Contact.Phone.OfficeNumber} {t.Contact.Email.Work}").ToArray();
         }
