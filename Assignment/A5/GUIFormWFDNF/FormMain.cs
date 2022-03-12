@@ -8,7 +8,7 @@ namespace GUIFormWFDNF
 {
     public partial class FormMain : Form
     {
-        private CustomerManager cm = new CustomerManager();
+        private readonly CustomerManager cm = new CustomerManager();
         private Customer customer = new Customer();
 
         public Customer Customer
