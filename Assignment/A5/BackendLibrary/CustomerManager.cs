@@ -28,6 +28,11 @@ namespace BackendLibrary
             customers.Add(customer);
         }
 
+        public void EditCustomer(Customer customer, int index)
+        {
+            customers[index] = customer;
+        }
+        
         public void Clear()
         {
             customers = new List<Customer>();
@@ -90,7 +95,17 @@ namespace BackendLibrary
 
         public string[] GetCustomers()
         {
-            return customers.Select(customer => customer.Contact.GetContactDetail()).ToArray();
+            return customers.Select(VARIABLE => string.Join(" ", GetCustomerInfo(VARIABLE))).ToArray();
+        }
+
+        public IEnumerable<string> GetCustomerInfo(int index)
+        {
+            return new string[]{index.ToString()}.Concat(customers[index].Contact.GetContactStrings());
+        }
+        
+        public IEnumerable<string> GetCustomerInfo(Customer customer)
+        {
+            return new string[]{IndexOf(customer).ToString()}.Concat(customers[IndexOf(customer)].Contact.GetContactStrings());
         }
     }
 }

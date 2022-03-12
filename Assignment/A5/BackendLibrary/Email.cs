@@ -18,6 +18,8 @@ namespace BackendLibrary
         /// <remarks></remarks>
         public Email()
         {
+            officeMail = "";
+            personalMail = "";
         }
 
         /// <summary>

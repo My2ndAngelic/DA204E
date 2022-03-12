@@ -1,3 +1,4 @@
+using System.Collections.Generic;
 using System.Linq;
 
 namespace BackendLibrary
@@ -21,6 +22,8 @@ namespace BackendLibrary
 
         public Contact(Address address, Email email, Phone phone)
         {
+            fName = "";
+            lName = "";
             this.address = address;
             this.email = email;
             this.phone = phone;
@@ -81,13 +84,22 @@ namespace BackendLibrary
 
         public bool IsValidContact()
         {
-            return email.IsValidEmail() && phone.IsValidPhone() && IsValidName();
+            return address.IsValidAddress() && email.IsValidEmail() && phone.IsValidPhone() && IsValidName();
         }
 
         public string GetContactDetail()
         {
             return
-                $@"{FName} {LName} {Email.Personal} {Email.Work} {Phone.Number}";
+                $@"{FName} {LName} {Email.Personal} {Email.Work} {Phone.Number} {Address.Street} {Address.City} {Address.Zipcode} {Address.Countries.ToString().Replace("_", " ")}";
+        }
+
+        public IEnumerable<string> GetContactStrings()
+        {
+            return new[]
+            {
+                FName, LName, Email.Personal, Email.Work, Phone.Number, Address.Street, Address.City,
+                Address.Countries.ToString().Replace("_", " ")
+            };
         }
     }
 }

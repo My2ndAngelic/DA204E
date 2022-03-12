@@ -9,6 +9,10 @@
 
         public Address()
         {
+            city = "";
+            street = "";
+            zipcode = "";
+            countries = Countries.United_States_of_America;
         }
 
         public Address(string street, string city, string zipcode, Countries countries)
@@ -59,6 +63,11 @@
         {
             get { return countries; }
             set { countries = value; }
+        }
+
+        public bool IsValidAddress()
+        {
+            return true;
         }
     }
 }

@@ -47,9 +47,9 @@ namespace GUIFormWFDNF
             this.comboBoxCountry = new System.Windows.Forms.ComboBox();
             this.groupBox1 = new System.Windows.Forms.GroupBox();
             this.groupBox2 = new System.Windows.Forms.GroupBox();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.textBox2 = new System.Windows.Forms.TextBox();
-            this.textBox3 = new System.Windows.Forms.TextBox();
+            this.textBoxStreet = new System.Windows.Forms.TextBox();
+            this.textBoxZipcode = new System.Windows.Forms.TextBox();
+            this.textBoxCity = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
@@ -198,26 +198,26 @@ namespace GUIFormWFDNF
             this.groupBox2.TabStop = false;
             this.groupBox2.Text = "groupBox2";
             // 
-            // textBox1
+            // textBoxStreet
             // 
-            this.textBox1.Location = new System.Drawing.Point(161, 25);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(398, 20);
-            this.textBox1.TabIndex = 21;
+            this.textBoxStreet.Location = new System.Drawing.Point(161, 25);
+            this.textBoxStreet.Name = "textBoxStreet";
+            this.textBoxStreet.Size = new System.Drawing.Size(398, 20);
+            this.textBoxStreet.TabIndex = 21;
             // 
-            // textBox2
+            // textBoxZipcode
             // 
-            this.textBox2.Location = new System.Drawing.Point(161, 131);
-            this.textBox2.Name = "textBox2";
-            this.textBox2.Size = new System.Drawing.Size(398, 20);
-            this.textBox2.TabIndex = 22;
+            this.textBoxZipcode.Location = new System.Drawing.Point(161, 131);
+            this.textBoxZipcode.Name = "textBoxZipcode";
+            this.textBoxZipcode.Size = new System.Drawing.Size(398, 20);
+            this.textBoxZipcode.TabIndex = 22;
             // 
-            // textBox3
+            // textBoxCity
             // 
-            this.textBox3.Location = new System.Drawing.Point(161, 76);
-            this.textBox3.Name = "textBox3";
-            this.textBox3.Size = new System.Drawing.Size(398, 20);
-            this.textBox3.TabIndex = 23;
+            this.textBoxCity.Location = new System.Drawing.Point(161, 76);
+            this.textBoxCity.Name = "textBoxCity";
+            this.textBoxCity.Size = new System.Drawing.Size(398, 20);
+            this.textBoxCity.TabIndex = 23;
             // 
             // label7
             // 
@@ -248,9 +248,9 @@ namespace GUIFormWFDNF
             this.groupBox3.Controls.Add(this.label9);
             this.groupBox3.Controls.Add(this.label8);
             this.groupBox3.Controls.Add(this.label7);
-            this.groupBox3.Controls.Add(this.textBox3);
-            this.groupBox3.Controls.Add(this.textBox2);
-            this.groupBox3.Controls.Add(this.textBox1);
+            this.groupBox3.Controls.Add(this.textBoxCity);
+            this.groupBox3.Controls.Add(this.textBoxZipcode);
+            this.groupBox3.Controls.Add(this.textBoxStreet);
             this.groupBox3.Controls.Add(this.comboBoxCountry);
             this.groupBox3.Controls.Add(this.label6);
             this.groupBox3.Location = new System.Drawing.Point(17, 354);
@@ -288,9 +288,9 @@ namespace GUIFormWFDNF
 
         private System.Windows.Forms.GroupBox groupBox1;
         private System.Windows.Forms.GroupBox groupBox2;
-        private System.Windows.Forms.TextBox textBox1;
-        private System.Windows.Forms.TextBox textBox2;
-        private System.Windows.Forms.TextBox textBox3;
+        private System.Windows.Forms.TextBox textBoxStreet;
+        private System.Windows.Forms.TextBox textBoxZipcode;
+        private System.Windows.Forms.TextBox textBoxCity;
 
         private System.Windows.Forms.ComboBox comboBoxCountry;
 

@@ -33,6 +33,7 @@
             this.textBoxContact = new System.Windows.Forms.TextBox();
             this.buttonEdit = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
+            this.textBoxTest = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // buttonAdd
@@ -54,6 +55,7 @@
             this.listboxContact.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listboxContact.Size = new System.Drawing.Size(530, 342);
             this.listboxContact.TabIndex = 1;
+            this.listboxContact.SelectedIndexChanged += new System.EventHandler(this.listboxContact_SelectedIndexChanged);
             // 
             // textBoxContact
             // 
@@ -84,11 +86,21 @@
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
+            // textBoxTest
+            // 
+            this.textBoxTest.Enabled = false;
+            this.textBoxTest.Location = new System.Drawing.Point(587, 444);
+            this.textBoxTest.Multiline = true;
+            this.textBoxTest.Name = "textBoxTest";
+            this.textBoxTest.Size = new System.Drawing.Size(299, 132);
+            this.textBoxTest.TabIndex = 5;
+            // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(910, 498);
+            this.ClientSize = new System.Drawing.Size(910, 599);
+            this.Controls.Add(this.textBoxTest);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonEdit);
             this.Controls.Add(this.textBoxContact);
@@ -99,6 +111,8 @@
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.TextBox textBoxTest;
 
         private System.Windows.Forms.Button buttonDelete;
 

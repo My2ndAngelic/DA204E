@@ -11,13 +11,14 @@ namespace GUIFormWFDNF
 
         public FormContact(Customer customer)
         {
+            this.customer = customer;
             InitializeComponent();
             InitializeGUI();
-            this.customer = customer;
         }
 
         public FormContact()
         {
+            customer = new Customer();
             InitializeComponent();
             InitializeGUI();
         }
@@ -25,6 +26,7 @@ namespace GUIFormWFDNF
         public Customer Customer
         {
             get { return customer; }
+            set { customer = value; }
         }
 
         private void InitializeGUI()
@@ -32,14 +34,38 @@ namespace GUIFormWFDNF
             comboBoxCountry.DataSource = Enum.GetValues(typeof(Countries)).Cast<Countries>().ToList()
                 .ConvertAll(s => s.ToString().Replace("_", " "));
             // comboBoxCountry.DataSource = Enum.GetValues(typeof(Countries));
+            FillInTheVoid();
+        }
+
+        private void FillInTheVoid()
+        {
+            Console.WriteLine();
+            textBoxFName.Text = customer.Contact.FName;
+            textBoxLName.Text = customer.Contact.LName;
+            textBoxOMail.Text = customer.Contact.Email.Work;
+            textBoxPMail.Text = customer.Contact.Email.Personal;
+            textBoxPhone.Text = customer.Contact.Phone.Number;
+            textBoxStreet.Text = customer.Contact.Address.Street;
+            textBoxCity.Text = customer.Contact.Address.City;
+            textBoxZipcode.Text = customer.Contact.Address.Zipcode;
+            comboBoxCountry.SelectedItem = customer.Contact.Address.Countries;
         }
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
+            customer = new Customer(
+                new Contact(
+                    textBoxFName.Text, 
+                    textBoxLName.Text,
+                    new Address(
+                        textBoxStreet.Text, 
+                        textBoxCity.Text, 
+                        textBoxZipcode.Text,
+                        (Countries) Enum.Parse(typeof(Countries), comboBoxCountry.SelectedValue.ToString())),
+                        new Email(textBoxOMail.Text, textBoxPMail.Text),
+                    new Phone(textBoxPhone.Text)
+                ));
             DialogResult = DialogResult.OK;
-            // customer = new Customer(new Contact(textBoxFName.Text, textBoxLName.Text,
-            //     (Countries) Enum.Parse(typeof(Countries), comboBoxCountry.SelectedItem.ToString().Replace(" ", "_")),
-            //     new Email(), new Phone()));
         }
 
         private void buttonCancel_Click(object sender, EventArgs e)
