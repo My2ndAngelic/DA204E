@@ -4,32 +4,57 @@ namespace BackendLibrary
 {
     public class Phone
     {
-        private string number;
+        private string officeNumber;
+        private string personalNumber;
 
         public Phone()
         {
-            Number = "";
+            officeNumber = "";
+            personalNumber = "";
         }
 
-        public Phone(string number)
+        public Phone(string officeNumber, string personalNumber)
         {
-            Number = number;
+            this.officeNumber = officeNumber;
+            this.personalNumber = personalNumber;
         }
 
         public Phone(Phone phone)
         {
-            number = phone.number;
+            officeNumber = phone.officeNumber;
+            personalNumber = phone.personalNumber;
         }
-
-        public string Number
+        
+        public Phone(string officeNumber) : this(officeNumber, string.Empty)
         {
-            get { return number; }
-            set { number = value; }
         }
 
+        public string OfficeNumber
+        {
+            get { return officeNumber; }
+            set { officeNumber = value; }
+        }
+
+        public string PersonalNumber
+        {
+            get { return personalNumber; }
+            set { personalNumber = value; }
+        }
+
+        public bool IsValidOfficePhone()
+        {
+            return (officeNumber[0] == '+' ? officeNumber.Remove(0, 1) : officeNumber).Replace(" ", "").Any(char.IsDigit);
+        }
+
+        public bool IsValidHomePhone()
+        {
+            return personalNumber == string.Empty || (personalNumber[0] == '+' ? personalNumber.Remove(0, 1) : personalNumber).Replace(" ", "").Any(char.IsDigit);
+
+        }
+        
         public bool IsValidPhone()
         {
-            return (number[0] == '+' ? number.Remove(0, 1) : number).Replace(" ", "").Any(char.IsDigit);
+            return IsValidHomePhone() && IsValidOfficePhone();
         }
     }
 }

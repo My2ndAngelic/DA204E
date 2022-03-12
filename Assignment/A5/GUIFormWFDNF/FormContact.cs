@@ -8,9 +8,11 @@ namespace GUIFormWFDNF
     public partial class FormContact : Form
     {
         private Customer customer;
+        private readonly bool editMode;
 
-        public FormContact(Customer customer)
+        public FormContact(Customer customer, bool editMode)
         {
+            this.editMode = editMode;
             this.customer = customer;
             InitializeComponent();
             InitializeGUI();
@@ -18,6 +20,7 @@ namespace GUIFormWFDNF
 
         public FormContact()
         {
+            editMode = false;
             customer = new Customer();
             InitializeComponent();
             InitializeGUI();
@@ -33,18 +36,18 @@ namespace GUIFormWFDNF
         {
             comboBoxCountry.DataSource = Enum.GetValues(typeof(Countries)).Cast<Countries>().ToList()
                 .ConvertAll(s => s.ToString().Replace("_", " "));
-            // comboBoxCountry.DataSource = Enum.GetValues(typeof(Countries));
+            Text = editMode ? "Edit customer" : "Add new customer";
             FillInTheVoid();
         }
 
         private void FillInTheVoid()
         {
-            Console.WriteLine();
             textBoxFName.Text = customer.Contact.FName;
             textBoxLName.Text = customer.Contact.LName;
             textBoxOMail.Text = customer.Contact.Email.Work;
             textBoxPMail.Text = customer.Contact.Email.Personal;
-            textBoxPhone.Text = customer.Contact.Phone.Number;
+            textBoxOPhone.Text = customer.Contact.Phone.OfficeNumber;
+            textBoxPPhone.Text = customer.Contact.Phone.PersonalNumber;
             textBoxStreet.Text = customer.Contact.Address.Street;
             textBoxCity.Text = customer.Contact.Address.City;
             textBoxZipcode.Text = customer.Contact.Address.Zipcode;
@@ -55,33 +58,38 @@ namespace GUIFormWFDNF
         {
             customer = new Customer(
                 new Contact(
-                    textBoxFName.Text, 
-                    textBoxLName.Text,
+                    textBoxFName.Text.Trim(), 
+                    textBoxLName.Text.Trim(),
                     new Address(
-                        textBoxStreet.Text, 
-                        textBoxCity.Text, 
-                        textBoxZipcode.Text,
+                        textBoxStreet.Text.Trim(), 
+                        textBoxCity.Text.Trim(), 
+                        textBoxZipcode.Text.Trim(),
                         (Countries) Enum.Parse(typeof(Countries), comboBoxCountry.SelectedValue.ToString().Replace(" ", "_"))),
-                        new Email(textBoxOMail.Text, textBoxPMail.Text),
-                    new Phone(textBoxPhone.Text)
+                    new Email(
+                        textBoxOMail.Text.Trim(), 
+                        textBoxPMail.Text.Trim()), 
+                    new Phone(
+                        textBoxOPhone.Text.Trim(),
+                        textBoxPPhone.Text.Trim()
+                    )
                 ));
-            CheckValidity();
-        }
-
-        private void CheckValidity()
-        {
             if (customer.Contact.IsValidContact())
             {
                 DialogResult = DialogResult.OK;
             }
             else
             {
-                MessageBox.Show(@"Something is wrong. Please check your input", "Error");
+                MessageBox.Show(@"Something is wrong. Please check your input", @"Error");
             }
         }
+        
         private void buttonCancel_Click(object sender, EventArgs e)
         {
-            DialogResult = DialogResult.Cancel;
+            DialogResult dr = MessageBox.Show(@"Do you want to cancel?", @"Cancel", MessageBoxButtons.YesNo);
+            if (dr == DialogResult.Yes)
+            {
+                DialogResult = DialogResult.Cancel;
+            }
         }
     }
 }

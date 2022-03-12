@@ -90,15 +90,17 @@ namespace BackendLibrary
         public string GetContactDetail()
         {
             return
-                $@"{FName} {LName} {Email.Personal} {Email.Work} {Phone.Number} {Address.Street} {Address.City} {Address.Zipcode} {Address.Countries.ToString().Replace("_", " ")}";
+                $@"{FName} {LName} {Email.Personal} {Email.Work} {Phone.OfficeNumber} {Phone.PersonalNumber} {Address.Street} {Address.City} {Address.Zipcode} {Address.Countries.ToString().Replace("_", " ")}";
         }
 
         public IEnumerable<string> GetContactStrings()
         {
             return new[]
             {
-                FName, LName, Email.Personal, Email.Work, Phone.Number, Address.Street, Address.City,
-                Address.Countries.ToString().Replace("_", " ")
+                FName, LName, 
+                Email.Work, Email.Personal,
+                Phone.OfficeNumber, Phone.PersonalNumber,
+                Address.Street, Address.City, Address.Zipcode, Address.Countries.ToString().Replace("_", " ")
             };
         }
     }

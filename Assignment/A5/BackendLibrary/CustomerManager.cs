@@ -25,7 +25,8 @@ namespace BackendLibrary
 
         public void Add(Customer customer)
         {
-            customers.Add(customer);
+            if (customer != null)
+                customers.Add(customer);
         }
 
         public void EditCustomer(Customer customer, int index)
@@ -45,6 +46,7 @@ namespace BackendLibrary
 
         public void CopyTo(Customer[] array, int arrayIndex)
         {
+            customers.CopyTo(array, arrayIndex);
         }
 
         public bool Remove(Customer item)
@@ -93,9 +95,10 @@ namespace BackendLibrary
             return GetEnumerator();
         }
 
-        public string[] GetCustomers()
+        public Customer[] GetCustomers()
         {
-            return customers.Select(VARIABLE => string.Join(" ", GetCustomerInfo(VARIABLE))).ToArray();
+            return customers.ToArray();
+            // return customers.Select(VARIABLE => string.Join(" ", GetCustomerInfo(VARIABLE))).ToArray();
         }
 
         public IEnumerable<string> GetCustomerInfo(int index)

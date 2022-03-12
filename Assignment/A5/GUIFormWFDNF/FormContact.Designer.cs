@@ -35,7 +35,7 @@ namespace GUIFormWFDNF
             this.textBoxLName = new System.Windows.Forms.TextBox();
             this.textBoxOMail = new System.Windows.Forms.TextBox();
             this.textBoxPMail = new System.Windows.Forms.TextBox();
-            this.textBoxPhone = new System.Windows.Forms.TextBox();
+            this.textBoxOPhone = new System.Windows.Forms.TextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.label2 = new System.Windows.Forms.Label();
             this.label3 = new System.Windows.Forms.Label();
@@ -47,6 +47,8 @@ namespace GUIFormWFDNF
             this.comboBoxCountry = new System.Windows.Forms.ComboBox();
             this.groupBoxName = new System.Windows.Forms.GroupBox();
             this.groupBoxEP = new System.Windows.Forms.GroupBox();
+            this.label10 = new System.Windows.Forms.Label();
+            this.textBoxPPhone = new System.Windows.Forms.TextBox();
             this.textBoxStreet = new System.Windows.Forms.TextBox();
             this.textBoxZipcode = new System.Windows.Forms.TextBox();
             this.textBoxCity = new System.Windows.Forms.TextBox();
@@ -87,12 +89,12 @@ namespace GUIFormWFDNF
             this.textBoxPMail.Size = new System.Drawing.Size(398, 20);
             this.textBoxPMail.TabIndex = 3;
             // 
-            // textBoxPhone
+            // textBoxOPhone
             // 
-            this.textBoxPhone.Location = new System.Drawing.Point(162, 108);
-            this.textBoxPhone.Name = "textBoxPhone";
-            this.textBoxPhone.Size = new System.Drawing.Size(398, 20);
-            this.textBoxPhone.TabIndex = 4;
+            this.textBoxOPhone.Location = new System.Drawing.Point(162, 108);
+            this.textBoxOPhone.Name = "textBoxOPhone";
+            this.textBoxOPhone.Size = new System.Drawing.Size(398, 20);
+            this.textBoxOPhone.TabIndex = 4;
             // 
             // label1
             // 
@@ -132,7 +134,7 @@ namespace GUIFormWFDNF
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(100, 23);
             this.label5.TabIndex = 12;
-            this.label5.Text = "Phone Number";
+            this.label5.Text = "Office Phone";
             // 
             // label6
             // 
@@ -144,7 +146,7 @@ namespace GUIFormWFDNF
             // 
             // buttonOK
             // 
-            this.buttonOK.Location = new System.Drawing.Point(75, 594);
+            this.buttonOK.Location = new System.Drawing.Point(73, 654);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(135, 55);
             this.buttonOK.TabIndex = 16;
@@ -154,7 +156,7 @@ namespace GUIFormWFDNF
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(441, 594);
+            this.buttonCancel.Location = new System.Drawing.Point(441, 654);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(135, 55);
             this.buttonCancel.TabIndex = 17;
@@ -186,18 +188,35 @@ namespace GUIFormWFDNF
             // 
             // groupBoxEP
             // 
+            this.groupBoxEP.Controls.Add(this.label10);
+            this.groupBoxEP.Controls.Add(this.textBoxPPhone);
             this.groupBoxEP.Controls.Add(this.label5);
             this.groupBoxEP.Controls.Add(this.label4);
             this.groupBoxEP.Controls.Add(this.label3);
-            this.groupBoxEP.Controls.Add(this.textBoxPhone);
+            this.groupBoxEP.Controls.Add(this.textBoxOPhone);
             this.groupBoxEP.Controls.Add(this.textBoxPMail);
             this.groupBoxEP.Controls.Add(this.textBoxOMail);
             this.groupBoxEP.Location = new System.Drawing.Point(16, 168);
             this.groupBoxEP.Name = "groupBoxEP";
-            this.groupBoxEP.Size = new System.Drawing.Size(590, 153);
+            this.groupBoxEP.Size = new System.Drawing.Size(590, 201);
             this.groupBoxEP.TabIndex = 20;
             this.groupBoxEP.TabStop = false;
             this.groupBoxEP.Text = "groupBox2";
+            // 
+            // label10
+            // 
+            this.label10.Location = new System.Drawing.Point(11, 154);
+            this.label10.Name = "label10";
+            this.label10.Size = new System.Drawing.Size(100, 23);
+            this.label10.TabIndex = 14;
+            this.label10.Text = "Home Number";
+            // 
+            // textBoxPPhone
+            // 
+            this.textBoxPPhone.Location = new System.Drawing.Point(162, 151);
+            this.textBoxPPhone.Name = "textBoxPPhone";
+            this.textBoxPPhone.Size = new System.Drawing.Size(398, 20);
+            this.textBoxPPhone.TabIndex = 13;
             // 
             // textBoxStreet
             // 
@@ -254,7 +273,7 @@ namespace GUIFormWFDNF
             this.groupBoxAddress.Controls.Add(this.textBoxStreet);
             this.groupBoxAddress.Controls.Add(this.comboBoxCountry);
             this.groupBoxAddress.Controls.Add(this.label6);
-            this.groupBoxAddress.Location = new System.Drawing.Point(17, 338);
+            this.groupBoxAddress.Location = new System.Drawing.Point(12, 398);
             this.groupBoxAddress.Name = "groupBoxAddress";
             this.groupBoxAddress.Size = new System.Drawing.Size(589, 231);
             this.groupBoxAddress.TabIndex = 27;
@@ -282,6 +301,9 @@ namespace GUIFormWFDNF
             this.ResumeLayout(false);
         }
 
+        private System.Windows.Forms.Label label10;
+        private System.Windows.Forms.TextBox textBoxPPhone;
+
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
@@ -300,7 +322,7 @@ namespace GUIFormWFDNF
         private System.Windows.Forms.TextBox textBoxLName;
         private System.Windows.Forms.TextBox textBoxOMail;
         private System.Windows.Forms.TextBox textBoxPMail;
-        private System.Windows.Forms.TextBox textBoxPhone;
+        private System.Windows.Forms.TextBox textBoxOPhone;
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Label label3;
