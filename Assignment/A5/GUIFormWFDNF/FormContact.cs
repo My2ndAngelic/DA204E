@@ -48,7 +48,7 @@ namespace GUIFormWFDNF
             textBoxStreet.Text = customer.Contact.Address.Street;
             textBoxCity.Text = customer.Contact.Address.City;
             textBoxZipcode.Text = customer.Contact.Address.Zipcode;
-            comboBoxCountry.SelectedItem = customer.Contact.Address.Countries;
+            comboBoxCountry.SelectedItem = customer.Contact.Address.Countries.ToString().Replace("_", " ");
         }
 
         private void buttonOK_Click(object sender, EventArgs e)
@@ -61,13 +61,24 @@ namespace GUIFormWFDNF
                         textBoxStreet.Text, 
                         textBoxCity.Text, 
                         textBoxZipcode.Text,
-                        (Countries) Enum.Parse(typeof(Countries), comboBoxCountry.SelectedValue.ToString())),
+                        (Countries) Enum.Parse(typeof(Countries), comboBoxCountry.SelectedValue.ToString().Replace(" ", "_"))),
                         new Email(textBoxOMail.Text, textBoxPMail.Text),
                     new Phone(textBoxPhone.Text)
                 ));
-            DialogResult = DialogResult.OK;
+            CheckValidity();
         }
 
+        private void CheckValidity()
+        {
+            if (customer.Contact.IsValidContact())
+            {
+                DialogResult = DialogResult.OK;
+            }
+            else
+            {
+                MessageBox.Show(@"Something is wrong. Please check your input", "Error");
+            }
+        }
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             DialogResult = DialogResult.Cancel;

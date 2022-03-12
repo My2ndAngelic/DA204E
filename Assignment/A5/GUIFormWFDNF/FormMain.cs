@@ -55,7 +55,7 @@ namespace GUIFormWFDNF
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             customer = new Customer();
-            cm.Add(LaunchDialog());
+            LaunchDialog(false);
             UpdateGUI();
         }
 
@@ -63,16 +63,24 @@ namespace GUIFormWFDNF
         private void buttonEdit_Click(object sender, EventArgs e)
         {
             if (listboxContact.SelectedIndex == -1) return;
-            customer = cm[listboxContact.SelectedIndex];
-            cm.EditCustomer(LaunchDialog(), listboxContact.SelectedIndex);
+            customer = cm[listboxContact.SelectedIndex]; 
+            LaunchDialog(true);
             UpdateGUI();
         }
 
-        public Customer LaunchDialog()
+        public void LaunchDialog(bool editMode)
         {
             FormContact fc = new FormContact(customer);
-            fc.ShowDialog();
-            return fc.Customer;
+            DialogResult di = fc.ShowDialog();
+            if (di != DialogResult.OK) return;
+            if (editMode)
+            {
+                cm[listboxContact.SelectedIndex] = fc.Customer;
+            }
+            else
+            {
+                cm.Add(fc.Customer);
+            }
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)

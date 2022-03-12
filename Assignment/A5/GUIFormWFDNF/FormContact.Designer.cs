@@ -45,58 +45,58 @@ namespace GUIFormWFDNF
             this.buttonOK = new System.Windows.Forms.Button();
             this.buttonCancel = new System.Windows.Forms.Button();
             this.comboBoxCountry = new System.Windows.Forms.ComboBox();
-            this.groupBox1 = new System.Windows.Forms.GroupBox();
-            this.groupBox2 = new System.Windows.Forms.GroupBox();
+            this.groupBoxName = new System.Windows.Forms.GroupBox();
+            this.groupBoxEP = new System.Windows.Forms.GroupBox();
             this.textBoxStreet = new System.Windows.Forms.TextBox();
             this.textBoxZipcode = new System.Windows.Forms.TextBox();
             this.textBoxCity = new System.Windows.Forms.TextBox();
             this.label7 = new System.Windows.Forms.Label();
             this.label8 = new System.Windows.Forms.Label();
             this.label9 = new System.Windows.Forms.Label();
-            this.groupBox3 = new System.Windows.Forms.GroupBox();
-            this.groupBox1.SuspendLayout();
-            this.groupBox2.SuspendLayout();
-            this.groupBox3.SuspendLayout();
+            this.groupBoxAddress = new System.Windows.Forms.GroupBox();
+            this.groupBoxName.SuspendLayout();
+            this.groupBoxEP.SuspendLayout();
+            this.groupBoxAddress.SuspendLayout();
             this.SuspendLayout();
             // 
             // textBoxFName
             // 
-            this.textBoxFName.Location = new System.Drawing.Point(166, 12);
+            this.textBoxFName.Location = new System.Drawing.Point(166, 27);
             this.textBoxFName.Name = "textBoxFName";
             this.textBoxFName.Size = new System.Drawing.Size(398, 20);
             this.textBoxFName.TabIndex = 0;
             // 
             // textBoxLName
             // 
-            this.textBoxLName.Location = new System.Drawing.Point(166, 80);
+            this.textBoxLName.Location = new System.Drawing.Point(166, 71);
             this.textBoxLName.Name = "textBoxLName";
             this.textBoxLName.Size = new System.Drawing.Size(398, 20);
             this.textBoxLName.TabIndex = 1;
             // 
             // textBoxOMail
             // 
-            this.textBoxOMail.Location = new System.Drawing.Point(162, 16);
+            this.textBoxOMail.Location = new System.Drawing.Point(162, 29);
             this.textBoxOMail.Name = "textBoxOMail";
             this.textBoxOMail.Size = new System.Drawing.Size(398, 20);
             this.textBoxOMail.TabIndex = 2;
             // 
             // textBoxPMail
             // 
-            this.textBoxPMail.Location = new System.Drawing.Point(162, 62);
+            this.textBoxPMail.Location = new System.Drawing.Point(162, 67);
             this.textBoxPMail.Name = "textBoxPMail";
             this.textBoxPMail.Size = new System.Drawing.Size(398, 20);
             this.textBoxPMail.TabIndex = 3;
             // 
             // textBoxPhone
             // 
-            this.textBoxPhone.Location = new System.Drawing.Point(162, 98);
+            this.textBoxPhone.Location = new System.Drawing.Point(162, 108);
             this.textBoxPhone.Name = "textBoxPhone";
             this.textBoxPhone.Size = new System.Drawing.Size(398, 20);
             this.textBoxPhone.TabIndex = 4;
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(10, 15);
+            this.label1.Location = new System.Drawing.Point(15, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(100, 23);
             this.label1.TabIndex = 8;
@@ -104,7 +104,7 @@ namespace GUIFormWFDNF
             // 
             // label2
             // 
-            this.label2.Location = new System.Drawing.Point(10, 83);
+            this.label2.Location = new System.Drawing.Point(15, 74);
             this.label2.Name = "label2";
             this.label2.Size = new System.Drawing.Size(100, 23);
             this.label2.TabIndex = 9;
@@ -112,7 +112,7 @@ namespace GUIFormWFDNF
             // 
             // label3
             // 
-            this.label3.Location = new System.Drawing.Point(11, 19);
+            this.label3.Location = new System.Drawing.Point(11, 32);
             this.label3.Name = "label3";
             this.label3.Size = new System.Drawing.Size(100, 23);
             this.label3.TabIndex = 10;
@@ -120,7 +120,7 @@ namespace GUIFormWFDNF
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(11, 65);
+            this.label4.Location = new System.Drawing.Point(11, 70);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(100, 23);
             this.label4.TabIndex = 11;
@@ -128,7 +128,7 @@ namespace GUIFormWFDNF
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(11, 101);
+            this.label5.Location = new System.Drawing.Point(11, 111);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(100, 23);
             this.label5.TabIndex = 12;
@@ -136,7 +136,7 @@ namespace GUIFormWFDNF
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(5, 198);
+            this.label6.Location = new System.Drawing.Point(10, 170);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(100, 23);
             this.label6.TabIndex = 13;
@@ -144,7 +144,7 @@ namespace GUIFormWFDNF
             // 
             // buttonOK
             // 
-            this.buttonOK.Location = new System.Drawing.Point(77, 631);
+            this.buttonOK.Location = new System.Drawing.Point(75, 594);
             this.buttonOK.Name = "buttonOK";
             this.buttonOK.Size = new System.Drawing.Size(135, 55);
             this.buttonOK.TabIndex = 16;
@@ -154,7 +154,7 @@ namespace GUIFormWFDNF
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(411, 631);
+            this.buttonCancel.Location = new System.Drawing.Point(441, 594);
             this.buttonCancel.Name = "buttonCancel";
             this.buttonCancel.Size = new System.Drawing.Size(135, 55);
             this.buttonCancel.TabIndex = 17;
@@ -164,64 +164,65 @@ namespace GUIFormWFDNF
             // 
             // comboBoxCountry
             // 
+            this.comboBoxCountry.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
             this.comboBoxCountry.FormattingEnabled = true;
-            this.comboBoxCountry.Location = new System.Drawing.Point(161, 195);
+            this.comboBoxCountry.Location = new System.Drawing.Point(161, 167);
             this.comboBoxCountry.Name = "comboBoxCountry";
             this.comboBoxCountry.Size = new System.Drawing.Size(398, 21);
             this.comboBoxCountry.TabIndex = 18;
             // 
-            // groupBox1
+            // groupBoxName
             // 
-            this.groupBox1.Controls.Add(this.label2);
-            this.groupBox1.Controls.Add(this.label1);
-            this.groupBox1.Controls.Add(this.textBoxLName);
-            this.groupBox1.Controls.Add(this.textBoxFName);
-            this.groupBox1.Location = new System.Drawing.Point(12, 25);
-            this.groupBox1.Name = "groupBox1";
-            this.groupBox1.Size = new System.Drawing.Size(572, 114);
-            this.groupBox1.TabIndex = 19;
-            this.groupBox1.TabStop = false;
-            this.groupBox1.Text = "groupBox1";
+            this.groupBoxName.Controls.Add(this.label2);
+            this.groupBoxName.Controls.Add(this.label1);
+            this.groupBoxName.Controls.Add(this.textBoxLName);
+            this.groupBoxName.Controls.Add(this.textBoxFName);
+            this.groupBoxName.Location = new System.Drawing.Point(12, 25);
+            this.groupBoxName.Name = "groupBoxName";
+            this.groupBoxName.Size = new System.Drawing.Size(594, 114);
+            this.groupBoxName.TabIndex = 19;
+            this.groupBoxName.TabStop = false;
+            this.groupBoxName.Text = "groupBoxName";
             // 
-            // groupBox2
+            // groupBoxEP
             // 
-            this.groupBox2.Controls.Add(this.label5);
-            this.groupBox2.Controls.Add(this.label4);
-            this.groupBox2.Controls.Add(this.label3);
-            this.groupBox2.Controls.Add(this.textBoxPhone);
-            this.groupBox2.Controls.Add(this.textBoxPMail);
-            this.groupBox2.Controls.Add(this.textBoxOMail);
-            this.groupBox2.Location = new System.Drawing.Point(16, 185);
-            this.groupBox2.Name = "groupBox2";
-            this.groupBox2.Size = new System.Drawing.Size(576, 147);
-            this.groupBox2.TabIndex = 20;
-            this.groupBox2.TabStop = false;
-            this.groupBox2.Text = "groupBox2";
+            this.groupBoxEP.Controls.Add(this.label5);
+            this.groupBoxEP.Controls.Add(this.label4);
+            this.groupBoxEP.Controls.Add(this.label3);
+            this.groupBoxEP.Controls.Add(this.textBoxPhone);
+            this.groupBoxEP.Controls.Add(this.textBoxPMail);
+            this.groupBoxEP.Controls.Add(this.textBoxOMail);
+            this.groupBoxEP.Location = new System.Drawing.Point(16, 168);
+            this.groupBoxEP.Name = "groupBoxEP";
+            this.groupBoxEP.Size = new System.Drawing.Size(590, 153);
+            this.groupBoxEP.TabIndex = 20;
+            this.groupBoxEP.TabStop = false;
+            this.groupBoxEP.Text = "groupBox2";
             // 
             // textBoxStreet
             // 
-            this.textBoxStreet.Location = new System.Drawing.Point(161, 25);
+            this.textBoxStreet.Location = new System.Drawing.Point(161, 35);
             this.textBoxStreet.Name = "textBoxStreet";
             this.textBoxStreet.Size = new System.Drawing.Size(398, 20);
             this.textBoxStreet.TabIndex = 21;
             // 
             // textBoxZipcode
             // 
-            this.textBoxZipcode.Location = new System.Drawing.Point(161, 131);
+            this.textBoxZipcode.Location = new System.Drawing.Point(161, 119);
             this.textBoxZipcode.Name = "textBoxZipcode";
             this.textBoxZipcode.Size = new System.Drawing.Size(398, 20);
             this.textBoxZipcode.TabIndex = 22;
             // 
             // textBoxCity
             // 
-            this.textBoxCity.Location = new System.Drawing.Point(161, 76);
+            this.textBoxCity.Location = new System.Drawing.Point(161, 77);
             this.textBoxCity.Name = "textBoxCity";
             this.textBoxCity.Size = new System.Drawing.Size(398, 20);
             this.textBoxCity.TabIndex = 23;
             // 
             // label7
             // 
-            this.label7.Location = new System.Drawing.Point(5, 28);
+            this.label7.Location = new System.Drawing.Point(10, 38);
             this.label7.Name = "label7";
             this.label7.Size = new System.Drawing.Size(100, 23);
             this.label7.TabIndex = 24;
@@ -229,7 +230,7 @@ namespace GUIFormWFDNF
             // 
             // label8
             // 
-            this.label8.Location = new System.Drawing.Point(5, 79);
+            this.label8.Location = new System.Drawing.Point(10, 80);
             this.label8.Name = "label8";
             this.label8.Size = new System.Drawing.Size(100, 23);
             this.label8.TabIndex = 25;
@@ -237,57 +238,57 @@ namespace GUIFormWFDNF
             // 
             // label9
             // 
-            this.label9.Location = new System.Drawing.Point(10, 128);
+            this.label9.Location = new System.Drawing.Point(10, 122);
             this.label9.Name = "label9";
             this.label9.Size = new System.Drawing.Size(100, 23);
             this.label9.TabIndex = 26;
             this.label9.Text = "Zip code";
             // 
-            // groupBox3
+            // groupBoxAddress
             // 
-            this.groupBox3.Controls.Add(this.label9);
-            this.groupBox3.Controls.Add(this.label8);
-            this.groupBox3.Controls.Add(this.label7);
-            this.groupBox3.Controls.Add(this.textBoxCity);
-            this.groupBox3.Controls.Add(this.textBoxZipcode);
-            this.groupBox3.Controls.Add(this.textBoxStreet);
-            this.groupBox3.Controls.Add(this.comboBoxCountry);
-            this.groupBox3.Controls.Add(this.label6);
-            this.groupBox3.Location = new System.Drawing.Point(17, 354);
-            this.groupBox3.Name = "groupBox3";
-            this.groupBox3.Size = new System.Drawing.Size(574, 240);
-            this.groupBox3.TabIndex = 27;
-            this.groupBox3.TabStop = false;
-            this.groupBox3.Text = "groupBox3";
+            this.groupBoxAddress.Controls.Add(this.label9);
+            this.groupBoxAddress.Controls.Add(this.label8);
+            this.groupBoxAddress.Controls.Add(this.label7);
+            this.groupBoxAddress.Controls.Add(this.textBoxCity);
+            this.groupBoxAddress.Controls.Add(this.textBoxZipcode);
+            this.groupBoxAddress.Controls.Add(this.textBoxStreet);
+            this.groupBoxAddress.Controls.Add(this.comboBoxCountry);
+            this.groupBoxAddress.Controls.Add(this.label6);
+            this.groupBoxAddress.Location = new System.Drawing.Point(17, 338);
+            this.groupBoxAddress.Name = "groupBoxAddress";
+            this.groupBoxAddress.Size = new System.Drawing.Size(589, 231);
+            this.groupBoxAddress.TabIndex = 27;
+            this.groupBoxAddress.TabStop = false;
+            this.groupBoxAddress.Text = "groupBox3";
             // 
             // FormContact
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(657, 721);
-            this.Controls.Add(this.groupBox3);
-            this.Controls.Add(this.groupBox2);
-            this.Controls.Add(this.groupBox1);
+            this.Controls.Add(this.groupBoxAddress);
+            this.Controls.Add(this.groupBoxEP);
+            this.Controls.Add(this.groupBoxName);
             this.Controls.Add(this.buttonCancel);
             this.Controls.Add(this.buttonOK);
             this.Name = "FormContact";
             this.Text = "FormContact";
-            this.groupBox1.ResumeLayout(false);
-            this.groupBox1.PerformLayout();
-            this.groupBox2.ResumeLayout(false);
-            this.groupBox2.PerformLayout();
-            this.groupBox3.ResumeLayout(false);
-            this.groupBox3.PerformLayout();
+            this.groupBoxName.ResumeLayout(false);
+            this.groupBoxName.PerformLayout();
+            this.groupBoxEP.ResumeLayout(false);
+            this.groupBoxEP.PerformLayout();
+            this.groupBoxAddress.ResumeLayout(false);
+            this.groupBoxAddress.PerformLayout();
             this.ResumeLayout(false);
         }
 
         private System.Windows.Forms.Label label7;
         private System.Windows.Forms.Label label8;
         private System.Windows.Forms.Label label9;
-        private System.Windows.Forms.GroupBox groupBox3;
+        private System.Windows.Forms.GroupBox groupBoxAddress;
 
-        private System.Windows.Forms.GroupBox groupBox1;
-        private System.Windows.Forms.GroupBox groupBox2;
+        private System.Windows.Forms.GroupBox groupBoxName;
+        private System.Windows.Forms.GroupBox groupBoxEP;
         private System.Windows.Forms.TextBox textBoxStreet;
         private System.Windows.Forms.TextBox textBoxZipcode;
         private System.Windows.Forms.TextBox textBoxCity;
