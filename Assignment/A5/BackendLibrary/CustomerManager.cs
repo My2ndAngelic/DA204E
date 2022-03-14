@@ -29,7 +29,7 @@ namespace BackendLibrary
                 customers.Add(customer);
         }
 
-        public void EditCustomer(Customer customer, int index)
+        public void EditCustomerAt(Customer customer, int index)
         {
             customers[index] = customer;
         }
@@ -95,9 +95,9 @@ namespace BackendLibrary
             return GetEnumerator();
         }
 
-        public Customer[] GetCustomers()
+        public IEnumerable<Customer> GetCustomers()
         {
-            return customers.ToArray();
+            return customers;
             // return customers.Select(VARIABLE => string.Join(" ", GetCustomerInfo(VARIABLE))).ToArray();
         }
 

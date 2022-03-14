@@ -40,12 +40,17 @@ namespace GUIFormWFDNF
 // {customer.Contact.Address.City}
 // {customer.Contact.Address.Zipcode}
 // {customer.Contact.Address.Countries.ToString()}";
-            for (int i = 0; i < 5; i++)
+            Random r = new Random();
+            for (int i = 0; i < 500; i++)
                 cm.Add(new Customer(
-                    new Contact($"John", "Cena",
-                    new Address("Random Street", "NY", "69 420", Countries.United_States_of_America),
+                    new Contact("John", "Cena",
+                        new Address("Random Street", "NY", r.Next(100000).ToString("00 000"),
+                            (Countries) Enum.GetValues(typeof(Countries)).OfType<Enum>().OrderBy(c => Guid.NewGuid())
+                                .FirstOrDefault()),
                     new Email("john@gmail.com", "cena@gmail.com"),
-                    new Phone("+1 234 567 890", "+46 123 456 789"))));
+                    new Phone(
+                        $"+{r.Next(999).ToString()} {r.Next(999).ToString()} {r.Next(999).ToString()} {r.Next(999).ToString()}",
+                        $"+{r.Next(999).ToString()} {r.Next(999).ToString()} {r.Next(999).ToString()} {r.Next(999).ToString()}"))));
             UpdateGUI();
             // fc.ShowDialog();
         }
@@ -96,35 +101,61 @@ namespace GUIFormWFDNF
             listboxContact.DataSource = CustomerProcessing(cm.GetCustomers());
         }
 
+        private string pad(int i, long max)
+        {
+            int temp = i;
+            if (i == 0)
+            {
+                i = 1;
+            }
+            int n = 0;
+            while (Math.Pow(10, n) <= max)
+            {
+                n++;
+            }
+
+            int k = n;
+            while (Math.Pow(10, k) > i)
+            {
+                k--;
+            }
+
+            return $"{string.Join("", Enumerable.Repeat("0", n-k).ToList())}{(temp > 0 ? i : temp)}";
+        }
+
         private string[] CustomerProcessing(IEnumerable<Customer> customers)
         {
-            return customers.Select((t, i) => $"{i} {t.Contact.LName}, {t.Contact.FName} {t.Contact.Phone.OfficeNumber} {t.Contact.Email.Work}").ToArray();
+            IEnumerable<Customer> enumerable = customers.ToList();
+            int i = 0;
+
+            return enumerable.Select(t => $"{pad(i++, enumerable.Count())} {t.Contact.LName}, {t.Contact.FName} {t.Contact.Phone.OfficeNumber} {t.Contact.Email.Work}").ToArray();
         }
 
         private void listboxContact_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listboxContact.SelectedIndex < 0) return;
-            textBoxContact.Text = listboxHandler(cm.GetCustomerInfo(listboxContact.SelectedIndex));
+            textBoxContact.Text = listboxContact_Handler(cm.GetCustomerInfo(listboxContact.SelectedIndex));
             textBoxTest.Text = string.Join(", ", listboxContact.SelectedIndex);
         }
 
-        private string listboxHandler(IEnumerable<string> data)
+        private string listboxContact_Handler(IEnumerable<string> data)
         {
-            return $@"Name: {data.ElementAt(1)} {data.ElementAt(2)}
+            IEnumerable<string> enumerable = data.ToList();
+            return $@"Name: {enumerable.ElementAt(1)} {enumerable.ElementAt(2)}
 
 Email: 
-    Office: {data.ElementAt(3)}
-    Home: {(data.ElementAt(4) != string.Empty ? data.ElementAt(4) : "None")}
+    Office: {enumerable.ElementAt(3)}
+    Home: {(enumerable.ElementAt(4) != string.Empty ? enumerable.ElementAt(4) : "None")}
 
 Phone:
-    Office: {data.ElementAt(5)} 
-    Home: {(data.ElementAt(6) != string.Empty ? data.ElementAt(6) : "None")}
+    Office: {enumerable.ElementAt(5)} 
+    Home: {(enumerable.ElementAt(6) != string.Empty ? enumerable.ElementAt(6) : "None")}
 
 Address:
-    {data.ElementAt(7)}
-    {data.ElementAt(8)}
-    {data.ElementAt(9)}
-    {data.ElementAt(10)}
+    {enumerable.ElementAt(7)}
+    {enumerable.ElementAt(8)}
+    {enumerable.ElementAt(9)}
+    {enumerable.ElementAt(10)}
 ";
         }
     }
