@@ -24,35 +24,26 @@ namespace GUIFormWFDNF
 
         private void InitializeGUI()
         {
-            testSuite();
+            
         }
-
-
-        private void testSuite()
+        
+        private void testSuite(int max)
         {
-//             FormContact fc = new FormContact(customer);
-//             textBoxTest.Text = $@"{fc.Customer.Contact.FName}
-// {customer.Contact.LName}
-// {customer.Contact.Email.Work}
-// {customer.Contact.Email.Personal}
-// {customer.Contact.Phone.Number}
-// {customer.Contact.Address.Street}
-// {customer.Contact.Address.City}
-// {customer.Contact.Address.Zipcode}
-// {customer.Contact.Address.Countries.ToString()}";
             Random r = new Random();
-            for (int i = 0; i < 500; i++)
+
+            string[] name = MiscellaneousHandlers.Name;
+            
+            for (int i = 0; i < max; i++)
                 cm.Add(new Customer(
-                    new Contact("John", "Cena",
+                    new Contact($@"{name[r.Next(name.Length)]}", $@"{name[r.Next(name.Length)]}",
                         new Address("Random Street", "NY", r.Next(100000).ToString("00 000"),
                             (Countries) Enum.GetValues(typeof(Countries)).OfType<Enum>().OrderBy(c => Guid.NewGuid())
                                 .FirstOrDefault()),
-                    new Email("john@gmail.com", "cena@gmail.com"),
+                    new Email($"{name[r.Next(name.Length)].ToLower()}@gmail.com", $"{name[r.Next(name.Length)].ToLower()}@gmail.com"),
                     new Phone(
                         $"+{r.Next(999).ToString()} {r.Next(999).ToString()} {r.Next(999).ToString()} {r.Next(999).ToString()}",
                         $"+{r.Next(999).ToString()} {r.Next(999).ToString()} {r.Next(999).ToString()} {r.Next(999).ToString()}"))));
             UpdateGUI();
-            // fc.ShowDialog();
         }
 
         private void buttonAdd_Click(object sender, EventArgs e)
@@ -98,37 +89,7 @@ namespace GUIFormWFDNF
 
         private void UpdateGUI()
         {
-            listboxContact.DataSource = CustomerProcessing(cm.GetCustomers());
-        }
-
-        private string pad(int i, long max)
-        {
-            int temp = i;
-            if (i == 0)
-            {
-                i = 1;
-            }
-            int n = 0;
-            while (Math.Pow(10, n) <= max)
-            {
-                n++;
-            }
-
-            int k = n;
-            while (Math.Pow(10, k) > i)
-            {
-                k--;
-            }
-
-            return $"{string.Join("", Enumerable.Repeat("0", n-k).ToList())}{(temp > 0 ? i : temp)}";
-        }
-
-        private string[] CustomerProcessing(IEnumerable<Customer> customers)
-        {
-            IEnumerable<Customer> enumerable = customers.ToList();
-            int i = 0;
-
-            return enumerable.Select(t => $"{pad(i++, enumerable.Count())} {t.Contact.LName}, {t.Contact.FName} {t.Contact.Phone.OfficeNumber} {t.Contact.Email.Work}").ToArray();
+            listboxContact.DataSource = MiscellaneousHandlers.CustomerProcessing(cm.GetCustomers());
         }
 
         private void listboxContact_SelectedIndexChanged(object sender, EventArgs e)
@@ -157,6 +118,27 @@ Address:
     {enumerable.ElementAt(9)}
     {enumerable.ElementAt(10)}
 ";
+        }
+
+        private void buttonAdd1_Click(object sender, EventArgs e)
+        {
+            testSuite(1);
+        }
+
+        private void buttonAdd10_Click(object sender, EventArgs e)
+        {
+            testSuite(10);
+        }
+
+        private void buttonAdd100_Click(object sender, EventArgs e)
+        {
+            testSuite(100);
+        }
+
+        private void listboxContact_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (listboxContact.IndexFromPoint(e.Location) == -1 || e.Button == MouseButtons.Right)
+                listboxContact.ClearSelected();
         }
     }
 }
