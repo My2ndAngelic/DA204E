@@ -146,20 +146,20 @@ namespace GUIFormWFDNF
             // 
             // buttonOK
             // 
-            this.buttonOK.Location = new System.Drawing.Point(73, 654);
+            this.buttonOK.Location = new System.Drawing.Point(122, 638);
             this.buttonOK.Name = "buttonOK";
-            this.buttonOK.Size = new System.Drawing.Size(135, 55);
-            this.buttonOK.TabIndex = 16;
+            this.buttonOK.Size = new System.Drawing.Size(125, 35);
+            this.buttonOK.TabIndex = 10;
             this.buttonOK.Text = "OK";
             this.buttonOK.UseVisualStyleBackColor = true;
             this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
             // 
             // buttonCancel
             // 
-            this.buttonCancel.Location = new System.Drawing.Point(441, 654);
+            this.buttonCancel.Location = new System.Drawing.Point(371, 638);
             this.buttonCancel.Name = "buttonCancel";
-            this.buttonCancel.Size = new System.Drawing.Size(135, 55);
-            this.buttonCancel.TabIndex = 17;
+            this.buttonCancel.Size = new System.Drawing.Size(125, 35);
+            this.buttonCancel.TabIndex = 11;
             this.buttonCancel.Text = "Cancel";
             this.buttonCancel.UseVisualStyleBackColor = true;
             this.buttonCancel.Click += new System.EventHandler(this.buttonCancel_Click);
@@ -171,7 +171,7 @@ namespace GUIFormWFDNF
             this.comboBoxCountry.Location = new System.Drawing.Point(161, 167);
             this.comboBoxCountry.Name = "comboBoxCountry";
             this.comboBoxCountry.Size = new System.Drawing.Size(398, 21);
-            this.comboBoxCountry.TabIndex = 18;
+            this.comboBoxCountry.TabIndex = 9;
             // 
             // groupBoxName
             // 
@@ -216,28 +216,28 @@ namespace GUIFormWFDNF
             this.textBoxPPhone.Location = new System.Drawing.Point(162, 151);
             this.textBoxPPhone.Name = "textBoxPPhone";
             this.textBoxPPhone.Size = new System.Drawing.Size(398, 20);
-            this.textBoxPPhone.TabIndex = 13;
+            this.textBoxPPhone.TabIndex = 5;
             // 
             // textBoxStreet
             // 
             this.textBoxStreet.Location = new System.Drawing.Point(161, 35);
             this.textBoxStreet.Name = "textBoxStreet";
             this.textBoxStreet.Size = new System.Drawing.Size(398, 20);
-            this.textBoxStreet.TabIndex = 21;
+            this.textBoxStreet.TabIndex = 6;
             // 
             // textBoxZipcode
             // 
             this.textBoxZipcode.Location = new System.Drawing.Point(161, 119);
             this.textBoxZipcode.Name = "textBoxZipcode";
             this.textBoxZipcode.Size = new System.Drawing.Size(398, 20);
-            this.textBoxZipcode.TabIndex = 22;
+            this.textBoxZipcode.TabIndex = 8;
             // 
             // textBoxCity
             // 
             this.textBoxCity.Location = new System.Drawing.Point(161, 77);
             this.textBoxCity.Name = "textBoxCity";
             this.textBoxCity.Size = new System.Drawing.Size(398, 20);
-            this.textBoxCity.TabIndex = 23;
+            this.textBoxCity.TabIndex = 7;
             // 
             // label7
             // 
@@ -275,7 +275,7 @@ namespace GUIFormWFDNF
             this.groupBoxAddress.Controls.Add(this.label6);
             this.groupBoxAddress.Location = new System.Drawing.Point(12, 398);
             this.groupBoxAddress.Name = "groupBoxAddress";
-            this.groupBoxAddress.Size = new System.Drawing.Size(589, 231);
+            this.groupBoxAddress.Size = new System.Drawing.Size(589, 219);
             this.groupBoxAddress.TabIndex = 27;
             this.groupBoxAddress.TabStop = false;
             this.groupBoxAddress.Text = "groupBox3";
@@ -284,7 +284,7 @@ namespace GUIFormWFDNF
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(657, 721);
+            this.ClientSize = new System.Drawing.Size(631, 689);
             this.Controls.Add(this.groupBoxAddress);
             this.Controls.Add(this.groupBoxEP);
             this.Controls.Add(this.groupBoxName);

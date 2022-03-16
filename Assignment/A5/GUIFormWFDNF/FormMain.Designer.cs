@@ -33,18 +33,18 @@
             this.textBoxContact = new System.Windows.Forms.TextBox();
             this.buttonEdit = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
-            this.textBoxTest = new System.Windows.Forms.TextBox();
-            this.buttonAdd100 = new System.Windows.Forms.Button();
-            this.buttonAdd1 = new System.Windows.Forms.Button();
-            this.buttonAdd10 = new System.Windows.Forms.Button();
+            this.labelID = new System.Windows.Forms.Label();
+            this.labelName = new System.Windows.Forms.Label();
+            this.labelPhone = new System.Windows.Forms.Label();
+            this.labelEmail = new System.Windows.Forms.Label();
             this.SuspendLayout();
             // 
             // buttonAdd
             // 
-            this.buttonAdd.Location = new System.Drawing.Point(19, 437);
+            this.buttonAdd.Location = new System.Drawing.Point(12, 405);
             this.buttonAdd.Name = "buttonAdd";
             this.buttonAdd.Size = new System.Drawing.Size(125, 35);
-            this.buttonAdd.TabIndex = 0;
+            this.buttonAdd.TabIndex = 1;
             this.buttonAdd.Text = "Add";
             this.buttonAdd.UseVisualStyleBackColor = true;
             this.buttonAdd.Click += new System.EventHandler(this.buttonAdd_Click);
@@ -53,92 +53,87 @@
             // 
             this.listboxContact.Font = new System.Drawing.Font("Consolas", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
             this.listboxContact.FormattingEnabled = true;
-            this.listboxContact.Location = new System.Drawing.Point(19, 80);
+            this.listboxContact.Location = new System.Drawing.Point(12, 48);
             this.listboxContact.Name = "listboxContact";
             this.listboxContact.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.listboxContact.Size = new System.Drawing.Size(530, 342);
-            this.listboxContact.TabIndex = 1;
+            this.listboxContact.Size = new System.Drawing.Size(619, 342);
+            this.listboxContact.TabIndex = 0;
             this.listboxContact.SelectedIndexChanged += new System.EventHandler(this.listboxContact_SelectedIndexChanged);
             this.listboxContact.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listboxContact_KeyDown);
             this.listboxContact.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listboxContact_MouseDown);
             // 
             // textBoxContact
             // 
-            this.textBoxContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.textBoxContact.Location = new System.Drawing.Point(587, 80);
+            this.textBoxContact.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
+            this.textBoxContact.Font = new System.Drawing.Font("Microsoft Sans Serif", 12F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.textBoxContact.Location = new System.Drawing.Point(652, 48);
+            this.textBoxContact.Margin = new System.Windows.Forms.Padding(100);
             this.textBoxContact.Multiline = true;
             this.textBoxContact.Name = "textBoxContact";
-            this.textBoxContact.Size = new System.Drawing.Size(299, 342);
-            this.textBoxContact.TabIndex = 2;
+            this.textBoxContact.Size = new System.Drawing.Size(299, 392);
+            this.textBoxContact.TabIndex = 4;
             // 
             // buttonEdit
             // 
-            this.buttonEdit.Location = new System.Drawing.Point(219, 437);
+            this.buttonEdit.Location = new System.Drawing.Point(261, 405);
             this.buttonEdit.Name = "buttonEdit";
             this.buttonEdit.Size = new System.Drawing.Size(125, 35);
-            this.buttonEdit.TabIndex = 3;
+            this.buttonEdit.TabIndex = 2;
             this.buttonEdit.Text = "Edit";
             this.buttonEdit.UseVisualStyleBackColor = true;
             this.buttonEdit.Click += new System.EventHandler(this.buttonEdit_Click);
             // 
             // buttonDelete
             // 
-            this.buttonDelete.Location = new System.Drawing.Point(423, 437);
+            this.buttonDelete.Location = new System.Drawing.Point(506, 405);
             this.buttonDelete.Name = "buttonDelete";
             this.buttonDelete.Size = new System.Drawing.Size(125, 35);
-            this.buttonDelete.TabIndex = 4;
+            this.buttonDelete.TabIndex = 3;
             this.buttonDelete.Text = "Delete";
             this.buttonDelete.UseVisualStyleBackColor = true;
             this.buttonDelete.Click += new System.EventHandler(this.buttonDelete_Click);
             // 
-            // textBoxTest
+            // labelID
             // 
-            this.textBoxTest.Enabled = false;
-            this.textBoxTest.Location = new System.Drawing.Point(587, 444);
-            this.textBoxTest.Multiline = true;
-            this.textBoxTest.Name = "textBoxTest";
-            this.textBoxTest.Size = new System.Drawing.Size(299, 132);
-            this.textBoxTest.TabIndex = 5;
+            this.labelID.Location = new System.Drawing.Point(31, 23);
+            this.labelID.Name = "labelID";
+            this.labelID.Size = new System.Drawing.Size(44, 22);
+            this.labelID.TabIndex = 9;
+            this.labelID.Text = "labelID";
             // 
-            // buttonAdd100
+            // labelName
             // 
-            this.buttonAdd100.Location = new System.Drawing.Point(423, 23);
-            this.buttonAdd100.Name = "buttonAdd100";
-            this.buttonAdd100.Size = new System.Drawing.Size(125, 35);
-            this.buttonAdd100.TabIndex = 6;
-            this.buttonAdd100.Text = "Add 100";
-            this.buttonAdd100.UseVisualStyleBackColor = true;
-            this.buttonAdd100.Click += new System.EventHandler(this.buttonAdd100_Click);
+            this.labelName.Location = new System.Drawing.Point(142, 23);
+            this.labelName.Name = "labelName";
+            this.labelName.Size = new System.Drawing.Size(104, 22);
+            this.labelName.TabIndex = 10;
+            this.labelName.Text = "labelName";
             // 
-            // buttonAdd1
+            // labelPhone
             // 
-            this.buttonAdd1.Location = new System.Drawing.Point(19, 23);
-            this.buttonAdd1.Name = "buttonAdd1";
-            this.buttonAdd1.Size = new System.Drawing.Size(125, 35);
-            this.buttonAdd1.TabIndex = 7;
-            this.buttonAdd1.Text = "Add 1";
-            this.buttonAdd1.UseVisualStyleBackColor = true;
-            this.buttonAdd1.Click += new System.EventHandler(this.buttonAdd1_Click);
+            this.labelPhone.Location = new System.Drawing.Point(363, 23);
+            this.labelPhone.Name = "labelPhone";
+            this.labelPhone.Size = new System.Drawing.Size(104, 22);
+            this.labelPhone.TabIndex = 11;
+            this.labelPhone.Text = "labelPhone";
             // 
-            // buttonAdd10
+            // labelEmail
             // 
-            this.buttonAdd10.Location = new System.Drawing.Point(219, 23);
-            this.buttonAdd10.Name = "buttonAdd10";
-            this.buttonAdd10.Size = new System.Drawing.Size(125, 35);
-            this.buttonAdd10.TabIndex = 8;
-            this.buttonAdd10.Text = "Add 10";
-            this.buttonAdd10.UseVisualStyleBackColor = true;
-            this.buttonAdd10.Click += new System.EventHandler(this.buttonAdd10_Click);
+            this.labelEmail.Location = new System.Drawing.Point(485, 23);
+            this.labelEmail.Name = "labelEmail";
+            this.labelEmail.Size = new System.Drawing.Size(69, 22);
+            this.labelEmail.TabIndex = 12;
+            this.labelEmail.Text = "labelEmail";
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(910, 599);
-            this.Controls.Add(this.buttonAdd10);
-            this.Controls.Add(this.buttonAdd1);
-            this.Controls.Add(this.buttonAdd100);
-            this.Controls.Add(this.textBoxTest);
+            this.ClientSize = new System.Drawing.Size(975, 459);
+            this.Controls.Add(this.labelEmail);
+            this.Controls.Add(this.labelPhone);
+            this.Controls.Add(this.labelName);
+            this.Controls.Add(this.labelID);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonEdit);
             this.Controls.Add(this.textBoxContact);
@@ -150,12 +145,10 @@
             this.PerformLayout();
         }
 
-        private System.Windows.Forms.Button buttonAdd1;
-        private System.Windows.Forms.Button buttonAdd10;
-
-        private System.Windows.Forms.Button buttonAdd100;
-
-        private System.Windows.Forms.TextBox textBoxTest;
+        private System.Windows.Forms.Label labelID;
+        private System.Windows.Forms.Label labelName;
+        private System.Windows.Forms.Label labelPhone;
+        private System.Windows.Forms.Label labelEmail;
 
         private System.Windows.Forms.Button buttonDelete;
 

@@ -42,6 +42,9 @@ namespace GUIFormWFDNF
 
         private void FillInTheVoid()
         {
+            groupBoxName.Text = @"Name";
+            groupBoxAddress.Text = @"Address";
+            groupBoxEP.Text = @"Email and phone";
             textBoxFName.Text = customer.Contact.FName;
             textBoxLName.Text = customer.Contact.LName;
             textBoxOMail.Text = customer.Contact.Email.Work;

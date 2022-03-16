@@ -100,10 +100,9 @@ namespace BackendLibrary
             customers[index] = customer;
         }
 
-        public IEnumerable<Customer> GetCustomers()
+        public List<Customer> GetCustomers()
         {
             return customers;
-            // return customers.Select(VARIABLE => string.Join(" ", GetCustomerInfo(VARIABLE))).ToArray();
         }
 
         public IEnumerable<string> GetCustomerInfo(int index)

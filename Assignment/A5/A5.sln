@@ -3,10 +3,6 @@ Microsoft Visual Studio Solution File, Format Version 11.00
 # Visual C# Express 2010
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUIFormWFDNF", "GUIFormWFDNF\GUIFormWFDNF.csproj", "{6A48F7BD-E59D-4699-A802-5EE8C0C42A21}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerConsoleDNC", "CustomerConsoleDNC\CustomerConsoleDNC.csproj", "{887F7DAF-6143-4D62-93EA-891467569511}"
-EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerConsoleDNF", "CustomerConsoleDNF\CustomerConsoleDNF.csproj", "{83500C34-4803-4C3E-9FD8-9985601D206E}"
-EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendLibrary", "BackendLibrary\BackendLibrary.csproj", "{5F295B0B-5AF8-4DE0-B784-27762AB99616}"
 EndProject
 Global
@@ -19,14 +15,6 @@ Global
 		{6A48F7BD-E59D-4699-A802-5EE8C0C42A21}.Debug|x86.Build.0 = Debug|x86
 		{6A48F7BD-E59D-4699-A802-5EE8C0C42A21}.Release|x86.ActiveCfg = Release|x86
 		{6A48F7BD-E59D-4699-A802-5EE8C0C42A21}.Release|x86.Build.0 = Release|x86
-		{887F7DAF-6143-4D62-93EA-891467569511}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{887F7DAF-6143-4D62-93EA-891467569511}.Debug|x86.Build.0 = Debug|Any CPU
-		{887F7DAF-6143-4D62-93EA-891467569511}.Release|x86.ActiveCfg = Release|Any CPU
-		{887F7DAF-6143-4D62-93EA-891467569511}.Release|x86.Build.0 = Release|Any CPU
-		{83500C34-4803-4C3E-9FD8-9985601D206E}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{83500C34-4803-4C3E-9FD8-9985601D206E}.Debug|x86.Build.0 = Debug|Any CPU
-		{83500C34-4803-4C3E-9FD8-9985601D206E}.Release|x86.ActiveCfg = Release|Any CPU
-		{83500C34-4803-4C3E-9FD8-9985601D206E}.Release|x86.Build.0 = Release|Any CPU
 		{5F295B0B-5AF8-4DE0-B784-27762AB99616}.Debug|x86.ActiveCfg = Debug|Any CPU
 		{5F295B0B-5AF8-4DE0-B784-27762AB99616}.Debug|x86.Build.0 = Debug|Any CPU
 		{5F295B0B-5AF8-4DE0-B784-27762AB99616}.Release|x86.ActiveCfg = Release|Any CPU
