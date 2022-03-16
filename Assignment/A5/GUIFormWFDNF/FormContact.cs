@@ -59,35 +59,35 @@ namespace GUIFormWFDNF
 
         private void buttonOK_Click(object sender, EventArgs e)
         {
-            // customer.Contact.FName = textBoxFName.Text.Trim();
-            // customer.Contact.LName = textBoxLName.Text.Trim();
-            // customer.Contact.Address.Street = textBoxStreet.Text.Trim();
-            // customer.Contact.Address.City = textBoxCity.Text.Trim();
-            // customer.Contact.Address.Zipcode = textBoxZipcode.Text.Trim();
-            // customer.Contact.Address.Countries = (Countries) Enum.Parse(typeof(Countries),
-            //     comboBoxCountry.SelectedValue.ToString().Replace(" ", "_"));
-            // customer.Contact.Email.Work = textBoxOMail.Text.Trim();
-            // customer.Contact.Email.Personal = textBoxPMail.Text.Trim();
-            // customer.Contact.Phone.OfficeNumber = textBoxOPhone.Text.Trim();
-            // customer.Contact.Phone.PersonalNumber = textBoxPPhone.Text.Trim();
-            customer = new Customer(
-                new Contact(
-                    textBoxFName.Text.Trim(),
-                    textBoxLName.Text.Trim(),
-                    new Address(
-                        textBoxStreet.Text.Trim(),
-                        textBoxCity.Text.Trim(),
-                        textBoxZipcode.Text.Trim(),
-                        (Countries) Enum.Parse(typeof(Countries),
-                            comboBoxCountry.SelectedValue.ToString().Replace(" ", "_"))),
-                    new Email(
-                        textBoxOMail.Text.Trim(),
-                        textBoxPMail.Text.Trim()),
-                    new Phone(
-                        textBoxOPhone.Text.Trim(),
-                        textBoxPPhone.Text.Trim()
-                    )
-                ));
+            customer.Contact.FName = textBoxFName.Text.Trim();
+            customer.Contact.LName = textBoxLName.Text.Trim();
+            customer.Contact.Address.Street = textBoxStreet.Text.Trim();
+            customer.Contact.Address.City = textBoxCity.Text.Trim();
+            customer.Contact.Address.Zipcode = textBoxZipcode.Text.Trim();
+            customer.Contact.Address.Countries = (Countries) Enum.Parse(typeof(Countries),
+                comboBoxCountry.SelectedValue.ToString().Replace(" ", "_"));
+            customer.Contact.Email.Work = textBoxOMail.Text.Trim();
+            customer.Contact.Email.Personal = textBoxPMail.Text.Trim();
+            customer.Contact.Phone.OfficeNumber = textBoxOPhone.Text.Trim();
+            customer.Contact.Phone.PersonalNumber = textBoxPPhone.Text.Trim();
+            // customer = new Customer(
+            //     new Contact(
+            //         textBoxFName.Text.Trim(),
+            //         textBoxLName.Text.Trim(),
+            //         new Address(
+            //             textBoxStreet.Text.Trim(),
+            //             textBoxCity.Text.Trim(),
+            //             textBoxZipcode.Text.Trim(),
+            //             (Countries) Enum.Parse(typeof(Countries),
+            //                 comboBoxCountry.SelectedValue.ToString().Replace(" ", "_"))),
+            //         new Email(
+            //             textBoxOMail.Text.Trim(),
+            //             textBoxPMail.Text.Trim()),
+            //         new Phone(
+            //             textBoxOPhone.Text.Trim(),
+            //             textBoxPPhone.Text.Trim()
+            //         )
+            //     ));
             if (customer.Contact.IsValidContact())
                 DialogResult = DialogResult.OK;
             else
