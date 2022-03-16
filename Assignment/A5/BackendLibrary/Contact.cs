@@ -97,7 +97,7 @@ namespace BackendLibrary
         {
             return new[]
             {
-                FName, LName, 
+                FName, LName,
                 Email.Work, Email.Personal,
                 Phone.OfficeNumber, Phone.PersonalNumber,
                 Address.Street, Address.City, Address.Zipcode, Address.Countries.ToString().Replace("_", " ")

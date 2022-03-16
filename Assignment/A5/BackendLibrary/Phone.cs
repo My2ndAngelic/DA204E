@@ -24,7 +24,7 @@ namespace BackendLibrary
             officeNumber = phone.officeNumber;
             personalNumber = phone.personalNumber;
         }
-        
+
         public Phone(string officeNumber) : this(officeNumber, string.Empty)
         {
         }
@@ -43,15 +43,17 @@ namespace BackendLibrary
 
         public bool IsValidOfficePhone()
         {
-            return (officeNumber[0] == '+' ? officeNumber.Remove(0, 1) : officeNumber).Replace(" ", "").Any(char.IsDigit);
+            return (officeNumber[0] == '+' ? officeNumber.Remove(0, 1) : officeNumber).Replace(" ", "")
+                .Any(char.IsDigit);
         }
 
         public bool IsValidHomePhone()
         {
-            return personalNumber == string.Empty || (personalNumber[0] == '+' ? personalNumber.Remove(0, 1) : personalNumber).Replace(" ", "").Any(char.IsDigit);
-
+            return personalNumber == string.Empty ||
+                   (personalNumber[0] == '+' ? personalNumber.Remove(0, 1) : personalNumber).Replace(" ", "")
+                   .Any(char.IsDigit);
         }
-        
+
         public bool IsValidPhone()
         {
             return IsValidHomePhone() && IsValidOfficePhone();

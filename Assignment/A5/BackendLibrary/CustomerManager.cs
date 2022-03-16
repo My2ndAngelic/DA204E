@@ -23,17 +23,17 @@ namespace BackendLibrary
             customers = customerManager.customers;
         }
 
+        public List<Customer> Customers
+        {
+            get { return customers; }
+        }
+
         public void Add(Customer customer)
         {
             if (customer != null)
                 customers.Add(customer);
         }
 
-        public void EditCustomerAt(Customer customer, int index)
-        {
-            customers[index] = customer;
-        }
-        
         public void Clear()
         {
             customers = new List<Customer>();
@@ -95,6 +95,11 @@ namespace BackendLibrary
             return GetEnumerator();
         }
 
+        public void EditCustomerAt(Customer customer, int index)
+        {
+            customers[index] = customer;
+        }
+
         public IEnumerable<Customer> GetCustomers()
         {
             return customers;
@@ -103,12 +108,13 @@ namespace BackendLibrary
 
         public IEnumerable<string> GetCustomerInfo(int index)
         {
-            return new string[]{index.ToString()}.Concat(customers[index].Contact.GetContactStrings());
+            return new[] {index.ToString()}.Concat(customers[index].Contact.GetContactStrings());
         }
-        
+
         public IEnumerable<string> GetCustomerInfo(Customer customer)
         {
-            return new string[]{IndexOf(customer).ToString()}.Concat(customers[IndexOf(customer)].Contact.GetContactStrings());
+            return new[] {IndexOf(customer).ToString()}.Concat(customers[IndexOf(customer)].Contact
+                .GetContactStrings());
         }
     }
 }
