@@ -50,52 +50,106 @@ namespace BackendLibrary
         public string LName
         {
             get { return lName; }
-            set { lName = value; }
+            set
+            {
+                if (string.IsNullOrEmpty(value)) return;
+                lName = value;
+            }
         }
 
         public string FName
         {
             get { return fName; }
-            set { fName = value; }
+            set
+            {
+                if (string.IsNullOrEmpty(value)) return;
+                fName = value;
+            }
         }
 
         public Email Email
         {
             get { return email; }
-            set { email = value; }
+            set
+            {
+                if (!new Email(value).IsValidEmail()) return;
+                email = value;
+            }
         }
 
         public Phone Phone
         {
             get { return phone; }
-            set { phone = value; }
+            set
+            {
+                if (!new Phone(value).IsValidPhone()) return;
+                phone = value;
+            }
         }
 
         public Address Address
         {
             get { return address; }
-            set { address = value; }
+            set
+            {
+                if (!new Address(value).IsValidAddress()) return;
+                address = value;
+            }
         }
 
+        /// <summary>
+        /// Check if first name is valid
+        /// </summary>
+        /// <returns>True if valid</returns>
+        public bool IsValidFName()
+        {
+            return !string.IsNullOrEmpty(fName);
+        }
+
+        /// <summary>
+        /// Check if last name is valid
+        /// </summary>
+        /// <returns>True if valid</returns>
+        public bool IsValidLName()
+        {
+            return !string.IsNullOrEmpty(LName);
+        }
+
+        /// <summary>
+        /// Check if name is valid by checking both first name and last name
+        /// </summary>
+        /// <returns>True if valid</returns>
         public bool IsValidName()
         {
-            return !(fName.Any(char.IsDigit) || lName.Any(char.IsDigit));
+            return IsValidFName() && IsValidLName();
         }
 
+        /// <summary>
+        /// Check if contact is valid by checking everything 
+        /// </summary>
+        /// <returns></returns>
         public bool IsValidContact()
         {
-            return address.IsValidAddress() && email.IsValidEmail() && phone.IsValidPhone() && IsValidName();
+            return IsValidName() && address.IsValidAddress() && email.IsValidEmail() && phone.IsValidPhone() ;
         }
 
+        /// <summary>
+        /// 
+        /// </summary>
+        /// <returns></returns>
         public string GetContactDetail()
         {
             return
                 $@"{FName} {LName} {Email.Personal} {Email.Work} {Phone.OfficeNumber} {Phone.PersonalNumber} {Address.Street} {Address.City} {Address.Zipcode} {Address.Countries.ToString().Replace("_", " ")}";
         }
 
+        /// <summary>
+        /// Return all contact details in string array
+        /// </summary>
+        /// <returns></returns>
         public IEnumerable<string> GetContactStrings()
         {
-            return new[]
+            return new string[]
             {
                 FName, LName,
                 Email.Work, Email.Personal,

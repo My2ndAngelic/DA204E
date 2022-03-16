@@ -44,14 +44,14 @@ namespace BackendLibrary
         public bool IsValidOfficePhone()
         {
             return (officeNumber[0] == '+' ? officeNumber.Remove(0, 1) : officeNumber).Replace(" ", "")
-                .Any(char.IsDigit);
+                .All(char.IsDigit);
         }
 
         public bool IsValidHomePhone()
         {
             return personalNumber == string.Empty ||
                    (personalNumber[0] == '+' ? personalNumber.Remove(0, 1) : personalNumber).Replace(" ", "")
-                   .Any(char.IsDigit);
+                   .All(char.IsDigit);
         }
 
         public bool IsValidPhone()

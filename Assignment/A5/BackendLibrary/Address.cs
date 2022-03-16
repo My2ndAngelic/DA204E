@@ -12,7 +12,7 @@
             city = "";
             street = "";
             zipcode = "";
-            countries = Countries.United_States_of_America;
+            countries = Countries.Sverige;
         }
 
         public Address(string street, string city, string zipcode, Countries countries)
@@ -65,9 +65,29 @@
             return $@"{street} {city} {zipcode} {countries.ToString().Replace("_", " ")}";
         }
 
-        public bool IsValidAddress()
+        public bool IsValidStreet()
+        {
+            return !string.IsNullOrEmpty(street);
+        }
+        
+        public bool IsValidCity()
+        {
+            return !string.IsNullOrEmpty(city);
+        }
+        
+        public bool IsValidZipcode()
+        {
+            return !string.IsNullOrEmpty(zipcode);
+        }
+        
+        public bool IsValidCountry()
         {
             return true;
+        }
+        
+        public bool IsValidAddress()
+        {
+            return IsValidStreet() && IsValidCity() && IsValidZipcode() && IsValidCountry();
         }
     }
 }
