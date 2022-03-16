@@ -31,16 +31,6 @@
             countries = address.countries;
         }
 
-        public override string ToString()
-        {
-            return $@"{street} {city} {zipcode} {countries.ToString().Replace("_", " ")}";
-        }
-
-        public string GetAddressInfo()
-        {
-            return $@"{street} {city} {zipcode} {countries.ToString().Replace("_", " ")}";
-        }
-
         public string Street
         {
             get { return street; }
@@ -63,6 +53,16 @@
         {
             get { return countries; }
             set { countries = value; }
+        }
+
+        public override string ToString()
+        {
+            return $@"{street} {city} {zipcode} {countries.ToString().Replace("_", " ")}";
+        }
+
+        public string GetAddressInfo()
+        {
+            return $@"{street} {city} {zipcode} {countries.ToString().Replace("_", " ")}";
         }
 
         public bool IsValidAddress()

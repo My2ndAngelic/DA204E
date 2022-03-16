@@ -24,7 +24,5 @@ namespace BackendLibrary
             get { return contact; }
             set { contact = value; }
         }
-        
-        
     }
 }

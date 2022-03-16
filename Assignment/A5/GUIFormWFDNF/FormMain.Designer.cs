@@ -59,6 +59,7 @@
             this.listboxContact.Size = new System.Drawing.Size(530, 342);
             this.listboxContact.TabIndex = 1;
             this.listboxContact.SelectedIndexChanged += new System.EventHandler(this.listboxContact_SelectedIndexChanged);
+            this.listboxContact.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listboxContact_KeyDown);
             this.listboxContact.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listboxContact_MouseDown);
             // 
             // textBoxContact

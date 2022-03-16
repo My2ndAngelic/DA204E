@@ -9,40 +9,38 @@ namespace GUIFormWFDNF
     public partial class FormMain : Form
     {
         private readonly CustomerManager cm = new CustomerManager();
-        private Customer customer = new Customer();
 
-        public Customer Customer
-        {
-            get { return customer; }
-        }
+        private string[] cms;
+        private Customer customer = new Customer();
 
         public FormMain()
         {
             InitializeComponent();
             InitializeGUI();
         }
-
         private void InitializeGUI()
         {
-            
+            // testSuite(69); 
+            UpdateGUI();
         }
-        
+
         private void testSuite(int max)
         {
             Random r = new Random();
 
             string[] name = MiscellaneousHandlers.Name;
-            
+
             for (int i = 0; i < max; i++)
                 cm.Add(new Customer(
                     new Contact($@"{name[r.Next(name.Length)]}", $@"{name[r.Next(name.Length)]}",
                         new Address("Random Street", "NY", r.Next(100000).ToString("00 000"),
                             (Countries) Enum.GetValues(typeof(Countries)).OfType<Enum>().OrderBy(c => Guid.NewGuid())
                                 .FirstOrDefault()),
-                    new Email($"{name[r.Next(name.Length)].ToLower()}@gmail.com", $"{name[r.Next(name.Length)].ToLower()}@gmail.com"),
-                    new Phone(
-                        $"+{r.Next(999).ToString()} {r.Next(999).ToString()} {r.Next(999).ToString()} {r.Next(999).ToString()}",
-                        $"+{r.Next(999).ToString()} {r.Next(999).ToString()} {r.Next(999).ToString()} {r.Next(999).ToString()}"))));
+                        new Email($"{name[r.Next(name.Length)].ToLower()}@gmail.com",
+                            $"{name[r.Next(name.Length)].ToLower()}@gmail.com"),
+                        new Phone(
+                            $"+{r.Next(999).ToString()} {r.Next(999).ToString()} {r.Next(999).ToString()} {r.Next(999).ToString()}",
+                            $"+{r.Next(999).ToString()} {r.Next(999).ToString()} {r.Next(999).ToString()} {r.Next(999).ToString()}"))));
             UpdateGUI();
         }
 
@@ -57,7 +55,7 @@ namespace GUIFormWFDNF
         private void buttonEdit_Click(object sender, EventArgs e)
         {
             if (listboxContact.SelectedIndex == -1) return;
-            customer = cm[listboxContact.SelectedIndex]; 
+            customer = cm[listboxContact.SelectedIndex];
             LaunchDialog(true);
             UpdateGUI();
         }
@@ -68,35 +66,31 @@ namespace GUIFormWFDNF
             DialogResult di = fc.ShowDialog();
             if (di != DialogResult.OK) return;
             if (editMode)
-            {
                 cm[listboxContact.SelectedIndex] = fc.Customer;
-            }
             else
-            {
                 cm.Add(fc.Customer);
-            }
         }
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             if (listboxContact.SelectedIndex < 0) return;
-            for (int i = listboxContact.SelectedIndices.Count - 1; i >= 0; i--)
-            {
-                cm.RemoveAt(listboxContact.SelectedIndices[i]);
-            }
+            foreach (int index in listboxContact.SelectedIndices.Cast<int>().Select(x => x).Reverse())
+                cm.RemoveAt(index);
             UpdateGUI();
         }
 
         private void UpdateGUI()
         {
             listboxContact.DataSource = MiscellaneousHandlers.CustomerProcessing(cm.GetCustomers());
+            listboxContact_SelectedIndexChanged(new object(), EventArgs.Empty);
         }
 
         private void listboxContact_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listboxContact.SelectedIndex < 0) return;
-            textBoxContact.Text = listboxContact_Handler(cm.GetCustomerInfo(listboxContact.SelectedIndex));
-            textBoxTest.Text = string.Join(", ", listboxContact.SelectedIndex);
+            textBoxTest.Text = listboxContact.Items.Count.ToString();
+            textBoxContact.Text = listboxContact.SelectedIndex < 0
+                ? string.Empty
+                : listboxContact_Handler(cm.GetCustomerInfo(listboxContact.SelectedIndex));
         }
 
         private string listboxContact_Handler(IEnumerable<string> data)
@@ -139,6 +133,12 @@ Address:
         {
             if (listboxContact.IndexFromPoint(e.Location) == -1 || e.Button == MouseButtons.Right)
                 listboxContact.ClearSelected();
+        }
+
+        private void listboxContact_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!e.Control || e.KeyCode != Keys.A) return;
+            for (int i = 0; i < listboxContact.Items.Count; i++) listboxContact.SetSelected(i, true);
         }
     }
 }

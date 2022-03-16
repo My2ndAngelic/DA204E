@@ -7,8 +7,8 @@ namespace GUIFormWFDNF
 {
     public partial class FormContact : Form
     {
-        private Customer customer;
         private readonly bool editMode;
+        private Customer customer;
 
         public FormContact(Customer customer, bool editMode)
         {
@@ -58,38 +58,32 @@ namespace GUIFormWFDNF
         {
             customer = new Customer(
                 new Contact(
-                    textBoxFName.Text.Trim(), 
+                    textBoxFName.Text.Trim(),
                     textBoxLName.Text.Trim(),
                     new Address(
-                        textBoxStreet.Text.Trim(), 
-                        textBoxCity.Text.Trim(), 
+                        textBoxStreet.Text.Trim(),
+                        textBoxCity.Text.Trim(),
                         textBoxZipcode.Text.Trim(),
-                        (Countries) Enum.Parse(typeof(Countries), comboBoxCountry.SelectedValue.ToString().Replace(" ", "_"))),
+                        (Countries) Enum.Parse(typeof(Countries),
+                            comboBoxCountry.SelectedValue.ToString().Replace(" ", "_"))),
                     new Email(
-                        textBoxOMail.Text.Trim(), 
-                        textBoxPMail.Text.Trim()), 
+                        textBoxOMail.Text.Trim(),
+                        textBoxPMail.Text.Trim()),
                     new Phone(
                         textBoxOPhone.Text.Trim(),
                         textBoxPPhone.Text.Trim()
                     )
                 ));
             if (customer.Contact.IsValidContact())
-            {
                 DialogResult = DialogResult.OK;
-            }
             else
-            {
                 MessageBox.Show(@"Something is wrong. Please check your input", @"Error");
-            }
         }
-        
+
         private void buttonCancel_Click(object sender, EventArgs e)
         {
             DialogResult dr = MessageBox.Show(@"Do you want to cancel?", @"Cancel", MessageBoxButtons.YesNo);
-            if (dr == DialogResult.Yes)
-            {
-                DialogResult = DialogResult.Cancel;
-            }
+            if (dr == DialogResult.Yes) DialogResult = DialogResult.Cancel;
         }
     }
 }
