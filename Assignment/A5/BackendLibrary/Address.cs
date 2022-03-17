@@ -55,14 +55,22 @@
             set { countries = value; }
         }
 
+        /// <summary>
+        /// ToString method
+        /// </summary>
+        /// <returns>To String</returns>
         public override string ToString()
         {
             return $@"{street} {city} {zipcode} {countries.ToString().Replace("_", " ")}";
         }
 
-        public string GetAddressInfo()
+        /// <summary>
+        /// To the list of string
+        /// </summary>
+        /// <returns>Array of strings</returns>
+        public string[] ToStringArray()
         {
-            return $@"{street} {city} {zipcode} {countries.ToString().Replace("_", " ")}";
+            return new[] {street, city, zipcode, countries.ToString().Replace("_", " ")};
         }
 
         public bool IsValidStreet()
@@ -70,21 +78,38 @@
             return !string.IsNullOrEmpty(street);
         }
         
+        /// <summary>
+        /// Check if valid city
+        /// </summary>
+        /// <returns>True if valid</returns>
         public bool IsValidCity()
         {
             return !string.IsNullOrEmpty(city);
         }
         
+        /// <summary>
+        /// Check if valid zipcode
+        /// </summary>
+        /// <returns>Zipcode is not empty</returns>
         public bool IsValidZipcode()
         {
             return !string.IsNullOrEmpty(zipcode);
         }
         
+        /// <summary>
+        /// Check if valid country
+        /// </summary>
+        /// <returns>True if valid</returns>
         public bool IsValidCountry()
         {
-            return true;
+            return countries.GetType() == typeof(Countries);
         }
         
+        
+        /// <summary>
+        /// Check Address validity
+        /// </summary>
+        /// <returns>True if valid</returns>
         public bool IsValidAddress()
         {
             return IsValidStreet() && IsValidCity() && IsValidZipcode() && IsValidCountry();

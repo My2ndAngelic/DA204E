@@ -27,10 +27,11 @@ namespace CustomerConsoleDNF
             // {
             //     Console.WriteLine(customer);
             // }
-            Customer c = new Customer();
-            string s = null;
-            Console.WriteLine();
-            Console.WriteLine(c.Contact.FName == null);
+            // Customer c = new Customer();
+            // string s = null;
+            // Console.WriteLine();
+            // Console.WriteLine(c.Contact.FName == null);
+            Console.WriteLine(new Address("", "", "", Countries.Afghanistan).IsValidCountry());
         }
     }
 }

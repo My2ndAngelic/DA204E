@@ -11,6 +11,9 @@ namespace BackendLibrary
         private string lName;
         private Phone phone;
 
+        /// <summary>
+        /// Default constructor
+        /// </summary>
         public Contact()
         {
             fName = "";
@@ -20,6 +23,12 @@ namespace BackendLibrary
             phone = new Phone();
         }
 
+        /// <summary>
+        /// Constructor without name
+        /// </summary>
+        /// <param name="address">Address class</param>
+        /// <param name="email">Email class</param>
+        /// <param name="phone">Phone class</param>
         public Contact(Address address, Email email, Phone phone)
         {
             fName = "";
@@ -29,6 +38,10 @@ namespace BackendLibrary
             this.phone = phone;
         }
 
+        /// <summary>
+        /// Constructor with the info from the previous Contact class
+        /// </summary>
+        /// <param name="contact">Contact class</param>
         public Contact(Contact contact)
         {
             fName = contact.fName;
@@ -38,6 +51,14 @@ namespace BackendLibrary
             phone = contact.phone;
         }
 
+        /// <summary>
+        /// Constructor with all exposed parameter
+        /// </summary>
+        /// <param name="fName">First name</param>
+        /// <param name="lName">Last name</param>
+        /// <param name="address">Address class</param>
+        /// <param name="email">Email class</param>
+        /// <param name="phone">Phone class</param>
         public Contact(string fName, string lName, Address address, Email email, Phone phone)
         {
             this.fName = fName;

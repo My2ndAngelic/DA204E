@@ -137,5 +137,10 @@ namespace BackendLibrary
         {
             return new[] {"@", "."}.Any(email.Contains);
         }
+
+        public string[] ToStringArray()
+        {
+            return new[] {officeMail, personalMail};
+        }
     }
 }
