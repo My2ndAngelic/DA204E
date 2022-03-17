@@ -17,27 +17,45 @@ namespace GUIFormWFDNF
             InitializeGUI();
         }
 
+        /// <summary>
+        /// Initialization
+        /// </summary>
         private void InitializeGUI()
         {
             Text = @"Customer Registry by Evan Huynh";
+
+            listboxContact.Text = string.Empty;
+            textBoxContact.Text = string.Empty;
+
             labelID.Text = @"ID";
             labelName.Text = @"Name (Last, First)";
             labelPhone.Text = @"Office phone";
             labelEmail.Text = @"Office E-Mail";
+            
             buttonAdd.Text = @"Add";
             buttonEdit.Text = @"Edit";
             buttonDelete.Text = @"Delete";
+            
             UpdateGUI();
         }
 
+        /// <summary>
+        /// Add button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             customer = new Customer();
             LaunchDialog(false);
             UpdateGUI();
         }
-
-
+        
+        /// <summary>
+        /// Edit button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonEdit_Click(object sender, EventArgs e)
         {
             if (listboxContact.SelectedIndex == -1) return;
@@ -46,6 +64,10 @@ namespace GUIFormWFDNF
             UpdateGUI();
         }
 
+        /// <summary>
+        /// Launch the dialog and add/edit the customer
+        /// </summary>
+        /// <param name="editMode"></param>
         public void LaunchDialog(bool editMode)
         {
             FormContact fc = new FormContact(customer, editMode);
@@ -57,6 +79,11 @@ namespace GUIFormWFDNF
                 cm.Add(fc.Customer);
         }
 
+        /// <summary>
+        /// Delete selected customer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonDelete_Click(object sender, EventArgs e)
         {
             if (listboxContact.SelectedIndex < 0) return;
@@ -65,20 +92,33 @@ namespace GUIFormWFDNF
             UpdateGUI();
         }
 
+        /// <summary>
+        /// Update MainForm GUI
+        /// </summary>
         private void UpdateGUI()
         {
             listboxContact.DataSource = MiscellaneousHandlers.CustomerProcessing(cm.GetCustomers());
             listboxContact_SelectedIndexChanged(new object(), EventArgs.Empty);
         }
 
+        /// <summary>
+        /// Watch which customer is selected then displayed their information
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listboxContact_SelectedIndexChanged(object sender, EventArgs e)
         {
             textBoxContact.Text = listboxContact.SelectedIndex < 0
                 ? string.Empty
-                : CustomerInfoHandler(cm.GetCustomerInfo(listboxContact.SelectedIndex));
+                : ContactTextBoxHandler(cm.GetCustomerInfo(listboxContact.SelectedIndex));
         }
 
-        private string CustomerInfoHandler(IEnumerable<string> data)
+        /// <summary>
+        /// Output customer information onto the textbox
+        /// </summary>
+        /// <param name="data"></param>
+        /// <returns></returns>
+        private string ContactTextBoxHandler(IEnumerable<string> data)
         {
             IEnumerable<string> enumerable = data.ToList();
             return $@"Name: {enumerable.ElementAt(1)} {enumerable.ElementAt(2)}
@@ -99,12 +139,22 @@ Address:
 ";
         }
 
+        /// <summary>
+        /// Right click or click on the white part to deselect
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listboxContact_MouseDown(object sender, MouseEventArgs e)
         {
             if (listboxContact.IndexFromPoint(e.Location) == -1 || e.Button == MouseButtons.Right)
                 listboxContact.ClearSelected();
         }
 
+        /// <summary>
+        /// Ctrl + A for Select All
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listboxContact_KeyDown(object sender, KeyEventArgs e)
         {
             if (!e.Control || e.KeyCode != Keys.A) return;
