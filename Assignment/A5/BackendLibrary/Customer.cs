@@ -3,9 +3,9 @@ namespace BackendLibrary
     public class Customer
     {
         private Contact contact;
-        
+
         /// <summary>
-        /// Default constructor
+        ///     Default constructor
         /// </summary>
         public Customer()
         {
@@ -13,7 +13,7 @@ namespace BackendLibrary
         }
 
         /// <summary>
-        /// Constructor from existing contact data
+        ///     Constructor from existing contact data
         /// </summary>
         /// <param name="contact">Contact object</param>
         public Customer(Contact contact)
@@ -22,7 +22,7 @@ namespace BackendLibrary
         }
 
         /// <summary>
-        /// Constructor from existing customer data
+        ///     Constructor from existing customer data
         /// </summary>
         /// <param name="customer">Customer object</param>
         public Customer(Customer customer)
@@ -30,9 +30,6 @@ namespace BackendLibrary
             contact = customer.Contact;
         }
 
-        /// <summary>
-        /// Field
-        /// </summary>
         public Contact Contact
         {
             get { return contact; }

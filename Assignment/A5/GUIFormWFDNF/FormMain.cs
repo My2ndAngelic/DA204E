@@ -18,7 +18,7 @@ namespace GUIFormWFDNF
         }
 
         /// <summary>
-        /// Initialization
+        ///     Initialization
         /// </summary>
         private void InitializeGUI()
         {
@@ -31,16 +31,16 @@ namespace GUIFormWFDNF
             labelName.Text = @"Name (Last, First)";
             labelPhone.Text = @"Office phone";
             labelEmail.Text = @"Office E-Mail";
-            
+
             buttonAdd.Text = @"Add";
             buttonEdit.Text = @"Edit";
             buttonDelete.Text = @"Delete";
-            
+
             UpdateGUI();
         }
 
         /// <summary>
-        /// Add button
+        ///     Add button
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -50,9 +50,9 @@ namespace GUIFormWFDNF
             LaunchDialog(false);
             UpdateGUI();
         }
-        
+
         /// <summary>
-        /// Edit button
+        ///     Edit button
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -65,22 +65,33 @@ namespace GUIFormWFDNF
         }
 
         /// <summary>
-        /// Launch the dialog and add/edit the customer
+        ///     Launch the dialog and add/edit the customer
         /// </summary>
         /// <param name="editMode"></param>
         public void LaunchDialog(bool editMode)
         {
-            FormContact fc = new FormContact(customer, editMode);
+            Customer customerA = new Customer(new Contact("John", "Cena",
+                new Address("Random Street", "New York", "69420", Countries.United_States_of_America),
+                new Email("john@gmail.com", "cena@gmail.com"),
+                new Phone("+1 (234) 567-890", "+1 (234) 567-890")));
+            FormContact fc = new FormContact(customerA, editMode);
             DialogResult di = fc.ShowDialog();
             if (di != DialogResult.OK) return;
-            if (editMode)
-                cm[listboxContact.SelectedIndex] = fc.Customer;
+            if (!editMode)
+            {
+                if (cm.Count == 0 || listboxContact.SelectedIndex < 0) // If no customer or not selected
+                    cm.Add(fc.Customer);
+                else
+                    cm.Insert(listboxContact.SelectedIndex, fc.Customer);
+            }
             else
-                cm.Add(fc.Customer);
+            {
+                cm[listboxContact.SelectedIndex] = fc.Customer;
+            }
         }
 
         /// <summary>
-        /// Delete selected customer
+        ///     Delete selected customer
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -93,7 +104,7 @@ namespace GUIFormWFDNF
         }
 
         /// <summary>
-        /// Update MainForm GUI
+        ///     Update MainForm GUI
         /// </summary>
         private void UpdateGUI()
         {
@@ -102,7 +113,7 @@ namespace GUIFormWFDNF
         }
 
         /// <summary>
-        /// Watch which customer is selected then displayed their information
+        ///     Watch which customer is selected then displayed their information
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -111,10 +122,11 @@ namespace GUIFormWFDNF
             textBoxContact.Text = listboxContact.SelectedIndex < 0
                 ? string.Empty
                 : ContactTextBoxHandler(cm.GetCustomerInfo(listboxContact.SelectedIndex));
+            // textBoxContact.Text =  ContactTextBoxHandler(cm.GetCustomerInfo(listboxContact.SelectedIndex));
         }
 
         /// <summary>
-        /// Output customer information onto the textbox
+        ///     Output customer information onto the info text box
         /// </summary>
         /// <param name="data"></param>
         /// <returns></returns>
@@ -140,7 +152,7 @@ Address:
         }
 
         /// <summary>
-        /// Right click or click on the white part to deselect
+        ///     Right click or click on the white part to deselect
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -151,7 +163,7 @@ Address:
         }
 
         /// <summary>
-        /// Ctrl + A for Select All
+        ///     Ctrl + A for Select All
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

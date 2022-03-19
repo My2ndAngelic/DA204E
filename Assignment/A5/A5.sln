@@ -5,8 +5,6 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUIFormWFDNF", "GUIFormWFDN
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendLibrary", "BackendLibrary\BackendLibrary.csproj", "{5F295B0B-5AF8-4DE0-B784-27762AB99616}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "CustomerConsoleDNF", "CustomerConsoleDNF\CustomerConsoleDNF.csproj", "{83500C34-4803-4C3E-9FD8-9985601D206E}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|x86 = Debug|x86
@@ -21,10 +19,6 @@ Global
 		{5F295B0B-5AF8-4DE0-B784-27762AB99616}.Debug|x86.Build.0 = Debug|Any CPU
 		{5F295B0B-5AF8-4DE0-B784-27762AB99616}.Release|x86.ActiveCfg = Release|Any CPU
 		{5F295B0B-5AF8-4DE0-B784-27762AB99616}.Release|x86.Build.0 = Release|Any CPU
-		{83500C34-4803-4C3E-9FD8-9985601D206E}.Debug|x86.ActiveCfg = Debug|Any CPU
-		{83500C34-4803-4C3E-9FD8-9985601D206E}.Debug|x86.Build.0 = Debug|Any CPU
-		{83500C34-4803-4C3E-9FD8-9985601D206E}.Release|x86.ActiveCfg = Release|Any CPU
-		{83500C34-4803-4C3E-9FD8-9985601D206E}.Release|x86.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

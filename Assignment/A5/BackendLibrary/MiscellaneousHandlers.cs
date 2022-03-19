@@ -7,8 +7,8 @@ namespace BackendLibrary
     public class MiscellaneousHandlers
     {
         /// <summary>
-        /// Pad 0 to the left side depending on the maximum.
-        /// Example: 01 - 99, 001 - 999, 0001 - 9999.
+        ///     Pad 0 to the left side depending on the maximum.
+        ///     Example: 01 - 99, 001 - 999, 0001 - 9999.
         /// </summary>
         /// <param name="i">Number needed to be padded</param>
         /// <param name="max">Maximum range</param>
@@ -17,7 +17,7 @@ namespace BackendLibrary
         {
             int temp = i;
             if (i == 0) i = 1;
-            
+
             int n = 0; // Maximum range
             while (Math.Pow(10, n) <= max) n++;
 
@@ -28,7 +28,7 @@ namespace BackendLibrary
         }
 
         /// <summary>
-        /// Return the formatted customer info in string array
+        ///     Return the formatted customer info in string array
         /// </summary>
         /// <param name="customers">List of customers</param>
         /// <returns>List of customer infos in string array</returns>

@@ -10,6 +10,11 @@ namespace GUIFormWFDNF
         private readonly bool editMode;
         private Customer customer;
 
+        /// <summary>
+        ///     Constructor with all exposed API
+        /// </summary>
+        /// <param name="customer">Customer data</param>
+        /// <param name="editMode">if edit mode</param>
         public FormContact(Customer customer, bool editMode)
         {
             this.editMode = editMode;
@@ -18,6 +23,21 @@ namespace GUIFormWFDNF
             InitializeGUI();
         }
 
+        /// <summary>
+        ///     Constructor for add mode
+        /// </summary>
+        /// <param name="customer">Customer data</param>
+        public FormContact(Customer customer)
+        {
+            editMode = false;
+            this.customer = new Customer(customer);
+            InitializeComponent();
+            InitializeGUI();
+        }
+
+        /// <summary>
+        ///     Default constructor, add mode
+        /// </summary>
         public FormContact()
         {
             editMode = false;
@@ -32,19 +52,25 @@ namespace GUIFormWFDNF
             set { customer = value; }
         }
 
+        /// <summary>
+        ///     Initialize the GUI
+        /// </summary>
         private void InitializeGUI()
         {
             comboBoxCountry.DataSource = Enum.GetValues(typeof(Countries)).Cast<Countries>().ToList()
                 .ConvertAll(s => s.ToString().Replace("_", " "));
             Text = editMode ? "Edit customer" : "Add new customer";
-            FillInTheVoid();
-        }
-
-        private void FillInTheVoid()
-        {
             groupBoxName.Text = @"Name";
             groupBoxAddress.Text = @"Address";
             groupBoxEP.Text = @"Email and phone";
+            FillData();
+        }
+
+        /// <summary>
+        ///     GUI fill
+        /// </summary>
+        private void FillData()
+        {
             textBoxFName.Text = customer.Contact.FName;
             textBoxLName.Text = customer.Contact.LName;
             textBoxOMail.Text = customer.Contact.Email.Work;
@@ -57,6 +83,11 @@ namespace GUIFormWFDNF
             comboBoxCountry.SelectedItem = customer.Contact.Address.Countries.ToString().Replace("_", " ");
         }
 
+        /// <summary>
+        ///     OK button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonOK_Click(object sender, EventArgs e)
         {
             customer = new Customer(
@@ -83,9 +114,15 @@ namespace GUIFormWFDNF
                 MessageBox.Show(@"Something is wrong. Please check your input", @"Error");
         }
 
+        /// <summary>
+        ///     Cancel button
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonCancel_Click(object sender, EventArgs e)
         {
-            if (MessageBox.Show(@"Do you want to cancel?", @"Cancel", MessageBoxButtons.YesNo) == DialogResult.Yes) DialogResult = DialogResult.Cancel;
+            if (MessageBox.Show(@"Do you want to cancel?", @"Cancel", MessageBoxButtons.YesNo) == DialogResult.Yes)
+                DialogResult = DialogResult.Cancel;
         }
     }
 }

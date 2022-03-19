@@ -118,29 +118,50 @@ namespace BackendLibrary
             return strOut;
         }
 
+        /// <summary>
+        ///     Check if valid email format
+        /// </summary>
+        /// <param name="email">Input email</param>
+        /// <returns>True if valid</returns>
+        private bool IsValidEmailFormat(string email)
+        {
+            return new[] {"@", "."}.Any(email.Contains); // If at least contain @ or .
+        }
+
+        /// <summary>
+        ///     Check if office email is valid
+        /// </summary>
+        /// <returns>True if valid</returns>
         public bool IsValidWorkMail()
         {
-            return IsValidEmailAddress(officeMail);
+            return IsValidEmailFormat(officeMail);
         }
 
+        /// <summary>
+        ///     Check if personal email is valid
+        /// </summary>
+        /// <returns>True if valid</returns>
         public bool IsValidPersonalMail()
         {
-            return string.IsNullOrEmpty(personalMail) || IsValidEmailAddress(personalMail);
+            return string.IsNullOrEmpty(personalMail) || IsValidEmailFormat(personalMail);
         }
 
+        /// <summary>
+        ///     Check if both office and personal emails is valid
+        /// </summary>
+        /// <returns>True if valid</returns>
         public bool IsValidEmail()
         {
             return IsValidWorkMail() && IsValidPersonalMail();
         }
 
-        private bool IsValidEmailAddress(string email)
-        {
-            return new[] {"@", "."}.Any(email.Contains);
-        }
-
+        /// <summary>
+        ///     Return string array of data
+        /// </summary>
+        /// <returns>String array of office and personal email</returns>
         public string[] ToStringArray()
         {
-            return new[] {officeMail, personalMail};
+            return new string[] {officeMail, personalMail};
         }
     }
 }
