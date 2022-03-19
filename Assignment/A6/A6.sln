@@ -1,0 +1,32 @@
+﻿
+Microsoft Visual Studio Solution File, Format Version 11.00
+# Visual C# Express 2010
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendLibrary", "BackendLibrary\BackendLibrary.csproj", "{46ADB23D-2ED2-47ED-A94B-3FDC210FA8C4}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GUIWFDNF4", "GUIWFDNF4\GUIWFDNF4.csproj", "{65A9E2E0-308B-48DE-94C2-72310B2F4611}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A6ConsoleDNF", "A6ConsoleDNF\A6ConsoleDNF.csproj", "{2BC085E0-90E3-4B2C-8F02-1CABB4A8D060}"
+EndProject
+Global
+	GlobalSection(SolutionConfigurationPlatforms) = preSolution
+		Debug|x86 = Debug|x86
+		Release|x86 = Release|x86
+	EndGlobalSection
+	GlobalSection(ProjectConfigurationPlatforms) = postSolution
+		{46ADB23D-2ED2-47ED-A94B-3FDC210FA8C4}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{46ADB23D-2ED2-47ED-A94B-3FDC210FA8C4}.Debug|x86.Build.0 = Debug|Any CPU
+		{46ADB23D-2ED2-47ED-A94B-3FDC210FA8C4}.Release|x86.ActiveCfg = Release|Any CPU
+		{46ADB23D-2ED2-47ED-A94B-3FDC210FA8C4}.Release|x86.Build.0 = Release|Any CPU
+		{65A9E2E0-308B-48DE-94C2-72310B2F4611}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{65A9E2E0-308B-48DE-94C2-72310B2F4611}.Debug|x86.Build.0 = Debug|Any CPU
+		{65A9E2E0-308B-48DE-94C2-72310B2F4611}.Release|x86.ActiveCfg = Release|Any CPU
+		{65A9E2E0-308B-48DE-94C2-72310B2F4611}.Release|x86.Build.0 = Release|Any CPU
+		{2BC085E0-90E3-4B2C-8F02-1CABB4A8D060}.Debug|x86.ActiveCfg = Debug|Any CPU
+		{2BC085E0-90E3-4B2C-8F02-1CABB4A8D060}.Debug|x86.Build.0 = Debug|Any CPU
+		{2BC085E0-90E3-4B2C-8F02-1CABB4A8D060}.Release|x86.ActiveCfg = Release|Any CPU
+		{2BC085E0-90E3-4B2C-8F02-1CABB4A8D060}.Release|x86.Build.0 = Release|Any CPU
+	EndGlobalSection
+	GlobalSection(SolutionProperties) = preSolution
+		HideSolutionNode = FALSE
+	EndGlobalSection
+EndGlobal
