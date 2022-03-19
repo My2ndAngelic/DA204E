@@ -7,6 +7,7 @@ namespace GUIFormWFDNF
     {
         /// <summary>
         ///     The main entry point for the application.
+        ///     Possibly can be run on Windows XP
         /// </summary>
         [STAThread]
         public static void Main()

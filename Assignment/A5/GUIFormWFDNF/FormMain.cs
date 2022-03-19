@@ -70,11 +70,7 @@ namespace GUIFormWFDNF
         /// <param name="editMode"></param>
         public void LaunchDialog(bool editMode)
         {
-            Customer customerA = new Customer(new Contact("John", "Cena",
-                new Address("Random Street", "New York", "69420", Countries.United_States_of_America),
-                new Email("john@gmail.com", "cena@gmail.com"),
-                new Phone("+1 (234) 567-890", "+1 (234) 567-890")));
-            FormContact fc = new FormContact(customerA, editMode);
+            FormContact fc = new FormContact(customer, editMode);
             DialogResult di = fc.ShowDialog();
             if (di != DialogResult.OK) return;
             if (!editMode)
@@ -108,8 +104,10 @@ namespace GUIFormWFDNF
         /// </summary>
         private void UpdateGUI()
         {
+            int currentSelected = listboxContact.SelectedIndex;
             listboxContact.DataSource = MiscellaneousHandlers.CustomerProcessing(cm.GetCustomers());
-            listboxContact_SelectedIndexChanged(new object(), EventArgs.Empty);
+            listboxContact.ClearSelected();
+            listboxContact.SelectedIndex = currentSelected;
         }
 
         /// <summary>
