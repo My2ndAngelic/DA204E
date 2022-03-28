@@ -1,6 +1,5 @@
 ﻿using System;
 using System.Collections.Generic;
-using System.Diagnostics;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -24,6 +23,9 @@ namespace GUIWFDNF4
             taskManager = new TaskManager();
             comboBox1.DataSource = pList;
             listBox1.DataSource = taskManager.ToStrings();
+            
+            dateTimePicker1.Value = DateTime.Now;
+            textBox1.Text = string.Empty;
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
