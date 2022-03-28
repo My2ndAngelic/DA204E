@@ -11,6 +11,7 @@
         <AssemblyName>BackendLibrary</AssemblyName>
         <TargetFrameworkVersion>v4.0</TargetFrameworkVersion>
         <FileAlignment>512</FileAlignment>
+        <LangVersion>default</LangVersion>
     </PropertyGroup>
     <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
         <PlatformTarget>AnyCPU</PlatformTarget>
@@ -38,8 +39,8 @@
         <Reference Include="System.Xml" />
     </ItemGroup>
     <ItemGroup>
-        <Compile Include="Calender.cs" />
-        <Compile Include="CalenderManager.cs" />
+        <Compile Include="Task.cs" />
+        <Compile Include="TaskManager.cs" />
         <Compile Include="FileManager.cs" />
         <Compile Include="PriorityType.cs" />
         <Compile Include="Properties\AssemblyInfo.cs" />

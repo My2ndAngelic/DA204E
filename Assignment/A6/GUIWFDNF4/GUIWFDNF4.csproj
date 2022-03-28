@@ -79,5 +79,11 @@
     <ItemGroup>
         <None Include="App.config" />
     </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\BackendLibrary\BackendLibrary.csproj">
+        <Project>{46adb23d-2ed2-47ed-a94b-3fdc210fa8c4}</Project>
+        <Name>BackendLibrary</Name>
+      </ProjectReference>
+    </ItemGroup>
     <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
 </Project>
