@@ -11,7 +11,7 @@ namespace A6ConsoleDNF
             // Task c = new Task(new DateTime(2022, 3, 22), PriorityType.Important, "Say Hello");
             // cm.Add(c);
             // Console.WriteLine(cm[0].ToString());
-            // Console.WriteLine(cm.Calendars);
+            // Console.WriteLine(cm.Tasks);
 
             Task c = Task.FromStrings("1648511847|Very_important|Untitled".Split('|'));
             Console.WriteLine(c.ToString());

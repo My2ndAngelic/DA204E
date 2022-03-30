@@ -5,102 +5,102 @@ using System.Linq;
 namespace BackendLibrary
 {
     /// <summary>
-    /// Auto-generated code by IList implementation
+    ///     Auto-generated code by IList implementation
     /// </summary>
     public class TaskManager : IList<Task>
     {
-        private IList<Task> calendars;
+        private IList<Task> tasks;
 
         public TaskManager()
         {
-            calendars = new List<Task>();
+            tasks = new List<Task>();
         }
-        
+
+        public IList<Task> Tasks
+        {
+            get { return tasks; }
+            set { tasks = value; }
+        }
+
         public IEnumerator<Task> GetEnumerator()
         {
-            return calendars.GetEnumerator();
+            return tasks.GetEnumerator();
         }
 
         IEnumerator IEnumerable.GetEnumerator()
         {
-            return ((IEnumerable) calendars).GetEnumerator();
+            return ((IEnumerable) tasks).GetEnumerator();
         }
 
         public void Add(Task item)
         {
-            if (item != null) 
-               calendars.Add(item);
+            if (item != null)
+                tasks.Add(item);
         }
 
         public void Clear()
         {
-            calendars.Clear();
+            tasks.Clear();
         }
 
         public bool Contains(Task item)
         {
-            return calendars.Contains(item);
+            return tasks.Contains(item);
         }
 
         public void CopyTo(Task[] array, int arrayIndex)
         {
-            calendars.CopyTo(array, arrayIndex);
+            tasks.CopyTo(array, arrayIndex);
         }
 
         public bool Remove(Task item)
         {
-            return calendars.Remove(item);
+            return tasks.Remove(item);
         }
 
         public int Count
         {
-            get { return Calendars.Count; }
+            get { return Tasks.Count; }
         }
 
         public bool IsReadOnly
         {
-            get { return Calendars.IsReadOnly; }
-        }
-
-        public IList<Task> Calendars
-        {
-            get { return calendars; }
-            set { calendars = value; }
+            get { return Tasks.IsReadOnly; }
         }
 
         public int IndexOf(Task item)
         {
-            return Calendars.IndexOf(item);
+            return Tasks.IndexOf(item);
         }
 
         public void Insert(int index, Task item)
         {
-            Calendars.Insert(index, item);
+            Tasks.Insert(index, item);
         }
 
         public void RemoveAt(int index)
         {
-            Calendars.RemoveAt(index);
+            Tasks.RemoveAt(index);
         }
 
         public Task this[int index]
         {
-            get { return Calendars[index]; }
-            set { Calendars[index] = value; }
+            get { return Tasks[index]; }
+            set { Tasks[index] = value; }
         }
 
         /// <summary>
-        /// Return list of calendar info
+        ///     Return list of calendar info
         /// </summary>
         /// <returns></returns>
         public IEnumerable<string> ToStrings()
         {
-            return calendars.Select(c => c.ToString()).ToList();
+            return tasks.Select(c => c.ToString()).ToList();
         }
-        
+
         public IEnumerable<string> ToStringsFile()
         {
-            return calendars.Select(c => c.ToStringFile()).ToList();
+            return tasks.Select(c => c.ToStringFile()).ToList();
         }
     }
 }

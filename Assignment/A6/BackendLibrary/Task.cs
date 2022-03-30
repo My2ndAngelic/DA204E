@@ -1,5 +1,4 @@
 ﻿using System;
-using System.Collections.Generic;
 
 namespace BackendLibrary
 {
@@ -8,6 +7,27 @@ namespace BackendLibrary
         private DateTime date;
         private PriorityType priority;
         private string toDo;
+
+        public Task()
+        {
+            date = DateTime.Now;
+            priority = PriorityType.Very_important;
+            toDo = "Untitled";
+        }
+
+        public Task(DateTime date, PriorityType priority, string toDo)
+        {
+            this.date = date;
+            this.priority = priority;
+            this.toDo = CheckToDo(toDo);
+        }
+
+        public Task(Task task)
+        {
+            date = task.date;
+            priority = task.priority;
+            toDo = task.toDo;
+        }
 
         public DateTime Date
         {
@@ -24,33 +44,12 @@ namespace BackendLibrary
         public string ToDo
         {
             get { return toDo; }
-            set { toDo = LTodo(value); }
+            set { toDo = CheckToDo(value); }
         }
 
-        private static string LTodo(string inToDo)
+        private static string CheckToDo(string inToDo)
         {
             return string.IsNullOrEmpty(inToDo) ? "Untitled" : inToDo;
-        }
-
-        public Task()
-        {
-            date = DateTime.Now;
-            priority = PriorityType.Very_important;
-            toDo = "Untitled";
-        }
-
-        public Task(DateTime date, PriorityType priority, string toDo)
-        {
-            this.date = date;
-            this.priority = priority;
-            this.toDo = LTodo(toDo);
-        }
-
-        public Task(Task task)
-        {
-            date = task.date;
-            priority = task.priority;
-            toDo = task.toDo;
         }
 
         public static string PriorityTypeToString(string priorityType)
@@ -75,9 +74,10 @@ namespace BackendLibrary
 
         public string ToStringFile()
         {
-            return $@"{(int) date.Subtract(new DateTime(1970, 1, 1,0,0,0,DateTimeKind.Utc)).TotalSeconds}|{priority}|{toDo}";
+            return
+                $@"{(int) date.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds}|{priority}|{toDo}";
         }
-        
+
         public static Task FromString(string data)
         {
             return FromStrings(data.Split('|'));
@@ -85,8 +85,8 @@ namespace BackendLibrary
 
         public static Task FromStrings(string[] data)
         {
-            return new Task(new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(Convert.ToInt32(data[0])), 
-                (PriorityType) Enum.Parse(typeof(PriorityType), data[1]), 
+            return new Task(new DateTime(1970, 1, 1, 0, 0, 0, 0, DateTimeKind.Utc).AddSeconds(Convert.ToInt32(data[0])),
+                (PriorityType) Enum.Parse(typeof(PriorityType), data[1]),
                 data[2]);
         }
     }

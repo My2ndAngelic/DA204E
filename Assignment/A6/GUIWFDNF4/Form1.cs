@@ -9,9 +9,12 @@ namespace GUIWFDNF4
 {
     public partial class Form1 : Form
     {
-        private TaskManager taskManager = new TaskManager();
+        private readonly List<string> pList = Enum.GetNames(typeof(PriorityType)).Select(Task.PriorityTypeToString)
+            .ToList();
+
         private Task currentSelected = new Task();
-        private readonly List<string> pList = Enum.GetNames(typeof(PriorityType)).Select(Task.PriorityTypeToString).ToList();
+        private TaskManager taskManager = new TaskManager();
+
         public Form1()
         {
             InitializeComponent();
@@ -23,7 +26,7 @@ namespace GUIWFDNF4
             taskManager = new TaskManager();
             comboBox1.DataSource = pList;
             listBox1.DataSource = taskManager.ToStrings();
-            
+
             dateTimePicker1.Value = DateTime.Now;
             textBox1.Text = string.Empty;
         }
@@ -84,33 +87,54 @@ namespace GUIWFDNF4
             {
                 SaveFileDialog sfd = new SaveFileDialog();
                 sfd.ShowDialog();
+                if (sfd.FileName == string.Empty) return;
                 FileManager.FileWriter(Path.GetFullPath(sfd.FileName), taskManager.ToStringsFile());
             }
-            catch
+            catch (Exception ignored)
             {
                 MessageBox.Show(@"Something is wrong. Please try again.", @"Error");
             }
+
             UpdateGUI();
         }
 
         private void toolStripMenuItemOpen_Click(object sender, EventArgs e)
         {
-            try 
+            try
             {
                 OpenFileDialog ofd = new OpenFileDialog();
                 ofd.ShowDialog();
-            
+                if (ofd.FileName == string.Empty) return;
+
+                if (taskManager.Count > 0)
+                    switch (MessageBox.Show(@"Do you want to Append (Yes), Replace (No) or Cancel?", @"Opening file",
+                                MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information))
+                    {
+                        case DialogResult.Yes:
+                            break;
+                        case DialogResult.No:
+                            taskManager = new TaskManager();
+                            break;
+                        case DialogResult.Cancel:
+                        case DialogResult.None:
+                        case DialogResult.OK:
+                        case DialogResult.Abort:
+                        case DialogResult.Retry:
+                        case DialogResult.Ignore:
+                        default:
+                            return;
+                    }
+
                 foreach (string s in FileManager.FileReader(Path.GetFullPath(ofd.FileName)))
-                {
                     taskManager.Add(Task.FromString(s));
-                }
 
                 listBox1.DataSource = taskManager.ToStrings();
             }
-            catch
+            catch (Exception ignored)
             {
                 MessageBox.Show(@"Something is wrong. Please try again.", @"Error");
             }
+
             UpdateGUI();
         }
 
@@ -119,6 +143,10 @@ namespace GUIWFDNF4
             taskManager = new TaskManager();
             listBox1.DataSource = taskManager.ToStrings();
             UpdateGUI();
+        }
+
+        private void toolStripMenuItemAbout_Click(object sender, EventArgs e)
+        {
         }
     }
 }
