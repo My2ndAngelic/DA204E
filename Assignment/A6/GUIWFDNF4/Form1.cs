@@ -26,6 +26,7 @@ namespace GUIWFDNF4
             
             dateTimePicker1.Value = DateTime.Now;
             textBox1.Text = string.Empty;
+            
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -84,6 +85,7 @@ namespace GUIWFDNF4
             {
                 SaveFileDialog sfd = new SaveFileDialog();
                 sfd.ShowDialog();
+                if (sfd.FileName == string.Empty) return;
                 FileManager.FileWriter(Path.GetFullPath(sfd.FileName), taskManager.ToStringsFile());
             }
             catch
@@ -99,7 +101,29 @@ namespace GUIWFDNF4
             {
                 OpenFileDialog ofd = new OpenFileDialog();
                 ofd.ShowDialog();
-            
+                if (ofd.FileName == string.Empty) return;
+
+                if (taskManager.Count > 0)
+                {
+                    switch (MessageBox.Show(@"Do you want to Append (Yes), Replace (No) or Cancel?", @"Opening file",
+                                MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information))
+                    {
+                        case DialogResult.Yes:
+                            break;
+                        case DialogResult.No:
+                            taskManager = new TaskManager();
+                            break;
+                        case DialogResult.Cancel:
+                        case DialogResult.None:
+                        case DialogResult.OK:
+                        case DialogResult.Abort:
+                        case DialogResult.Retry:
+                        case DialogResult.Ignore:
+                        default:
+                            return;
+                    }
+                }
+
                 foreach (string s in FileManager.FileReader(Path.GetFullPath(ofd.FileName)))
                 {
                     taskManager.Add(Task.FromString(s));
@@ -119,6 +143,11 @@ namespace GUIWFDNF4
             taskManager = new TaskManager();
             listBox1.DataSource = taskManager.ToStrings();
             UpdateGUI();
+        }
+
+        private void toolStripMenuItemAbout_Click(object sender, EventArgs e)
+        {
+            throw new System.NotImplementedException();
         }
     }
 }
