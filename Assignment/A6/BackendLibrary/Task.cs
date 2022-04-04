@@ -72,6 +72,11 @@ namespace BackendLibrary
             return $@"{date} {PriorityTypeToString(priority)} {toDo}";
         }
 
+        public string ToStringDisplay()
+        {
+            return $@"{date,-20} {PriorityTypeToString(priority), -15} {toDo, -50}";
+        }
+        
         public string ToStringFile()
         {
             return

@@ -95,7 +95,7 @@ namespace BackendLibrary
         /// <returns></returns>
         public IEnumerable<string> ToStrings()
         {
-            return tasks.Select(c => c.ToString()).ToList();
+            return tasks.Select(c => c.ToStringDisplay()).ToList();
         }
 
         public IEnumerable<string> ToStringsFile()

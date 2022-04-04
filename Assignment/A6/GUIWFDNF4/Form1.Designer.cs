@@ -58,9 +58,9 @@
             // listBox1
             // 
             this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(64, 224);
+            this.listBox1.Location = new System.Drawing.Point(64, 211);
             this.listBox1.Name = "listBox1";
-            this.listBox1.Size = new System.Drawing.Size(841, 342);
+            this.listBox1.Size = new System.Drawing.Size(841, 355);
             this.listBox1.TabIndex = 4;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
             // 
@@ -174,7 +174,7 @@
             // toolStripMenuItemAbout
             // 
             this.toolStripMenuItemAbout.Name = "toolStripMenuItemAbout";
-            this.toolStripMenuItemAbout.Size = new System.Drawing.Size(152, 22);
+            this.toolStripMenuItemAbout.Size = new System.Drawing.Size(107, 22);
             this.toolStripMenuItemAbout.Text = "About";
             this.toolStripMenuItemAbout.Click += new System.EventHandler(this.toolStripMenuItemAbout_Click);
             // 
@@ -213,7 +213,7 @@
             // 
             // label4
             // 
-            this.label4.Location = new System.Drawing.Point(64, 198);
+            this.label4.Location = new System.Drawing.Point(64, 188);
             this.label4.Name = "label4";
             this.label4.Size = new System.Drawing.Size(100, 23);
             this.label4.TabIndex = 11;
@@ -221,7 +221,7 @@
             // 
             // label5
             // 
-            this.label5.Location = new System.Drawing.Point(170, 198);
+            this.label5.Location = new System.Drawing.Point(255, 188);
             this.label5.Name = "label5";
             this.label5.Size = new System.Drawing.Size(100, 23);
             this.label5.TabIndex = 12;
@@ -229,7 +229,7 @@
             // 
             // label6
             // 
-            this.label6.Location = new System.Drawing.Point(292, 198);
+            this.label6.Location = new System.Drawing.Point(397, 188);
             this.label6.Name = "label6";
             this.label6.Size = new System.Drawing.Size(100, 23);
             this.label6.TabIndex = 13;

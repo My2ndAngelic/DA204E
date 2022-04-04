@@ -1,5 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
+using System.Drawing;
 using System.IO;
 using System.Linq;
 using System.Windows.Forms;
@@ -26,9 +27,17 @@ namespace GUIWFDNF4
             taskManager = new TaskManager();
             comboBox1.DataSource = pList;
             listBox1.DataSource = taskManager.ToStrings();
+            listBox1.Font = new Font("Consolas", 12);
 
             dateTimePicker1.Value = DateTime.Now;
             textBox1.Text = string.Empty;
+
+            label1.Text = @"Time";
+            label2.Text = @"Priority";
+            label3.Text = @"Description";
+            label4.Text = @"Time";
+            label5.Text = @"Priority";
+            label6.Text = @"Description";
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
@@ -147,6 +156,7 @@ namespace GUIWFDNF4
 
         private void toolStripMenuItemAbout_Click(object sender, EventArgs e)
         {
+            
         }
     }
 }
