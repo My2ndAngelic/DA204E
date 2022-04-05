@@ -10,10 +10,10 @@ namespace GUIWFDNF4
 {
     public partial class Form1 : Form
     {
-        private readonly List<string> pList = Enum.GetNames(typeof(PriorityType)).Select(Task.PriorityTypeToString)
+        private readonly List<string> prioListString = Enum.GetNames(typeof(PriorityType)).Select(Task.PriorityTypeToString)
             .ToList();
 
-        private Task currentSelected = new Task();
+        private Task currentSelectedTask = new Task();
         private TaskManager taskManager = new TaskManager();
 
         public Form1()
@@ -25,28 +25,42 @@ namespace GUIWFDNF4
         private void InitializeGUI()
         {
             taskManager = new TaskManager();
-            comboBox1.DataSource = pList;
+
+            Text = @"ToDo Reminder by Evan Huynh";
+            
+            comboBox1.DataSource = prioListString;
             listBox1.DataSource = taskManager.ToStrings();
             listBox1.Font = new Font("Consolas", 12);
 
             dateTimePicker1.Value = DateTime.Now;
+            
+            toolTip1.SetToolTip(dateTimePicker1, "Click the calendar to open the date, write the time here.");
+            toolTip1.SetToolTip(comboBox1, "Click to select your priority of the task.");
+            toolTip1.SetToolTip(textBox1, "Enter the description of your task here.");
+            toolTip1.SetToolTip(listBox1, "Click to select a tag, hold Ctrl to Select ");
+            toolTip1.SetToolTip(buttonAdd, "Add a new task.");
+            toolTip1.SetToolTip(buttonEdit, "Edit the first selected task");
+            toolTip1.SetToolTip(buttonDelete, "Delete currently selected tasks.");
+
             textBox1.Text = string.Empty;
 
-            label1.Text = @"Time";
+            label1.Text = @"Date and Time";
             label2.Text = @"Priority";
             label3.Text = @"Description";
             label4.Text = @"Time";
             label5.Text = @"Priority";
             label6.Text = @"Description";
+
+            timer1.Start();
         }
 
         private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (listBox1.SelectedIndex < 0) return;
-            currentSelected = taskManager[listBox1.SelectedIndex];
-            textBox1.Text = currentSelected.ToDo;
-            comboBox1.SelectedIndex = pList.IndexOf(Task.PriorityTypeToString(currentSelected.Priority));
-            dateTimePicker1.Value = currentSelected.Date;
+            currentSelectedTask = taskManager[listBox1.SelectedIndex];
+            textBox1.Text = currentSelectedTask.ToDo;
+            comboBox1.SelectedIndex = prioListString.IndexOf(Task.PriorityTypeToString(currentSelectedTask.Priority));
+            dateTimePicker1.Value = currentSelectedTask.Date;
         }
 
         private void UpdateGUI()
@@ -76,11 +90,14 @@ namespace GUIWFDNF4
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex < 0) return;
-            int temp = listBox1.SelectedIndex;
-            taskManager.RemoveAt(listBox1.SelectedIndex);
+            if (listBox1.SelectedIndex < 0) 
+                return; 
+            if (MessageBox.Show(@"Do you want to delete selected items?", @"Deleting", MessageBoxButtons.YesNo) == DialogResult.No)
+                return;
+            foreach (int index in listBox1.SelectedIndices.Cast<int>().Select(x => x).Reverse())
+                taskManager.RemoveAt(index);
             listBox1.DataSource = taskManager.ToStrings();
-            listBox1.SelectedIndex = temp - 1;
+            listBox1.SelectedIndex = -1;
             UpdateGUI();
         }
 
@@ -156,7 +173,13 @@ namespace GUIWFDNF4
 
         private void toolStripMenuItemAbout_Click(object sender, EventArgs e)
         {
-            
+            AboutBox ab = new AboutBox();
+            ab.Show();
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            label7.Text = DateTime.Now.ToString("hh:mm:ss");
         }
     }
 }

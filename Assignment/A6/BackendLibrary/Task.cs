@@ -79,8 +79,7 @@ namespace BackendLibrary
         
         public string ToStringFile()
         {
-            return
-                $@"{(int) date.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds}|{priority}|{toDo}";
+            return $@"{(int) date.Subtract(new DateTime(1970, 1, 1, 0, 0, 0, DateTimeKind.Utc)).TotalSeconds}|{priority}|{toDo}";
         }
 
         public static Task FromString(string data)

@@ -29,6 +29,8 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.components = new System.ComponentModel.Container();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Form1));
             this.listBox1 = new System.Windows.Forms.ListBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
             this.textBox1 = new System.Windows.Forms.TextBox();
@@ -52,6 +54,9 @@
             this.label4 = new System.Windows.Forms.Label();
             this.label5 = new System.Windows.Forms.Label();
             this.label6 = new System.Windows.Forms.Label();
+            this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.label7 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -60,6 +65,7 @@
             this.listBox1.FormattingEnabled = true;
             this.listBox1.Location = new System.Drawing.Point(64, 211);
             this.listBox1.Name = "listBox1";
+            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
             this.listBox1.Size = new System.Drawing.Size(841, 355);
             this.listBox1.TabIndex = 4;
             this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
@@ -68,10 +74,11 @@
             // 
             this.dateTimePicker1.CustomFormat = "dd/MM/yyyy hh:mm:ss";
             this.dateTimePicker1.Format = System.Windows.Forms.DateTimePickerFormat.Custom;
-            this.dateTimePicker1.Location = new System.Drawing.Point(170, 38);
+            this.dateTimePicker1.Location = new System.Drawing.Point(170, 44);
             this.dateTimePicker1.Name = "dateTimePicker1";
             this.dateTimePicker1.Size = new System.Drawing.Size(178, 20);
             this.dateTimePicker1.TabIndex = 1;
+            this.toolTip1.SetToolTip(this.dateTimePicker1, "Change the date");
             // 
             // textBox1
             // 
@@ -88,6 +95,7 @@
             this.comboBox1.Name = "comboBox1";
             this.comboBox1.Size = new System.Drawing.Size(178, 21);
             this.comboBox1.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.comboBox1, "Select the priority task");
             // 
             // buttonAdd
             // 
@@ -180,6 +188,7 @@
             // 
             // menuStrip1
             // 
+            this.menuStrip1.BackColor = System.Drawing.SystemColors.Control;
             this.menuStrip1.Items.AddRange(new System.Windows.Forms.ToolStripItem[] {this.toolStripMenuItemFile, this.helpToolStripMenuItem});
             this.menuStrip1.Location = new System.Drawing.Point(0, 0);
             this.menuStrip1.Name = "menuStrip1";
@@ -189,9 +198,9 @@
             // 
             // label1
             // 
-            this.label1.Location = new System.Drawing.Point(64, 38);
+            this.label1.Location = new System.Drawing.Point(64, 44);
             this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 23);
+            this.label1.Size = new System.Drawing.Size(100, 20);
             this.label1.TabIndex = 8;
             this.label1.Text = "label1";
             // 
@@ -235,11 +244,27 @@
             this.label6.TabIndex = 13;
             this.label6.Text = "label6";
             // 
+            // timer1
+            // 
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            // 
+            // label7
+            // 
+            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.label7.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.label7.Location = new System.Drawing.Point(770, 589);
+            this.label7.Name = "label7";
+            this.label7.Size = new System.Drawing.Size(135, 39);
+            this.label7.TabIndex = 14;
+            this.label7.Text = "label7";
+            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            // 
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(960, 668);
+            this.Controls.Add(this.label7);
             this.Controls.Add(this.label6);
             this.Controls.Add(this.label5);
             this.Controls.Add(this.label4);
@@ -254,6 +279,8 @@
             this.Controls.Add(this.dateTimePicker1);
             this.Controls.Add(this.listBox1);
             this.Controls.Add(this.menuStrip1);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "Form1";
             this.Text = "Form1";
@@ -262,6 +289,12 @@
             this.ResumeLayout(false);
             this.PerformLayout();
         }
+
+        private System.Windows.Forms.Label label7;
+
+        private System.Windows.Forms.Timer timer1;
+
+        private System.Windows.Forms.ToolTip toolTip1;
 
         private System.Windows.Forms.Label label1;
         private System.Windows.Forms.Label label2;
