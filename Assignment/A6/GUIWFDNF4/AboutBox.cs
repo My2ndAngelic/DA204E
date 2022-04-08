@@ -13,21 +13,21 @@ namespace GUIWFDNF4
             InitializeGUI();
         }
 
-        /// <summary>
-        /// Source: https://stackoverflow.com/questions/187495/how-to-read-assembly-attributes
-        /// http://lancelarsen.com/reading-values-from-assemblyinfo-cs/
-        /// </summary>
+        
         private void InitializeGUI()
         {
+            label2.Text = AssemblyInfo.Product;
             label3.Text = AssemblyInfo.Copyright;
+            label4.Text = AssemblyInfo.VersionFull;
         }
-
-        private void label2_Click(object sender, EventArgs e)
-        {
-            
-        }
-        
-        internal static class AssemblyInfo
+    }
+    
+    /// <summary>
+    /// Source:
+    /// https://stackoverflow.com/questions/187495/how-to-read-assembly-attributes
+    /// http://lancelarsen.com/reading-values-from-assemblyinfo-cs/
+    /// </summary>
+    internal static class AssemblyInfo
         {
             public static string Company { get { return GetExecutingAssemblyAttribute<AssemblyCompanyAttribute>(a => a.Company); } }
             public static string Product { get { return GetExecutingAssemblyAttribute<AssemblyProductAttribute>(a => a.Product); } }
@@ -51,5 +51,4 @@ namespace GUIWFDNF4
                 return value.Invoke(attribute);
             }
         }
-    }
 }
