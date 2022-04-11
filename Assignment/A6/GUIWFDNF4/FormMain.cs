@@ -8,15 +8,16 @@ using BackendLibrary;
 
 namespace GUIWFDNF4
 {
-    public partial class Form1 : Form
+    public partial class FormMain : Form
     {
-        private readonly List<string> prioListString = Enum.GetNames(typeof(PriorityType)).Select(Task.PriorityTypeToString)
+        private readonly List<string> prioListString = Enum.GetNames(typeof(PriorityType))
+            .Select(Task.PriorityTypeToString)
             .ToList();
 
         private Task currentSelectedTask = new Task();
         private TaskManager taskManager = new TaskManager();
 
-        public Form1()
+        public FormMain()
         {
             InitializeComponent();
             InitializeGUI();
@@ -27,13 +28,13 @@ namespace GUIWFDNF4
             taskManager = new TaskManager();
 
             Text = @"ToDo Reminder by Evan Huynh";
-            
+
             comboBox1.DataSource = prioListString;
             listBox1.DataSource = taskManager.ToStrings();
             listBox1.Font = new Font("Consolas", 12);
 
             dateTimePicker1.Value = DateTime.Now;
-            
+
             toolTip1.SetToolTip(dateTimePicker1, "Click the calendar to open the date, write the time here.");
             toolTip1.SetToolTip(comboBox1, "Click to select your priority of the task.");
             toolTip1.SetToolTip(textBox1, "Enter the description of your task here.");
@@ -42,6 +43,13 @@ namespace GUIWFDNF4
             toolTip1.SetToolTip(buttonEdit, "Edit the first selected task");
             toolTip1.SetToolTip(buttonDelete, "Delete currently selected tasks.");
 
+            // // This does not play nice with the program, it is ugly but I leave it here in case.
+            // toolStripMenuItemNew.ToolTipText = @"New list";
+            // toolStripMenuItemOpen.ToolTipText = @"Open file containing list";
+            // toolStripMenuItemSave.ToolTipText = @"Save existing list to file";
+            // toolStripMenuItemExit.ToolTipText = @"Exit the program";
+            // toolStripMenuItemAbout.ToolTipText = @"Show about box";
+            
             textBox1.Text = string.Empty;
 
             label1.Text = @"Date and Time";
@@ -72,7 +80,6 @@ namespace GUIWFDNF4
         private void buttonAdd_Click(object sender, EventArgs e)
         {
             taskManager.Add(new Task(dateTimePicker1.Value, (PriorityType) comboBox1.SelectedIndex, textBox1.Text));
-            // taskManager.Add(new Task(new DateTime(2022,03,12), PriorityType.Important, "Hello World"));
             listBox1.DataSource = taskManager.ToStrings();
             listBox1.SelectedIndex = -1;
             UpdateGUI();
@@ -90,9 +97,10 @@ namespace GUIWFDNF4
 
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex < 0) 
-                return; 
-            if (MessageBox.Show(@"Do you want to delete selected items?", @"Deleting", MessageBoxButtons.YesNo) == DialogResult.No)
+            if (listBox1.SelectedIndex < 0)
+                return;
+            if (MessageBox.Show(@"Do you want to delete selected items?", @"Deleting", MessageBoxButtons.YesNo) ==
+                DialogResult.No)
                 return;
             foreach (int index in listBox1.SelectedIndices.Cast<int>().Select(x => x).Reverse())
                 taskManager.RemoveAt(index);
@@ -141,9 +149,9 @@ namespace GUIWFDNF4
                         case DialogResult.No:
                             taskManager = new TaskManager();
                             break;
-                        case DialogResult.Cancel:
                         case DialogResult.None:
                         case DialogResult.OK:
+                        case DialogResult.Cancel:
                         case DialogResult.Abort:
                         case DialogResult.Retry:
                         case DialogResult.Ignore:
@@ -156,7 +164,7 @@ namespace GUIWFDNF4
 
                 listBox1.DataSource = taskManager.ToStrings();
             }
-            catch (Exception ignored)
+            catch (Exception _)
             {
                 MessageBox.Show(@"Something is wrong. Please try again.", @"Error");
             }
@@ -166,6 +174,24 @@ namespace GUIWFDNF4
 
         private void toolStripMenuItemNew_Click(object sender, EventArgs e)
         {
+            if (taskManager.Count > 0)
+            {
+                switch (MessageBox.Show(@"Do you want to create new list of reminders?", @"New list",
+                            MessageBoxButtons.YesNo, MessageBoxIcon.Information))
+                {
+                    case DialogResult.Yes:
+                        break;
+                    case DialogResult.None:
+                    case DialogResult.OK:
+                    case DialogResult.Cancel:
+                    case DialogResult.Abort:
+                    case DialogResult.Retry:
+                    case DialogResult.Ignore:
+                    case DialogResult.No:
+                    default: 
+                        return;                
+                }
+            }
             taskManager = new TaskManager();
             listBox1.DataSource = taskManager.ToStrings();
             UpdateGUI();
@@ -173,13 +199,24 @@ namespace GUIWFDNF4
 
         private void toolStripMenuItemAbout_Click(object sender, EventArgs e)
         {
-            AboutBox ab = new AboutBox();
-            ab.Show();
+            DialogResult _ = new FormAbout().ShowDialog();
         }
 
         private void timer1_Tick(object sender, EventArgs e)
         {
             label7.Text = DateTime.Now.ToString("hh:mm:ss");
+        }
+
+        private void listBox1_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (!e.Control || e.KeyCode != Keys.A) return;
+            for (int i = 0; i < listBox1.Items.Count; i++) listBox1.SetSelected(i, true);
+        }
+
+        private void listBox1_MouseDown(object sender, MouseEventArgs e)
+        {
+            if (listBox1.IndexFromPoint(e.Location) == -1 || e.Button == MouseButtons.Right)
+                listBox1.ClearSelected();
         }
     }
 }

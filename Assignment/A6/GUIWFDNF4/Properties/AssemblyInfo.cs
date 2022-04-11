@@ -4,12 +4,12 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("GUIWFDNF4")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyTitle("ToDo Reminder")]
+[assembly: AssemblyDescription("A software that help you create and save your reminders.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("")]
-[assembly: AssemblyProduct("GUIWFDNF4")]
-[assembly: AssemblyCopyright("Copyright © Evan Huynh 2022")]
+[assembly: AssemblyCompany("Evan Corporation")]
+[assembly: AssemblyProduct("ToDo Reminder")]
+[assembly: AssemblyCopyright("Copyright © Evan Huynh 2022. All rights reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 
