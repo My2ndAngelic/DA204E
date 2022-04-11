@@ -31,7 +31,7 @@ namespace GUIWFDNF4
     }
 
     /// <summary>
-    ///     Getting data from the AssemblyInfo.cs. It is copied directly from the source.
+    ///     Getting data from the AssemblyInfo.cs. I am used the one suggested by Lance Larsen.
     ///     Source:
     ///     https://stackoverflow.com/questions/187495/how-to-read-assembly-attributes
     ///     http://lancelarsen.com/reading-values-from-assemblyinfo-cs/
@@ -86,26 +86,6 @@ namespace GUIWFDNF4
         public static string VersionFull
         {
             get { return Version.ToString(); }
-        }
-
-        public static string VersionMajor
-        {
-            get { return Version.Major.ToString(); }
-        }
-
-        public static string VersionMinor
-        {
-            get { return Version.Minor.ToString(); }
-        }
-
-        public static string VersionBuild
-        {
-            get { return Version.Build.ToString(); }
-        }
-
-        public static string VersionRevision
-        {
-            get { return Version.Revision.ToString(); }
         }
 
         private static string GetExecutingAssemblyAttribute<T>(Func<T, string> value) where T : Attribute
