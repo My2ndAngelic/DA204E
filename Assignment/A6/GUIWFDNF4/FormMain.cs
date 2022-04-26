@@ -24,7 +24,7 @@ namespace GUIWFDNF4
         }
 
         /// <summary>
-        /// Initialize GUI
+        ///     Initialize GUI
         /// </summary>
         private void InitializeGUI()
         {
@@ -50,7 +50,7 @@ namespace GUIWFDNF4
             toolTip1.SetToolTip(buttonAdd, "Add a new task.");
             toolTip1.SetToolTip(buttonEdit, "Edit the first selected task");
             toolTip1.SetToolTip(buttonDelete, "Delete currently selected tasks.");
-            
+
             textBoxDescription.Text = string.Empty;
 
             // All the labels
@@ -65,7 +65,7 @@ namespace GUIWFDNF4
         }
 
         /// <summary>
-        /// Handing event when the selected index is changed
+        ///     Handing event when the selected index is changed
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -80,7 +80,7 @@ namespace GUIWFDNF4
         }
 
         /// <summary>
-        /// After every action taken
+        ///     After every action taken
         /// </summary>
         private void UpdateGUI()
         {
@@ -90,7 +90,7 @@ namespace GUIWFDNF4
         }
 
         /// <summary>
-        /// Handling event when the add button is clicked
+        ///     Handling event when the add button is clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -103,7 +103,7 @@ namespace GUIWFDNF4
         }
 
         /// <summary>
-        /// Handling event when the edit button is clicked
+        ///     Handling event when the edit button is clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -118,7 +118,7 @@ namespace GUIWFDNF4
         }
 
         /// <summary>
-        /// Handling event when the delete button is clicked
+        ///     Handling event when the delete button is clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -136,7 +136,7 @@ namespace GUIWFDNF4
         }
 
         /// <summary>
-        /// Handling event when user want to quit
+        ///     Handling event when user want to quit
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -147,7 +147,7 @@ namespace GUIWFDNF4
         }
 
         /// <summary>
-        /// Handling event when save menu item is clicked
+        ///     Handling event when save menu item is clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -159,7 +159,6 @@ namespace GUIWFDNF4
                 sfd.ShowDialog();
                 if (sfd.FileName == string.Empty) return; // If no file is selected, return
                 if (new FileInfo(Path.GetFullPath(sfd.FileName)).Length != 0)
-                {
                     switch (MessageBox.Show(@"Do you want to Append (Yes), Replace (No) or Cancel?", @"Opening file",
                                 MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information))
                     {
@@ -172,7 +171,6 @@ namespace GUIWFDNF4
                         default:
                             return;
                     }
-                }
             }
             catch (Exception)
             {
@@ -189,8 +187,8 @@ namespace GUIWFDNF4
                 OpenFileDialog ofd = new OpenFileDialog();
                 ofd.ShowDialog();
                 if (ofd.FileName == string.Empty) return; // If no file is selected
-                TaskManager taskManager2 = new TaskManager();// Make a copy of the original for safety issue
-                if (taskManager.Count > 0)  // When there is loaded tasks
+                TaskManager taskManager2 = new TaskManager(); // Make a copy of the original for safety issue
+                if (taskManager.Count > 0) // When there is loaded tasks
                     switch (MessageBox.Show(@"Do you want to Append (Yes), Replace (No) or Cancel?", @"Opening file",
                                 MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information))
                     {
@@ -217,7 +215,7 @@ namespace GUIWFDNF4
         }
 
         /// <summary>
-        /// Handling event when the new menu item is clicked
+        ///     Handling event when the new menu item is clicked
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -244,7 +242,7 @@ namespace GUIWFDNF4
         }
 
         /// <summary>
-        /// Display local time
+        ///     Display local time
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>

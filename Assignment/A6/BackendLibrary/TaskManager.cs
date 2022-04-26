@@ -1,5 +1,4 @@
-﻿using System;
-using System.Collections;
+﻿using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -37,11 +36,6 @@ namespace BackendLibrary
         {
             if (item != null)
                 tasks.Add(item);
-        }
-        
-        public void Add(List<Task> toList)
-        {
-            toList.ForEach(tasks.Add);
         }
 
         public void Clear()
@@ -93,6 +87,11 @@ namespace BackendLibrary
         {
             get { return Tasks[index]; }
             set { Tasks[index] = value; }
+        }
+
+        public void Add(List<Task> toList)
+        {
+            toList.ForEach(tasks.Add);
         }
 
         /// <summary>
