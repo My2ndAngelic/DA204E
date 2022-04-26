@@ -33,13 +33,13 @@ namespace GUIWFDNF4
         {
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormAbout));
             this.pictureBox1 = new System.Windows.Forms.PictureBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.labelTitle = new System.Windows.Forms.Label();
+            this.labelCompany = new System.Windows.Forms.Label();
+            this.labelProduct = new System.Windows.Forms.Label();
+            this.labelDescription = new System.Windows.Forms.Label();
+            this.labelCopyright = new System.Windows.Forms.Label();
+            this.labelVersion = new System.Windows.Forms.Label();
+            this.buttonOK = new System.Windows.Forms.Button();
             this.label7 = new System.Windows.Forms.Label();
             this.toolStripMenuItem1 = new System.Windows.Forms.ToolStripMenuItem();
             ((System.ComponentModel.ISupportInitialize) (this.pictureBox1)).BeginInit();
@@ -54,65 +54,65 @@ namespace GUIWFDNF4
             this.pictureBox1.TabIndex = 0;
             this.pictureBox1.TabStop = false;
             // 
-            // label1
+            // labelTitle
             // 
-            this.label1.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label1.Location = new System.Drawing.Point(114, 12);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(323, 96);
-            this.label1.TabIndex = 1;
-            this.label1.Text = "label1";
-            this.label1.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
+            this.labelTitle.Font = new System.Drawing.Font("Microsoft Sans Serif", 20F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.labelTitle.Location = new System.Drawing.Point(114, 12);
+            this.labelTitle.Name = "labelTitle";
+            this.labelTitle.Size = new System.Drawing.Size(323, 96);
+            this.labelTitle.TabIndex = 1;
+            this.labelTitle.Text = "labelTitle";
+            this.labelTitle.TextAlign = System.Drawing.ContentAlignment.MiddleLeft;
             // 
-            // label2
+            // labelCompany
             // 
-            this.label2.Location = new System.Drawing.Point(114, 135);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(389, 23);
-            this.label2.TabIndex = 2;
-            this.label2.Text = "label2";
+            this.labelCompany.Location = new System.Drawing.Point(114, 135);
+            this.labelCompany.Name = "labelCompany";
+            this.labelCompany.Size = new System.Drawing.Size(389, 23);
+            this.labelCompany.TabIndex = 2;
+            this.labelCompany.Text = "labelCompany";
             // 
-            // label3
+            // labelProduct
             // 
-            this.label3.Location = new System.Drawing.Point(114, 158);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(389, 23);
-            this.label3.TabIndex = 3;
-            this.label3.Text = "label3";
+            this.labelProduct.Location = new System.Drawing.Point(114, 158);
+            this.labelProduct.Name = "labelProduct";
+            this.labelProduct.Size = new System.Drawing.Size(389, 23);
+            this.labelProduct.TabIndex = 3;
+            this.labelProduct.Text = "labelProduct";
             // 
-            // label4
+            // labelDescription
             // 
-            this.label4.Location = new System.Drawing.Point(114, 181);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(389, 23);
-            this.label4.TabIndex = 4;
-            this.label4.Text = "label4";
+            this.labelDescription.Location = new System.Drawing.Point(114, 181);
+            this.labelDescription.Name = "labelDescription";
+            this.labelDescription.Size = new System.Drawing.Size(389, 23);
+            this.labelDescription.TabIndex = 4;
+            this.labelDescription.Text = "labelDescription";
             // 
-            // label5
+            // labelCopyright
             // 
-            this.label5.Location = new System.Drawing.Point(114, 204);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(389, 23);
-            this.label5.TabIndex = 5;
-            this.label5.Text = "label5";
+            this.labelCopyright.Location = new System.Drawing.Point(114, 204);
+            this.labelCopyright.Name = "labelCopyright";
+            this.labelCopyright.Size = new System.Drawing.Size(389, 23);
+            this.labelCopyright.TabIndex = 5;
+            this.labelCopyright.Text = "labelCopyright";
             // 
-            // label6
+            // labelVersion
             // 
-            this.label6.Location = new System.Drawing.Point(114, 227);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(389, 23);
-            this.label6.TabIndex = 6;
-            this.label6.Text = "label6";
+            this.labelVersion.Location = new System.Drawing.Point(114, 227);
+            this.labelVersion.Name = "labelVersion";
+            this.labelVersion.Size = new System.Drawing.Size(389, 23);
+            this.labelVersion.TabIndex = 6;
+            this.labelVersion.Text = "labelVersion";
             // 
-            // button1
+            // buttonOK
             // 
-            this.button1.Location = new System.Drawing.Point(370, 253);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(98, 28);
-            this.button1.TabIndex = 7;
-            this.button1.Text = "button1";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.buttonOK.Location = new System.Drawing.Point(370, 253);
+            this.buttonOK.Name = "buttonOK";
+            this.buttonOK.Size = new System.Drawing.Size(98, 28);
+            this.buttonOK.TabIndex = 7;
+            this.buttonOK.Text = "buttonOK";
+            this.buttonOK.UseVisualStyleBackColor = true;
+            this.buttonOK.Click += new System.EventHandler(this.buttonOK_Click);
             // 
             // label7
             // 
@@ -129,13 +129,13 @@ namespace GUIWFDNF4
             this.BackColor = System.Drawing.SystemColors.Control;
             this.ClientSize = new System.Drawing.Size(480, 296);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.buttonOK);
+            this.Controls.Add(this.labelVersion);
+            this.Controls.Add(this.labelCopyright);
+            this.Controls.Add(this.labelDescription);
+            this.Controls.Add(this.labelProduct);
+            this.Controls.Add(this.labelCompany);
+            this.Controls.Add(this.labelTitle);
             this.Controls.Add(this.pictureBox1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
@@ -149,14 +149,14 @@ namespace GUIWFDNF4
 
         private System.Windows.Forms.Label label7;
 
-        private System.Windows.Forms.Button button1;
+        private System.Windows.Forms.Button buttonOK;
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelTitle;
+        private System.Windows.Forms.Label labelCompany;
+        private System.Windows.Forms.Label labelProduct;
+        private System.Windows.Forms.Label labelDescription;
+        private System.Windows.Forms.Label labelCopyright;
+        private System.Windows.Forms.Label labelVersion;
 
         private System.Windows.Forms.PictureBox pictureBox1;
 

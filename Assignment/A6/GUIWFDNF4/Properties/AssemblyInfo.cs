@@ -7,7 +7,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ToDo Reminder")]
 [assembly: AssemblyDescription("A software that help you create and save your reminders.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Evan Corporation")]
+[assembly: AssemblyCompany("Evan Huynh")]
 [assembly: AssemblyProduct("ToDo Reminder")]
 [assembly: AssemblyCopyright("Copyright © Evan Huynh 2022. All rights reserved.")]
 [assembly: AssemblyTrademark("")]
@@ -31,5 +31,5 @@ using System.Runtime.InteropServices;
 // You can specify all the values or you can default the Build and Revision Numbers
 // by using the '*' as shown below:
 // [assembly: AssemblyVersion("1.0.*")]
-[assembly: AssemblyVersion("6.9.4.20")]
-[assembly: AssemblyFileVersion("6.9.4.20")]
+[assembly: AssemblyVersion("2022.0412.69.420")]
+[assembly: AssemblyFileVersion("2022.0412.69.420")]

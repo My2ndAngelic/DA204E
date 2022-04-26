@@ -31,10 +31,10 @@
         {
             this.components = new System.ComponentModel.Container();
             System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(FormMain));
-            this.listBox1 = new System.Windows.Forms.ListBox();
+            this.listBoxReminders = new System.Windows.Forms.ListBox();
             this.dateTimePicker1 = new System.Windows.Forms.DateTimePicker();
-            this.textBox1 = new System.Windows.Forms.TextBox();
-            this.comboBox1 = new System.Windows.Forms.ComboBox();
+            this.textBoxDescription = new System.Windows.Forms.TextBox();
+            this.comboBoxPrioList = new System.Windows.Forms.ComboBox();
             this.buttonAdd = new System.Windows.Forms.Button();
             this.buttonEdit = new System.Windows.Forms.Button();
             this.buttonDelete = new System.Windows.Forms.Button();
@@ -48,29 +48,29 @@
             this.helpToolStripMenuItem = new System.Windows.Forms.ToolStripMenuItem();
             this.toolStripMenuItemAbout = new System.Windows.Forms.ToolStripMenuItem();
             this.menuStrip1 = new System.Windows.Forms.MenuStrip();
-            this.label1 = new System.Windows.Forms.Label();
-            this.label2 = new System.Windows.Forms.Label();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
-            this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
+            this.labelDateAndTime = new System.Windows.Forms.Label();
+            this.labelPrioList = new System.Windows.Forms.Label();
+            this.labelDescription = new System.Windows.Forms.Label();
+            this.labelTimeList = new System.Windows.Forms.Label();
+            this.labelPriorityList = new System.Windows.Forms.Label();
+            this.labelDesciptionList = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.timer = new System.Windows.Forms.Timer(this.components);
             this.label7 = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
-            // listBox1
+            // listBoxReminders
             // 
-            this.listBox1.FormattingEnabled = true;
-            this.listBox1.Location = new System.Drawing.Point(64, 211);
-            this.listBox1.Name = "listBox1";
-            this.listBox1.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
-            this.listBox1.Size = new System.Drawing.Size(841, 355);
-            this.listBox1.TabIndex = 4;
-            this.listBox1.SelectedIndexChanged += new System.EventHandler(this.listBox1_SelectedIndexChanged);
-            this.listBox1.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBox1_KeyDown);
-            this.listBox1.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listBox1_MouseDown);
+            this.listBoxReminders.FormattingEnabled = true;
+            this.listBoxReminders.Location = new System.Drawing.Point(64, 211);
+            this.listBoxReminders.Name = "listBoxReminders";
+            this.listBoxReminders.SelectionMode = System.Windows.Forms.SelectionMode.MultiExtended;
+            this.listBoxReminders.Size = new System.Drawing.Size(841, 355);
+            this.listBoxReminders.TabIndex = 4;
+            this.listBoxReminders.SelectedIndexChanged += new System.EventHandler(this.listBoxReminder_SelectedIndexChanged);
+            this.listBoxReminders.KeyDown += new System.Windows.Forms.KeyEventHandler(this.listBoxDescription_KeyDown);
+            this.listBoxReminders.MouseDown += new System.Windows.Forms.MouseEventHandler(this.listBoxDescription_MouseDown);
             // 
             // dateTimePicker1
             // 
@@ -82,22 +82,22 @@
             this.dateTimePicker1.TabIndex = 1;
             this.toolTip1.SetToolTip(this.dateTimePicker1, "Change the date");
             // 
-            // textBox1
+            // textBoxDescription
             // 
-            this.textBox1.Location = new System.Drawing.Point(170, 141);
-            this.textBox1.Name = "textBox1";
-            this.textBox1.Size = new System.Drawing.Size(178, 20);
-            this.textBox1.TabIndex = 2;
+            this.textBoxDescription.Location = new System.Drawing.Point(170, 141);
+            this.textBoxDescription.Name = "textBoxDescription";
+            this.textBoxDescription.Size = new System.Drawing.Size(178, 20);
+            this.textBoxDescription.TabIndex = 2;
             // 
-            // comboBox1
+            // comboBoxPrioList
             // 
-            this.comboBox1.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
-            this.comboBox1.FormattingEnabled = true;
-            this.comboBox1.Location = new System.Drawing.Point(170, 89);
-            this.comboBox1.Name = "comboBox1";
-            this.comboBox1.Size = new System.Drawing.Size(178, 21);
-            this.comboBox1.TabIndex = 3;
-            this.toolTip1.SetToolTip(this.comboBox1, "Select the priority task");
+            this.comboBoxPrioList.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDownList;
+            this.comboBoxPrioList.FormattingEnabled = true;
+            this.comboBoxPrioList.Location = new System.Drawing.Point(170, 89);
+            this.comboBoxPrioList.Name = "comboBoxPrioList";
+            this.comboBoxPrioList.Size = new System.Drawing.Size(178, 21);
+            this.comboBoxPrioList.TabIndex = 3;
+            this.toolTip1.SetToolTip(this.comboBoxPrioList, "Select the priority task");
             // 
             // buttonAdd
             // 
@@ -198,57 +198,57 @@
             this.menuStrip1.TabIndex = 0;
             this.menuStrip1.Text = "menuStrip1";
             // 
-            // label1
+            // labelDateAndTime
             // 
-            this.label1.Location = new System.Drawing.Point(64, 44);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(100, 20);
-            this.label1.TabIndex = 8;
-            this.label1.Text = "label1";
+            this.labelDateAndTime.Location = new System.Drawing.Point(64, 44);
+            this.labelDateAndTime.Name = "labelDateAndTime";
+            this.labelDateAndTime.Size = new System.Drawing.Size(100, 20);
+            this.labelDateAndTime.TabIndex = 8;
+            this.labelDateAndTime.Text = "labelDateAndTime";
             // 
-            // label2
+            // labelPrioList
             // 
-            this.label2.Location = new System.Drawing.Point(64, 92);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(100, 23);
-            this.label2.TabIndex = 9;
-            this.label2.Text = "label2";
+            this.labelPrioList.Location = new System.Drawing.Point(64, 92);
+            this.labelPrioList.Name = "labelPrioList";
+            this.labelPrioList.Size = new System.Drawing.Size(100, 23);
+            this.labelPrioList.TabIndex = 9;
+            this.labelPrioList.Text = "labelPrioList";
             // 
-            // label3
+            // labelDescription
             // 
-            this.label3.Location = new System.Drawing.Point(64, 144);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(100, 23);
-            this.label3.TabIndex = 10;
-            this.label3.Text = "label3";
+            this.labelDescription.Location = new System.Drawing.Point(64, 144);
+            this.labelDescription.Name = "labelDescription";
+            this.labelDescription.Size = new System.Drawing.Size(100, 23);
+            this.labelDescription.TabIndex = 10;
+            this.labelDescription.Text = "labelDescription";
             // 
-            // label4
+            // labelTimeList
             // 
-            this.label4.Location = new System.Drawing.Point(64, 188);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(100, 23);
-            this.label4.TabIndex = 11;
-            this.label4.Text = "label4";
+            this.labelTimeList.Location = new System.Drawing.Point(64, 188);
+            this.labelTimeList.Name = "labelTimeList";
+            this.labelTimeList.Size = new System.Drawing.Size(100, 23);
+            this.labelTimeList.TabIndex = 11;
+            this.labelTimeList.Text = "labelTimeList";
             // 
-            // label5
+            // labelPriorityList
             // 
-            this.label5.Location = new System.Drawing.Point(255, 188);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(100, 23);
-            this.label5.TabIndex = 12;
-            this.label5.Text = "label5";
+            this.labelPriorityList.Location = new System.Drawing.Point(255, 188);
+            this.labelPriorityList.Name = "labelPriorityList";
+            this.labelPriorityList.Size = new System.Drawing.Size(100, 23);
+            this.labelPriorityList.TabIndex = 12;
+            this.labelPriorityList.Text = "labelPriorityList";
             // 
-            // label6
+            // labelDesciptionList
             // 
-            this.label6.Location = new System.Drawing.Point(397, 188);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(100, 23);
-            this.label6.TabIndex = 13;
-            this.label6.Text = "label6";
+            this.labelDesciptionList.Location = new System.Drawing.Point(397, 188);
+            this.labelDesciptionList.Name = "labelDesciptionList";
+            this.labelDesciptionList.Size = new System.Drawing.Size(100, 23);
+            this.labelDesciptionList.TabIndex = 13;
+            this.labelDesciptionList.Text = "labelDesciptionList";
             // 
-            // timer1
+            // timer
             // 
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
+            this.timer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
             // label7
             // 
@@ -267,19 +267,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(960, 668);
             this.Controls.Add(this.label7);
-            this.Controls.Add(this.label6);
-            this.Controls.Add(this.label5);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.label1);
+            this.Controls.Add(this.labelDesciptionList);
+            this.Controls.Add(this.labelPriorityList);
+            this.Controls.Add(this.labelTimeList);
+            this.Controls.Add(this.labelDescription);
+            this.Controls.Add(this.labelPrioList);
+            this.Controls.Add(this.labelDateAndTime);
             this.Controls.Add(this.buttonDelete);
             this.Controls.Add(this.buttonEdit);
             this.Controls.Add(this.buttonAdd);
-            this.Controls.Add(this.comboBox1);
-            this.Controls.Add(this.textBox1);
+            this.Controls.Add(this.comboBoxPrioList);
+            this.Controls.Add(this.textBoxDescription);
             this.Controls.Add(this.dateTimePicker1);
-            this.Controls.Add(this.listBox1);
+            this.Controls.Add(this.listBoxReminders);
             this.Controls.Add(this.menuStrip1);
             this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
             this.Icon = ((System.Drawing.Icon) (resources.GetObject("$this.Icon")));
@@ -294,16 +294,16 @@
 
         private System.Windows.Forms.Label label7;
 
-        private System.Windows.Forms.Timer timer1;
+        private System.Windows.Forms.Timer timer;
 
         private System.Windows.Forms.ToolTip toolTip1;
 
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Label labelDateAndTime;
+        private System.Windows.Forms.Label labelPrioList;
+        private System.Windows.Forms.Label labelDescription;
+        private System.Windows.Forms.Label labelTimeList;
+        private System.Windows.Forms.Label labelPriorityList;
+        private System.Windows.Forms.Label labelDesciptionList;
 
         private System.Windows.Forms.Button buttonAdd;
         private System.Windows.Forms.Button buttonEdit;
@@ -329,12 +329,12 @@
 
         private System.Windows.Forms.MenuStrip menuStrip1;
 
-        private System.Windows.Forms.ComboBox comboBox1;
+        private System.Windows.Forms.ComboBox comboBoxPrioList;
 
         private System.Windows.Forms.DateTimePicker dateTimePicker1;
-        private System.Windows.Forms.TextBox textBox1;
+        private System.Windows.Forms.TextBox textBoxDescription;
 
-        private System.Windows.Forms.ListBox listBox1;
+        private System.Windows.Forms.ListBox listBoxReminders;
 
         #endregion
     }

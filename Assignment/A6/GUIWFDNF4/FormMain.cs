@@ -23,108 +23,158 @@ namespace GUIWFDNF4
             InitializeGUI();
         }
 
+        /// <summary>
+        /// Initialize GUI
+        /// </summary>
         private void InitializeGUI()
         {
+            // New Task Manager
             taskManager = new TaskManager();
 
+            // Title
             Text = @"ToDo Reminder by Evan Huynh";
 
-            comboBox1.DataSource = prioListString;
-            listBox1.DataSource = taskManager.ToStrings();
-            listBox1.Font = new Font("Consolas", 12);
+            // Set data binding to the array 
+            comboBoxPrioList.DataSource = prioListString;
+            listBoxReminders.DataSource = taskManager.ToStrings();
+            listBoxReminders.Font = new Font("Consolas", 12);
 
+            // Date time picker
             dateTimePicker1.Value = DateTime.Now;
 
+            // Tooltips
             toolTip1.SetToolTip(dateTimePicker1, "Click the calendar to open the date, write the time here.");
-            toolTip1.SetToolTip(comboBox1, "Click to select your priority of the task.");
-            toolTip1.SetToolTip(textBox1, "Enter the description of your task here.");
-            toolTip1.SetToolTip(listBox1, "Click to select a tag, hold Ctrl to Select ");
+            toolTip1.SetToolTip(comboBoxPrioList, "Click to select your priority of the task.");
+            toolTip1.SetToolTip(textBoxDescription, "Enter the description of your task here.");
+            toolTip1.SetToolTip(listBoxReminders, "Click to select a tag, hold Ctrl to Select ");
             toolTip1.SetToolTip(buttonAdd, "Add a new task.");
             toolTip1.SetToolTip(buttonEdit, "Edit the first selected task");
             toolTip1.SetToolTip(buttonDelete, "Delete currently selected tasks.");
-
-            // // This does not play nice with the program, it is ugly but I leave it here in case.
-            // toolStripMenuItemNew.ToolTipText = @"New list";
-            // toolStripMenuItemOpen.ToolTipText = @"Open file containing list";
-            // toolStripMenuItemSave.ToolTipText = @"Save existing list to file";
-            // toolStripMenuItemExit.ToolTipText = @"Exit the program";
-            // toolStripMenuItemAbout.ToolTipText = @"Show about box";
             
-            textBox1.Text = string.Empty;
+            textBoxDescription.Text = string.Empty;
 
-            label1.Text = @"Date and Time";
-            label2.Text = @"Priority";
-            label3.Text = @"Description";
-            label4.Text = @"Time";
-            label5.Text = @"Priority";
-            label6.Text = @"Description";
+            // All the labels
+            labelDateAndTime.Text = @"Date and Time";
+            labelPrioList.Text = @"Priority";
+            labelDescription.Text = @"Description";
+            labelTimeList.Text = @"Time";
+            labelPriorityList.Text = @"Priority";
+            labelDesciptionList.Text = @"Description";
 
-            timer1.Start();
+            timer.Start();
         }
 
-        private void listBox1_SelectedIndexChanged(object sender, EventArgs e)
+        /// <summary>
+        /// Handing event when the selected index is changed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void listBoxReminder_SelectedIndexChanged(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex < 0) return;
-            currentSelectedTask = taskManager[listBox1.SelectedIndex];
-            textBox1.Text = currentSelectedTask.ToDo;
-            comboBox1.SelectedIndex = prioListString.IndexOf(Task.PriorityTypeToString(currentSelectedTask.Priority));
+            if (listBoxReminders.SelectedIndex < 0) return;
+            currentSelectedTask = taskManager[listBoxReminders.SelectedIndex];
+            textBoxDescription.Text = currentSelectedTask.ToDo;
+            comboBoxPrioList.SelectedIndex =
+                prioListString.IndexOf(Task.PriorityTypeToString(currentSelectedTask.Priority));
             dateTimePicker1.Value = currentSelectedTask.Date;
         }
 
+        /// <summary>
+        /// After every action taken
+        /// </summary>
         private void UpdateGUI()
         {
+            listBoxReminders.DataSource = taskManager.ToStrings();
             dateTimePicker1.Value = DateTime.Now;
-            textBox1.Text = string.Empty;
+            textBoxDescription.Text = string.Empty;
         }
 
+        /// <summary>
+        /// Handling event when the add button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonAdd_Click(object sender, EventArgs e)
         {
-            taskManager.Add(new Task(dateTimePicker1.Value, (PriorityType) comboBox1.SelectedIndex, textBox1.Text));
-            listBox1.DataSource = taskManager.ToStrings();
-            listBox1.SelectedIndex = -1;
+            taskManager.Add(new Task(dateTimePicker1.Value, (PriorityType) comboBoxPrioList.SelectedIndex,
+                textBoxDescription.Text));
+            listBoxReminders.SelectedIndex = -1;
             UpdateGUI();
         }
 
+        /// <summary>
+        /// Handling event when the edit button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonEdit_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex < 0) return;
-            int temp = listBox1.SelectedIndex;
-            taskManager[temp] = new Task(dateTimePicker1.Value, (PriorityType) comboBox1.SelectedIndex, textBox1.Text);
-            listBox1.DataSource = taskManager.ToStrings();
-            listBox1.SelectedIndex = temp;
+            if (listBoxReminders.SelectedIndex < 0) return; // If nothing selected
+            int temp = listBoxReminders.SelectedIndex;
+            taskManager[temp] = new Task(dateTimePicker1.Value, (PriorityType) comboBoxPrioList.SelectedIndex,
+                textBoxDescription.Text); // Change the task at position
             UpdateGUI();
+            listBoxReminders.SelectedIndex = temp;
         }
 
+        /// <summary>
+        /// Handling event when the delete button is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void buttonDelete_Click(object sender, EventArgs e)
         {
-            if (listBox1.SelectedIndex < 0)
-                return;
+            if (listBoxReminders.SelectedIndex < 0)
+                return; // If nothing selected
             if (MessageBox.Show(@"Do you want to delete selected items?", @"Deleting", MessageBoxButtons.YesNo) ==
                 DialogResult.No)
-                return;
-            foreach (int index in listBox1.SelectedIndices.Cast<int>().Select(x => x).Reverse())
-                taskManager.RemoveAt(index);
-            listBox1.DataSource = taskManager.ToStrings();
-            listBox1.SelectedIndex = -1;
+                return; // If user does not want to deleted
+            foreach (int index in listBoxReminders.SelectedIndices.Cast<int>().Select(x => x).Reverse())
+                taskManager.RemoveAt(index); // Delete everything
+            listBoxReminders.SelectedIndex = -1; // Deselect
             UpdateGUI();
         }
 
+        /// <summary>
+        /// Handling event when user want to quit
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void toolStripMenuItemExit_Click(object sender, EventArgs e)
         {
             if (MessageBox.Show(@"Do you want to exit?", @"Exit", MessageBoxButtons.YesNo) == DialogResult.Yes)
                 Close();
         }
 
+        /// <summary>
+        /// Handling event when save menu item is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void toolStripMenuItemSave_Click(object sender, EventArgs e)
         {
             try
             {
                 SaveFileDialog sfd = new SaveFileDialog();
                 sfd.ShowDialog();
-                if (sfd.FileName == string.Empty) return;
-                FileManager.FileWriter(Path.GetFullPath(sfd.FileName), taskManager.ToStringsFile());
+                if (sfd.FileName == string.Empty) return; // If no file is selected, return
+                if (new FileInfo(Path.GetFullPath(sfd.FileName)).Length != 0)
+                {
+                    switch (MessageBox.Show(@"Do you want to Append (Yes), Replace (No) or Cancel?", @"Opening file",
+                                MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information))
+                    {
+                        case DialogResult.Yes:
+                            FileManager.FileAppender(Path.GetFullPath(sfd.FileName), taskManager.ToStringsFile());
+                            break; // Append to the end of list
+                        case DialogResult.No:
+                            FileManager.FileWriter(Path.GetFullPath(sfd.FileName), taskManager.ToStringsFile());
+                            break; // Replace the list with opened from file
+                        default:
+                            return;
+                    }
+                }
             }
-            catch (Exception ignored)
+            catch (Exception)
             {
                 MessageBox.Show(@"Something is wrong. Please try again.", @"Error");
             }
@@ -138,33 +188,27 @@ namespace GUIWFDNF4
             {
                 OpenFileDialog ofd = new OpenFileDialog();
                 ofd.ShowDialog();
-                if (ofd.FileName == string.Empty) return;
-
-                if (taskManager.Count > 0)
+                if (ofd.FileName == string.Empty) return; // If no file is selected
+                TaskManager taskManager2 = new TaskManager();// Make a copy of the original for safety issue
+                if (taskManager.Count > 0)  // When there is loaded tasks
                     switch (MessageBox.Show(@"Do you want to Append (Yes), Replace (No) or Cancel?", @"Opening file",
                                 MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information))
                     {
                         case DialogResult.Yes:
-                            break;
+                            taskManager2.Add(taskManager.ToList());
+                            break; // Append to the end of list
                         case DialogResult.No:
-                            taskManager = new TaskManager();
-                            break;
-                        case DialogResult.None:
-                        case DialogResult.OK:
-                        case DialogResult.Cancel:
-                        case DialogResult.Abort:
-                        case DialogResult.Retry:
-                        case DialogResult.Ignore:
+                            break; // Replace the list with opened from file
                         default:
                             return;
                     }
 
                 foreach (string s in FileManager.FileReader(Path.GetFullPath(ofd.FileName)))
-                    taskManager.Add(Task.FromString(s));
-
-                listBox1.DataSource = taskManager.ToStrings();
+                    taskManager2.Add(Task.FromString(s)); // Adding on the new list
+                taskManager = taskManager2; // Change the old list reference to the new list
+                listBoxReminders.DataSource = taskManager.ToStrings();
             }
-            catch (Exception _)
+            catch (Exception)
             {
                 MessageBox.Show(@"Something is wrong. Please try again.", @"Error");
             }
@@ -172,28 +216,25 @@ namespace GUIWFDNF4
             UpdateGUI();
         }
 
+        /// <summary>
+        /// Handling event when the new menu item is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void toolStripMenuItemNew_Click(object sender, EventArgs e)
         {
-            if (taskManager.Count > 0)
-            {
+            if (taskManager.Count > 0) // If there is a list of event present
                 switch (MessageBox.Show(@"Do you want to create new list of reminders?", @"New list",
                             MessageBoxButtons.YesNo, MessageBoxIcon.Information))
                 {
                     case DialogResult.Yes:
-                        break;
-                    case DialogResult.None:
                     case DialogResult.OK:
-                    case DialogResult.Cancel:
-                    case DialogResult.Abort:
-                    case DialogResult.Retry:
-                    case DialogResult.Ignore:
-                    case DialogResult.No:
-                    default: 
-                        return;                
+                        break;
+                    default:
+                        return;
                 }
-            }
+
             taskManager = new TaskManager();
-            listBox1.DataSource = taskManager.ToStrings();
             UpdateGUI();
         }
 
@@ -202,21 +243,26 @@ namespace GUIWFDNF4
             DialogResult _ = new FormAbout().ShowDialog();
         }
 
+        /// <summary>
+        /// Display local time
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void timer1_Tick(object sender, EventArgs e)
         {
             label7.Text = DateTime.Now.ToString("hh:mm:ss");
         }
 
-        private void listBox1_KeyDown(object sender, KeyEventArgs e)
+        private void listBoxDescription_KeyDown(object sender, KeyEventArgs e)
         {
             if (!e.Control || e.KeyCode != Keys.A) return;
-            for (int i = 0; i < listBox1.Items.Count; i++) listBox1.SetSelected(i, true);
+            for (int i = 0; i < listBoxReminders.Items.Count; i++) listBoxReminders.SetSelected(i, true);
         }
 
-        private void listBox1_MouseDown(object sender, MouseEventArgs e)
+        private void listBoxDescription_MouseDown(object sender, MouseEventArgs e)
         {
-            if (listBox1.IndexFromPoint(e.Location) == -1 || e.Button == MouseButtons.Right)
-                listBox1.ClearSelected();
+            if (listBoxReminders.IndexFromPoint(e.Location) == -1 || e.Button == MouseButtons.Right)
+                listBoxReminders.ClearSelected();
         }
     }
 }

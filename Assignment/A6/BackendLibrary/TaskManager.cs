@@ -1,4 +1,5 @@
-﻿using System.Collections;
+﻿using System;
+using System.Collections;
 using System.Collections.Generic;
 using System.Linq;
 
@@ -36,6 +37,11 @@ namespace BackendLibrary
         {
             if (item != null)
                 tasks.Add(item);
+        }
+        
+        public void Add(List<Task> toList)
+        {
+            toList.ForEach(tasks.Add);
         }
 
         public void Clear()
@@ -90,14 +96,18 @@ namespace BackendLibrary
         }
 
         /// <summary>
-        ///     Return list of calendar info
+        ///     Return list of calendar info for displaying
         /// </summary>
-        /// <returns></returns>
+        /// <returns>List of calendar info for displaying</returns>
         public IEnumerable<string> ToStrings()
         {
             return tasks.Select(c => c.ToStringDisplay()).ToList();
         }
 
+        /// <summary>
+        ///     Return list of calendar info for file writing
+        /// </summary>
+        /// <returns>List of calendar info for file writing</returns>
         public IEnumerable<string> ToStringsFile()
         {
             return tasks.Select(c => c.ToStringFile()).ToList();
