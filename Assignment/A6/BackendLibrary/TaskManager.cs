@@ -88,7 +88,7 @@ namespace BackendLibrary
             get { return tasks[index]; }
             set { tasks[index] = value; }
         }
-        
+
         /// <summary>
         ///     Add list of tasks to the task manager
         /// </summary>

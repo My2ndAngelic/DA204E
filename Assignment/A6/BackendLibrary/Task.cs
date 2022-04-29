@@ -9,7 +9,7 @@ namespace BackendLibrary
         private string toDo;
 
         /// <summary>
-        /// Default constructor
+        ///     Default constructor
         /// </summary>
         public Task()
         {
@@ -19,7 +19,7 @@ namespace BackendLibrary
         }
 
         /// <summary>
-        /// Constructor with all field exposed
+        ///     Constructor with all field exposed
         /// </summary>
         /// <param name="date"></param>
         /// <param name="priority"></param>
@@ -32,7 +32,7 @@ namespace BackendLibrary
         }
 
         /// <summary>
-        /// Constructor with previous data
+        ///     Constructor with previous data
         /// </summary>
         /// <param name="task"></param>
         public Task(Task task)
@@ -41,7 +41,7 @@ namespace BackendLibrary
             priority = task.priority;
             toDo = task.toDo;
         }
-        
+
         public DateTime Date
         {
             get { return date; }
@@ -61,7 +61,7 @@ namespace BackendLibrary
         }
 
         /// <summary>
-        /// Check if ToDo is empty and if it is, set it to Untitled
+        ///     Check if ToDo is empty and if it is, set it to Untitled
         /// </summary>
         /// <param name="inToDo">ToDo string</param>
         /// <returns>"Untitled" if empty or null</returns>
@@ -71,7 +71,7 @@ namespace BackendLibrary
         }
 
         /// <summary>
-        /// Remove _ in the priority string
+        ///     Remove _ in the priority string
         /// </summary>
         /// <param name="priorityType">Priority type (String)</param>
         /// <returns>Priority type without _</returns>
@@ -81,7 +81,7 @@ namespace BackendLibrary
         }
 
         /// <summary>
-        /// Remove _ in the priority string
+        ///     Remove _ in the priority string
         /// </summary>
         /// <param name="priorityType">Priority type (Enum)</param>
         /// <returns>Priority type without _</returns>
@@ -91,7 +91,7 @@ namespace BackendLibrary
         }
 
         /// <summary>
-        /// Convert priority type from string to enum
+        ///     Convert priority type from string to enum
         /// </summary>
         /// <param name="priorityType">Priority type (String)</param>
         /// <returns>Priority type (Enum)</returns>
@@ -101,7 +101,7 @@ namespace BackendLibrary
         }
 
         /// <summary>
-        /// Default toString method
+        ///     Default toString method
         /// </summary>
         /// <returns>String of all field split by space</returns>
         public override string ToString()
@@ -110,7 +110,7 @@ namespace BackendLibrary
         }
 
         /// <summary>
-        /// ToString method for the display
+        ///     ToString method for the display
         /// </summary>
         /// <returns>String result to display on screen</returns>
         public string ToStringDisplay()
@@ -119,8 +119,8 @@ namespace BackendLibrary
         }
 
         /// <summary>
-        /// ToString method for the file
-        /// Format: Date (Epoch time)|PriorityType|ToDo
+        ///     ToString method for the file
+        ///     Format: Date (Epoch time)|PriorityType|ToDo
         /// </summary>
         /// <returns>String result to write in file</returns>
         public string ToStringFile()

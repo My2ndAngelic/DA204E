@@ -6,7 +6,7 @@ namespace BackendLibrary
     public class FileManager
     {
         /// <summary>
-        /// Read file and return the string array line by line
+        ///     Read file and return the string array line by line
         /// </summary>
         /// <param name="location">File location</param>
         /// <returns>Array of strings line by line in the file</returns>
@@ -16,7 +16,7 @@ namespace BackendLibrary
         }
 
         /// <summary>
-        /// Append the existing file line by line
+        ///     Append the existing file line by line
         /// </summary>
         /// <param name="location">File location</param>
         /// <param name="data">String array of every line needed to write</param>
@@ -26,7 +26,7 @@ namespace BackendLibrary
         }
 
         /// <summary>
-        /// Replace the existing file with data line by line
+        ///     Replace the existing file with data line by line
         /// </summary>
         /// <param name="location">File location</param>
         /// <param name="data">String array of every line needed to write</param>
