@@ -60,35 +60,39 @@ namespace BackendLibrary
 
         public int Count
         {
-            get { return Tasks.Count; }
+            get { return tasks.Count; }
         }
 
         public bool IsReadOnly
         {
-            get { return Tasks.IsReadOnly; }
+            get { return tasks.IsReadOnly; }
         }
 
         public int IndexOf(Task item)
         {
-            return Tasks.IndexOf(item);
+            return tasks.IndexOf(item);
         }
 
         public void Insert(int index, Task item)
         {
-            Tasks.Insert(index, item);
+            tasks.Insert(index, item);
         }
 
         public void RemoveAt(int index)
         {
-            Tasks.RemoveAt(index);
+            tasks.RemoveAt(index);
         }
 
         public Task this[int index]
         {
-            get { return Tasks[index]; }
-            set { Tasks[index] = value; }
+            get { return tasks[index]; }
+            set { tasks[index] = value; }
         }
-
+        
+        /// <summary>
+        ///     Add list of tasks to the task manager
+        /// </summary>
+        /// <param name="toList">List of task</param>
         public void Add(List<Task> toList)
         {
             toList.ForEach(tasks.Add);

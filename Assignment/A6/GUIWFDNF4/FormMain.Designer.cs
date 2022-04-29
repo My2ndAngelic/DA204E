@@ -56,7 +56,7 @@
             this.labelDesciptionList = new System.Windows.Forms.Label();
             this.toolTip1 = new System.Windows.Forms.ToolTip(this.components);
             this.timer = new System.Windows.Forms.Timer(this.components);
-            this.label7 = new System.Windows.Forms.Label();
+            this.labelCurrentTime = new System.Windows.Forms.Label();
             this.menuStrip1.SuspendLayout();
             this.SuspendLayout();
             // 
@@ -250,23 +250,23 @@
             // 
             this.timer.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // label7
+            // labelCurrentTime
             // 
-            this.label7.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
-            this.label7.ForeColor = System.Drawing.SystemColors.HotTrack;
-            this.label7.Location = new System.Drawing.Point(770, 589);
-            this.label7.Name = "label7";
-            this.label7.Size = new System.Drawing.Size(135, 39);
-            this.label7.TabIndex = 14;
-            this.label7.Text = "label7";
-            this.label7.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
+            this.labelCurrentTime.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte) (0)));
+            this.labelCurrentTime.ForeColor = System.Drawing.SystemColors.HotTrack;
+            this.labelCurrentTime.Location = new System.Drawing.Point(770, 589);
+            this.labelCurrentTime.Name = "labelCurrentTime";
+            this.labelCurrentTime.Size = new System.Drawing.Size(135, 39);
+            this.labelCurrentTime.TabIndex = 14;
+            this.labelCurrentTime.Text = "labelCurrentTime";
+            this.labelCurrentTime.TextAlign = System.Drawing.ContentAlignment.MiddleRight;
             // 
             // FormMain
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(960, 668);
-            this.Controls.Add(this.label7);
+            this.Controls.Add(this.labelCurrentTime);
             this.Controls.Add(this.labelDesciptionList);
             this.Controls.Add(this.labelPriorityList);
             this.Controls.Add(this.labelTimeList);
@@ -286,13 +286,14 @@
             this.MainMenuStrip = this.menuStrip1;
             this.Name = "FormMain";
             this.Text = "FormMain";
+            this.KeyDown += new System.Windows.Forms.KeyEventHandler(this.FormMain_KeyDown);
             this.menuStrip1.ResumeLayout(false);
             this.menuStrip1.PerformLayout();
             this.ResumeLayout(false);
             this.PerformLayout();
         }
 
-        private System.Windows.Forms.Label label7;
+        private System.Windows.Forms.Label labelCurrentTime;
 
         private System.Windows.Forms.Timer timer;
 

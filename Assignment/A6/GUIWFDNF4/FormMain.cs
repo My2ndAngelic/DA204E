@@ -20,6 +20,7 @@ namespace GUIWFDNF4
         public FormMain()
         {
             InitializeComponent();
+            KeyPreview = true;
             InitializeGUI();
         }
 
@@ -98,12 +99,12 @@ namespace GUIWFDNF4
         {
             taskManager.Add(new Task(dateTimePicker1.Value, (PriorityType) comboBoxPrioList.SelectedIndex,
                 textBoxDescription.Text));
-            listBoxReminders.SelectedIndex = -1;
             UpdateGUI();
+            listBoxReminders.SelectedIndex = -1;
         }
 
         /// <summary>
-        ///     Handling event when the edit button is clicked
+        ///     Handling event when the edit button is clicked, edit the first item
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -112,7 +113,7 @@ namespace GUIWFDNF4
             if (listBoxReminders.SelectedIndex < 0) return; // If nothing selected
             int temp = listBoxReminders.SelectedIndex;
             taskManager[temp] = new Task(dateTimePicker1.Value, (PriorityType) comboBoxPrioList.SelectedIndex,
-                textBoxDescription.Text); // Change the task at position
+                textBoxDescription.Text); // Change the task at the first selected position
             UpdateGUI();
             listBoxReminders.SelectedIndex = temp;
         }
@@ -131,8 +132,8 @@ namespace GUIWFDNF4
                 return; // If user does not want to deleted
             foreach (int index in listBoxReminders.SelectedIndices.Cast<int>().Select(x => x).Reverse())
                 taskManager.RemoveAt(index); // Delete everything
-            listBoxReminders.SelectedIndex = -1; // Deselect
             UpdateGUI();
+            listBoxReminders.SelectedIndex = -1; // Deselect
         }
 
         /// <summary>
@@ -158,28 +159,31 @@ namespace GUIWFDNF4
                 SaveFileDialog sfd = new SaveFileDialog();
                 sfd.ShowDialog();
                 if (sfd.FileName == string.Empty) return; // If no file is selected, return
-                if (new FileInfo(Path.GetFullPath(sfd.FileName)).Length != 0)
-                    switch (MessageBox.Show(@"Do you want to Append (Yes), Replace (No) or Cancel?", @"Opening file",
-                                MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information))
-                    {
-                        case DialogResult.Yes:
-                            FileManager.FileAppender(Path.GetFullPath(sfd.FileName), taskManager.ToStringsFile());
-                            break; // Append to the end of list
-                        case DialogResult.No:
-                            FileManager.FileWriter(Path.GetFullPath(sfd.FileName), taskManager.ToStringsFile());
-                            break; // Replace the list with opened from file
-                        default:
-                            return;
-                    }
+                if (new FileInfo(Path.GetFullPath(sfd.FileName)).Length == 0) return;
+                switch (MessageBox.Show(@"Do you want to Append (Yes), Replace (No) or Cancel?", @"Saving file",
+                            MessageBoxButtons.YesNoCancel, MessageBoxIcon.Information))
+                {
+                    case DialogResult.Yes:
+                        FileManager.FileAppender(Path.GetFullPath(sfd.FileName), taskManager.ToStringsFile());
+                        break; // Append to the end of list
+                    case DialogResult.No:
+                        FileManager.FileWriter(Path.GetFullPath(sfd.FileName), taskManager.ToStringsFile());
+                        break; // Replace the list with opened from file
+                    default:
+                        return;
+                }
             }
             catch (Exception)
             {
                 MessageBox.Show(@"Something is wrong. Please try again.", @"Error");
             }
-
-            UpdateGUI();
         }
 
+        /// <summary>
+        ///     Handling event when open menu item is clicked
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void toolStripMenuItemOpen_Click(object sender, EventArgs e)
         {
             try
@@ -204,7 +208,7 @@ namespace GUIWFDNF4
                 foreach (string s in FileManager.FileReader(Path.GetFullPath(ofd.FileName)))
                     taskManager2.Add(Task.FromString(s)); // Adding on the new list
                 taskManager = taskManager2; // Change the old list reference to the new list
-                listBoxReminders.DataSource = taskManager.ToStrings();
+                listBoxReminders.DataSource = taskManager.ToStrings(); // Update the listbox
             }
             catch (Exception)
             {
@@ -248,19 +252,58 @@ namespace GUIWFDNF4
         /// <param name="e"></param>
         private void timer1_Tick(object sender, EventArgs e)
         {
-            label7.Text = DateTime.Now.ToString("hh:mm:ss");
+            labelCurrentTime.Text = DateTime.Now.ToString("hh:mm:ss");
         }
 
+        /// <summary>
+        ///     Control + A to select all
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listBoxDescription_KeyDown(object sender, KeyEventArgs e)
         {
             if (!e.Control || e.KeyCode != Keys.A) return;
-            for (int i = 0; i < listBoxReminders.Items.Count; i++) listBoxReminders.SetSelected(i, true);
+            for (int i = 0; i < listBoxReminders.Items.Count; i++)
+                listBoxReminders.SetSelected(i, true);
         }
 
+        /// <summary>
+        ///     Right click or click outside to de-select
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void listBoxDescription_MouseDown(object sender, MouseEventArgs e)
         {
             if (listBoxReminders.IndexFromPoint(e.Location) == -1 || e.Button == MouseButtons.Right)
                 listBoxReminders.ClearSelected();
+        }
+
+        /// <summary>
+        ///     Handing key down event
+        ///     Ctrl + N to create new list
+        ///     Ctrl + O to open existing list
+        ///     Ctrl + S to save current list
+        ///     Ctrl + Q to quit
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void FormMain_KeyDown(object sender, KeyEventArgs e)
+        {
+            switch (e.Control) // Check if Ctrl is holding down
+            {
+                case true when e.KeyCode == Keys.N: // Ctrl + N
+                    toolStripMenuItemNew_Click(sender, e);
+                    break;
+                case true when e.KeyCode == Keys.O: // Open existing list Ctrl + O
+                    toolStripMenuItemOpen_Click(sender, e);
+                    break;
+                case true when e.KeyCode == Keys.S: // Save current list Ctrl + S
+                    toolStripMenuItemSave_Click(sender, e);
+                    break;
+                case true when e.KeyCode == Keys.Q: // Quit Ctrl + Q
+                    toolStripMenuItemExit_Click(sender, e);
+                    break;
+            }
         }
     }
 }
