@@ -4,8 +4,7 @@ namespace BackendLibrary
 {
     public class TicTacToeManager : IList<TicTacToe>
     {
-        private IList<TicTacToe> ticTacToes;
-
+        private readonly IList<TicTacToe> ticTacToes;
         public TicTacToeManager()
         {
             ticTacToes = new List<TicTacToe>();
@@ -13,8 +12,7 @@ namespace BackendLibrary
 
         public IList<TicTacToe> TicTacToes
         {
-            get { return ticTacToes; }
-            set { ticTacToes = value; }
+            get { return ticTacToes; } 
         }
 
         public IEnumerator<TicTacToe> GetEnumerator()
