@@ -1,0 +1,72 @@
+﻿<Window x:Class="WPF_DNC6.MainWindow"
+        xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+        xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+        xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
+        xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:local="clr-namespace:WPF_DNC6"
+        xmlns:timers="clr-namespace:System.Timers;assembly=System.ComponentModel.TypeConverter"
+        mc:Ignorable="d"
+        Title="MainWindow" Height="420" Width="690">
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="10"/>
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="10"/>
+        </Grid.ColumnDefinitions>
+        <Grid.RowDefinitions>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="50" />
+            <RowDefinition Height="10" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="10"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="10" />
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="*" />
+            <RowDefinition Height="30"/>
+        </Grid.RowDefinitions>
+        <Menu Height="auto" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="9" Grid.RowSpan="2">
+            <MenuItem Header="_File">  
+                <MenuItem Header="_Open" />
+                <Separator/>
+                <MenuItem Header="_Save" />
+                <MenuItem Header="_Save As" />
+                <Separator/>
+                <MenuItem Header="_Exit"/>
+            </MenuItem>  
+                <MenuItem Header="Help">  
+                <MenuItem Header="_About"/>  
+            </MenuItem>
+        </Menu>
+        
+        <Button Grid.Row="3" Grid.Column="1"></Button>
+        <Button Grid.Row="3" Grid.Column="3"></Button>
+        <Button Grid.Row="3" Grid.Column="5"></Button>
+        <Button Grid.Row="5" Grid.Column="1"></Button>
+        <Button Grid.Row="5" Grid.Column="3"></Button>
+        <Button Grid.Row="5" Grid.Column="5"></Button>
+        <Button Grid.Row="7" Grid.Column="1"></Button>
+        <Button Grid.Row="7" Grid.Column="3"></Button>
+        <Button Grid.Row="7" Grid.Column="5"></Button>
+        
+        <Button Grid.Row="9" Grid.Column="1" Content="vs Computer" FontSize="18" ></Button>
+        <Button Grid.Row="9" Grid.Column="3" Content= "vs"></Button>
+        <Button Grid.Row="9" Grid.Column="5" Content= "vs"></Button>
+
+        
+        <Label Grid.Row="1" Grid.Column="1" FontSize="18">Player 1</Label>
+        <Label Grid.Row="1" Grid.Column="7" FontSize="18">Match History</Label>
+
+        <ListBox Grid.Row="3" Grid.Column="7" Grid.RowSpan="5"></ListBox>
+
+        <Label Name="Time" Grid.Row = "9" Grid.Column = "7" FontSize = "18" VerticalAlignment="Center" HorizontalAlignment="Center"></Label>
+    </Grid>
+    
+</Window>
