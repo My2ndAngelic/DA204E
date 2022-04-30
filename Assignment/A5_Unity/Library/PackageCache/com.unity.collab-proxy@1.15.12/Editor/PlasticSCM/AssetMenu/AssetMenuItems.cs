@@ -1,4 +1,4 @@
-﻿using UnityEngine;
+using UnityEngine;
 
 using Codice.CM.Common;
 using Codice.Client.BaseCommands.EventTracking;

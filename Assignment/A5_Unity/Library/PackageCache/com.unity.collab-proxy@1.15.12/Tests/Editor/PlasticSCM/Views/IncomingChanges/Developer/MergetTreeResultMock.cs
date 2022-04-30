@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 using Codice.Client.Commands.Merge;
 using Codice.CM.Common;

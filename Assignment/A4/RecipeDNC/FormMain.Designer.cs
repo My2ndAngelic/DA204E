@@ -1,4 +1,4 @@
-﻿
+
 namespace RecipeDNC
 {
     partial class FormMain

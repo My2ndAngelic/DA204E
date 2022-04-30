@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 
 namespace Assignment2
 {
@@ -23,7 +23,7 @@ namespace Assignment2
         public void Start()
         {
             Console.WriteLine();
-            Console.WriteLine("My name is Evan Huynh and I am a student of VT22 semester");
+            Console.WriteLine("My name is My2ndAngelic and I am a student of VT22 semester");
             Console.WriteLine();
         }
 

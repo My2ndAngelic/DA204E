@@ -1,4 +1,4 @@
-﻿using System.Collections.Generic;
+using System.Collections.Generic;
 using Unity.PlasticSCM.Editor.UI.UIElements;
 using UnityEngine.UIElements;
 

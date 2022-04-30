@@ -1,4 +1,4 @@
-﻿namespace RecipeLibrary
+namespace RecipeLibrary
 {
     public class RecipeManager
     {

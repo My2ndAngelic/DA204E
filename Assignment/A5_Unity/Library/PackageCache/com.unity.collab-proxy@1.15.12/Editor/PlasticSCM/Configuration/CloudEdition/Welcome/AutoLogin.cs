@@ -1,4 +1,4 @@
-﻿using Codice.Client.Common.Connection;
+using Codice.Client.Common.Connection;
 using Codice.Client.Common.Servers;
 using Codice.Client.Common.Threading;
 using Codice.CM.Common;

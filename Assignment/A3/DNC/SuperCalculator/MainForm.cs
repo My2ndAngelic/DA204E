@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Globalization;
 using System.Windows.Forms;
@@ -26,7 +26,7 @@ namespace SuperCalculator
         /// <returns></returns>
         private void InitializeGUI()
         {
-            Text = "Super Calculator by Evan Huynh";
+            Text = "Super Calculator by My2ndAngelic";
 
             // BMI
             groupBoxBMI.Text = "BMI Calculator";

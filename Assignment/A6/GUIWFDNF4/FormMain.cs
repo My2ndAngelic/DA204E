@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Drawing;
 using System.IO;
@@ -33,7 +33,7 @@ namespace GUIWFDNF4
             taskManager = new TaskManager();
 
             // Title
-            Text = @"ToDo Reminder by Evan Huynh";
+            Text = @"ToDo Reminder by My2ndAngelic";
 
             // Set data binding to the array 
             comboBoxPrioList.DataSource = prioListString;

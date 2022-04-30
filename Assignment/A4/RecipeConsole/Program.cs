@@ -1,4 +1,4 @@
-﻿using RecipeLibrary;
+using RecipeLibrary;
 
 namespace RecipeConsole
 {

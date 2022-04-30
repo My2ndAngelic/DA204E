@@ -1,4 +1,4 @@
-﻿using PlasticGui;
+using PlasticGui;
 using System.Collections;
 using System.Collections.Generic;
 using Unity.PlasticSCM.Editor.UI;

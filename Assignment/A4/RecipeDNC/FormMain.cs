@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Drawing;
 using System.Linq;
 using System.Windows.Forms;
@@ -28,7 +28,7 @@ namespace RecipeDNC
         /// </summary>
         private void InitializeGUI()
         {
-            Text = @"Apu Recipe Editor by Evan Huynh";
+            Text = @"Apu Recipe Editor by My2ndAngelic";
             InitializeRecipeEditor();
             InitializeResultBox();
             UpdateGUI();

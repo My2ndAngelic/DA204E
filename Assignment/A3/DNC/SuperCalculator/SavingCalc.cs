@@ -1,4 +1,4 @@
-﻿namespace SuperCalculator
+namespace SuperCalculator
 {
     public class SavingCalc
     {

@@ -1,4 +1,4 @@
-﻿namespace RecipeDNF
+namespace RecipeDNF
 {
     partial class FormMain
     {

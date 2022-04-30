@@ -1,4 +1,4 @@
-Ôªøusing System;
+using System;
 
 using UnityEditor;
 using UnityEngine;
@@ -108,7 +108,7 @@ namespace Unity.PlasticSCM.Editor.CollabMigration
 
             Paragraph("Your Unity project has been upgraded (from Collaborate) to Plastic SCM free" +
                 " of charge by your administrator. Your local workspace will now be converted to a" +
-                " Plastic SCM workspace in just a few minutes. Select ‚ÄúMigrate‚Äù to start the conversion process.");
+                " Plastic SCM workspace in just a few minutes. Select ìMigrateî to start the conversion process.");
 
             DrawProgressForMigration.For(
                mProgressControls.ProgressData);

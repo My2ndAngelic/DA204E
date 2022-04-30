@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 
 using Codice.Client.Commands;
 using Codice.Client.Commands.Mount;

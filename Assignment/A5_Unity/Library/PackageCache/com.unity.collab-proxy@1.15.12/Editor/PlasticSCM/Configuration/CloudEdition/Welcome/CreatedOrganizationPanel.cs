@@ -1,4 +1,4 @@
-﻿using UnityEngine.UIElements;
+using UnityEngine.UIElements;
 
 using PlasticGui;
 using Unity.PlasticSCM.Editor.UI.UIElements;

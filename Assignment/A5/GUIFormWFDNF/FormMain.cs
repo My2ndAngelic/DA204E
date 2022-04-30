@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using System.Collections.Generic;
 using System.Linq;
 using System.Windows.Forms;
@@ -22,7 +22,7 @@ namespace GUIFormWFDNF
         /// </summary>
         private void InitializeGUI()
         {
-            Text = @"Customer Registry by Evan Huynh";
+            Text = @"Customer Registry by My2ndAngelic";
 
             listboxContact.Text = string.Empty;
             textBoxContact.Text = string.Empty;

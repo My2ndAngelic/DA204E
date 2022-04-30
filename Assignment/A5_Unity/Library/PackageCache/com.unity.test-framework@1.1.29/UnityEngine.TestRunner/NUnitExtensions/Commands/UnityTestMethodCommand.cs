@@ -1,4 +1,4 @@
-﻿using System;
+using System;
 using NUnit.Framework.Internal;
 using NUnit.Framework.Internal.Commands;
 using Unity.Profiling;

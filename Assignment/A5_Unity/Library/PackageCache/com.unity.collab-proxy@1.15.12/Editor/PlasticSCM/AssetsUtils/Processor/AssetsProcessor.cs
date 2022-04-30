@@ -1,4 +1,4 @@
-﻿namespace Unity.PlasticSCM.Editor.AssetUtils.Processor
+namespace Unity.PlasticSCM.Editor.AssetUtils.Processor
 {
     internal static class AssetsProcessors
     {

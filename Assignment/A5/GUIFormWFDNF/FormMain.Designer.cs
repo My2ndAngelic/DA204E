@@ -1,4 +1,4 @@
-﻿namespace GUIFormWFDNF
+namespace GUIFormWFDNF
 {
     partial class FormMain
     {

@@ -1,4 +1,4 @@
-﻿
+
 namespace SuperCalculator
 {
     public partial class MainForm

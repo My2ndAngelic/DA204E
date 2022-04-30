@@ -1,4 +1,4 @@
-﻿namespace BackendLibrary
+namespace BackendLibrary
 {
     public enum PriorityType
     {

@@ -1,4 +1,4 @@
-﻿using PlasticGui.Gluon.WorkspaceWindow;
+using PlasticGui.Gluon.WorkspaceWindow;
 using Unity.PlasticSCM.Editor.UI;
 
 namespace Unity.PlasticSCM.Editor.Gluon

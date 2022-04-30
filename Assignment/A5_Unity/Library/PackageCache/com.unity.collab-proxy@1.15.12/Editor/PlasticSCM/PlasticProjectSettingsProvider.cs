@@ -1,4 +1,4 @@
-﻿using Codice.Client.Commands;
+using Codice.Client.Commands;
 using Codice.Client.Common.FsNodeReaders;
 using Codice.Client.Common.Threading;
 using Codice.CM.Common;

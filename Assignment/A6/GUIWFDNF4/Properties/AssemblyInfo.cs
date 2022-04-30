@@ -1,4 +1,4 @@
-﻿using System.Reflection;
+using System.Reflection;
 using System.Runtime.InteropServices;
 
 // General Information about an assembly is controlled through the following
@@ -7,9 +7,9 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("ToDo Reminder")]
 [assembly: AssemblyDescription("A software that help you create and save your reminders.")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyCompany("Evan Huynh")]
+[assembly: AssemblyCompany("My2ndAngelic")]
 [assembly: AssemblyProduct("ToDo Reminder")]
-[assembly: AssemblyCopyright("Copyright © Evan Huynh 2022. All rights reserved.")]
+[assembly: AssemblyCopyright("Copyright � My2ndAngelic 2022. All rights reserved.")]
 [assembly: AssemblyTrademark("")]
 [assembly: AssemblyCulture("")]
 

@@ -1,4 +1,4 @@
-﻿using PlasticGui.WorkspaceWindow;
+using PlasticGui.WorkspaceWindow;
 using Unity.PlasticSCM.Editor.UI;
 
 namespace Unity.PlasticSCM.Editor.Developer

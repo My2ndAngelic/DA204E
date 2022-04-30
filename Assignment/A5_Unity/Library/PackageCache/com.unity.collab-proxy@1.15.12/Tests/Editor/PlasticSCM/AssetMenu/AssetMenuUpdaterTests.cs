@@ -1,4 +1,4 @@
-﻿using NUnit.Framework;
+using NUnit.Framework;
 
 using Unity.PlasticSCM.Editor;
 using Unity.PlasticSCM.Editor.AssetMenu;
