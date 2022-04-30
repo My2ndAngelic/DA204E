@@ -45,19 +45,19 @@
             </MenuItem>
         </Menu>
 
-        <Button Name="Button11" Click="Button11_OnClick" Grid.Row="3" Grid.Column="1" />
-        <Button Name="Button12" Click="Button12_OnClick" Grid.Row="3" Grid.Column="3" />
-        <Button Name="Button13" Click="Button13_OnClick" Grid.Row="3" Grid.Column="5" />
-        <Button Name="Button21" Click="Button21_OnClick" Grid.Row="5" Grid.Column="1" />
-        <Button Name="Button22" Click="Button22_OnClick" Grid.Row="5" Grid.Column="3" />
-        <Button Name="Button23" Click="Button23_OnClick" Grid.Row="5" Grid.Column="5" />
-        <Button Name="Button31" Click="Button31_OnClick" Grid.Row="7" Grid.Column="1" />
-        <Button Name="Button32" Click="Button32_OnClick" Grid.Row="7" Grid.Column="3" />
-        <Button Name="Button33" Click="Button33_OnClick" Grid.Row="7" Grid.Column="5" />
+        <Button Name="Button00" Click="Button00_OnClick" Grid.Row="3" Grid.Column="1" />
+        <Button Name="Button01" Click="Button01_OnClick" Grid.Row="3" Grid.Column="3" />
+        <Button Name="Button02" Click="Button02_OnClick" Grid.Row="3" Grid.Column="5" />
+        <Button Name="Button10" Click="Button10_OnClick" Grid.Row="5" Grid.Column="1" />
+        <Button Name="Button11" Click="Button11_OnClick" Grid.Row="5" Grid.Column="3" />
+        <Button Name="Button12" Click="Button12_OnClick" Grid.Row="5" Grid.Column="5" />
+        <Button Name="Button20" Click="Button20_OnClick" Grid.Row="7" Grid.Column="1" />
+        <Button Name="Button21" Click="Button21_OnClick" Grid.Row="7" Grid.Column="3" />
+        <Button Name="Button22" Click="Button22_OnClick" Grid.Row="7" Grid.Column="5" />
 
         <Button Grid.Row="9" Grid.Column="1" FontSize="15">vs Human</Button>
-        <Button Grid.Row="9" Grid.Column="3" FontSize="15">vs Computer (Easy)</Button>
-        <Button Grid.Row="9" Grid.Column="5" FontSize="15">vs Computer (Hard)</Button>
+        <Button Grid.Row="9" Grid.Column="3" FontSize="15">vs Computer</Button>
+        <Button Grid.Row="9" Grid.Column="5" FontSize="15">Match History</Button>
 
 
         <!-- <Label Grid.Row="1" Grid.Column="1" FontSize="18">Player 1</Label> -->

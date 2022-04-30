@@ -11,9 +11,10 @@ namespace WPF_DNC6
     /// </summary>
     public partial class MainWindow : Window
     {
-        private TicTacToe ttt = new TicTacToe();
         private List<TicTacToe> tttList = new List<TicTacToe>();
 
+        private TicTacToe ttt = new TicTacToe(3);
+        
         public MainWindow()
         {
             InitializeComponent();
@@ -37,40 +38,53 @@ namespace WPF_DNC6
         {
         }
 
+        private void Button00_OnClick(object sender, RoutedEventArgs e)
+        {
+            if (Button00.IsEnabled)
+            {
+                Button00.IsEnabled = false;
+                
+            }
+        }
+
+        private void Button01_OnClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button02_OnClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
+        private void Button10_OnClick(object sender, RoutedEventArgs e)
+        {
+
+        }
+
         private void Button11_OnClick(object sender, RoutedEventArgs e)
         {
+
         }
 
         private void Button12_OnClick(object sender, RoutedEventArgs e)
         {
+
         }
 
-        private void Button13_OnClick(object sender, RoutedEventArgs e)
+        private void Button20_OnClick(object sender, RoutedEventArgs e)
         {
+
         }
 
         private void Button21_OnClick(object sender, RoutedEventArgs e)
         {
+
         }
 
         private void Button22_OnClick(object sender, RoutedEventArgs e)
         {
-        }
 
-        private void Button23_OnClick(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void Button31_OnClick(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void Button32_OnClick(object sender, RoutedEventArgs e)
-        {
-        }
-
-        private void Button33_OnClick(object sender, RoutedEventArgs e)
-        {
         }
     }
 }

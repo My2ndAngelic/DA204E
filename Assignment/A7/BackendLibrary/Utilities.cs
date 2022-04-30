@@ -7,7 +7,7 @@ namespace BackendLibrary
         /// <summary>
         ///     Arrays handling
         /// </summary>
-        public class Arrays
+        public static class Arrays
         {
             /// <summary>
             ///     Java algorithm of the Arrays.DeepToString() method to convert a multidimensional array to a string.
@@ -15,8 +15,10 @@ namespace BackendLibrary
             /// <param name="array"></param>
             /// <typeparam name="T"></typeparam>
             /// <returns></returns>
-            public static string DeepToString<T>(T[,] array)
+            public static string DeepToString<T>(T[,]? array)
             {
+                if (array == null)
+                    return "null";
                 StringBuilder result = new StringBuilder(); // Java style
                 result.Append('['); // Add the opening bracket
                 for (int i = 0; i < array.GetLength(0); i++)
@@ -39,8 +41,10 @@ namespace BackendLibrary
             /// <param name="array"></param>
             /// <typeparam name="T"></typeparam>
             /// <returns></returns>
-            public static string DeepToString<T>(T[][] array)
+            public static string DeepToString<T>(T[][]? array)
             {
+                if (array == null)
+                    return "null";
                 StringBuilder result = new StringBuilder(); // Java style
                 result.Append('['); // Add the opening bracket
                 for (int i = 0; i < array.Length; i++)
@@ -63,8 +67,10 @@ namespace BackendLibrary
             /// <param name="array"></param>
             /// <typeparam name="T"></typeparam>
             /// <returns></returns>
-            public static string ToString<T>(T[] array)
+            public static string ToString<T>(T[]? array)
             {
+                if (array == null)
+                    return "null";
                 StringBuilder result = new StringBuilder(); // Java style
                 result.Append('['); // Add the opening bracket
                 for (int i = 0; i < array.Length; i++) result.Append($"{(array[i] == null ? "null" : array[i])}, ");
@@ -77,7 +83,7 @@ namespace BackendLibrary
         /// <summary>
         ///     Reused code from A6
         /// </summary>
-        public class FileHandler
+        public record FileHandler
         {
             /// <summary>
             ///     Read file and return the string array line by line
