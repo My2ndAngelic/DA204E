@@ -56,8 +56,8 @@
         <Button Name="Button22" Click="Button22_OnClick" Grid.Row="7" Grid.Column="5" />
 
         <Button Grid.Row="9" Grid.Column="1" FontSize="15">vs Human</Button>
-        <Button Grid.Row="9" Grid.Column="3" FontSize="15">vs Computer</Button>
-        <Button Grid.Row="9" Grid.Column="5" FontSize="15">Match History</Button>
+        <Button Grid.Row="9" Grid.Column="3" FontSize="15">vs Computer (as P1)</Button>
+        <Button Grid.Row="9" Grid.Column="5" FontSize="15">vs Computer (as P2)</Button>
 
 
         <!-- <Label Grid.Row="1" Grid.Column="1" FontSize="18">Player 1</Label> -->

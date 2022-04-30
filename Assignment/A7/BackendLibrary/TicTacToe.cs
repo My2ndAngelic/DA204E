@@ -1,26 +1,19 @@
-using System.Runtime.Serialization;
 using System.Text;
-using System.Text.RegularExpressions;
-using System.Transactions;
 
 namespace BackendLibrary
 {
     public partial class TicTacToe
     {
-        public TicTacToe(int size)
+        public override string ToString()
         {
-            startTime = DateTime.Now;
-            endTime = DateTime.Now;
-            p1Name = "Player 1";
-            p2Name = "Player 2";
-            p1Symbol = "x";
-            p2Symbol = "o";
-            boardSize = size;
-            board = new string[size, size];
-            turnHistory = new List<string>();
-            boardArray = new List<string[,]>();
+            return new StringBuilder()
+                .Append(p1Name).Append(',').Append(p2Name).Append(',')
+                .Append(p1Symbol).Append(',').Append(p2Symbol).Append('|')
+                .Append(new DateTimeOffset(startTime).ToUnixTimeSeconds()).Append(',')
+                .Append(new DateTimeOffset(endTime).ToUnixTimeSeconds()).Append('|')
+                .Append(boardSize).Append('|')
+                .Append(string.Join(",", turnHistory))
+                .ToString();
         }
-        
-        
     }
 }

@@ -11,37 +11,37 @@ namespace BackendLibrary
         public string?[,] Board
         {
             get { return board; }
-            set { board = value ?? throw new ArgumentNullException(nameof(value)); }
+            set { board = value; }
         }
 
         public IList<string> TurnHistory
         {
             get { return turnHistory; }
-            set { turnHistory = value ?? throw new ArgumentNullException(nameof(value)); }
+            set { turnHistory = value; }
         }
 
         public string P1Name
         {
             get { return p1Name; }
-            set { p1Name = value ?? throw new ArgumentNullException(nameof(value)); }
+            set { p1Name = value; }
         }
 
         public string P2Name
         {
             get { return p2Name; }
-            set { p2Name = value ?? throw new ArgumentNullException(nameof(value)); }
+            set { p2Name = value; }
         }
 
         public string P1Symbol
         {
             get { return p1Symbol; }
-            set { p1Symbol = value ?? throw new ArgumentNullException(nameof(value)); }
+            set { p1Symbol = value; }
         }
 
         public string P2Symbol
         {
             get { return p2Symbol; }
-            set { p2Symbol = value ?? throw new ArgumentNullException(nameof(value)); }
+            set { p2Symbol = value; }
         }
 
         public DateTime StartTime
@@ -55,11 +55,17 @@ namespace BackendLibrary
             get { return endTime; }
             set { endTime = value; }
         }
-        
-        public List<string[,]> BoardArray
+
+        public IList<string?[,]> BoardHistory
         {
-            get { return boardArray; }
-            set { boardArray = value; }
+            get { return boardHistory; }
+            set { boardHistory = value; }
+        }
+
+        public int CurrentPlayer
+        {
+            get { return currentPlayer; }
+            set { currentPlayer = value is 0 or 1 ? value : 0; }
         }
     }
 }
