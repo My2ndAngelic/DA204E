@@ -26,8 +26,13 @@ for (int i = 0; i < 10000; i++) {
     Console.WriteLine(ttt.BoardDisplay());
     Console.WriteLine(ttt.GetWinner());
     Console.WriteLine(ttt.ToString());
-    File.AppendAllLines(Path.GetFullPath(Directory.GetCurrentDirectory()) + "\\" + "match_history.txt",
-        new[] {ttt.ToString()});
+    string cwd = Directory.GetCurrentDirectory();
+    if (!Directory.Exists(Path.Combine(new string[] {cwd, "savedata"})))
+    {
+        Directory.CreateDirectory(Path.Combine(new string[] {cwd, "savedata"}));
+    }
+    string lePath = Path.Combine(new string[] {Directory.GetCurrentDirectory(), "savedata", "match_history.txt"});
+    File.AppendAllLines(lePath, new[] {ttt.ToString()});
 }
 
 // foreach (string[,] board in ttt.BoardHistory)
