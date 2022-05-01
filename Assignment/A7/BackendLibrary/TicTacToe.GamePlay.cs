@@ -23,7 +23,7 @@
             endTime = DateTime.Now;
             currentPlayer = (currentPlayer + 1) % 2;
             board[row, col] = symbol;
-            turnHistory.Add(string.Join(',', move));
+            turnHistory.Add(string.Join('-', move));
             boardHistory.Add(board);
             return true;
         }

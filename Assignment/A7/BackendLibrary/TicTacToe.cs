@@ -15,5 +15,18 @@ namespace BackendLibrary
                 .Append(string.Join(",", turnHistory))
                 .ToString();
         }
+
+        public void ComputerMove()
+        {
+            Random r = new Random();
+            if (IsGameOver()) return;
+            bool moveMade;
+            do
+            {
+                int x = r.Next(boardSize);
+                int y = r.Next(boardSize);
+                moveMade = Move(x, y);
+            } while(!moveMade);
+        }
     }
 }

@@ -2,28 +2,33 @@ using BackendLibrary;
 
 Console.WriteLine("Hello, World!");
 // TicTacToe ttt = new TicTacToe("Player, Computer, x ,o | 1651323438, 1651323441 | 3 | x-1-1, o-1-0, x-2-0, o-0-2, x-2-1, o-0-1, x-2-2");
-TicTacToe ttt = new TicTacToe(3)
-{
-    P1Name = "John",
-    P2Name = "Cena",
-    P1Symbol = "x",
-    P2Symbol = "o"
-};
-Thread.Sleep(1000);
+
 // ttt.Move("o-0-0");
 // ttt.Move("x-2-0");
 // ttt.Move("o-0-2");
 // ttt.Move("x-2-1");
 // ttt.Move("o-0-1");
 // ttt.Move("x-2-2");
-ttt.Move(0,0);
-ttt.Move(2, 0);
-ttt.Move(0, 2);
-ttt.Move(2, 1);
-ttt.Move(0, 1);
-ttt.Move(2, 2);
-Console.WriteLine(ttt.BoardDisplay());
-Console.WriteLine(ttt.GetWinner());
+
+for (int i = 0; i < 10000; i++) {
+    TicTacToe ttt = new TicTacToe(3)
+    {
+        P1Name = "John",
+        P2Name = "Cena",
+        P1Symbol = "x",
+        P2Symbol = "o"
+    };
+    do
+    {
+        ttt.ComputerMove();
+    } while (!ttt.IsGameOver());
+
+    Console.WriteLine(ttt.BoardDisplay());
+    Console.WriteLine(ttt.GetWinner());
+    Console.WriteLine(ttt.ToString());
+    File.AppendAllLines(Path.GetFullPath(Directory.GetCurrentDirectory()) + "\\" + "match_history.txt",
+        new[] {ttt.ToString()});
+}
 
 // foreach (string[,] board in ttt.BoardHistory)
 // {

@@ -47,10 +47,12 @@ namespace WPF_DNC6
 
         private void Button01_OnClick(object sender, RoutedEventArgs e)
         {
+            
         }
 
         private void Button02_OnClick(object sender, RoutedEventArgs e)
         {
+            
         }
 
         private void Button10_OnClick(object sender, RoutedEventArgs e)
@@ -74,6 +76,18 @@ namespace WPF_DNC6
         }
 
         private void Button22_OnClick(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void ButtonGameHuman_OnClick(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void ButtonGameCompP1_OnClick(object sender, RoutedEventArgs e)
+        {
+        }
+
+        private void ButtonGameCompP2_OnClick(object sender, RoutedEventArgs e)
         {
         }
     }

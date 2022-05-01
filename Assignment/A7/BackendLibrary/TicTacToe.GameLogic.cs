@@ -33,16 +33,17 @@
         public string GetWinner()
         {
             string winner = "";
-            if (CheckForWinner(p1Symbol))
+            if (IsWinner(p1Symbol))
                 winner = p1Name;
-            else if (CheckForWinner(p2Symbol))
+            else if (IsWinner(p2Symbol))
                 winner = p2Name;
-            else if (CheckForDraw()) winner = "Draw";
-
+            else if (IsFilled()) 
+                winner = "Draw";
+            
             return winner;
         }
 
-        public bool CheckForWinner(string symbol)
+        public bool IsWinner(string symbol)
         {
             bool winner = false;
             // Check rows
@@ -82,18 +83,17 @@
             return winner;
         }
 
-        public bool CheckForDraw()
+        public bool IsFilled()
         {
-            bool draw = false;
             for (int i = 0; i < boardSize; i++)
-            for (int j = 0; j < boardSize; j++)
             {
-                if (board[i, j] is null) break;
-
-                if (j == boardSize - 1) draw = true;
+                for (int j = 0; j < boardSize; j++)
+                {
+                    if (board[i, j] is null) 
+                        return false;
+                }
             }
-
-            return draw;
+            return true;
         }
     }
 }
