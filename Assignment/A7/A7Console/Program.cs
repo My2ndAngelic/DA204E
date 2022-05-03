@@ -40,7 +40,7 @@ for (int i = 0; i < 10000; i++) {
 //     Console.WriteLine(ttt.BoardDisplay(board));
 //     Console.WriteLine();
 // }
-// Console.WriteLine(Utilities.Arrays.DeepToString(ttt.Board));
+// Console.WriteLine(Utils.Arrays.DeepToString(ttt.Board));
 // Console.WriteLine(ttt.GetWinner());
 // Console.WriteLine(ttt.BoardDisplay());
 // Console.WriteLine(ttt.ToString());

@@ -9,8 +9,8 @@
             endTime = DateTime.Now;
             p1Name = "Player 1";
             p2Name = "Player 2";
-            p1Symbol = "x";
-            p2Symbol = "o";
+            p1Symbol = "X";
+            p2Symbol = "O";
             boardSize = size;
             board = new string[size, size];
             turnHistory = new List<string>();

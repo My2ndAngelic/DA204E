@@ -4,6 +4,7 @@
     {
         public bool Move(int x, int y)
         {
+            if (IsGameOver()) return false;
             string symbol = "";
             switch (currentPlayer)
             {
@@ -17,7 +18,7 @@
                     return false;
             }
             string[] move = {symbol, x.ToString(), y.ToString()};
-            if (!IsValidMove(move) || IsGameOver()) return false;
+            if (!IsValidMove(move)) return false;
             int row = int.Parse(move[1]);
             int col = int.Parse(move[2]);
             endTime = DateTime.Now;

@@ -4,33 +4,23 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MainWindow" Height="420" Width="690">
-    <Grid>
+        Title="MainWindow" Width="690" Height="420">
+    <Grid x:Name="MainGrid">
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="20" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="10" />
             <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="10" />
-            <ColumnDefinition Width="*" />
-            <ColumnDefinition Width="10" />
+            <ColumnDefinition Width="20" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="*" />
+            <RowDefinition Height="20" />
             <RowDefinition Height="50" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="10" />
-            <RowDefinition Height="*" />
-            <RowDefinition Height="10" />
             <RowDefinition Height="*" />
             <RowDefinition Height="30" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="30" />
+            <RowDefinition Height="20" />
         </Grid.RowDefinitions>
-        <Menu Height="auto" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="9" Grid.RowSpan="2">
+        <Menu Height="auto" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4">
             <MenuItem Header="_File">
                 <MenuItem Name="MenuItemNew" Header="_New" />
                 <MenuItem Name="MenuItemOpen" Header="_Open" Click="MenuItemOpen_OnClick" />
@@ -45,30 +35,93 @@
             </MenuItem>
         </Menu>
 
-        <Button Name="Button00" Click="Button00_OnClick" Grid.Row="3" Grid.Column="1" />
-        <Button Name="Button01" Click="Button01_OnClick" Grid.Row="3" Grid.Column="3" />
-        <Button Name="Button02" Click="Button02_OnClick" Grid.Row="3" Grid.Column="5" />
-        <Button Name="Button10" Click="Button10_OnClick" Grid.Row="5" Grid.Column="1" />
-        <Button Name="Button11" Click="Button11_OnClick" Grid.Row="5" Grid.Column="3" />
-        <Button Name="Button12" Click="Button12_OnClick" Grid.Row="5" Grid.Column="5" />
-        <Button Name="Button20" Click="Button20_OnClick" Grid.Row="7" Grid.Column="1" />
-        <Button Name="Button21" Click="Button21_OnClick" Grid.Row="7" Grid.Column="3" />
-        <Button Name="Button22" Click="Button22_OnClick" Grid.Row="7" Grid.Column="5" />
+        <Grid Grid.Column="1" Grid.Row="2">
+            <Grid.Resources>
+                <Style TargetType="{x:Type Grid}">
+                    <Setter Property="Margin" Value="0 0" />
+                </Style>
+            </Grid.Resources>
+            <Grid Name="PlayArea">
+                <Grid.Resources>
+                    <Style TargetType="{x:Type Button}">
+                        <Setter Property="Margin" Value="0,0" />
+                    </Style>
+                </Grid.Resources>
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
 
-        <Button Name="ButtonGameHuman" Grid.Row="9" Grid.Column="1" FontSize="15"  Click="ButtonGameHuman_OnClick">vs Human</Button>
-        <Button Name="ButtonGameCompP1" Grid.Row="9" Grid.Column="3" FontSize="15" Click="ButtonGameCompP1_OnClick">vs Computer (as P1)</Button>
-        <Button Name="ButtonGameCompP2" Grid.Row="9" Grid.Column="5" FontSize="15" Click="ButtonGameCompP2_OnClick">vs Computer (as P2)</Button>
+                <Button Click="GameButton_OnClick" Name="GameButton00" Grid.Row="0" Grid.Column="0" Content="X" />
+                <Button Click="GameButton_OnClick" Name="GameButton01" Grid.Row="0" Grid.Column="1" Content="O" />
+                <Button Click="GameButton_OnClick" Name="GameButton02" Grid.Row="0" Grid.Column="2" />
+                <Button Click="GameButton_OnClick" Name="GameButton10" Grid.Row="1" Grid.Column="0" />
+                <Button Click="GameButton_OnClick" Name="GameButton11" Grid.Row="1" Grid.Column="1" />
+                <Button Click="GameButton_OnClick" Name="GameButton12" Grid.Row="1" Grid.Column="2" />
+                <Button Click="GameButton_OnClick" Name="GameButton20" Grid.Row="2" Grid.Column="0" />
+                <Button Click="GameButton_OnClick" Name="GameButton21" Grid.Row="2" Grid.Column="1" />
+                <Button Click="GameButton_OnClick" Name="GameButton22" Grid.Row="2" Grid.Column="2" />
+            </Grid>
+        </Grid>
 
-
-        <!-- <Label Grid.Row="1" Grid.Column="1" FontSize="18">Player 1</Label> -->
-        <Label Grid.Row="1" Grid.Column="7" FontSize="18">Match History</Label>
-
-        <ListBox Grid.Row="3" Grid.Column="7" Grid.RowSpan="5" />
-
-        <Label Name="Time" Grid.Row="9" Grid.Column="7" FontSize="30" VerticalAlignment="Center"
-               HorizontalAlignment="Center" Foreground="Blue" FontWeight="Bold">
-            Current Time
-        </Label>
+        <Grid x:Name="PlayMode" Grid.Row="4" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="20" />
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <Button Name="ButtonGameHuman" Grid.Row="0" Grid.Column="0" FontSize="15" Click="ButtonGameHuman_OnClick">vs Human</Button>
+            <Button Name="ButtonGameCompP1" Grid.Row="0" Grid.Column="2" FontSize="15" Click="ButtonGameCompP1_OnClick">vs Computer (as P1)</Button>
+            <Button Name="ButtonGameCompP2" Grid.Row="0" Grid.Column="4" FontSize="15" Click="ButtonGameCompP2_OnClick">vs Computer (as P2)</Button>
+        </Grid>
     </Grid>
-
 </Window>
+
+<!-- <Grid.ColumnDefinitions> -->
+<!--     <ColumnDefinition Width="10" /> -->
+<!--     <ColumnDefinition Width="*" /> -->
+<!--     <ColumnDefinition Width="10" /> -->
+<!--     <ColumnDefinition Width="*" /> -->
+<!--     <ColumnDefinition Width="10" /> -->
+<!--     <ColumnDefinition Width="*" /> -->
+<!--     <ColumnDefinition Width="10" /> -->
+<!--     <ColumnDefinition Width="*" /> -->
+<!--     <ColumnDefinition Width="10" /> -->
+<!-- </Grid.ColumnDefinitions> -->
+<!-- <Grid.RowDefinitions> -->
+<!--     <RowDefinition Height="*" /> -->
+<!--     <RowDefinition Height="50" /> -->
+<!--     <RowDefinition Height="10" /> -->
+<!--     <RowDefinition Height="*" /> -->
+<!--     <RowDefinition Height="10" /> -->
+<!--     <RowDefinition Height="*" /> -->
+<!--     <RowDefinition Height="10" /> -->
+<!--     <RowDefinition Height="*" /> -->
+<!--     <RowDefinition Height="30" /> -->
+<!--     <RowDefinition Height="*" /> -->
+<!--     <RowDefinition Height="30" /> -->
+<!-- </Grid.RowDefinitions> -->
+
+
+<!-- -->
+<!-- -->
+<!-- ~1~ <Label Grid.Row="1" Grid.Column="1" FontSize="18">Player 1</Label> @1@ -->
+<!-- <Label Grid.Row="1" Grid.Column="7" FontSize="18">Match History</Label> -->
+<!-- -->
+<!-- <ListBox Grid.Row="3" Grid.Column="7" Grid.RowSpan="5" /> -->
+<!-- -->
+<!-- <Label Name="Time" Grid.Row="9" Grid.Column="7" FontSize="30" VerticalAlignment="Center" -->
+<!--        HorizontalAlignment="Center" Foreground="Blue" FontWeight="Bold"> -->
+<!--     Current Time -->
+<!-- </Label> -->

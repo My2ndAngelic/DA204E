@@ -27,7 +27,12 @@
         {
             int row = int.Parse(move[1]);
             int col = int.Parse(move[2]);
-            return board[row, col] == null;
+            return IsValidMove(row, col);
+        }
+
+        public bool IsValidMove(int row, int col)
+        {
+            return string.IsNullOrEmpty(board[row, col]);
         }
 
         public string GetWinner()

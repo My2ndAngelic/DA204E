@@ -2,7 +2,7 @@ using System.Text;
 
 namespace BackendLibrary
 {
-    public class Utilities
+    public class Utils
     {
         /// <summary>
         ///     Arrays handling
