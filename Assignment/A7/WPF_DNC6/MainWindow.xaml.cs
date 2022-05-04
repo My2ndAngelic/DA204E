@@ -15,7 +15,7 @@ namespace WPF_DNC6
     /// </summary>
     public partial class MainWindow : Window
     {
-        private bool computerMode;
+        private bool isComputerVSHumanMode;
         private bool isComputerTurn;
         private bool p1Turn = true;
 
@@ -102,14 +102,14 @@ namespace WPF_DNC6
         private void ButtonGameHuman_OnClick(object sender, RoutedEventArgs e)
         {
             NewGame();
-            computerMode = false;
+            isComputerVSHumanMode = false;
             Initialize();
         }
 
         private void ButtonGameCompP1_OnClick(object sender, RoutedEventArgs e)
         {
             NewGame();
-            computerMode = true;
+            isComputerVSHumanMode = true;
             p1Turn = true;
             isComputerTurn = false;
             Initialize();
@@ -119,7 +119,7 @@ namespace WPF_DNC6
         private void ButtonGameCompP2_OnClick(object sender, RoutedEventArgs e)
         {
             NewGame();
-            computerMode = true;
+            isComputerVSHumanMode = true;
             p1Turn = true;
             isComputerTurn = true;
             Initialize();
@@ -128,15 +128,27 @@ namespace WPF_DNC6
 
         private void GameButton_OnClick(object sender, RoutedEventArgs e)
         {
+            if (ttt.IsGameOver())
+                return;
+            
             Button button = (Button) sender;
 
             int column = Grid.GetColumn(button);
             int row = Grid.GetRow(button);
 
-            if (ttt.IsGameOver())
-                return;
-
             if (!ttt.IsValidMove(row, column)) return;
+            
+            ButtonSet(button);
+
+            ttt.Move(row, column);
+
+            if (!isComputerVSHumanMode) return;
+            isComputerTurn = true;
+            ComputerMove();
+        }
+
+        private void ButtonSet(ContentControl button)
+        {
             if (p1Turn)
             {
                 button.Content = ttt.P1Symbol;
@@ -149,38 +161,19 @@ namespace WPF_DNC6
                 button.Foreground = Brushes.Blue;
                 p1Turn = true;
             }
-
-            ttt.Move(row, column);
-
-            if (!computerMode) return;
-            isComputerTurn = true;
-            ComputerMove();
         }
-
+        
         private void ComputerMove()
         {
-            if (ttt.IsGameOver())
-                return;
-            if (!isComputerTurn)
-                return;
+            if (!isComputerVSHumanMode || !isComputerTurn || ttt.IsGameOver()) return;
+            
             int[] computerMove = ttt.ComputerMove();
 
             // Click the button from the computer's move
             Button button = PlayArea.Children.OfType<Button>()
                 .First(button1 => button1.Name == $"Button_{computerMove[0]}_{computerMove[1]}");
 
-            if (p1Turn)
-            {
-                button.Content = ttt.P1Symbol;
-                button.Foreground = Brushes.Red;
-                p1Turn = false;
-            }
-            else
-            {
-                button.Content = ttt.P2Symbol;
-                button.Foreground = Brushes.Blue;
-                p1Turn = true;
-            }
+            ButtonSet(button);
 
             isComputerTurn = false;
         }
