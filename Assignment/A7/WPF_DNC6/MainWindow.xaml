@@ -47,26 +47,16 @@
                         <Setter Property="Margin" Value="0,0" />
                     </Style>
                 </Grid.Resources>
-                <Grid.ColumnDefinitions>
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                    <ColumnDefinition Width="*" />
-                </Grid.ColumnDefinitions>
-                <Grid.RowDefinitions>
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                    <RowDefinition Height="*" />
-                </Grid.RowDefinitions>
 
-                <Button Click="GameButton_OnClick" Name="GameButton00" Grid.Row="0" Grid.Column="0" Content="X" />
-                <Button Click="GameButton_OnClick" Name="GameButton01" Grid.Row="0" Grid.Column="1" Content="O" />
-                <Button Click="GameButton_OnClick" Name="GameButton02" Grid.Row="0" Grid.Column="2" />
-                <Button Click="GameButton_OnClick" Name="GameButton10" Grid.Row="1" Grid.Column="0" />
-                <Button Click="GameButton_OnClick" Name="GameButton11" Grid.Row="1" Grid.Column="1" />
-                <Button Click="GameButton_OnClick" Name="GameButton12" Grid.Row="1" Grid.Column="2" />
-                <Button Click="GameButton_OnClick" Name="GameButton20" Grid.Row="2" Grid.Column="0" />
-                <Button Click="GameButton_OnClick" Name="GameButton21" Grid.Row="2" Grid.Column="1" />
-                <Button Click="GameButton_OnClick" Name="GameButton22" Grid.Row="2" Grid.Column="2" />
+                <!-- <Button Click="GameButton_OnClick" Name="GameButton00" Grid.Row="0" Grid.Column="0" Content="X" /> -->
+                <!-- <Button Click="GameButton_OnClick" Name="GameButton01" Grid.Row="0" Grid.Column="1" Content="O" /> -->
+                <!-- <Button Click="GameButton_OnClick" Name="GameButton02" Grid.Row="0" Grid.Column="2" /> -->
+                <!-- <Button Click="GameButton_OnClick" Name="GameButton10" Grid.Row="1" Grid.Column="0" /> -->
+                <!-- <Button Click="GameButton_OnClick" Name="GameButton11" Grid.Row="1" Grid.Column="1" /> -->
+                <!-- <Button Click="GameButton_OnClick" Name="GameButton12" Grid.Row="1" Grid.Column="2" /> -->
+                <!-- <Button Click="GameButton_OnClick" Name="GameButton20" Grid.Row="2" Grid.Column="0" /> -->
+                <!-- <Button Click="GameButton_OnClick" Name="GameButton21" Grid.Row="2" Grid.Column="1" /> -->
+                <!-- <Button Click="GameButton_OnClick" Name="GameButton22" Grid.Row="2" Grid.Column="2" /> -->
             </Grid>
         </Grid>
 
@@ -81,9 +71,15 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <Button Name="ButtonGameHuman" Grid.Row="0" Grid.Column="0" FontSize="15" Click="ButtonGameHuman_OnClick">vs Human</Button>
-            <Button Name="ButtonGameCompP1" Grid.Row="0" Grid.Column="2" FontSize="15" Click="ButtonGameCompP1_OnClick">vs Computer (as P1)</Button>
-            <Button Name="ButtonGameCompP2" Grid.Row="0" Grid.Column="4" FontSize="15" Click="ButtonGameCompP2_OnClick">vs Computer (as P2)</Button>
+            <Button Name="ButtonGameHuman" Grid.Row="0" Grid.Column="0" Click="ButtonGameHuman_OnClick">
+                <TextBlock FontSize="15" Text="vs Human" TextWrapping="Wrap" TextAlignment="Center" />
+            </Button>
+            <Button Name="ButtonGameCompP1" Grid.Row="0" Grid.Column="2" Click="ButtonGameCompP1_OnClick">
+                <TextBlock FontSize="15" Text="vs Computer (as P1)" TextWrapping="Wrap" TextAlignment="Center" />
+            </Button>
+            <Button Name="ButtonGameCompP2" Grid.Row="0" Grid.Column="4" Click="ButtonGameCompP2_OnClick">
+                <TextBlock FontSize="15" Text="vs Computer (as P2)" TextWrapping="Wrap" TextAlignment="Center" />
+            </Button>
         </Grid>
     </Grid>
 </Window>

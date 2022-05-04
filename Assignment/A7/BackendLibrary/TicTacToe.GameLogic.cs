@@ -18,9 +18,19 @@
             return true;
         }
 
+        public bool UndoMove(int x, int y)
+        {
+            if (x < 0 || x > boardSize || y < 0 || y > boardSize || string.IsNullOrEmpty(board[x, y]))
+                return false;
+            board[x, y] = null;
+            turnHistory.RemoveAt(turnHistory.Count - 1);
+            boardHistory.RemoveAt(boardHistory.Count - 1);
+            return true;
+        }
+
         public bool IsGameOver()
         {
-            return GetWinner() is not "";
+            return !string.IsNullOrEmpty(GetWinner());
         }
 
         public bool IsValidMove(string[] move)
@@ -42,9 +52,9 @@
                 winner = p1Name;
             else if (IsWinner(p2Symbol))
                 winner = p2Name;
-            else if (IsFilled()) 
+            else if (IsFilled())
                 winner = "Draw";
-            
+
             return winner;
         }
 
@@ -78,26 +88,26 @@
             }
 
             // Check diagonals right to left
-            for (int i = boardSize - 1; i >= 0; i--)
+            for (int i = 0; i < boardSize; i++)
             {
-                if (board[i, i] != symbol) break;
+                if (board[i, boardSize - 1 - i] != symbol) break;
 
-                if (i == 0) winner = true;
+                if (i == boardSize - 1) winner = true;
             }
 
             return winner;
         }
 
+        /// <summary>
+        ///     Find the non-empty cells in the board
+        /// </summary>
+        /// <returns>True if there is no empty cell, false otherwise</returns>
         public bool IsFilled()
         {
             for (int i = 0; i < boardSize; i++)
-            {
-                for (int j = 0; j < boardSize; j++)
-                {
-                    if (board[i, j] is null) 
-                        return false;
-                }
-            }
+            for (int j = 0; j < boardSize; j++)
+                if (board[i, j] is null)
+                    return false;
             return true;
         }
     }

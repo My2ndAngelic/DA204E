@@ -16,17 +16,22 @@ namespace BackendLibrary
                 .ToString();
         }
 
-        public void ComputerMove()
+        public int[] ComputerMove()
         {
             Random r = new Random();
-            if (IsGameOver()) return;
+            int x = -1;
+            int y = -1;
+            if (IsGameOver())
+                return new int[] {x, y};
             bool moveMade;
             do
             {
-                int x = r.Next(boardSize);
-                int y = r.Next(boardSize);
+                x = r.Next(boardSize);
+                y = r.Next(boardSize);
                 moveMade = Move(x, y);
-            } while(!moveMade);
+            } while (!moveMade);
+
+            return new int[] {x, y};
         }
     }
 }

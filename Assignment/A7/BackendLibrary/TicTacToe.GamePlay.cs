@@ -17,6 +17,7 @@
                 default:
                     return false;
             }
+
             string[] move = {symbol, x.ToString(), y.ToString()};
             if (!IsValidMove(move)) return false;
             int row = int.Parse(move[1]);

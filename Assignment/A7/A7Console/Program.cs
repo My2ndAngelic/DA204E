@@ -10,7 +10,8 @@ Console.WriteLine("Hello, World!");
 // ttt.Move("o-0-1");
 // ttt.Move("x-2-2");
 
-for (int i = 0; i < 10000; i++) {
+for (int i = 0; i < 10000; i++)
+{
     TicTacToe ttt = new TicTacToe(3)
     {
         P1Name = "John",
@@ -28,9 +29,7 @@ for (int i = 0; i < 10000; i++) {
     Console.WriteLine(ttt.ToString());
     string cwd = Directory.GetCurrentDirectory();
     if (!Directory.Exists(Path.Combine(new string[] {cwd, "savedata"})))
-    {
         Directory.CreateDirectory(Path.Combine(new string[] {cwd, "savedata"}));
-    }
     string lePath = Path.Combine(new string[] {Directory.GetCurrentDirectory(), "savedata", "match_history.txt"});
     File.AppendAllLines(lePath, new[] {ttt.ToString()});
 }
