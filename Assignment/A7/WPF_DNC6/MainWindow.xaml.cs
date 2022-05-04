@@ -112,8 +112,8 @@ namespace WPF_DNC6
             computerMode = true;
             p1Turn = true;
             isComputerTurn = false;
-            ComputerMove();
             Initialize();
+            ComputerMove();
         }
 
         private void ButtonGameCompP2_OnClick(object sender, RoutedEventArgs e)
@@ -123,6 +123,7 @@ namespace WPF_DNC6
             p1Turn = true;
             isComputerTurn = true;
             Initialize();
+            ComputerMove();
         }
 
         private void GameButton_OnClick(object sender, RoutedEventArgs e)
