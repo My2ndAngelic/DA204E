@@ -16,23 +16,6 @@ namespace BackendLibrary
                 $"{p1Name},{p2Name},{p1Symbol},{p2Symbol}|{new DateTimeOffset(startTime).ToUnixTimeSeconds()},{new DateTimeOffset(endTime).ToUnixTimeSeconds()}|{boardSize}|{string.Join(",", turnHistory)}";
         }
 
-        public int[] RandomComputerMove()
-        {
-            Random r = new Random();
-            int x = -1;
-            int y = -1;
-            if (IsGameOver())
-                return new int[] {x, y};
-            bool moveMade;
-            do
-            {
-                x = r.Next(boardSize);
-                y = r.Next(boardSize);
-                moveMade = Move(x, y);
-            } while (!moveMade);
-
-            return new int[] {x, y};
-        }
 
         /// <summary>
         ///     Reset the game, but keep the players and symbols
