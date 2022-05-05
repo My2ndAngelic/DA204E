@@ -4,23 +4,24 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MainWindow" Width="690" Height="420">
-    <Grid x:Name="MainGrid">
+        Title="MainWindow" Width="700" Height="700">
+    <Grid Name="MainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
             <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="20" />
             <ColumnDefinition Width="*" />
             <ColumnDefinition Width="20" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
             <RowDefinition Height="20" />
-            <RowDefinition Height="50" />
+            <RowDefinition Height="20" />
             <RowDefinition Height="*" />
-            <RowDefinition Height="30" />
+            <RowDefinition Height="20" />
             <RowDefinition Height="*" />
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
-        <Menu Height="auto" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="4">
+        <Menu Height="auto" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5">
             <MenuItem Header="_File">
                 <MenuItem Name="MenuItemNew" Header="_New" />
                 <MenuItem Name="MenuItemOpen" Header="_Open" Click="MenuItemOpen_OnClick" />
@@ -36,50 +37,64 @@
         </Menu>
 
         <Grid Grid.Column="1" Grid.Row="2">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
             <Grid.Resources>
                 <Style TargetType="{x:Type Grid}">
                     <Setter Property="Margin" Value="0 0" />
                 </Style>
             </Grid.Resources>
-            <Grid Name="PlayArea">
-                <Grid.Resources>
-                    <Style TargetType="{x:Type Button}">
-                        <Setter Property="Margin" Value="0,0" />
-                    </Style>
-                </Grid.Resources>
+            <TextBlock Text="Play Area" TextAlignment="Center" FontSize="15" VerticalAlignment="Center"
+                       Foreground="Chocolate" FontWeight="Bold" />
+            <Grid Name="PlayArea" Grid.Row="1" Grid.Column="0" />
+        </Grid>
 
-                <!-- <Button Click="GameButton_OnClick" Name="GameButton00" Grid.Row="0" Grid.Column="0" Content="X" /> -->
-                <!-- <Button Click="GameButton_OnClick" Name="GameButton01" Grid.Row="0" Grid.Column="1" Content="O" /> -->
-                <!-- <Button Click="GameButton_OnClick" Name="GameButton02" Grid.Row="0" Grid.Column="2" /> -->
-                <!-- <Button Click="GameButton_OnClick" Name="GameButton10" Grid.Row="1" Grid.Column="0" /> -->
-                <!-- <Button Click="GameButton_OnClick" Name="GameButton11" Grid.Row="1" Grid.Column="1" /> -->
-                <!-- <Button Click="GameButton_OnClick" Name="GameButton12" Grid.Row="1" Grid.Column="2" /> -->
-                <!-- <Button Click="GameButton_OnClick" Name="GameButton20" Grid.Row="2" Grid.Column="0" /> -->
-                <!-- <Button Click="GameButton_OnClick" Name="GameButton21" Grid.Row="2" Grid.Column="1" /> -->
-                <!-- <Button Click="GameButton_OnClick" Name="GameButton22" Grid.Row="2" Grid.Column="2" /> -->
+        <Grid Grid.Row="4" Grid.Column="1">
+            <Grid.RowDefinitions>
+                <RowDefinition Height="30" />
+                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
+                <RowDefinition Height="*" />
+            </Grid.RowDefinitions>
+            <TextBlock FontSize="15" Text="New Game" FontWeight="Bold" TextAlignment="Center" Foreground="Brown" />
+            <Grid Grid.Row="1" Name="PlayMode">
+                <Grid.ColumnDefinitions>
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
+                </Grid.ColumnDefinitions>
+                <Button Name="ButtonGameHuman" Grid.Column="0" Click="ButtonGameHuman_OnClick">
+                    <TextBlock FontSize="15" Text="PvP" TextWrapping="Wrap" TextAlignment="Center" ToolTip="Play against another player"/>
+                </Button>
+                <Button Name="ButtonGameCompP1" Grid.Column="2" Click="ButtonGameCompP1_OnClick">
+                    <TextBlock FontSize="15" Text="PvE" TextWrapping="Wrap" TextAlignment="Center" ToolTip="Play against computer (you goes first)"/>
+                </Button>
+                <Button Name="ButtonGameCompP2" Grid.Column="4" Click="ButtonGameCompP2_OnClick" ToolTip="Play against computer (computer goes first)">
+                    <TextBlock FontSize="15" Text="EvP" TextWrapping="Wrap" TextAlignment="Center" />
+                </Button>
+            </Grid>
+            <Grid Grid.Row="2" Grid.RowSpan="2">
+                <Grid.RowDefinitions>
+                    <RowDefinition Height="50" />
+                    <RowDefinition Height="*" />
+                </Grid.RowDefinitions>
+                <TextBlock Text="Status" TextAlignment="Center" VerticalAlignment="Center" FontSize="15"
+                           FontWeight="Bold" Foreground="Crimson" />
+                <TextBlock Name="GameStatus" Grid.Row="1" Text="Status" TextAlignment="Center"
+                           VerticalAlignment="Center" FontSize="15" TextWrapping="Wrap" />
+
             </Grid>
         </Grid>
 
-        <Grid x:Name="PlayMode" Grid.Row="4" Grid.Column="1">
-            <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="20" />
-                <ColumnDefinition Width="*" />
-                <ColumnDefinition Width="20" />
-                <ColumnDefinition Width="*" />
-            </Grid.ColumnDefinitions>
-            <Grid.RowDefinitions>
-                <RowDefinition Height="*" />
-            </Grid.RowDefinitions>
-            <Button Name="ButtonGameHuman" Grid.Row="0" Grid.Column="0" Click="ButtonGameHuman_OnClick">
-                <TextBlock FontSize="15" Text="vs Human" TextWrapping="Wrap" TextAlignment="Center" />
-            </Button>
-            <Button Name="ButtonGameCompP1" Grid.Row="0" Grid.Column="2" Click="ButtonGameCompP1_OnClick">
-                <TextBlock FontSize="15" Text="vs Computer (as P1)" TextWrapping="Wrap" TextAlignment="Center" />
-            </Button>
-            <Button Name="ButtonGameCompP2" Grid.Row="0" Grid.Column="4" Click="ButtonGameCompP2_OnClick">
-                <TextBlock FontSize="15" Text="vs Computer (as P2)" TextWrapping="Wrap" TextAlignment="Center" />
-            </Button>
+        <Grid Name="MoveHistory" Grid.Column="3" Grid.Row="2" />
+        <Grid Name="TimeAnnouncer" Grid.Column="3" Grid.Row="4">
+
+            <TextBlock Name="Time" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Bottom"
+                       TextAlignment="Left" FontStyle="Normal" Foreground="Navy" TextWrapping="Wrap" />
         </Grid>
     </Grid>
 </Window>

@@ -53,7 +53,7 @@
             else if (IsWinner(p2Symbol))
                 winner = p2Name;
             else if (IsFilled())
-                winner = "Draw";
+                winner = "No one";
 
             return winner;
         }

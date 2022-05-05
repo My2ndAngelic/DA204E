@@ -15,28 +15,25 @@ namespace WPF_DNC6
     /// </summary>
     public partial class MainWindow : Window
     {
-        private bool isComputerVSHumanMode;
+        private const int boardSize = 3;
         private bool isComputerTurn;
+        private bool isComputerVsHumanMode;
         private bool p1Turn = true;
+        private TicTacToe ttt;
 
-        private TicTacToe ttt = new TicTacToe(3)
-        {
-            P1Symbol = "X",
-            P2Symbol = "O"
-        };
-
-        private List<TicTacToe> tttList = new List<TicTacToe>();
+        // private List<TicTacToe> tttList = new List<TicTacToe>();
 
         public MainWindow()
         {
             InitializeComponent();
+            NewGame();
             InitializeGUI();
-            Initialize();
+            InitializeBoard();
         }
 
         private void NewGame()
         {
-            ttt = new TicTacToe(3)
+            ttt = new TicTacToe(boardSize)
             {
                 P1Symbol = "X",
                 P2Symbol = "O"
@@ -50,18 +47,38 @@ namespace WPF_DNC6
             dispatcherTimer.Tick += dispatcherTimer_Tick;
             dispatcherTimer.Interval = new TimeSpan(0, 0, 1);
             dispatcherTimer.Start();
+        }
+
+        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        {
+            Time.Text =
+                $"Date: {DateTime.Now:yyyy-MM-dd}\nTime: {DateTime.Now:HH:mm:ss}\nTimezone: GMT/UTC{DateTime.Now:zzz}";
+        }
+
+        private void MenuItemOpen_OnClick(object sender, RoutedEventArgs e)
+        {
+            OpenFileDialog openFileDialog = new OpenFileDialog();
+            openFileDialog.ShowDialog();
+        }
+
+        private void InitializeBoard()
+        {
+            PlayArea.Children.Clear();
+            PlayArea.RowDefinitions.Clear();
+            PlayArea.ColumnDefinitions.Clear();
+
             for (int i = 0; i < ttt.BoardSize; i++)
             {
-                RowDefinition row = new RowDefinition
+                RowDefinition rowStar = new RowDefinition
                 {
                     Height = new GridLength(1, GridUnitType.Star)
                 };
-                PlayArea.RowDefinitions.Add(row);
-                ColumnDefinition column = new ColumnDefinition
+                PlayArea.RowDefinitions.Add(rowStar);
+                ColumnDefinition columnStar = new ColumnDefinition
                 {
                     Width = new GridLength(1, GridUnitType.Star)
                 };
-                PlayArea.ColumnDefinitions.Add(column);
+                PlayArea.ColumnDefinitions.Add(columnStar);
             }
 
             for (int i = 0; i < ttt.BoardSize; i++)
@@ -72,77 +89,67 @@ namespace WPF_DNC6
                 button.Name = $"Button_{i}_{j}";
                 Grid.SetRow(button, i);
                 Grid.SetColumn(button, j);
+                button.FontSize = 30;
+                button.FontWeight = FontWeights.Bold;
                 PlayArea.Children.Add(button);
             }
-        }
 
-        private void dispatcherTimer_Tick(object sender, EventArgs e)
-        {
-            // Time.Content = DateTime.Now.ToString("HH:mm:ss");
-        }
-
-        private void MenuItemOpen_OnClick(object sender, RoutedEventArgs e)
-        {
-            OpenFileDialog openFileDialog = new OpenFileDialog();
-            openFileDialog.ShowDialog();
-        }
-
-        private void Initialize()
-        {
             List<Button> buttons = PlayArea.Children.OfType<Button>().ToList();
             foreach (Button button in buttons)
             {
                 button.Content = "";
-                button.Background = Brushes.White;
-                button.Foreground = Brushes.Black;
-                button.FontSize = 30;
+                button.IsEnabled = true;
             }
+            GameOver();
         }
 
         private void ButtonGameHuman_OnClick(object sender, RoutedEventArgs e)
         {
             NewGame();
-            isComputerVSHumanMode = false;
-            Initialize();
+            ttt.P1Name = "Player 1";
+            ttt.P2Name = "Player 2";
+            isComputerVsHumanMode = false;
+            isComputerTurn = false;
+            InitializeBoard();
         }
 
         private void ButtonGameCompP1_OnClick(object sender, RoutedEventArgs e)
         {
             NewGame();
-            isComputerVSHumanMode = true;
-            p1Turn = true;
+            ttt.P1Name = "Player 1";
+            ttt.P2Name = "Computer";
+            isComputerVsHumanMode = true;
             isComputerTurn = false;
-            Initialize();
-            ComputerMove();
+            InitializeBoard();
+            GameOver();
         }
 
         private void ButtonGameCompP2_OnClick(object sender, RoutedEventArgs e)
         {
             NewGame();
-            isComputerVSHumanMode = true;
-            p1Turn = true;
+            ttt.P1Name = "Computer";
+            ttt.P2Name = "Player 2";
+            isComputerVsHumanMode = true;
             isComputerTurn = true;
-            Initialize();
+            InitializeBoard();
+            GameOver();
             ComputerMove();
         }
 
         private void GameButton_OnClick(object sender, RoutedEventArgs e)
         {
-            if (ttt.IsGameOver())
-                return;
-            
             Button button = (Button) sender;
 
             int column = Grid.GetColumn(button);
             int row = Grid.GetRow(button);
 
             if (!ttt.IsValidMove(row, column)) return;
-            
+
             ButtonSet(button);
-
             ttt.Move(row, column);
+            GameOver();
 
-            if (!isComputerVSHumanMode) return;
+            if (!isComputerVsHumanMode) return;
             isComputerTurn = true;
             ComputerMove();
         }
@@ -153,29 +160,43 @@ namespace WPF_DNC6
             {
                 button.Content = ttt.P1Symbol;
                 button.Foreground = Brushes.Red;
+                button.Background = Brushes.Red;
                 p1Turn = false;
             }
             else
             {
                 button.Content = ttt.P2Symbol;
                 button.Foreground = Brushes.Blue;
+                button.Background = Brushes.Blue;
                 p1Turn = true;
             }
+            button.IsEnabled = false;
         }
-        
+
         private void ComputerMove()
         {
-            if (!isComputerVSHumanMode || !isComputerTurn || ttt.IsGameOver()) return;
-            
-            int[] computerMove = ttt.ComputerMove();
+            if (!isComputerVsHumanMode || !isComputerTurn || ttt.IsGameOver()) return;
+
+            int[] computerMove = ttt.RandomComputerMove();
 
             // Click the button from the computer's move
-            Button button = PlayArea.Children.OfType<Button>()
-                .First(button1 => button1.Name == $"Button_{computerMove[0]}_{computerMove[1]}");
 
-            ButtonSet(button);
-
+            ButtonSet(PlayArea.Children.OfType<Button>()
+                .First(b => b.Name == $"Button_{computerMove[0]}_{computerMove[1]}"));
             isComputerTurn = false;
+            GameOver();
+        }
+
+        private void GameOver()
+        {
+            if (!ttt.IsGameOver())
+            {
+                GameStatus.Text = $"Ongoing between {ttt.P1Name}: {ttt.P1Symbol} and {ttt.P2Name}: {ttt.P2Symbol}";
+                return;
+            }
+
+            GameStatus.Text = $"Game over. {ttt.GetWinner()} wins!";
+            foreach (Button button in PlayArea.Children.OfType<Button>()) button.IsEnabled = false;
         }
     }
 }

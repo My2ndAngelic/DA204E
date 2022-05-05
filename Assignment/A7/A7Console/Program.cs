@@ -21,7 +21,7 @@ for (int i = 0; i < 10000; i++)
     };
     do
     {
-        ttt.ComputerMove();
+        ttt.RandomComputerMove();
     } while (!ttt.IsGameOver());
 
     Console.WriteLine(ttt.BoardDisplay());

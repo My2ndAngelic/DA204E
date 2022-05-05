@@ -10,7 +10,7 @@ namespace BackendLibrary
         public static class Arrays
         {
             /// <summary>
-            ///     Java algorithm of the Arrays.DeepToString() method to convert a multidimensional array to a string.
+            ///     Java algorithm of the Arrays.DeepToString method to convert a multidimensional array to a string.
             /// </summary>
             /// <param name="array"></param>
             /// <typeparam name="T"></typeparam>
@@ -36,7 +36,7 @@ namespace BackendLibrary
             }
 
             /// <summary>
-            ///     Java algorithm of the Arrays.DeepToString() method to convert a jagged array to a string.
+            ///     Java algorithm of the Arrays.DeepToString method to convert a jagged array to a string.
             /// </summary>
             /// <param name="array"></param>
             /// <typeparam name="T"></typeparam>
@@ -62,7 +62,7 @@ namespace BackendLibrary
             }
 
             /// <summary>
-            ///     Java algorithm of the Arrays.ToString() method to convert an array to string.
+            ///     Java algorithm of the Arrays.ToString method to convert an array to string.
             /// </summary>
             /// <param name="array"></param>
             /// <typeparam name="T"></typeparam>
@@ -73,7 +73,8 @@ namespace BackendLibrary
                     return "null";
                 StringBuilder result = new StringBuilder(); // Java style
                 result.Append('['); // Add the opening bracket
-                for (int i = 0; i < array.Length; i++) result.Append($"{(array[i] == null ? "null" : array[i])}, ");
+                for (int i = 0; i < array.Length; i++)
+                    result.Append($"{(array[i] == null ? "null" : array[i])}, ");
                 result.Remove(result.Length - 2, 2)
                     .Append(']'); // Remove the last comma and space and add the closing bracket
                 return result.ToString(); // Return the string
