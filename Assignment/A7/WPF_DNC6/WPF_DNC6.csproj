@@ -2,13 +2,18 @@
 
     <PropertyGroup>
         <OutputType>WinExe</OutputType>
-        <TargetFramework>net6.0-windows</TargetFramework>
         <Nullable>enable</Nullable>
         <UseWPF>true</UseWPF>
+        <UseWindowsForms>true</UseWindowsForms>
+        <TargetFramework>net6.0-windows</TargetFramework>
     </PropertyGroup>
 
     <ItemGroup>
         <ProjectReference Include="..\BackendLibrary\BackendLibrary.csproj"/>
+    </ItemGroup>
+
+    <ItemGroup>
+        <PackageReference Include="WPFLocalizeExtension" Version="3.9.4"/>
     </ItemGroup>
 
 </Project>

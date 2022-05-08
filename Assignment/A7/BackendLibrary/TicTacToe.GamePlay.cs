@@ -4,8 +4,9 @@
     {
         public bool Move(int x, int y)
         {
-            if (IsGameOver()) return false;
-            string symbol = "";
+            if (IsGameOver() || !IsValidMove(x, y)) return false;
+            string symbol;
+            BeginSwitchCurrentPlayer:
             switch (currentPlayer)
             {
                 case 0:
@@ -15,18 +16,17 @@
                     symbol = p2Symbol;
                     break;
                 default:
-                    return false;
+                    currentPlayer %= 2; 
+                    goto BeginSwitchCurrentPlayer;
             }
 
-            string[] move = {symbol, x.ToString(), y.ToString()};
-            if (!IsValidMove(move)) return false;
-            int row = int.Parse(move[1]);
-            int col = int.Parse(move[2]);
-            endTime = DateTime.Now;
-            currentPlayer = (currentPlayer + 1) % 2;
-            board[row, col] = symbol;
-            turnHistory.Add(string.Join('-', move));
+            currentPlayer++;
+            board[x, y] = symbol;
+            turnHistory.Add(string.Join('-', symbol, x.ToString(), y.ToString()));
             boardHistory.Add(board);
+            if (turnHistory.Count == 0)
+                startTime = DateTime.Now;
+            endTime = DateTime.Now;
             return true;
         }
     }

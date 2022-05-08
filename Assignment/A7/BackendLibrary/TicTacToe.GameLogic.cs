@@ -47,7 +47,7 @@
 
         public string GetWinner()
         {
-            string winner = "";
+            string winner = string.Empty;
             if (IsWinner(p1Symbol))
                 winner = p1Name;
             else if (IsWinner(p2Symbol))

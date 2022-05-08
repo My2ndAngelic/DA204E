@@ -28,7 +28,7 @@
             p1Symbol = playerData[2];
             p2Symbol = playerData[3];
 
-            string[] timeData = dataArray[1].Split(',');
+            string[] timeData = dataArray[1].Split(':');
             startTime = DateTime.Parse(DateTimeOffset.FromUnixTimeSeconds(long.Parse(timeData[0])).ToString());
             endTime = DateTime.Parse(DateTimeOffset.FromUnixTimeSeconds(long.Parse(timeData[1])).ToString());
 
@@ -55,7 +55,7 @@
             p1Symbol = playerData[2];
             p2Symbol = playerData[3];
 
-            string[] timeData = dataArray[1].Split(',');
+            string[] timeData = dataArray[1].Split(':');
             startTime = DateTime.Parse(DateTimeOffset.FromUnixTimeSeconds(long.Parse(timeData[0])).ToString());
             endTime = DateTime.Parse(DateTimeOffset.FromUnixTimeSeconds(long.Parse(timeData[1])).ToString());
 

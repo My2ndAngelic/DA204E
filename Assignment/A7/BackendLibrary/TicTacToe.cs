@@ -1,3 +1,5 @@
+using System.Globalization;
+
 namespace BackendLibrary
 {
     public partial class TicTacToe
@@ -13,9 +15,8 @@ namespace BackendLibrary
             //     .Append(string.Join(",", turnHistory))
             //     .ToString();
             return
-                $"{p1Name},{p2Name},{p1Symbol},{p2Symbol}|{new DateTimeOffset(startTime).ToUnixTimeSeconds()},{new DateTimeOffset(endTime).ToUnixTimeSeconds()}|{boardSize}|{string.Join(",", turnHistory)}";
+                $"{p1Name},{p2Name},{p1Symbol},{p2Symbol}|{new DateTimeOffset(startTime).ToUnixTimeMilliseconds().ToString(CultureInfo.InvariantCulture)}:{new DateTimeOffset(endTime).ToUnixTimeMilliseconds().ToString(CultureInfo.InvariantCulture)}|{boardSize}|{string.Join(",", turnHistory)}";
         }
-
 
         /// <summary>
         ///     Reset the game, but keep the players and symbols
