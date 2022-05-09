@@ -4,7 +4,7 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MainWindow" Width="700" Height="700">
+        Title="MainWindow" Width="800" Height="800">
     <Grid Name="MainGrid">
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
@@ -14,7 +14,7 @@
             <ColumnDefinition Width="20" />
         </Grid.ColumnDefinitions>
         <Grid.RowDefinitions>
-            <RowDefinition Height="10" />
+            <RowDefinition Height="20" />
             <RowDefinition Height="20" />
             <RowDefinition Height="*" />
             <RowDefinition Height="20" />
@@ -23,10 +23,12 @@
             <RowDefinition Height="*" />
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
+        
+        <!-- Future Expansion-->
         <!-- <Menu Height="auto" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5"> -->
         <!--     <MenuItem Header="_File"> -->
         <!--         <MenuItem Name="MenuItemNew" Header="_New" /> -->
-        <!--         <MenuItem Name="MenuItemOpen" Header="_Open" Click="MenuItemOpen_OnClick" /> -->
+        <!--         <MenuItem Name="MenuItemOpen" Header="_Open" /> -->
         <!--         <Separator /> -->
         <!--         <MenuItem Name="MenuItemSave" Header="_Save" /> -->
         <!--         <MenuItem Name="MenuItemSaveAs" Header="_Save As" /> -->
@@ -115,14 +117,16 @@
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />
                 <RowDefinition Height="*" />
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Name="SystemInfo" FontSize="15"
                        TextAlignment="Center" FontStyle="Normal" Foreground="Teal" TextWrapping="Wrap"
                        FontWeight="Bold" Text="System Information" />
-            <TextBlock Grid.Row="1" Name="SysInfo" FontSize="15" HorizontalAlignment="Center"
+            <TextBlock Grid.Row="1" Name="TimeInfo" FontSize="15"
                        VerticalAlignment="Center"
                        TextAlignment="Left" FontStyle="Normal" Foreground="Navy" TextWrapping="Wrap"
-                       Text="System Infomation" />
+                       Text="Time Infomation" />
+            <TextBox Grid.Row="2" Name="SysInfo" FontSize="15" Foreground="DarkBlue" VerticalAlignment="Center" TextAlignment="Left" IsReadOnly="True" BorderThickness="0" TextWrapping="Wrap" Text="SysInfo"/>
         </Grid>
         <Grid Grid.Column="3" Grid.Row="6">
             <Grid.RowDefinitions>

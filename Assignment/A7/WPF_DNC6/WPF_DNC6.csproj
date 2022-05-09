@@ -9,11 +9,7 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\BackendLibrary\BackendLibrary.csproj"/>
-    </ItemGroup>
-
-    <ItemGroup>
-        <PackageReference Include="WPFLocalizeExtension" Version="3.9.4"/>
+        <ProjectReference Include="..\BackendLibrary\BackendLibrary.csproj" />
     </ItemGroup>
 
 </Project>

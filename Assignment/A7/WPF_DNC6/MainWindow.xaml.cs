@@ -1,8 +1,6 @@
 using System;
 using System.IO;
 using System.Linq;
-using System.Threading.Tasks;
-using System.Timers;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
@@ -21,12 +19,12 @@ namespace WPF_DNC6
     public partial class MainWindow : Window
     {
         private const int BoardSize = 3;
-        private const string FolderName = "savedata";
-        private string folderPath = Environment.CurrentDirectory;
+        private string folderPath = $"{Environment.CurrentDirectory}";
         private bool isComputerTurn;
         private bool isComputerVsHumanMode;
+        private bool isComputerVsComputerMode;
         private bool p1Turn = true;
-        private TicTacToe ttt;
+        private readonly TicTacToe ttt = new TicTacToe(BoardSize);
 
         public MainWindow()
         {
@@ -39,11 +37,7 @@ namespace WPF_DNC6
 
         private void NewGame()
         {
-            ttt = new TicTacToe(BoardSize)
-            {
-                P1Symbol = "X",
-                P2Symbol = "O"
-            };
+            ttt.Reset();
             p1Turn = true;
             LeList.Items.Clear();
         }
@@ -56,19 +50,18 @@ namespace WPF_DNC6
             };
             dt.Tick += dispatcherTimer_Tick;
             dt.Start();
+            SysInfo.Text = $"Save folder: {folderPath}";
         }
 
-        private void dispatcherTimer_Tick(object sender, EventArgs e)
+        private void dispatcherTimer_Tick(object? sender, EventArgs e)
         {
             // OS: {RuntimeInformation.OSDescription} {RuntimeInformation.OSArchitecture}
             // .NET version: {Environment.Version}
             // Timezone: GMT/UTC{DateTime.Now:zzz}
-            SysInfo.Text =
+            TimeInfo.Text =
                 $@"Date: {DateTime.Now:yyyy-MM-dd}
 Time: {DateTime.Now:HH:mm:ss}
-Match length: {(ttt.TurnHistory.Count == 0 ? 0 : ttt.IsGameOver() ? ttt.EndTime.Subtract(ttt.StartTime).TotalMilliseconds / 1000 : DateTime.Now.Subtract(ttt.StartTime).TotalMilliseconds / 1000):F}
-
-Save folder: {folderPath}\{FolderName}\";
+Match length: {(ttt.TurnHistory.Count == 0 ? 0 : ttt.IsGameOver() ? ttt.EndTime.Subtract(ttt.StartTime).TotalMilliseconds / 1000 : DateTime.Now.Subtract(ttt.StartTime).TotalMilliseconds / 1000):F}";
         }
 
         private void InitializeBoard()
@@ -98,7 +91,7 @@ Save folder: {folderPath}\{FolderName}\";
             for (int j = 0; j < ttt.BoardSize; j++)
             {
                 Button button = new Button();
-                button.Click += GameButton_OnClick;
+                button.Click += ButtonGameBoard_OnClick;
                 button.Name = $"Button_{i}_{j}";
                 Grid.SetRow(button, i);
                 Grid.SetColumn(button, j);
@@ -108,11 +101,11 @@ Save folder: {folderPath}\{FolderName}\";
                 button.IsEnabled = true;
                 PlayArea.Children.Add(button);
             }
-
-            CheckGameStatus();
-
+            // Match history list
             LeList.FontSize = 15;
             LeList.FontFamily = new FontFamily("Consolas");
+            
+            CheckGameStatus();
         }
 
         private void ButtonGameHuman_OnClick(object sender, RoutedEventArgs e)
@@ -122,6 +115,7 @@ Save folder: {folderPath}\{FolderName}\";
             ttt.P2Name = "Player 2";
             isComputerVsHumanMode = false;
             isComputerTurn = false;
+            isComputerVsComputerMode = false;
             InitializeBoard();
         }
 
@@ -132,6 +126,7 @@ Save folder: {folderPath}\{FolderName}\";
             ttt.P2Name = "Computer";
             isComputerVsHumanMode = true;
             isComputerTurn = false;
+            isComputerVsComputerMode = false;
             InitializeBoard();
             CheckGameStatus();
         }
@@ -143,12 +138,13 @@ Save folder: {folderPath}\{FolderName}\";
             ttt.P2Name = "Player 2";
             isComputerVsHumanMode = true;
             isComputerTurn = true;
+            isComputerVsComputerMode = false;
             InitializeBoard();
             CheckGameStatus();
             ComputerMove();
         }
 
-        private void GameButton_OnClick(object sender, RoutedEventArgs e)
+        private void ButtonGameBoard_OnClick(object sender, RoutedEventArgs e)
         {
             Button button = (Button) sender;
 
@@ -158,13 +154,14 @@ Save folder: {folderPath}\{FolderName}\";
             if (!ttt.IsValidMove(row, column)) return;
 
             LeList.Items.Add(
-                $"{(p1Turn ? ttt.P1Name : ttt.P2Name)} puts {(p1Turn ? ttt.P1Symbol : ttt.P2Symbol)} into {row}, {column}.");
+                $"{(p1Turn ? ttt.P1Name : ttt.P2Name)} puts {(p1Turn ? ttt.P1Symbol : ttt.P2Symbol)} into row {row} column {column}.");
             ButtonSet(button);
             ttt.Move(row, column);
             CheckGameStatus();
 
             if (!isComputerVsHumanMode) return;
-            isComputerTurn = !isComputerTurn;
+            if (!isComputerVsComputerMode)
+                isComputerTurn = !isComputerTurn;
             ComputerMove();
         }
 
@@ -197,7 +194,7 @@ Save folder: {folderPath}\{FolderName}\";
             // Click the button from the computer's move
             PlayArea.Children.OfType<Button>().First(b => b.Name == $"Button_{computerMove[0]}_{computerMove[1]}")
                 .RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
-            isComputerTurn = false;
+            // isComputerTurn = false;
         }
 
         private void CheckGameStatus()
@@ -209,7 +206,6 @@ Save folder: {folderPath}\{FolderName}\";
             }
 
             GameStatus.Text = $"Game over. {ttt.GetWinner()} wins!";
-            // LeList.Items.Add(GameStatus.Text);
             LeList.Items.Add($"Match length: {ttt.EndTime.Subtract(ttt.StartTime).TotalSeconds:F} seconds");
             foreach (Button button in PlayArea.Children.OfType<Button>()) button.IsEnabled = false;
 
@@ -229,12 +225,8 @@ Save folder: {folderPath}\{FolderName}\";
                         MessageBoxImage.Error);
                     return;
                 }
-
-                if (!Directory.Exists($"{folderPath}\\{FolderName}"))
-                    Directory.CreateDirectory($"{folderPath}\\{FolderName}");
-
                 File.WriteAllText(
-                    $"{folderPath}\\{FolderName}\\{new DateTimeOffset(ttt.StartTime).ToUnixTimeSeconds()}.mhf",
+                    $"{folderPath}\\{new DateTimeOffset(ttt.StartTime).ToUnixTimeSeconds()}.mhf",
                     ttt.ToString());
                 MessageBox.Show("Match saved successfully.", "Save", MessageBoxButton.OK, MessageBoxImage.Information);
             }
@@ -260,9 +252,7 @@ Save folder: {folderPath}\{FolderName}\";
             FolderBrowserDialog fbd = new FolderBrowserDialog();
             fbd.ShowDialog();
             folderPath = Path.GetFullPath(fbd.SelectedPath);
-            if (!Directory.Exists($"{folderPath}\\{FolderName}"))
-                Directory.CreateDirectory($"{folderPath}\\{FolderName}");
-            // File.WriteAllText($"{folderPath}\\savedata\\{new DateTimeOffset(ttt.StartTime).ToUnixTimeSeconds()}.mhf", ttt.ToString());
+            SysInfo.Text = $"Save folder: {folderPath}";
         }
     }
 }
