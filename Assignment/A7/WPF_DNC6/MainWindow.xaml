@@ -149,7 +149,8 @@
                         ToolTip="Save completed match to current folder (*.mhf)" />
                 <Button Grid.Column="2" Name="ButtonSelectFolder" FontSize="15" Click="ButtonSelectFolder_OnClick"
                         Content="Folder" ToolTip="Select a folder to save match data (*.mhf)" />
-                <Button Grid.Column="4" Name="ButtonAbout" FontSize="15" Click="ButtonAbout_OnClick" Content="About" ToolTip="Show about info"/>
+                <Button Grid.Column="4" Name="ButtonAbout" FontSize="15" Click="ButtonAbout_OnClick" Content="About"
+                        ToolTip="Show about info" />
                 <Button Grid.Column="6" Name="ButtonExit" FontSize="15" Click="ButtonExit_OnClick" Content="Exit"
                         ToolTip="Close the program" />
             </Grid>

@@ -17,12 +17,22 @@ namespace BackendLibrary
             endTime = DateTime.Now;
         }
 
+        /// <summary>
+        /// Return match data in string
+        /// Format:
+        /// "p1Name,p2Name,p1Symbol,p2Symbol|startTime|endTime|boardSize|turnHistory"
+        /// </summary>
+        /// <returns>Match data in string</returns>
         public override string ToString()
         {
             return
                 $"{p1Name},{p2Name},{p1Symbol},{p2Symbol}|{new DateTimeOffset(startTime).ToUnixTimeMilliseconds().ToString(CultureInfo.InvariantCulture)}:{new DateTimeOffset(endTime).ToUnixTimeMilliseconds().ToString(CultureInfo.InvariantCulture)}|{boardSize}|{string.Join(",", turnHistory)}";
         }
 
+        /// <summary>
+        ///     Return the same string as ToString but in the StringBuilder class
+        /// </summary>
+        /// <returns></returns>
         public StringBuilder ToStringBuilder()
         {
             return new StringBuilder()

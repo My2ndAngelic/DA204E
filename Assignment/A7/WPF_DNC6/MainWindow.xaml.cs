@@ -36,6 +36,11 @@ namespace WPF_DNC6
             DataContext = ttt;
         }
 
+        private void ButtonAbout_OnClick(object sender, RoutedEventArgs e)
+        {
+            new AboutWindow().ShowDialog();
+        }
+
         private void ButtonExit_OnClick(object sender, RoutedEventArgs e)
         {
             // MatchHistory matchHistory = new MatchHistory();
@@ -209,9 +214,6 @@ namespace WPF_DNC6
 
         private void dispatcherTimer_Tick(object? sender, EventArgs e)
         {
-            // OS: {RuntimeInformation.OSDescription} {RuntimeInformation.OSArchitecture}
-            // .NET version: {Environment.Version}
-            // Timezone: GMT/UTC{DateTime.Now:zzz}
             TimeInfo.Text =
                 $@"Date: {DateTime.Now:yyyy-MM-dd}
 Time: {DateTime.Now:HH:mm:ss}
@@ -271,7 +273,8 @@ Match length: {(ttt.TurnHistory.Count == 0 ? 0 : ttt.IsGameOver() ? ttt.EndTime.
             dt.Tick += dispatcherTimer_Tick;
             dt.Start();
             SysInfo.Text = $"Save folder: {folderPath}";
-            Title = $"{((AssemblyProductAttribute) Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(), typeof(AssemblyProductAttribute), false)).Product}";
+            Title =
+                $"{((AssemblyProductAttribute) Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(), typeof(AssemblyProductAttribute), false)).Product}";
         }
 
         private void NewGame()
@@ -279,11 +282,6 @@ Match length: {(ttt.TurnHistory.Count == 0 ? 0 : ttt.IsGameOver() ? ttt.EndTime.
             ttt.Reset();
             p1Turn = true;
             LeList.Items.Clear();
-        }
-
-        private void ButtonAbout_OnClick(object sender, RoutedEventArgs e)
-        {
-            new AboutWindow().ShowDialog();
         }
     }
 }

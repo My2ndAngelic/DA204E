@@ -1,4 +1,4 @@
-using System.Collections;
+﻿using System.Collections;
 
 namespace BackendLibrary
 {
@@ -34,8 +34,7 @@ namespace BackendLibrary
 
         public void Add(TicTacToe item)
         {
-            if (item != null)
-                ticTacToes.Add(item);
+            ticTacToes.Add(item);
         }
 
         public void Clear()

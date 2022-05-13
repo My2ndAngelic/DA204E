@@ -7,45 +7,47 @@
         Title="AboutWindow" Height="469" Width="500">
     <Grid>
         <Grid.ColumnDefinitions>
-            <ColumnDefinition Width="20"/>
-            <ColumnDefinition Width="*"/>
-            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="20" />
+            <ColumnDefinition Width="*" />
+            <ColumnDefinition Width="20" />
         </Grid.ColumnDefinitions>
-        
+
         <Grid.RowDefinitions>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="50"/>
-            <RowDefinition Height="20"/>
-            <RowDefinition Height="*"/>
-            <RowDefinition Height="0"/>
-            <RowDefinition Height="30"/>
-            <RowDefinition Height="20"/>
+            <RowDefinition Height="20" />
+            <RowDefinition Height="50" />
+            <RowDefinition Height="20" />
+            <RowDefinition Height="*" />
+            <RowDefinition Height="0" />
+            <RowDefinition Height="30" />
+            <RowDefinition Height="20" />
         </Grid.RowDefinitions>
-        
+
         <Grid Grid.Row="1" Grid.Column="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="80" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Image Name="LeIcon" Grid.Column="0" Source="Resources/sample.png"/>
-            <TextBlock Name="TextTitle" Grid.Column="1" Text="This feature is not implemented." TextAlignment="Left" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" />
+            <Image Name="LeIcon" Grid.Column="0" Source="Resources/sample.png" />
+            <TextBlock Name="TextTitle" Grid.Column="1" Text="This feature is not implemented." TextAlignment="Left"
+                       VerticalAlignment="Center" FontSize="30" FontWeight="Bold" />
         </Grid>
         <Grid Grid.Row="3" Grid.Column="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="80"/>
-                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="80" />
+                <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
             <Grid.RowDefinitions>
-                <RowDefinition Height="*"/>
+                <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <TextBlock Name="TextAbout" Grid.Column="1" Text="This feature is not implemented." TextAlignment="Left" FontSize="15" TextWrapping="Wrap" />
+            <TextBlock Name="TextAbout" Grid.Column="1" Text="This feature is not implemented." TextAlignment="Left"
+                       FontSize="15" TextWrapping="Wrap" />
         </Grid>
         <Grid Grid.Row="5" Grid.Column="1">
             <Grid.ColumnDefinitions>
-                <ColumnDefinition Width="*"/>
-                <ColumnDefinition Width="100"/>
+                <ColumnDefinition Width="*" />
+                <ColumnDefinition Width="100" />
             </Grid.ColumnDefinitions>
-            <Button Grid.Column="1" Content="OK" FontSize="15" Click="ButtonOK_OnClick"></Button>
+            <Button Grid.Column="1" Content="OK" FontSize="15" Click="ButtonOK_OnClick" />
         </Grid>
     </Grid>
 </Window>

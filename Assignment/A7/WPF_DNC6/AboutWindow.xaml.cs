@@ -5,7 +5,7 @@ using System.Windows;
 
 namespace WPF_DNC6
 {
-    public partial class AboutWindow : Window
+    public partial class AboutWindow
     {
         public AboutWindow()
         {
@@ -13,12 +13,19 @@ namespace WPF_DNC6
             InitializeGUI();
         }
 
+        private void ButtonOK_OnClick(object sender, RoutedEventArgs e)
+        {
+            Close();
+        }
+
         private void InitializeGUI()
         {
-            Title = $"About {((AssemblyProductAttribute) Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(), typeof(AssemblyProductAttribute), false)).Product}";
+            Title =
+                $"About {((AssemblyProductAttribute) Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(), typeof(AssemblyProductAttribute), false)).Product}";
             TextTitle.Text =
                 $"{((AssemblyTitleAttribute) Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(), typeof(AssemblyTitleAttribute), false)).Title}";
-            TextAbout.Text = $@"Designed by {((AssemblyCompanyAttribute) Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(), typeof(AssemblyCompanyAttribute), false)).Company} in May 2022.
+            TextAbout.Text =
+                $@"Designed by {((AssemblyCompanyAttribute) Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(), typeof(AssemblyCompanyAttribute), false)).Company} in May 2022.
 Version: {Assembly.GetExecutingAssembly().GetName().Version}
 Description: {((AssemblyDescriptionAttribute) Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(), typeof(AssemblyDescriptionAttribute), false)).Description}
 
@@ -31,11 +38,6 @@ Future expansions:
 - More accurate counter
 - Lower memory usage
 - Cross platform compatibility";
-        }
-
-        private void ButtonOK_OnClick(object sender, RoutedEventArgs e)
-        {
-            Close();
         }
     }
 }
