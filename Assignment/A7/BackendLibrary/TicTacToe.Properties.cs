@@ -2,22 +2,34 @@ namespace BackendLibrary
 {
     public partial class TicTacToe
     {
-        public int BoardSize
-        {
-            get { return boardSize; }
-            set { boardSize = value; }
-        }
-
         public string?[,] Board
         {
             get { return board; }
             set { board = value; }
         }
 
-        public IList<string> TurnHistory
+        public IList<string?[,]> BoardHistory
         {
-            get { return turnHistory; }
-            set { turnHistory = value; }
+            get { return boardHistory; }
+            set { boardHistory = value; }
+        }
+
+        public int BoardSize
+        {
+            get { return boardSize; }
+            set { boardSize = value; }
+        }
+
+        public int CurrentPlayer
+        {
+            get { return currentPlayer; }
+            set { currentPlayer = value is 0 or 1 ? value : 0; }
+        }
+
+        public DateTime EndTime
+        {
+            get { return endTime; }
+            set { endTime = value; }
         }
 
         public string P1Name
@@ -26,16 +38,16 @@ namespace BackendLibrary
             set { p1Name = value; }
         }
 
-        public string P2Name
-        {
-            get { return p2Name; }
-            set { p2Name = value; }
-        }
-
         public string P1Symbol
         {
             get { return p1Symbol; }
             set { p1Symbol = value; }
+        }
+
+        public string P2Name
+        {
+            get { return p2Name; }
+            set { p2Name = value; }
         }
 
         public string P2Symbol
@@ -47,25 +59,11 @@ namespace BackendLibrary
         public DateTime StartTime
         {
             get { return startTime; }
-            set { startTime = value; }
         }
 
-        public DateTime EndTime
+        public IList<string> TurnHistory
         {
-            get { return endTime; }
-            set { endTime = value; }
-        }
-
-        public IList<string?[,]> BoardHistory
-        {
-            get { return boardHistory; }
-            set { boardHistory = value; }
-        }
-
-        public int CurrentPlayer
-        {
-            get { return currentPlayer; }
-            set { currentPlayer = value is 0 or 1 ? value : 0; }
+            get { return turnHistory; }
         }
     }
 }

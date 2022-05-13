@@ -16,7 +16,7 @@
                     symbol = p2Symbol;
                     break;
                 default:
-                    currentPlayer %= 2; 
+                    currentPlayer %= 2;
                     goto BeginSwitchCurrentPlayer;
             }
 

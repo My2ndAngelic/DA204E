@@ -4,7 +4,7 @@ namespace BackendLibrary
 {
     public partial class TicTacToe
     {
-        public string BoardDisplay(string?[,] boardData)
+        public static string BoardDisplay(string?[,] boardData)
         {
             StringBuilder result = new StringBuilder();
             for (int i = 0; i < boardData.GetLength(0); i++)

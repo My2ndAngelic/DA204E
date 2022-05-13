@@ -4,8 +4,8 @@
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         mc:Ignorable="d"
-        Title="MainWindow" Width="800" Height="800">
-    <Grid Name="MainGrid">
+        Title="MainWindow" Width="700" Height="723">
+    <Grid>
         <Grid.ColumnDefinitions>
             <ColumnDefinition Width="20" />
             <ColumnDefinition Width="*" />
@@ -20,10 +20,10 @@
             <RowDefinition Height="20" />
             <RowDefinition Height="*" />
             <RowDefinition Height="20" />
-            <RowDefinition Height="*" />
+            <RowDefinition Height="60" />
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
-        
+
         <!-- Future Expansion-->
         <!-- <Menu Height="auto" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5"> -->
         <!--     <MenuItem Header="_File"> -->
@@ -69,7 +69,7 @@
         <Grid Grid.Row="6" Grid.Column="1">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
             </Grid.RowDefinitions>
             <TextBlock FontSize="15" Text="New Game" FontWeight="Bold" TextAlignment="Center" Foreground="Brown" />
             <Grid Grid.Row="1" Name="PlayMode">
@@ -79,19 +79,17 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="20" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Name="ButtonGameHuman" Grid.Column="0" Click="ButtonGameHuman_OnClick">
-                    <TextBlock FontSize="15" Text="PvP" TextWrapping="Wrap" TextAlignment="Center"
-                               ToolTip="Play against another player" />
-                </Button>
-                <Button Name="ButtonGameCompP1" Grid.Column="2" Click="ButtonGameCompP1_OnClick">
-                    <TextBlock FontSize="15" Text="PvE" TextWrapping="Wrap" TextAlignment="Center"
-                               ToolTip="Play against computer (you goes first)" />
-                </Button>
-                <Button Name="ButtonGameCompP2" Grid.Column="4" Click="ButtonGameCompP2_OnClick"
-                        ToolTip="Play against computer (computer goes first)">
-                    <TextBlock FontSize="15" Text="EvP" TextWrapping="Wrap" TextAlignment="Center" />
-                </Button>
+                <Button Name="ButtonGameHuman" Grid.Column="0" Click="ButtonGameHuman_OnClick" FontSize="15"
+                        Content="PvP" ToolTip="Play against another player" />
+                <Button Name="ButtonGameCompP1" Grid.Column="2" Click="ButtonGameCompP1_OnClick" FontSize="15"
+                        Content="PvE" ToolTip="Play against computer (you go first)" />
+                <Button Name="ButtonGameCompP2" Grid.Column="4" Click="ButtonGameCompP2_OnClick" FontSize="15"
+                        Content="EvP" ToolTip="Play against computer (computer goes first)" />
+                <Button Name="ButtonGameCompP1P2" Grid.Column="6" Click="ButtonGameCompP1P2_OnClick" FontSize="15"
+                        Content="EvE" ToolTip="Computer plays against Computer" />
             </Grid>
         </Grid>
 
@@ -103,7 +101,7 @@
             <TextBlock Name="TextBlockMoveHistory" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top"
                        TextAlignment="Left" FontStyle="Normal" Foreground="Teal" TextWrapping="Wrap" FontWeight="Bold"
                        Text="Move History" />
-            <ListBox Name="LeList" Grid.Row="1">
+            <ListBox Name="LeList" Grid.Row="1" FontSize="15">
                 <!-- https://stackoverflow.com/questions/1722456/make-listbox-items-in-wpf-not-selectable  -->
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ListBoxItem}">
@@ -113,25 +111,26 @@
             </ListBox>
         </Grid>
 
-        <Grid Name="TimeAnnouncer" Grid.Column="3" Grid.Row="4">
+        <Grid Grid.Column="3" Grid.Row="4">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />
                 <RowDefinition Height="*" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <TextBlock Grid.Row="0" Name="SystemInfo" FontSize="15"
+            <TextBlock Grid.Row="0" FontSize="15"
                        TextAlignment="Center" FontStyle="Normal" Foreground="Teal" TextWrapping="Wrap"
                        FontWeight="Bold" Text="System Information" />
             <TextBlock Grid.Row="1" Name="TimeInfo" FontSize="15"
                        VerticalAlignment="Center"
                        TextAlignment="Left" FontStyle="Normal" Foreground="Navy" TextWrapping="Wrap"
-                       Text="Time Infomation" />
-            <TextBox Grid.Row="2" Name="SysInfo" FontSize="15" Foreground="DarkBlue" VerticalAlignment="Center" TextAlignment="Left" IsReadOnly="True" BorderThickness="0" TextWrapping="Wrap" Text="SysInfo"/>
+                       Text="Time Information" />
+            <TextBox Grid.Row="2" Name="SysInfo" FontSize="15" Foreground="DarkBlue" VerticalAlignment="Center"
+                     TextAlignment="Left" IsReadOnly="True" BorderThickness="0" TextWrapping="Wrap" Text="SysInfo" />
         </Grid>
         <Grid Grid.Column="3" Grid.Row="6">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />
-                <RowDefinition Height="*" />
+                <RowDefinition Height="30" />
             </Grid.RowDefinitions>
             <TextBlock Grid.Row="0" Grid.ColumnSpan="3" FontSize="15"
                        TextAlignment="Center" FontStyle="Normal" Foreground="Teal" TextWrapping="Wrap"
@@ -143,11 +142,16 @@
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="20" />
                     <ColumnDefinition Width="*" />
+                    <ColumnDefinition Width="20" />
+                    <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Name="ButtonSave" FontSize="15" Click="ButtonSave_OnClick" Content="Save" />
+                <Button Grid.Column="0" Name="ButtonSave" FontSize="15" Click="ButtonSave_OnClick" Content="Save"
+                        ToolTip="Save completed match to current folder (*.mhf)" />
                 <Button Grid.Column="2" Name="ButtonSelectFolder" FontSize="15" Click="ButtonSelectFolder_OnClick"
-                        Content="Select Folder" />
-                <Button Grid.Column="4" Name="ButtonExit" FontSize="15" Click="ButtonExit_OnClick" Content="Exit" />
+                        Content="Folder" ToolTip="Select a folder to save match data (*.mhf)" />
+                <Button Grid.Column="4" Name="ButtonAbout" FontSize="15" Click="ButtonAbout_OnClick" Content="About" ToolTip="Show about info"/>
+                <Button Grid.Column="6" Name="ButtonExit" FontSize="15" Click="ButtonExit_OnClick" Content="Exit"
+                        ToolTip="Close the program" />
             </Grid>
 
         </Grid>

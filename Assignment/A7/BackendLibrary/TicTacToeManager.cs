@@ -16,14 +16,20 @@ namespace BackendLibrary
             get { return ticTacToes; }
         }
 
-        public IEnumerator<TicTacToe> GetEnumerator()
+        public int Count
         {
-            return ticTacToes.GetEnumerator();
+            get { return ticTacToes.Count; }
         }
 
-        IEnumerator IEnumerable.GetEnumerator()
+        public bool IsReadOnly
         {
-            return ((IEnumerable) ticTacToes).GetEnumerator();
+            get { return ticTacToes.IsReadOnly; }
+        }
+
+        public TicTacToe this[int index]
+        {
+            get { return ticTacToes[index]; }
+            set { ticTacToes[index] = value; }
         }
 
         public void Add(TicTacToe item)
@@ -47,19 +53,14 @@ namespace BackendLibrary
             ticTacToes.CopyTo(array, arrayIndex);
         }
 
-        public bool Remove(TicTacToe item)
+        public IEnumerator<TicTacToe> GetEnumerator()
         {
-            return ticTacToes.Remove(item);
+            return ticTacToes.GetEnumerator();
         }
 
-        public int Count
+        IEnumerator IEnumerable.GetEnumerator()
         {
-            get { return ticTacToes.Count; }
-        }
-
-        public bool IsReadOnly
-        {
-            get { return ticTacToes.IsReadOnly; }
+            return ((IEnumerable) ticTacToes).GetEnumerator();
         }
 
         public int IndexOf(TicTacToe item)
@@ -72,15 +73,14 @@ namespace BackendLibrary
             ticTacToes.Insert(index, item);
         }
 
+        public bool Remove(TicTacToe item)
+        {
+            return ticTacToes.Remove(item);
+        }
+
         public void RemoveAt(int index)
         {
             ticTacToes.RemoveAt(index);
-        }
-
-        public TicTacToe this[int index]
-        {
-            get { return ticTacToes[index]; }
-            set { ticTacToes[index] = value; }
         }
 
         /// <summary>

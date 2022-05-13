@@ -2,6 +2,7 @@ namespace BackendLibrary
 {
     public partial class TicTacToe
     {
+        private readonly IList<string> turnHistory;
         private string?[,] board;
         private IList<string?[,]> boardHistory;
         private int boardSize;
@@ -12,6 +13,5 @@ namespace BackendLibrary
         private string p2Name;
         private string p2Symbol;
         private DateTime startTime;
-        private IList<string> turnHistory;
     }
 }

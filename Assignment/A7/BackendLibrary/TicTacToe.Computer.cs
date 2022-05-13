@@ -2,43 +2,21 @@
 {
     public partial class TicTacToe
     {
-        public int[] RandomComputerMove()
+        public (int row, int column) RandomComputerMove()
         {
             Random r = new Random();
-            int x = -1;
-            int y = -1;
+            int row, column;
             if (IsGameOver())
-                return new int[] {x, y};
+                return (-1, -1);
             do
             {
-                x = r.Next(boardSize);
-                y = r.Next(boardSize);
-            } while (!IsValidMove(x, y));
+                row = r.Next(boardSize);
+                column = r.Next(boardSize);
+            } while (!IsValidMove(row, column));
 
-            return new int[] {x, y};
+            return (row, column);
         }
 
-        public int[] OldRandomComputerMove()
-        {
-            Random r = new Random();
-            int x = -1;
-            int y = -1;
-            if (IsGameOver())
-                return new int[] {x, y};
-            bool moveMade;
-            do
-            {
-                x = r.Next(boardSize);
-                y = r.Next(boardSize);
-                moveMade = Move(x, y);
-            } while (!moveMade);
-
-            return new int[] {x, y};
-        }
-
-        public int[] MinimaxMove()
-        {
-            return new int[] {-69, -420};
-        }
+        // There is a TicTaxToe.Computer.Minimax.cs file but it is copied code from G4G so it is not suitable for submission
     }
 }

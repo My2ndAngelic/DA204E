@@ -4,9 +4,48 @@
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         mc:Ignorable="d"
-        Title="AboutWindow" Height="420" Width="690">
+        Title="AboutWindow" Height="469" Width="500">
     <Grid>
-        <TextBlock Text="This feature is not implemented." FontSize="15" FontWeight="Bold" VerticalAlignment="Center"
-                   HorizontalAlignment="Center" />
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition Width="20"/>
+            <ColumnDefinition Width="*"/>
+            <ColumnDefinition Width="20"/>
+        </Grid.ColumnDefinitions>
+        
+        <Grid.RowDefinitions>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="50"/>
+            <RowDefinition Height="20"/>
+            <RowDefinition Height="*"/>
+            <RowDefinition Height="0"/>
+            <RowDefinition Height="30"/>
+            <RowDefinition Height="20"/>
+        </Grid.RowDefinitions>
+        
+        <Grid Grid.Row="1" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*" />
+            </Grid.ColumnDefinitions>
+            <Image Name="LeIcon" Grid.Column="0" Source="Resources/sample.png"/>
+            <TextBlock Name="TextTitle" Grid.Column="1" Text="This feature is not implemented." TextAlignment="Left" VerticalAlignment="Center" FontSize="30" FontWeight="Bold" />
+        </Grid>
+        <Grid Grid.Row="3" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="80"/>
+                <ColumnDefinition Width="*"/>
+            </Grid.ColumnDefinitions>
+            <Grid.RowDefinitions>
+                <RowDefinition Height="*"/>
+            </Grid.RowDefinitions>
+            <TextBlock Name="TextAbout" Grid.Column="1" Text="This feature is not implemented." TextAlignment="Left" FontSize="15" TextWrapping="Wrap" />
+        </Grid>
+        <Grid Grid.Row="5" Grid.Column="1">
+            <Grid.ColumnDefinitions>
+                <ColumnDefinition Width="*"/>
+                <ColumnDefinition Width="100"/>
+            </Grid.ColumnDefinitions>
+            <Button Grid.Column="1" Content="OK" FontSize="15" Click="ButtonOK_OnClick"></Button>
+        </Grid>
     </Grid>
 </Window>
