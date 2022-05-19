@@ -18,9 +18,9 @@ namespace BackendLibrary
         }
 
         /// <summary>
-        /// Return match data in string
-        /// Format:
-        /// "p1Name,p2Name,p1Symbol,p2Symbol|startTime|endTime|boardSize|turnHistory"
+        ///     Return match data in string
+        ///     Format:
+        ///     "p1Name,p2Name,p1Symbol,p2Symbol|startTime|endTime|boardSize|turnHistory"
         /// </summary>
         /// <returns>Match data in string</returns>
         public override string ToString()

@@ -10,7 +10,7 @@
         <AssemblyVersion>2022.0510.69.420</AssemblyVersion>
         <FileVersion>2022.0510.69.420</FileVersion>
         <PackageVersion>2022.0510.69.420</PackageVersion>
-        <Title>Tic Tac Toe </Title>
+        <Title>Tic Tac Toe</Title>
         <Authors>Evan Huynh</Authors>
         <Description>A simple Tic-Tac-Toe game with some interesting functionalities.</Description>
         <AssemblyName>Tic Tac Toe WPF</AssemblyName>
@@ -20,17 +20,24 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <None Remove="Resources\sample.png" />
+        <None Remove="Resources\sample.png"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\BackendLibrary\BackendLibrary.csproj" />
+        <ProjectReference Include="..\BackendLibrary\BackendLibrary.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
-      <Resource Include="Resources\sample.png">
-        <CopyToOutputDirectory>Always</CopyToOutputDirectory>
-      </Resource>
+        <Resource Include="Resources\sample.png">
+            <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+        </Resource>
+    </ItemGroup>
+
+    <ItemGroup>
+        <ApplicationDefinition Include="xaml\App.xaml">
+            <Generator>MSBuild:Compile</Generator>
+            <XamlRuntime>Wpf</XamlRuntime>
+        </ApplicationDefinition>
     </ItemGroup>
 
 </Project>

@@ -17,7 +17,7 @@ namespace WPF_DNC6
     /// <summary>
     ///     Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow
+    public partial class MainWindow : Window
     {
         private const int BoardSize = 3;
         private readonly TicTacToe ttt = new TicTacToe(BoardSize);
@@ -43,11 +43,8 @@ namespace WPF_DNC6
 
         private void ButtonExit_OnClick(object sender, RoutedEventArgs e)
         {
-            // MatchHistory matchHistory = new MatchHistory();
-            // matchHistory.ShowDialog();
             if (MessageBox.Show("Do you want to close the program?", "Exit", MessageBoxButton.YesNo,
-                    MessageBoxImage.Question) !=
-                MessageBoxResult.Yes) return;
+                    MessageBoxImage.Question) != MessageBoxResult.Yes) return;
             Close();
         }
 
@@ -161,9 +158,9 @@ namespace WPF_DNC6
                     ttt.ToString());
                 MessageBox.Show("Match saved successfully.", "Save", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            catch (Exception)
+            catch (UnauthorizedAccessException)
             {
-                MessageBox.Show("Cannot save match history. Please select another folder or try again.", "Error",
+                MessageBox.Show("Cannot save match history. Please select another folder or change write permission to the current one.", "Error",
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
@@ -175,6 +172,7 @@ namespace WPF_DNC6
             {
                 FolderBrowserDialog fbd = new FolderBrowserDialog();
                 fbd.ShowDialog();
+                // Do I need to check for write permission before changing the folder?
                 folderPath = Path.GetFullPath(fbd.SelectedPath);
                 SysInfo.Text = $"Save folder: {folderPath}";
             }

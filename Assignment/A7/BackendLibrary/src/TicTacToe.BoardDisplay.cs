@@ -4,6 +4,12 @@ namespace BackendLibrary
 {
     public partial class TicTacToe
     {
+        /// <summary>
+        ///     Print jagged array as string with each array on a separate line
+        ///     Basically Arrays.deepToString of Java but multi-line
+        /// </summary>
+        /// <param name="boardData"></param>
+        /// <returns></returns>
         public static string BoardDisplay(string?[,] boardData)
         {
             StringBuilder result = new StringBuilder();
@@ -19,6 +25,9 @@ namespace BackendLibrary
             return result.Remove(result.Length - 1, 1).ToString();
         }
 
+        /// <summary>
+        /// </summary>
+        /// <returns></returns>
         public string BoardDisplay()
         {
             return BoardDisplay(board);

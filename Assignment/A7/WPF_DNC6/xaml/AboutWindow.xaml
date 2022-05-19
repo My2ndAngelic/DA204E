@@ -27,7 +27,8 @@
                 <ColumnDefinition Width="80" />
                 <ColumnDefinition Width="*" />
             </Grid.ColumnDefinitions>
-            <Image Name="LeIcon" Grid.Column="0" Source="Resources/sample.png" />
+            <Image Grid.Column="0" Source="../Resources/sample.png" />
+            <!--This will cause the program to crash if done improperly-->
             <TextBlock Name="TextTitle" Grid.Column="1" Text="This feature is not implemented." TextAlignment="Left"
                        VerticalAlignment="Center" FontSize="30" FontWeight="Bold" />
         </Grid>
