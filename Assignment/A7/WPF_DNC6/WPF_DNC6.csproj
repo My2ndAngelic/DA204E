@@ -20,24 +20,17 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Remove="Resources\sample.png"/>
+        <None Remove="Resources\sample.png" />
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\BackendLibrary\BackendLibrary.csproj"/>
+        <ProjectReference Include="..\BackendLibrary\BackendLibrary.csproj" />
     </ItemGroup>
 
     <ItemGroup>
         <Resource Include="Resources\sample.png">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
         </Resource>
-    </ItemGroup>
-
-    <ItemGroup>
-        <ApplicationDefinition Include="xaml\App.xaml">
-            <Generator>MSBuild:Compile</Generator>
-            <XamlRuntime>Wpf</XamlRuntime>
-        </ApplicationDefinition>
     </ItemGroup>
 
 </Project>

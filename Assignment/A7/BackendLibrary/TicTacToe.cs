@@ -3,7 +3,7 @@ using System.Text;
 
 namespace BackendLibrary
 {
-    public partial class TicTacToe
+    public partial class TicTacToe // Should I join every files into one big class?
     {
         /// <summary>
         ///     Reset the game, but keep the players and symbols

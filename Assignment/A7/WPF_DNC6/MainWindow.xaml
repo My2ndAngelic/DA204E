@@ -24,23 +24,31 @@
             <RowDefinition Height="20" />
         </Grid.RowDefinitions>
 
-        <!-- Future Expansion-->
-        <!-- <Menu Height="auto" VerticalAlignment="Top" Grid.Column="0" Grid.Row="0" Grid.ColumnSpan="5"> -->
-        <!--     <MenuItem Header="_File"> -->
-        <!--         <MenuItem Name="MenuItemNew" Header="_New" /> -->
-        <!--         <MenuItem Name="MenuItemOpen" Header="_Open" /> -->
-        <!--         <Separator /> -->
-        <!--         <MenuItem Name="MenuItemSave" Header="_Save" /> -->
-        <!--         <MenuItem Name="MenuItemSaveAs" Header="_Save As" /> -->
-        <!--         <Separator /> -->
-        <!--         <MenuItem Name="MenuItemExit" Header="_Exit" /> -->
-        <!--     </MenuItem> -->
-        <!--     <MenuItem Header="Help"> -->
-        <!--         <MenuItem Name="MenuItemAbout" Header="_About" /> -->
-        <!--     </MenuItem> -->
-        <!-- </Menu> -->
+        <!-- Future Expansion -->
+        <!-- If the menu is weird looking, please take a look at 
+        https://www.tenforums.com/tutorials/68038-set-menus-open-aligned-left-right-windows-10-a.html 
+or archive link: https://web.archive.org/web/20220527214727/https://www.tenforums.com/tutorials/68038-set-menus-open-aligned-left-right-windows-10-a.html-->
+        <Menu Grid.ColumnSpan="10">
+            <Menu.ItemsPanel>
+                <ItemsPanelTemplate>
+                    <DockPanel HorizontalAlignment="Left"/>
+                </ItemsPanelTemplate>
+            </Menu.ItemsPanel>
+            <MenuItem Header="_File">
+                <!-- <MenuItem Name="MenuItemNew" Header="_New" /> -->
+                <!-- <MenuItem Name="MenuItemOpen" Header="_Open" /> -->
+                <!-- <Separator /> -->
+                <MenuItem Name="MenuItemSave" Header="_Save" Click="ButtonSaveAndMenuSave_OnClick"/>
+                <MenuItem Name="MenuItemSaveAs" Header="_Select Folder" Click="ButtonSelectFolderAndMenuSelectFolder_OnClick"/>
+                <Separator />
+                <MenuItem Name="MenuItemExit" Click="ButtonExitAndMenuExit_OnClick" Header="_Exit" />
+            </MenuItem>
+            <MenuItem Header="Help">
+                <MenuItem Name="MenuItemAbout" Click="ButtonAboutAndMenuAbout_OnClick" Header="_About" />
+            </MenuItem>
+        </Menu>
 
-        <Grid Grid.Row="2" Grid.Column="1">
+        <Grid Grid.Row="2" Grid.Column="1" Name="PlayArea">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />
                 <RowDefinition Height="*" />
@@ -52,10 +60,10 @@
             </Grid.Resources>
             <TextBlock Text="Play Area" TextAlignment="Center" FontSize="15"
                        Foreground="Chocolate" FontWeight="Bold" />
-            <Grid Name="PlayArea" Grid.Row="1" Grid.Column="0" />
+            <Grid Name="FieldOfPlay" Grid.Row="1" Grid.Column="0" />
         </Grid>
 
-        <Grid Grid.Row="4" Grid.Column="1">
+        <Grid Grid.Row="4" Grid.Column="1" Name="StatusArea">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />
                 <RowDefinition Height="*" />
@@ -72,7 +80,7 @@
                 <RowDefinition Height="30" />
             </Grid.RowDefinitions>
             <TextBlock FontSize="15" Text="New Game" FontWeight="Bold" TextAlignment="Center" Foreground="Brown" />
-            <Grid Grid.Row="1" Name="PlayMode">
+            <Grid Grid.Row="1">
                 <Grid.ColumnDefinitions>
                     <ColumnDefinition Width="*" />
                     <ColumnDefinition Width="20" />
@@ -82,26 +90,26 @@
                     <ColumnDefinition Width="20" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Name="ButtonGameHuman" Grid.Column="0" Click="ButtonGameHuman_OnClick" FontSize="15"
+                <Button Grid.Column="0" Click="ButtonGamePvP_OnClick" FontSize="15"
                         Content="PvP" ToolTip="Play against another player" />
-                <Button Name="ButtonGameCompP1" Grid.Column="2" Click="ButtonGameCompP1_OnClick" FontSize="15"
+                <Button Grid.Column="2" Click="ButtonGamePvE_OnClick" FontSize="15"
                         Content="PvE" ToolTip="Play against computer (you go first)" />
-                <Button Name="ButtonGameCompP2" Grid.Column="4" Click="ButtonGameCompP2_OnClick" FontSize="15"
+                <Button Grid.Column="4" Click="ButtonGameEvP_OnClick" FontSize="15"
                         Content="EvP" ToolTip="Play against computer (computer goes first)" />
-                <Button Name="ButtonGameCompP1P2" Grid.Column="6" Click="ButtonGameCompP1P2_OnClick" FontSize="15"
+                <Button Grid.Column="6" Click="ButtonGameEvE_OnClick" FontSize="15"
                         Content="EvE" ToolTip="Computer plays against Computer" />
             </Grid>
         </Grid>
 
-        <Grid Name="MoveHistory" Grid.Column="3" Grid.Row="2">
+        <Grid Name="MoveHistoryArea" Grid.Column="3" Grid.Row="2">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />
                 <RowDefinition Height="*" />
             </Grid.RowDefinitions>
-            <TextBlock Name="TextBlockMoveHistory" FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top"
+            <TextBlock FontSize="15" HorizontalAlignment="Center" VerticalAlignment="Top"
                        TextAlignment="Left" FontStyle="Normal" Foreground="Teal" TextWrapping="Wrap" FontWeight="Bold"
                        Text="Move History" />
-            <ListBox Name="LeList" Grid.Row="1" FontSize="15">
+            <ListBox Name="ListMoveHistory" Grid.Row="1" FontSize="15">
                 <!-- https://stackoverflow.com/questions/1722456/make-listbox-items-in-wpf-not-selectable  -->
                 <ListBox.ItemContainerStyle>
                     <Style TargetType="{x:Type ListBoxItem}">
@@ -111,7 +119,7 @@
             </ListBox>
         </Grid>
 
-        <Grid Grid.Column="3" Grid.Row="4">
+        <Grid Grid.Column="3" Grid.Row="4" Name="SystemArea">
             <Grid.RowDefinitions>
                 <RowDefinition Height="30" />
                 <RowDefinition Height="*" />
@@ -145,13 +153,13 @@
                     <ColumnDefinition Width="20" />
                     <ColumnDefinition Width="*" />
                 </Grid.ColumnDefinitions>
-                <Button Grid.Column="0" Name="ButtonSave" FontSize="15" Click="ButtonSave_OnClick" Content="Save"
+                <Button Grid.Column="0" FontSize="15" Click="ButtonSaveAndMenuSave_OnClick" Content="Save"
                         ToolTip="Save completed match to current folder (*.mhf)" />
-                <Button Grid.Column="2" Name="ButtonSelectFolder" FontSize="15" Click="ButtonSelectFolder_OnClick"
+                <Button Grid.Column="2" FontSize="15" Click="ButtonSelectFolderAndMenuSelectFolder_OnClick"
                         Content="Folder" ToolTip="Select a folder to save match data (*.mhf)" />
-                <Button Grid.Column="4" Name="ButtonAbout" FontSize="15" Click="ButtonAbout_OnClick" Content="About"
+                <Button Grid.Column="4" FontSize="15" Click="ButtonAboutAndMenuAbout_OnClick" Content="About"
                         ToolTip="Show about info" />
-                <Button Grid.Column="6" Name="ButtonExit" FontSize="15" Click="ButtonExit_OnClick" Content="Exit"
+                <Button Grid.Column="6" FontSize="15" Click="ButtonExitAndMenuExit_OnClick" Content="Exit"
                         ToolTip="Close the program" />
             </Grid>
 

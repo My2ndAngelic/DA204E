@@ -36,30 +36,45 @@ namespace WPF_DNC6
             DataContext = ttt;
         }
 
-        private void ButtonAbout_OnClick(object sender, RoutedEventArgs e)
+        /// <summary>
+        ///     Show about dialog
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonAboutAndMenuAbout_OnClick(object sender, RoutedEventArgs e)
         {
             new AboutWindow().ShowDialog();
         }
 
-        private void ButtonExit_OnClick(object sender, RoutedEventArgs e)
+        /// <summary>
+        ///     Ask user if they want to exit the program
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonExitAndMenuExit_OnClick(object sender, RoutedEventArgs e)
         {
             if (MessageBox.Show("Do you want to close the program?", "Exit", MessageBoxButton.YesNo,
                     MessageBoxImage.Question) != MessageBoxResult.Yes) return;
-            Close();
+            Environment.Exit(0);
         }
 
+        /// <summary>
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void ButtonGameBoard_OnClick(object sender, RoutedEventArgs e)
         {
             Button button = (Button) sender;
 
+            // Get the position of the button
             int column = Grid.GetColumn(button);
             int row = Grid.GetRow(button);
 
-            if (!ttt.IsValidMove(row, column)) return;
+            // Add move to the database
+            if (!ttt.Move(row, column)) // Move method returns false if the move is invalid
+                return;
 
-            LeList.Items.Add(
-                $"{(p1Turn ? ttt.P1Name : ttt.P2Name)} puts {(p1Turn ? ttt.P1Symbol : ttt.P2Symbol)} into row {row} column {column}.");
-
+            // Color the button
             if (p1Turn)
             {
                 button.Content = ttt.P1Symbol;
@@ -73,38 +88,36 @@ namespace WPF_DNC6
                 p1Turn = true;
             }
 
+            // Disable the button
             button.IsEnabled = false;
-            ttt.Move(row, column);
-            CheckGameStatus();
 
-            switch (isComputerVsComputerMode)
+            // Add move history to the list
+            ListMoveHistory.Items.Add(
+                $"{(p1Turn ? ttt.P1Name : ttt.P2Name)} puts {(p1Turn ? ttt.P1Symbol : ttt.P2Symbol)} into row {row} column {column}.");
+
+            CheckGameStatus(); // Check the game status
+
+            switch (isComputerVsComputerMode) // Check if computer vs computer mode
             {
-                case false when !isComputerVsHumanMode:
+                case false when !isComputerVsHumanMode: // If computer vs computer
                     return;
-                case false:
+                case false: // If computer vs human
                     isComputerTurn = !isComputerTurn;
                     break;
-                default:
+                default: // If computer vs computer
                     isComputerTurn = true;
                     break;
             }
 
-            ComputerMove();
+            ComputerMove(); // Computer move
         }
 
-        private void ButtonGameCompP1_OnClick(object sender, RoutedEventArgs e)
-        {
-            NewGame();
-            ttt.P1Name = "Player 1";
-            ttt.P2Name = "Computer";
-            isComputerVsHumanMode = true;
-            isComputerTurn = false;
-            isComputerVsComputerMode = false;
-            InitializeBoard();
-            CheckGameStatus();
-        }
-
-        private void ButtonGameCompP1P2_OnClick(object sender, RoutedEventArgs e)
+        /// <summary>
+        ///     Initialize new game: Computer as player 1 and computer as player 2
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonGameEvE_OnClick(object sender, RoutedEventArgs e)
         {
             NewGame();
             ttt.P1Name = "Computer 1";
@@ -117,7 +130,12 @@ namespace WPF_DNC6
             ComputerMove();
         }
 
-        private void ButtonGameCompP2_OnClick(object sender, RoutedEventArgs e)
+        /// <summary>
+        ///     Initialize new game: Computer as player 1 and human as player 2
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonGameEvP_OnClick(object sender, RoutedEventArgs e)
         {
             NewGame();
             ttt.P1Name = "Computer";
@@ -130,7 +148,29 @@ namespace WPF_DNC6
             ComputerMove();
         }
 
-        private void ButtonGameHuman_OnClick(object sender, RoutedEventArgs e)
+        /// <summary>
+        ///     Initialize new game: Human as player 1 and computer as player 2
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonGamePvE_OnClick(object sender, RoutedEventArgs e)
+        {
+            NewGame();
+            ttt.P1Name = "Player 1";
+            ttt.P2Name = "Computer";
+            isComputerVsHumanMode = true;
+            isComputerTurn = false;
+            isComputerVsComputerMode = false;
+            InitializeBoard();
+            CheckGameStatus();
+        }
+
+        /// <summary>
+        ///     Initialize new game: Human as player 1 and human as player 2
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonGamePvP_OnClick(object sender, RoutedEventArgs e)
         {
             NewGame();
             ttt.P1Name = "Player 1";
@@ -141,36 +181,55 @@ namespace WPF_DNC6
             InitializeBoard();
         }
 
-        private void ButtonSave_OnClick(object sender, RoutedEventArgs e)
+        /// <summary>
+        ///     Save game
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonSaveAndMenuSave_OnClick(object sender, RoutedEventArgs e)
         {
             try
             {
-                if (!ttt.IsGameOver())
+                if (ttt.IsGameOver()) // Game finished
+                {
+                    File.WriteAllText(
+                        $"{folderPath}\\{new DateTimeOffset(ttt.StartTime).ToUnixTimeSeconds()}.mhf",
+                        ttt.ToString()); // Write to file
+                    MessageBox.Show("Match saved successfully.", "Save", MessageBoxButton.OK,
+                        MessageBoxImage.Information); // Show message when successful
+                }
+                else // Game not finished
                 {
                     MessageBox.Show("Game is not over yet. Please finish the game before saving.", "Error",
                         MessageBoxButton.OK,
                         MessageBoxImage.Error);
-                    return;
                 }
-
-                File.WriteAllText(
-                    $"{folderPath}\\{new DateTimeOffset(ttt.StartTime).ToUnixTimeSeconds()}.mhf",
-                    ttt.ToString());
-                MessageBox.Show("Match saved successfully.", "Save", MessageBoxButton.OK, MessageBoxImage.Information);
             }
-            catch (UnauthorizedAccessException)
+            catch (UnauthorizedAccessException) // If you cannot write match history due to lack of permission
             {
-                MessageBox.Show("Cannot save match history. Please select another folder or change write permission to the current one.", "Error",
+                MessageBox.Show(
+                    "Cannot save match history. Please select another folder or change write permission to the current one.",
+                    "Error",
                     MessageBoxButton.OK,
                     MessageBoxImage.Error);
             }
+            catch (Exception ex) // Other error, just catch it, I do not know what else can happen
+            {
+                MessageBox.Show($@"Unknown error.
+{ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            }
         }
 
-        private void ButtonSelectFolder_OnClick(object sender, RoutedEventArgs e)
+        /// <summary>
+        ///     Select folder to save match history
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void ButtonSelectFolderAndMenuSelectFolder_OnClick(object sender, RoutedEventArgs e)
         {
+            FolderBrowserDialog fbd = new FolderBrowserDialog(); // This is from System.Windows.Forms, not WPF
             try
             {
-                FolderBrowserDialog fbd = new FolderBrowserDialog();
                 fbd.ShowDialog();
                 // Do I need to check for write permission before changing the folder?
                 folderPath = Path.GetFullPath(fbd.SelectedPath);
@@ -181,18 +240,23 @@ namespace WPF_DNC6
             }
         }
 
+        /// <summary>
+        ///     Handling the event when computer move is made
+        /// </summary>
         private void ComputerMove()
         {
-            if (!isComputerTurn || ttt.IsGameOver()) return;
+            if (!isComputerTurn || ttt.IsGameOver()) return; // If computer is not playing or game is over, do nothing
 
-            (int row, int column) = ttt.RandomComputerMove();
+            (int row, int column) = ttt.RandomComputerMoveIntegerTuple(); // Get computer move
 
             // Click the button from the computer's move
-            PlayArea.Children.OfType<Button>().First(b => b.Name == $"Button_{row}_{column}")
-                .RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent));
-            // isComputerTurn = false;
+            FieldOfPlay.Children.OfType<Button>().First(b => b.Name == $"Button_{row}_{column}")
+                .RaiseEvent(new RoutedEventArgs(ButtonBase.ClickEvent)); // Click the button
         }
 
+        /// <summary>
+        ///     Check the game status and update the UI
+        /// </summary>
         private void CheckGameStatus()
         {
             if (!ttt.IsGameOver())
@@ -202,14 +266,19 @@ namespace WPF_DNC6
             }
 
             GameStatus.Text = $"Game over. {ttt.GetWinner()} wins!";
-            LeList.Items.Add($"Match length: {ttt.EndTime.Subtract(ttt.StartTime).TotalSeconds:F} seconds");
-            foreach (Button button in PlayArea.Children.OfType<Button>()) button.IsEnabled = false;
+            ListMoveHistory.Items.Add($"Match length: {ttt.EndTime.Subtract(ttt.StartTime).TotalSeconds:F} seconds");
+            foreach (Button button in FieldOfPlay.Children.OfType<Button>()) button.IsEnabled = false;
 
-
-            // Write to file
+            // Auto write to file could be done here
+            // TODO: Add a checkbox to enable/disable auto-write to file. Maybe implemented in a later version.
             // Not now
         }
 
+        /// <summary>
+        ///     Update the timer
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void dispatcherTimer_Tick(object? sender, EventArgs e)
         {
             TimeInfo.Text =
@@ -218,12 +287,15 @@ Time: {DateTime.Now:HH:mm:ss}
 Match length: {(ttt.TurnHistory.Count == 0 ? 0 : ttt.IsGameOver() ? ttt.EndTime.Subtract(ttt.StartTime).TotalMilliseconds / 1000 : DateTime.Now.Subtract(ttt.StartTime).TotalMilliseconds / 1000):F}";
         }
 
+        /// <summary>
+        ///     Board initialization
+        /// </summary>
         private void InitializeBoard()
         {
             // Clear play area
-            PlayArea.Children.Clear();
-            PlayArea.RowDefinitions.Clear();
-            PlayArea.ColumnDefinitions.Clear();
+            FieldOfPlay.Children.Clear();
+            FieldOfPlay.RowDefinitions.Clear();
+            FieldOfPlay.ColumnDefinitions.Clear();
 
             // Initialize row and column definitions for play area n x n
             for (int i = 0; i < ttt.BoardSize; i++)
@@ -232,12 +304,12 @@ Match length: {(ttt.TurnHistory.Count == 0 ? 0 : ttt.IsGameOver() ? ttt.EndTime.
                 {
                     Height = new GridLength(1, GridUnitType.Star)
                 };
-                PlayArea.RowDefinitions.Add(rowStar);
+                FieldOfPlay.RowDefinitions.Add(rowStar);
                 ColumnDefinition columnStar = new ColumnDefinition
                 {
                     Width = new GridLength(1, GridUnitType.Star)
                 };
-                PlayArea.ColumnDefinitions.Add(columnStar);
+                FieldOfPlay.ColumnDefinitions.Add(columnStar);
             }
 
             // Initialize n x n buttons for play area
@@ -254,14 +326,16 @@ Match length: {(ttt.TurnHistory.Count == 0 ? 0 : ttt.IsGameOver() ? ttt.EndTime.
                 button.Content = "";
                 button.IsEnabled = true;
                 button.Background = Brushes.White;
-                PlayArea.Children.Add(button);
+                FieldOfPlay.Children.Add(button);
             }
 
             // Match history list
-
             CheckGameStatus();
         }
 
+        /// <summary>
+        ///     Initialize the program
+        /// </summary>
         private void InitializeGUI()
         {
             DispatcherTimer dt = new DispatcherTimer
@@ -275,11 +349,14 @@ Match length: {(ttt.TurnHistory.Count == 0 ? 0 : ttt.IsGameOver() ? ttt.EndTime.
                 $"{((AssemblyProductAttribute) Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(), typeof(AssemblyProductAttribute), false)).Product}";
         }
 
+        /// <summary>
+        ///     New game
+        /// </summary>
         private void NewGame()
         {
             ttt.Reset();
             p1Turn = true;
-            LeList.Items.Clear();
+            ListMoveHistory.Items.Clear();
         }
     }
 }

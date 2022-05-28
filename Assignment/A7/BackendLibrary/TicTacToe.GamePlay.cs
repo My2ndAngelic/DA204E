@@ -2,11 +2,16 @@
 {
     public partial class TicTacToe
     {
-        public bool Move(int x, int y)
+        /// <summary>
+        ///     Move symbol to position on board
+        /// </summary>
+        /// <param name="row">Row of move</param>
+        /// <param name="column">Column of move</param>
+        /// <returns>True if valid move</returns>
+        public bool Move(int row, int column)
         {
-            if (IsGameOver() || !IsValidMove(x, y)) return false;
-            string symbol;
             BeginSwitchCurrentPlayer:
+            string symbol;
             switch (currentPlayer)
             {
                 case 0:
@@ -20,14 +25,9 @@
                     goto BeginSwitchCurrentPlayer;
             }
 
-            currentPlayer++;
-            board[x, y] = symbol;
-            turnHistory.Add(string.Join('-', symbol, x.ToString(), y.ToString()));
-            boardHistory.Add(board);
-            if (turnHistory.Count == 0)
-                startTime = DateTime.Now;
-            endTime = DateTime.Now;
-            return true;
+            currentPlayer++; // Next player
+
+            return Move(string.Join("-", symbol, row.ToString(), column.ToString()));
         }
     }
 }

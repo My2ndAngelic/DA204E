@@ -37,7 +37,7 @@ namespace A7Console
 //                                        };
 //                                        do
 //                                        {
-//                                            ttt.RandomComputerMove();
+//                                            ttt.RandomComputerMoveIntegerTuple();
 //                                        } while (!ttt.IsGameOver());
 //                            
 //                                        Console.WriteLine(ttt.BoardDisplay());

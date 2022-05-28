@@ -2,6 +2,29 @@
 {
     public partial class TicTacToe
     {
+        /// <summary>
+        ///     Default constructor
+        /// </summary>
+        public TicTacToe()
+        {
+            currentPlayer = 0;
+            startTime = DateTime.Now;
+            endTime = DateTime.Now;
+            p1Name = "Player 1";
+            p2Name = "Player 2";
+            p1Symbol = "X";
+            p2Symbol = "O";
+            const int size = 3;
+            boardSize = size;
+            board = new string[size, size];
+            turnHistory = new List<string>();
+            boardHistory = new List<string?[,]>();
+        }
+
+        /// <summary>
+        ///     Constructor with size parameter
+        /// </summary>
+        /// <param name="size">Size of the board</param>
         public TicTacToe(int size)
         {
             currentPlayer = 0;
@@ -17,7 +40,10 @@
             boardHistory = new List<string?[,]>();
         }
 
-        // String: "P1Name,P2Name,P1Symbol,P2Symbol | StartTime, EndTime | BoardSize | TurnHistory"
+        /// <summary>
+        ///     Constructor with string data parameter
+        /// </summary>
+        /// <param name="data">Data in format: "P1Name,P2Name,P1Symbol,P2Symbol | StartTime, EndTime | BoardSize | TurnHistory"</param>
         public TicTacToe(string data)
         {
             currentPlayer = 0;
@@ -46,6 +72,10 @@
             }
         }
 
+        /// <summary>
+        ///     Constructor with list of data parameter
+        /// </summary>
+        /// <param name="dataArray">Data format: "P1Name,P2Name,P1Symbol,P2Symbol | StartTime, EndTime | BoardSize | TurnHistory"</param>
         public TicTacToe(IReadOnlyList<string> dataArray)
         {
             currentPlayer = 0;

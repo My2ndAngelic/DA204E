@@ -8,8 +8,8 @@ namespace BackendLibrary
         ///     Print jagged array as string with each array on a separate line
         ///     Basically Arrays.deepToString of Java but multi-line
         /// </summary>
-        /// <param name="boardData"></param>
-        /// <returns></returns>
+        /// <param name="boardData">Jagged string array</param>
+        /// <returns>String array</returns>
         public static string BoardDisplay(string?[,] boardData)
         {
             StringBuilder result = new StringBuilder();
@@ -26,8 +26,11 @@ namespace BackendLibrary
         }
 
         /// <summary>
+        ///     Print jagged array as string with each array on a separate line
+        ///     Basically Arrays.deepToString of Java but multi-line
+        ///     But called directly on the boardData array
         /// </summary>
-        /// <returns></returns>
+        /// <returns>BoardData Array</returns>
         public string BoardDisplay()
         {
             return BoardDisplay(board);

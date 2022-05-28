@@ -28,23 +28,58 @@
             return true;
         }
 
+        /// <summary>
+        ///     Check if game is over
+        /// </summary>
+        /// <returns>True if game over</returns>
         public bool IsGameOver()
         {
             return !string.IsNullOrEmpty(GetWinner());
         }
 
+        /// <summary>
+        ///     Check if move is valid
+        /// </summary>
+        /// <param name="move">
+        ///     Move description in string
+        ///     Format: Symbol-Row-Column
+        /// </param>
+        /// <returns>True if valid</returns>
+        public bool IsValidMove(string move)
+        {
+            return IsValidMove(move.Split("-"));
+        }
+
+        /// <summary>
+        ///     Check if move is valid
+        /// </summary>
+        /// <param name="move">
+        ///     Move description in string
+        ///     Format: Symbol-Row-Column
+        /// </param>
+        /// <returns>True if valid</returns>
         public bool IsValidMove(string[] move)
         {
-            int row = int.Parse(move[1]);
-            int col = int.Parse(move[2]);
-            return IsValidMove(row, col);
+            return int.TryParse(move[1], out int row) && int.TryParse(move[2], out int column) &&
+                   IsValidMove(row, column);
         }
 
-        public bool IsValidMove(int row, int col)
+        /// <summary>
+        ///     Check if move is valid
+        /// </summary>
+        /// <param name="row">Row of move</param>
+        /// <param name="column">Column of move</param>
+        /// <returns>True if valid</returns>
+        public bool IsValidMove(int row, int column)
         {
-            return string.IsNullOrEmpty(board[row, col]);
+            return string.IsNullOrEmpty(board[row, column]);
         }
 
+        /// <summary>
+        ///     Check if particular symbol wins
+        /// </summary>
+        /// <param name="symbol">Symbol needed to check</param>
+        /// <returns>True if winner</returns>
         public bool IsWinner(string symbol)
         {
             bool winner = false;
@@ -85,10 +120,26 @@
             return winner;
         }
 
-        public bool Move(string position)
+        /// <summary>
+        ///     Move symbol to position
+        /// </summary>
+        /// <param name="move">
+        ///     Move data
+        ///     Format: Symbol-Row-Column
+        /// </param>
+        /// <returns>True if move is valid</returns>
+        public bool Move(string move)
         {
-            // Format: "sym-row-col"
-            string[] move = position.Split('-');
+            return Move(move.Split("-"));
+        }
+
+        /// <summary>
+        ///     Move symbol to position
+        /// </summary>
+        /// <param name="move">Move data</param>
+        /// <returns>True if move is valid</returns>
+        public bool Move(string[] move)
+        {
             if (!IsValidMove(move) || IsGameOver()) return false;
             string symbol = move[0];
             int row = int.Parse(move[1]);
@@ -96,16 +147,27 @@
             endTime = DateTime.Now;
 
             board[row, col] = symbol;
-            turnHistory.Add(position);
+            turnHistory.Add(string.Join("-", move));
+            ;
             boardHistory.Add(board);
+            if (turnHistory.Count == 0)
+                startTime = DateTime.Now;
+            endTime = DateTime.Now;
             return true;
         }
 
-        public bool UndoMove(int x, int y)
+        /// <summary>
+        ///     Undo last move
+        /// </summary>
+        /// <param name="row"></param>
+        /// <param name="column"></param>
+        /// <returns>True if successful</returns>
+        public bool UndoMove(int row, int column)
         {
-            if (x < 0 || x > boardSize || y < 0 || y > boardSize || string.IsNullOrEmpty(board[x, y]))
+            if (row < 0 || row > boardSize || column < 0 || column > boardSize ||
+                string.IsNullOrEmpty(board[row, column]))
                 return false;
-            board[x, y] = null;
+            board[row, column] = null;
             turnHistory.RemoveAt(turnHistory.Count - 1);
             boardHistory.RemoveAt(boardHistory.Count - 1);
             return true;

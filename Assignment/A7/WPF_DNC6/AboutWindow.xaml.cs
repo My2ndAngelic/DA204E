@@ -29,9 +29,10 @@ namespace WPF_DNC6
 Version: {Assembly.GetExecutingAssembly().GetName().Version}
 Description: {((AssemblyDescriptionAttribute) Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(), typeof(AssemblyDescriptionAttribute), false)).Description}
 
-OS: {RuntimeInformation.OSDescription} {RuntimeInformation.OSArchitecture}
+OS: {RuntimeInformation.OSDescription} {RuntimeInformation.OSArchitecture} on {RuntimeInformation.ProcessArchitecture} CPU.
 .NET version: {Environment.Version}
-Timezone: GMT/UTC{DateTime.Now:zzz}
+CLR version: {RuntimeEnvironment.GetSystemVersion()}
+Timezone: UTC {DateTime.Now:zzz}
 
 Future expansions:
 - Match import and viewer
