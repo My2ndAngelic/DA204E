@@ -1,6 +1,5 @@
 <!DOCTYPE html><html><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1"><style>body {
   max-width: 980px;
-  border: 1px solid #ddd;
   outline: 1300px solid #fff;
   margin: 16px auto;
 }
@@ -899,6 +898,10 @@ body .markdown-body
   vertical-align: middle;
 }
 
+.markdown-body diagram-div, .markdown-body div.uml-sequence-diagram, .markdown-body, div.uml-flowchart {
+  overflow: auto;
+}
+
 /* Media */
 @media only screen and (min-width: 480px) {
   .markdown-body {
@@ -1063,5 +1066,8 @@ body .markdown-body
 .highlight .vi{color:teal}
 .highlight .il{color:#009999}
 .highlight .gc{color:#999;background-color:#EAF2F5}
-</style><title>README</title></head><body><article class="markdown-body"><h1 id="a-design-document">A design document<a class="headerlink" href="#a-design-document" title="Permanent link"></a></h1>
-<h2 id="why-wpf-is-chosen-in-the-design-of-this-instead-of-other-framework">Why WPF is chosen in the design of this instead of other framework?<a class="headerlink" href="#why-wpf-is-chosen-in-the-design-of-this-instead-of-other-framework" title="Permanent link"></a></h2></article></body></html>
+</style><title>README</title></head><body><article class="markdown-body"><h1 id="a-story-about">A story about<a class="headerlink" href="#a-story-about" title="Permanent link"></a></h1>
+<h2 id="why-wpf-is-chosen-in-the-design-of-this-instead-of-other-framework">Why WPF is chosen in the design of this instead of other framework?<a class="headerlink" href="#why-wpf-is-chosen-in-the-design-of-this-instead-of-other-framework" title="Permanent link"></a></h2>
+<p>XAML is much more fun to write than WinForms IMO. It is scalable, web-friendly and a good introduction for HTML, which I may (or may not) learn in the future. However, the tag-based document is fun to write and fun to imagine without drag and drop designing tool.</p>
+<p>Also I am using Rider, which does not have support designing WinForms for .NET Core, only .NET Framework. That is why my last 3 projects were in .NET Framework instead of .NET Core.</p>
+<h2 id="is-wpf-better-than-winforms">Is WPF better than WinForms?<a class="headerlink" href="#is-wpf-better-than-winforms" title="Permanent link"></a></h2></article></body></html>
