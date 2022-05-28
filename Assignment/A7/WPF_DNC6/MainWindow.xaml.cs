@@ -5,6 +5,7 @@ using System.Reflection;
 using System.Windows;
 using System.Windows.Controls;
 using System.Windows.Forms;
+using System.Windows.Input;
 using System.Windows.Media;
 using System.Windows.Threading;
 using BackendLibrary;
@@ -33,29 +34,36 @@ namespace WPF_DNC6
             NewGame();
             InitializeGUI();
             InitializeBoard();
+            BindShortcuts();
             DataContext = ttt;
         }
 
         /// <summary>
-        ///     Show about dialog
+        ///     Bind the shortcut to the given key and modifier
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ButtonAboutAndMenuAbout_OnClick(object sender, RoutedEventArgs e)
+        /// <param name="key">Key code</param>
+        /// <param name="modifiers">Modifier key</param>
+        /// <param name="executed">Event handler method</param>
+        private void BindShortcut(Key key, ModifierKeys modifiers, ExecutedRoutedEventHandler executed)
         {
-            new AboutWindow().ShowDialog();
+            RoutedCommand cmd = new RoutedCommand();
+            _ = cmd.InputGestures.Add(new KeyGesture(key, modifiers));
+            _ = CommandBindings.Add(new CommandBinding(cmd, executed));
         }
 
         /// <summary>
-        ///     Ask user if they want to exit the program
+        ///     Binds the shortcuts
+        ///     Source: https://stackoverflow.com/a/68629439
         /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ButtonExitAndMenuExit_OnClick(object sender, RoutedEventArgs e)
+        private void BindShortcuts()
         {
-            if (MessageBox.Show("Do you want to close the program?", "Exit", MessageBoxButton.YesNo,
-                    MessageBoxImage.Question) != MessageBoxResult.Yes) return;
-            Environment.Exit(0);
+            BindShortcut(Key.D1, ModifierKeys.Alt, MenuNewPvP_OnClick);
+            BindShortcut(Key.D2, ModifierKeys.Alt, MenuNewPvE_OnClick);
+            BindShortcut(Key.D3, ModifierKeys.Alt, MenuNewEvP_OnClick);
+            BindShortcut(Key.D4, ModifierKeys.Alt, MenuNewEvE_OnClick);
+            BindShortcut(Key.S, ModifierKeys.Control, MenuSave_OnClick);
+            BindShortcut(Key.S, ModifierKeys.Control | ModifierKeys.Shift, MenuSelectFolder_OnClick);
+            BindShortcut(Key.Q, ModifierKeys.Control, MenuExit_OnClick);
         }
 
         /// <summary>
@@ -113,134 +121,6 @@ namespace WPF_DNC6
         }
 
         /// <summary>
-        ///     Initialize new game: Computer as player 1 and computer as player 2
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ButtonGameEvE_OnClick(object sender, RoutedEventArgs e)
-        {
-            NewGame();
-            ttt.P1Name = "Computer 1";
-            ttt.P2Name = "Computer 2";
-            isComputerVsHumanMode = false;
-            isComputerTurn = true;
-            isComputerVsComputerMode = true;
-            InitializeBoard();
-            CheckGameStatus();
-            ComputerMove();
-        }
-
-        /// <summary>
-        ///     Initialize new game: Computer as player 1 and human as player 2
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ButtonGameEvP_OnClick(object sender, RoutedEventArgs e)
-        {
-            NewGame();
-            ttt.P1Name = "Computer";
-            ttt.P2Name = "Player 2";
-            isComputerVsHumanMode = true;
-            isComputerTurn = true;
-            isComputerVsComputerMode = false;
-            InitializeBoard();
-            CheckGameStatus();
-            ComputerMove();
-        }
-
-        /// <summary>
-        ///     Initialize new game: Human as player 1 and computer as player 2
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ButtonGamePvE_OnClick(object sender, RoutedEventArgs e)
-        {
-            NewGame();
-            ttt.P1Name = "Player 1";
-            ttt.P2Name = "Computer";
-            isComputerVsHumanMode = true;
-            isComputerTurn = false;
-            isComputerVsComputerMode = false;
-            InitializeBoard();
-            CheckGameStatus();
-        }
-
-        /// <summary>
-        ///     Initialize new game: Human as player 1 and human as player 2
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ButtonGamePvP_OnClick(object sender, RoutedEventArgs e)
-        {
-            NewGame();
-            ttt.P1Name = "Player 1";
-            ttt.P2Name = "Player 2";
-            isComputerVsHumanMode = false;
-            isComputerTurn = false;
-            isComputerVsComputerMode = false;
-            InitializeBoard();
-        }
-
-        /// <summary>
-        ///     Save game
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ButtonSaveAndMenuSave_OnClick(object sender, RoutedEventArgs e)
-        {
-            try
-            {
-                if (ttt.IsGameOver()) // Game finished
-                {
-                    File.WriteAllText(
-                        $"{folderPath}\\{new DateTimeOffset(ttt.StartTime).ToUnixTimeSeconds()}.mhf",
-                        ttt.ToString()); // Write to file
-                    MessageBox.Show("Match saved successfully.", "Save", MessageBoxButton.OK,
-                        MessageBoxImage.Information); // Show message when successful
-                }
-                else // Game not finished
-                {
-                    MessageBox.Show("Game is not over yet. Please finish the game before saving.", "Error",
-                        MessageBoxButton.OK,
-                        MessageBoxImage.Error);
-                }
-            }
-            catch (UnauthorizedAccessException) // If you cannot write match history due to lack of permission
-            {
-                MessageBox.Show(
-                    "Cannot save match history. Please select another folder or change write permission to the current one.",
-                    "Error",
-                    MessageBoxButton.OK,
-                    MessageBoxImage.Error);
-            }
-            catch (Exception ex) // Other error, just catch it, I do not know what else can happen
-            {
-                MessageBox.Show($@"Unknown error.
-{ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
-            }
-        }
-
-        /// <summary>
-        ///     Select folder to save match history
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void ButtonSelectFolderAndMenuSelectFolder_OnClick(object sender, RoutedEventArgs e)
-        {
-            FolderBrowserDialog fbd = new FolderBrowserDialog(); // This is from System.Windows.Forms, not WPF
-            try
-            {
-                fbd.ShowDialog();
-                // Do I need to check for write permission before changing the folder?
-                folderPath = Path.GetFullPath(fbd.SelectedPath);
-                SysInfo.Text = $"Save folder: {folderPath}";
-            }
-            catch (ArgumentException)
-            {
-            }
-        }
-
-        /// <summary>
         ///     Handling the event when computer move is made
         /// </summary>
         private void ComputerMove()
@@ -283,7 +163,7 @@ namespace WPF_DNC6
         {
             TimeInfo.Text =
                 $@"Date: {DateTime.Now:yyyy-MM-dd}
-Time: {DateTime.Now:HH:mm:ss}
+Local time: {DateTime.Now:HH:mm:ss}
 Match length: {(ttt.TurnHistory.Count == 0 ? 0 : ttt.IsGameOver() ? ttt.EndTime.Subtract(ttt.StartTime).TotalMilliseconds / 1000 : DateTime.Now.Subtract(ttt.StartTime).TotalMilliseconds / 1000):F}";
         }
 
@@ -316,16 +196,19 @@ Match length: {(ttt.TurnHistory.Count == 0 ? 0 : ttt.IsGameOver() ? ttt.EndTime.
             for (int i = 0; i < ttt.BoardSize; i++)
             for (int j = 0; j < ttt.BoardSize; j++)
             {
-                Button button = new Button();
+                Button button = new Button
+                {
+                    Name = $"Button_{i}_{j}",
+                    FontSize = 30,
+                    FontWeight = FontWeights.Bold,
+                    Content = "",
+                    IsEnabled = true,
+                    Background = Brushes.Azure,
+                    BorderBrush = Brushes.Black
+                };
                 button.Click += ButtonGameBoard_OnClick;
-                button.Name = $"Button_{i}_{j}";
                 Grid.SetRow(button, i);
                 Grid.SetColumn(button, j);
-                button.FontSize = 30;
-                button.FontWeight = FontWeights.Bold;
-                button.Content = "";
-                button.IsEnabled = true;
-                button.Background = Brushes.White;
                 FieldOfPlay.Children.Add(button);
             }
 
@@ -347,6 +230,177 @@ Match length: {(ttt.TurnHistory.Count == 0 ? 0 : ttt.IsGameOver() ? ttt.EndTime.
             SysInfo.Text = $"Save folder: {folderPath}";
             Title =
                 $"{((AssemblyProductAttribute) Attribute.GetCustomAttribute(Assembly.GetExecutingAssembly(), typeof(AssemblyProductAttribute), false)).Product}";
+        }
+
+        /// <summary>
+        ///     Show about dialog
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MenuAbout_OnClick(object sender, RoutedEventArgs e)
+        {
+            new AboutWindow().ShowDialog();
+        }
+
+        /// <summary>
+        ///     Just exit the application
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MenuExit_OnClick(object sender, RoutedEventArgs e)
+        {
+            Environment.Exit(0);
+        }
+
+        /// <summary>
+        ///     Initialize new game: Computer as player 1 and computer as player 2
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MenuNewEvE_OnClick(object sender, RoutedEventArgs e)
+        {
+            NewGame();
+            ttt.P1Name = "Computer 1";
+            ttt.P2Name = "Computer 2";
+            isComputerVsHumanMode = false;
+            isComputerTurn = true;
+            isComputerVsComputerMode = true;
+            InitializeBoard();
+            CheckGameStatus();
+            ComputerMove();
+        }
+
+        /// <summary>
+        ///     Initialize new game: Computer as player 1 and human as player 2
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MenuNewEvP_OnClick(object sender, RoutedEventArgs e)
+        {
+            NewGame();
+            ttt.P1Name = "Computer";
+            ttt.P2Name = "Player 2";
+            isComputerVsHumanMode = true;
+            isComputerTurn = true;
+            isComputerVsComputerMode = false;
+            InitializeBoard();
+            CheckGameStatus();
+            ComputerMove();
+        }
+
+        /// <summary>
+        ///     Initialize new game: Human as player 1 and computer as player 2
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MenuNewPvE_OnClick(object sender, RoutedEventArgs e)
+        {
+            NewGame();
+            ttt.P1Name = "Player 1";
+            ttt.P2Name = "Computer";
+            isComputerVsHumanMode = true;
+            isComputerTurn = false;
+            isComputerVsComputerMode = false;
+            InitializeBoard();
+            CheckGameStatus();
+        }
+
+        /// <summary>
+        ///     Initialize new game: Human as player 1 and human as player 2
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MenuNewPvP_OnClick(object sender, RoutedEventArgs e)
+        {
+            NewGame();
+            ttt.P1Name = "Player 1";
+            ttt.P2Name = "Player 2";
+            isComputerVsHumanMode = false;
+            isComputerTurn = false;
+            isComputerVsComputerMode = false;
+            InitializeBoard();
+        }
+
+        /// <summary>
+        ///     Save game
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MenuSave_OnClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                if (ttt.IsGameOver()) // Game finished
+                {
+                    File.WriteAllText(
+                        $"{folderPath}\\{new DateTimeOffset(ttt.StartTime).ToUnixTimeMilliseconds()}.mhf",
+                        ttt.ToString()); // Write to file
+                    MessageBox.Show("Match saved successfully.", "Save", MessageBoxButton.OK,
+                        MessageBoxImage.Information); // Show message when successful
+                }
+                else // Game not finished
+                {
+                    MessageBox.Show("Game is not over yet. Please finish the game before saving.", "Error",
+                        MessageBoxButton.OK,
+                        MessageBoxImage.Error);
+                }
+            }
+            catch (DirectoryNotFoundException) // If saving on a network/flash drive and the connection lost
+            {
+                MessageBox.Show(
+                    $"{folderPath} is not found. Please select another folder and try again.",
+                    "Error",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+            catch (IOException ex) // If error occured during saving
+            {
+                MessageBox.Show($"{ex.Message}", "Error",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+            catch (UnauthorizedAccessException) // If you cannot write match history due to lack of permission
+            {
+                MessageBox.Show(
+                    $"{folderPath} is not accessible. Please make sure you have permission to write to this folder.",
+                    "Error",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
+            // catch (Exception ex) // Other error, just catch it, I do not know what else can happen
+            // {
+            //     MessageBox.Show($@"{ex.Message}", "Error", MessageBoxButton.OK, MessageBoxImage.Error);
+            // }
+        }
+
+        /// <summary>
+        ///     Select folder to save match history
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void MenuSelectFolder_OnClick(object sender, RoutedEventArgs e)
+        {
+            try
+            {
+                using FolderBrowserDialog fbd = new FolderBrowserDialog(); // This is from System.Windows.Forms, not WPF
+                fbd.ShowDialog();
+                // Do I need to check for write permission before changing the folder?
+                folderPath = Path.GetFullPath(fbd.SelectedPath);
+                SysInfo.Text = $"Save folder: {folderPath}";
+            }
+            catch (ArgumentException) // if user cancels the folder selection
+
+            {
+                // do nothing
+            }
+            catch (PathTooLongException) // 
+            {
+                MessageBox.Show(
+                    "The path is too long. Please select another folder and try again.",
+                    "Error",
+                    MessageBoxButton.OK,
+                    MessageBoxImage.Error);
+            }
         }
 
         /// <summary>

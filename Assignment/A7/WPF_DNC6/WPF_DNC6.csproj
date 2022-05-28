@@ -21,11 +21,11 @@
     </PropertyGroup>
 
     <ItemGroup>
-        <None Remove="Resources\sample.png" />
+        <None Remove="Resources\sample.png"/>
     </ItemGroup>
 
     <ItemGroup>
-        <ProjectReference Include="..\BackendLibrary\BackendLibrary.csproj" />
+        <ProjectReference Include="..\BackendLibrary\BackendLibrary.csproj"/>
     </ItemGroup>
 
     <ItemGroup>
