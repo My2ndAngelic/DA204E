@@ -5,7 +5,7 @@
         <Nullable>enable</Nullable>
         <UseWPF>true</UseWPF>
         <UseWindowsForms>true</UseWindowsForms>
-        <Company>My2ndAngelic</Company>
+        <Company>Evan Huynh</Company>
         <Product>Tic Tac Toe</Product>
         <AssemblyVersion>2022.0510.69.420</AssemblyVersion>
         <FileVersion>2022.0510.69.420</FileVersion>
@@ -17,6 +17,7 @@
         <ApplicationIcon>Resources\sample.ico</ApplicationIcon>
         <UseAppHost>true</UseAppHost>
         <TargetFramework>net6.0-windows</TargetFramework>
+        <PackageIcon>Resources\sample.png</PackageIcon>
     </PropertyGroup>
 
     <ItemGroup>
@@ -30,6 +31,8 @@
     <ItemGroup>
         <Resource Include="Resources\sample.png">
             <CopyToOutputDirectory>Always</CopyToOutputDirectory>
+            <Pack>True</Pack>
+            <PackagePath></PackagePath>
         </Resource>
     </ItemGroup>
 
