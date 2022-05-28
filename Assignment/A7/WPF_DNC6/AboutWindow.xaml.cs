@@ -18,6 +18,9 @@ namespace WPF_DNC6
             Close();
         }
 
+        /// <summary>
+        /// Display everything in the About Window
+        /// </summary>
         private void InitializeGUI()
         {
             Title =
