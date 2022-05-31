@@ -21,7 +21,7 @@ Probably.
 It is fun to write in WPF, especially the application scales pretty well. However, not all features of WinForms are available on WPF yet, especially FolderBrowserDialog, which is used in this project.
 
 ## Is coding in WPF is easier than WinForms?
-Yes. Just organize your elements into grids instead of pixel-based layouts.
+Yes. For me it is just the matter of organize your elements into grids instead of pixel-based layouts.
 
 ## Final words
 Thank you for reading and for the course.
