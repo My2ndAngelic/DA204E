@@ -8,9 +8,11 @@ namespace A7Console
 
         public static void Main(string[] args)
         {
-            Test t = new Test();
-            Console.WriteLine(Utils.Arrays.ToString(t.secondArray));
-            Console.WriteLine(Utils.Arrays.ToString(t.MethodBeingCalled(t.secondArray)));
+            // Test t = new Test();
+            // Console.WriteLine(Utils.Arrays.ToString(t.secondArray));
+            // Console.WriteLine(Utils.Arrays.ToString(t.MethodBeingCalled(t.secondArray)));
+            TicTacToe ttt = new TicTacToe(3);
+            Console.WriteLine(Utils.Arrays.ToString(ttt.RandomComputerMoveIntegerArray()));
         }
     }
 }

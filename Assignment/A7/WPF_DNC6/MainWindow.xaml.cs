@@ -18,7 +18,7 @@ namespace WPF_DNC6
     /// <summary>
     ///     Interaction logic for MainWindow.xaml
     /// </summary>
-    public partial class MainWindow : Window
+    public partial class MainWindow
     {
         private const int BoardSize = 3;
         private readonly TicTacToe ttt = new TicTacToe(BoardSize);

@@ -4,6 +4,10 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WPF_DNC6", "WPF_DNC6\WPF_DN
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "BackendLibrary", "BackendLibrary\BackendLibrary.csproj", "{058325EB-84C2-478B-AA1C-6EC7B3D35425}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "A7Console", "A7Console\A7Console.csproj", "{2D00C77A-F7E9-455A-A0BD-0E0CC35B1731}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Ava_DNC", "Ava_DNC\Ava_DNC.csproj", "{2ABB9492-7F9A-40D8-8CE6-F22014707299}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -18,5 +22,13 @@ Global
 		{058325EB-84C2-478B-AA1C-6EC7B3D35425}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{058325EB-84C2-478B-AA1C-6EC7B3D35425}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{058325EB-84C2-478B-AA1C-6EC7B3D35425}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2D00C77A-F7E9-455A-A0BD-0E0CC35B1731}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2D00C77A-F7E9-455A-A0BD-0E0CC35B1731}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2D00C77A-F7E9-455A-A0BD-0E0CC35B1731}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2D00C77A-F7E9-455A-A0BD-0E0CC35B1731}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2ABB9492-7F9A-40D8-8CE6-F22014707299}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2ABB9492-7F9A-40D8-8CE6-F22014707299}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2ABB9492-7F9A-40D8-8CE6-F22014707299}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2ABB9492-7F9A-40D8-8CE6-F22014707299}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal
